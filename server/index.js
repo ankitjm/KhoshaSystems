@@ -26,6 +26,7 @@ db.exec(`
     company TEXT,
     email TEXT,
     goal TEXT,
+    message TEXT DEFAULT '',
     source TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
@@ -91,15 +92,52 @@ app.use((_req, res, next) => {
 });
 
 // --- Lead Endpoints ---
+
+// Migrate: add message column if missing (existing DBs)
+try {
+  db.exec("ALTER TABLE leads ADD COLUMN message TEXT DEFAULT ''");
+  console.log('Migrated: added message column to leads');
+} catch (_) { /* column already exists */ }
+
 const insertLead = db.prepare(
-  'INSERT INTO leads (name, company, email, goal, source) VALUES (?, ?, ?, ?, ?)'
+  'INSERT INTO leads (name, company, email, goal, message, source) VALUES (?, ?, ?, ?, ?, ?)'
 );
+
+// Send push notification to all subscribers when a new lead arrives
+async function notifyNewLead(lead) {
+  try {
+    const subs = db.prepare('SELECT * FROM push_subscriptions').all();
+    if (subs.length === 0) return;
+    const payload = JSON.stringify({
+      title: `New Lead: ${lead.name}`,
+      body: `${lead.company} — ${lead.goal}`,
+      url: 'https://khoshasystems.com/api/leads?key=khosha2026',
+    });
+    for (const sub of subs) {
+      try {
+        await webpush.sendNotification({
+          endpoint: sub.endpoint,
+          keys: { p256dh: sub.keys_p256dh, auth: sub.keys_auth }
+        }, payload);
+      } catch (err) {
+        if (err.statusCode === 410 || err.statusCode === 404) {
+          db.prepare('DELETE FROM push_subscriptions WHERE id = ?').run(sub.id);
+        }
+      }
+    }
+  } catch (err) {
+    console.error('Push notify error:', err.message);
+  }
+}
 
 app.post('/api/leads', (req, res) => {
   try {
-    const { name, company, email, goal, source } = req.body;
+    const { name, company, email, goal, message, source } = req.body;
     if (!email) return res.status(400).json({ error: 'Email is required' });
-    const result = insertLead.run(name || '', company || '', email, goal || '', source || '');
+    const result = insertLead.run(name || '', company || '', email, goal || '', message || '', source || '');
+    console.log(`NEW LEAD #${result.lastInsertRowid}: ${name} <${email}> — ${company} — ${goal}`);
+    // Fire push notification asynchronously (don't block response)
+    notifyNewLead({ name: name || '', company: company || '', goal: goal || '' });
     res.json({ success: true, id: result.lastInsertRowid });
   } catch (err) {
     console.error('Lead insert error:', err.message);

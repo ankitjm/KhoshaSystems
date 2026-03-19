@@ -1,6 +1,6 @@
 const API_BASE = '/api';
 
-export const saveLead = async (data: { name: string; company: string; email: string; goal: string; source: string }) => {
+export const saveLead = async (data: { name: string; company: string; email: string; goal: string; message?: string; source: string }) => {
   try {
     const res = await fetch(`${API_BASE}/leads`, {
       method: 'POST',

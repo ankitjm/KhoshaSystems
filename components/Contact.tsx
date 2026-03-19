@@ -40,7 +40,7 @@ export const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('SUBMITTING');
-    const dbResult = await saveLead({ ...formData, source: 'Contact Page Form' });
+    const dbResult = await saveLead({ name: formData.name, company: formData.company, email: formData.email, goal: formData.goal, message: formData.message, source: 'Contact Page Form' });
     await sendNotificationEmail({
       to_name: formData.name, to_email: formData.email,
       from_company: formData.company, goal: formData.goal, message: "New Discovery Call Request",
