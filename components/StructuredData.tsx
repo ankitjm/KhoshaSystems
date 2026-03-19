@@ -93,6 +93,24 @@ const breadcrumbMap: Record<string, Array<{ name: string; path: string }>> = {
     { name: 'Visitor Management', path: '/products/visitor-management' },
     { name: 'VMS vs Envoy', path: '/compare/vms-vs-envoy' },
   ],
+  '/compare/retaileros-vs-shopify': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'RetailerOS vs Shopify POS', path: '/compare/retaileros-vs-shopify' },
+  ],
+  '/compare/retaileros-vs-lightspeed': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'RetailerOS vs Lightspeed', path: '/compare/retaileros-vs-lightspeed' },
+  ],
+  '/compare/retaileros-vs-square': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'RetailerOS vs Square', path: '/compare/retaileros-vs-square' },
+  ],
 };
 
 // FAQ data for product pages
@@ -212,6 +230,75 @@ export const vmsVsEnvoyFAQs = [
   {
     question: 'Can Khosha VMS work at construction sites with poor internet?',
     answer: 'Yes. Khosha VMS is designed to work in low-connectivity environments typical of construction sites and locations in Tier-2/3 cities, unlike Envoy which is fully cloud-dependent and requires stable internet.',
+  },
+];
+
+export const retailerOSvsShopifyFAQs = [
+  {
+    question: 'Does Shopify POS support IMEI or serial number tracking?',
+    answer: 'No. Shopify POS has no native serial number or IMEI tracking. Merchants must use manual spreadsheets, order notes, or paid third-party apps like SKUSavvy. RetailerOS has native IMEI capture via barcode, camera, or manual entry with a full audit trail from purchase to sale.',
+  },
+  {
+    question: 'How does RetailerOS pricing compare to Shopify POS?',
+    answer: 'Shopify POS Lite is included with Shopify plans (starting at $39/month), but advanced features like staff permissions, smart inventory, and detailed analytics require POS Pro at $89/month per location. RetailerOS includes all features in one transparent price — no tiered upselling.',
+  },
+  {
+    question: 'Can Shopify POS handle brand scheme management?',
+    answer: 'No. Shopify POS has no concept of brand schemes, cashbacks, or exchange offers. RetailerOS has a built-in engine that tracks active schemes from Samsung, Vivo, Oppo, Xiaomi, and other brands — auto-applying eligible offers at billing and tracking pending claims.',
+  },
+  {
+    question: 'Is Shopify POS suitable for Indian telecom retailers?',
+    answer: 'Shopify POS is designed for general retail and e-commerce, primarily in North American and European markets. It lacks GST-compliant billing, IMEI tracking, brand scheme management, and WhatsApp notifications — all of which are native to RetailerOS.',
+  },
+  {
+    question: 'Can RetailerOS match Shopify for e-commerce?',
+    answer: 'RetailerOS is focused on in-store telecom retail operations — IMEI tracking, billing, scheme management, and multi-store inventory. If your primary need is online selling with a POS add-on, Shopify excels there. If your primary need is in-store telecom retail, RetailerOS is the better choice.',
+  },
+];
+
+export const retailerOSvsLightspeedFAQs = [
+  {
+    question: 'Does Lightspeed force you to use their payment processor?',
+    answer: 'Yes. Lightspeed requires merchants to use Lightspeed Payments or face significantly higher subscription costs — reportedly 2-3x the standard rate. RetailerOS works with any payment processor you choose, with no lock-in or price penalties.',
+  },
+  {
+    question: 'How does RetailerOS pricing compare to Lightspeed?',
+    answer: 'Lightspeed starts at $89/month for Basic, $149/month for Core (with analytics), and $289/month for Plus (with loyalty). These are typically annual contracts. RetailerOS offers all features at one transparent price with quarterly+ billing and no long-term contracts.',
+  },
+  {
+    question: 'Does Lightspeed support telecom-specific features?',
+    answer: 'Lightspeed markets a "cellphone store POS" page, but it is the same generic retail platform without telecom-specific workflows. It lacks native scheme management, carrier activation support, and purpose-built IMEI workflows. RetailerOS is built specifically for telecom retail.',
+  },
+  {
+    question: 'Can I cancel Lightspeed without penalties?',
+    answer: 'Lightspeed typically requires 1-3 year contracts that are expensive to cancel. Users report difficulty breaking free from these commitments. RetailerOS offers flexible quarterly+ billing with no long-term lock-in.',
+  },
+  {
+    question: 'Does Lightspeed work for Indian retail?',
+    answer: 'Lightspeed is designed for US and Canadian markets with tax systems built for those regions. It does not support GST-compliant billing, HSN codes, or Indian carrier integrations. RetailerOS is purpose-built for Indian telecom and electronics retail.',
+  },
+];
+
+export const retailerOSvsSquareFAQs = [
+  {
+    question: 'Does Square for Retail support IMEI or serial number tracking?',
+    answer: 'No. Square for Retail has no serial number tracking and does not even have a dedicated barcode field — merchants must enter barcodes in the SKU field as a workaround. RetailerOS has native IMEI tracking with barcode scan, camera capture, and manual entry.',
+  },
+  {
+    question: 'Is Square for Retail really free?',
+    answer: 'Square offers a free tier, but it includes basic features only. Advanced retail reports require Plus ($49/month per location), and cross-location features require Premium ($149/month per location). Plus, all transactions incur a 2.6% + $0.10 processing fee that adds up fast for high-volume electronics stores.',
+  },
+  {
+    question: 'Does Square freeze merchant funds?',
+    answer: 'Square is known for freezing and holding merchant funds without warning, particularly for newer accounts or high-value transactions. RetailerOS does not process payments directly — you use your preferred payment processor and maintain full control of your funds.',
+  },
+  {
+    question: 'Can Square handle GST billing for Indian businesses?',
+    answer: 'No. Square is built for the US market with US tax systems. It does not support GST invoicing, HSN codes, reverse charge, or Indian tax compliance. RetailerOS is fully GST-compliant and built for Indian tax requirements from the ground up.',
+  },
+  {
+    question: 'Is Square good enough for a mobile phone shop?',
+    answer: 'Square works well for simple retail — coffee shops, clothing stores, general merchandise. But mobile phone shops need IMEI tracking, serial inventory, brand scheme management, and GST billing — features Square was never designed to provide. RetailerOS is purpose-built for this use case.',
   },
 ];
 
@@ -400,6 +487,18 @@ function getSchemasForPath(pathname: string): object[] {
 
     case '/compare/vms-vs-envoy':
       schemas.push(buildFAQSchema(vmsVsEnvoyFAQs));
+      break;
+
+    case '/compare/retaileros-vs-shopify':
+      schemas.push(buildFAQSchema(retailerOSvsShopifyFAQs));
+      break;
+
+    case '/compare/retaileros-vs-lightspeed':
+      schemas.push(buildFAQSchema(retailerOSvsLightspeedFAQs));
+      break;
+
+    case '/compare/retaileros-vs-square':
+      schemas.push(buildFAQSchema(retailerOSvsSquareFAQs));
       break;
   }
 
