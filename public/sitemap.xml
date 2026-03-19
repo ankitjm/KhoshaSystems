@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://www.khoshasystems.com/blog</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -93,6 +93,48 @@
   <url>
     <loc>https://www.khoshasystems.com/blog/why-vancouver-startups-partner-with-bangalore-teams</loc>
     <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.khoshasystems.com/blog/imei-tracking-reduces-shrinkage-telecom-retail</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.khoshasystems.com/blog/5-signs-real-estate-business-needs-crm</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.khoshasystems.com/blog/indian-telecom-retailers-switching-digital-billing</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.khoshasystems.com/blog/digital-visitor-management-roi-indian-corporates</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.khoshasystems.com/blog/retaileros-vs-manual-billing-comparison</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.khoshasystems.com/blog/scheme-management-simple-telecom-retailers</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.khoshasystems.com/blog/case-study-pune-retailer-saved-40-percent-billing-time</loc>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
