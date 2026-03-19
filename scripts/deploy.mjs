@@ -105,9 +105,15 @@ async function deploy() {
   }
   console.log(`  dist: ${uploaded}/${distFiles.length} files uploaded`);
 
-  // Upload server/index.js
-  await sftpWriteFile(sftp, `${REMOTE_BASE}/server/index.js`, join(PROJECT_ROOT, 'server', 'index.js'));
-  console.log('  server/index.js uploaded');
+  // Upload all server/ files (index.js, brevo.js, etc.)
+  const serverFiles = getAllFiles(join(PROJECT_ROOT, 'server'));
+  for (const file of serverFiles) {
+    // Skip database files and node_modules
+    if (file.remote.endsWith('.db') || file.remote.includes('node_modules')) continue;
+    const remotePath = posix.join(REMOTE_BASE, 'server', file.remote.replace(/\\/g, '/'));
+    await sftpWriteFile(sftp, remotePath, file.local);
+  }
+  console.log(`  server: ${serverFiles.length} files uploaded`);
 
   // Upload production package.json
   const pkg = JSON.parse(readFileSync(join(PROJECT_ROOT, 'package.json'), 'utf8'));
