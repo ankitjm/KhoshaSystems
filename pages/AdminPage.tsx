@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Users, Mail, BarChart3, Clock, Shield, Eye, RefreshCw, Bell, Send } from 'lucide-react';
 
-const API_BASE = 'https://www.khoshasystems.com/api';
+const API_BASE = '/api';
 const ADMIN_KEY = 'khosha2026';
 
 interface Lead {

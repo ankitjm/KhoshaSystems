@@ -1,4 +1,4 @@
-const API_BASE = 'https://www.khoshasystems.com/api';
+const API_BASE = '/api';
 
 function urlBase64ToUint8Array(base64String: string) {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);

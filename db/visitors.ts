@@ -1,4 +1,4 @@
-const API_BASE = 'https://www.khoshasystems.com/api';
+const API_BASE = '/api';
 
 export const upsertVisitor = async (data: {
   sessionId: string;

@@ -1,4 +1,4 @@
-const API_BASE = 'https://www.khoshasystems.com/api';
+const API_BASE = '/api';
 
 export const saveLead = async (data: { name: string; company: string; email: string; goal: string; source: string }) => {
   try {
