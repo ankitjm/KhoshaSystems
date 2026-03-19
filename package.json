@@ -30,6 +30,7 @@
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.2.0",
     "autoprefixer": "^10.4.27",
+    "playwright": "^1.58.2",
     "postcss": "^8.5.8",
     "puppeteer": "^24.38.0",
     "sharp": "^0.34.5",
