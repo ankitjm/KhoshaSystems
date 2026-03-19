@@ -43,6 +43,10 @@ export const Navbar: React.FC = () => {
             </a>
           </div>
           <div className="flex items-center gap-5">
+            <a href="tel:+918884972272" className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase hover:text-white transition-colors">
+              <Phone size={10} className="text-bronze-500" /> +91 888 497 2272
+            </a>
+            <span className="text-stone-700">|</span>
             <span className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase">
               <Clock size={10} className="text-bronze-500" /> Mon–Fri 9:00–18:00 IST
             </span>
@@ -166,6 +170,10 @@ export const Navbar: React.FC = () => {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
               className="mt-auto mb-6 pt-4 border-t border-stone-100 relative z-10">
               <div className="space-y-2.5">
+                <a href="tel:+918884972272" className="flex items-center gap-2.5 text-stone-400">
+                  <Phone size={13} className="text-bronze-500 shrink-0" />
+                  <span className="text-sm">+91 888 497 2272</span>
+                </a>
                 <a href="mailto:hello@khoshasystems.com" className="flex items-center gap-2.5 text-stone-400">
                   <Mail size={13} className="text-bronze-500 shrink-0" />
                   <span className="text-sm">hello@khoshasystems.com</span>

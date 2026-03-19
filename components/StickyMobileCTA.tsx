@@ -23,7 +23,7 @@ export const WhatsAppButton: React.FC = () => {
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ type: 'spring', damping: 15 }}
-      className="fixed bottom-20 sm:bottom-6 right-4 z-[60] md:hidden"
+      className="fixed bottom-20 sm:bottom-6 right-4 z-[60]"
       aria-label="Chat on WhatsApp"
     >
       <div className="w-12 h-12 bg-[#128C7E] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">

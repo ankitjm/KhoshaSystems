@@ -3,6 +3,7 @@ import { Section } from '../components/Section';
 import { Services } from '../components/Services';
 import { Phases } from '../components/Phases';
 import { Contact } from '../components/Contact';
+import { CTAStrip } from '../components/CTAStrip';
 import { PageHero } from '../components/PageHero';
 import { motion } from 'framer-motion';
 
@@ -55,6 +56,7 @@ export const ServicesPage: React.FC = () => {
           </motion.div>
         </div>
       </Section>
+      <CTAStrip />
       <Contact />
     </div>
   );
