@@ -1,0 +1,232 @@
+import express from 'express';
+import cors from 'cors';
+import Database from 'better-sqlite3';
+import webpush from 'web-push';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+import { existsSync } from 'fs';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const PORT = process.env.PORT || 3007;
+
+// --- VAPID Keys for Web Push ---
+const VAPID_PUBLIC = 'BOJiJxR8DMf1j-bXjnOFF_v6ge4LqLivLgFqpZkWeTkRZ6NjCRuUqHPD_rJD78A9J1Y3DkWPikWCFp2_q3POfm8';
+const VAPID_PRIVATE = 'WO0HFIM9g9lXR2qqMHxI53ORHAE5cfoskssu4nGht94';
+webpush.setVapidDetails('mailto:hello@khoshasystems.com', VAPID_PUBLIC, VAPID_PRIVATE);
+
+// --- Database Setup ---
+const db = new Database(join(__dirname, 'kosha.db'));
+db.pragma('journal_mode = WAL');
+db.pragma('foreign_keys = ON');
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS leads (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    company TEXT,
+    email TEXT,
+    goal TEXT,
+    source TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+  CREATE TABLE IF NOT EXISTS visitors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_id TEXT UNIQUE,
+    ip_address TEXT,
+    user_agent TEXT,
+    referrer TEXT,
+    pages_viewed TEXT DEFAULT '[]',
+    page_count INTEGER DEFAULT 1,
+    first_seen DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_seen DATETIME DEFAULT CURRENT_TIMESTAMP,
+    time_on_site INTEGER DEFAULT 0,
+    qualified INTEGER DEFAULT 0
+  );
+  CREATE TABLE IF NOT EXISTS push_subscriptions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    endpoint TEXT UNIQUE,
+    keys_p256dh TEXT,
+    keys_auth TEXT,
+    user_agent TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+`);
+
+console.log('Database initialized at', join(__dirname, 'kosha.db'));
+
+// --- Express App ---
+const app = express();
+app.use(cors({ origin: ['https://www.khoshasystems.com', 'https://khoshasystems.com', 'http://localhost:3000'] }));
+app.use(express.json());
+
+// --- Lead Endpoints ---
+const insertLead = db.prepare(
+  'INSERT INTO leads (name, company, email, goal, source) VALUES (?, ?, ?, ?, ?)'
+);
+
+app.post('/api/leads', (req, res) => {
+  try {
+    const { name, company, email, goal, source } = req.body;
+    if (!email) return res.status(400).json({ error: 'Email is required' });
+    const result = insertLead.run(name || '', company || '', email, goal || '', source || '');
+    res.json({ success: true, id: result.lastInsertRowid });
+  } catch (err) {
+    console.error('Lead insert error:', err.message);
+    res.status(500).json({ error: 'Failed to save lead' });
+  }
+});
+
+app.get('/api/leads', (req, res) => {
+  try {
+    const key = req.query.key;
+    if (key !== 'khosha2026') return res.status(401).json({ error: 'Unauthorized' });
+    const leads = db.prepare('SELECT * FROM leads ORDER BY created_at DESC').all();
+    res.json(leads);
+  } catch (err) {
+    console.error('Lead fetch error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch leads' });
+  }
+});
+
+// --- Visitor Endpoints ---
+const upsertVisitor = db.prepare(`
+  INSERT INTO visitors (session_id, ip_address, user_agent, referrer, pages_viewed, page_count, time_on_site, qualified)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  ON CONFLICT(session_id) DO UPDATE SET
+    pages_viewed = excluded.pages_viewed,
+    page_count = excluded.page_count,
+    last_seen = CURRENT_TIMESTAMP,
+    time_on_site = excluded.time_on_site,
+    qualified = excluded.qualified
+`);
+
+app.post('/api/visitors', (req, res) => {
+  try {
+    const { sessionId, ip, userAgent, referrer, pagesViewed, timeOnSite, qualified } = req.body;
+    if (!sessionId) return res.status(400).json({ error: 'sessionId required' });
+    const pagesJson = JSON.stringify(pagesViewed || []);
+    upsertVisitor.run(
+      sessionId, ip || '', userAgent || '', referrer || '',
+      pagesJson, (pagesViewed || []).length, timeOnSite || 0, qualified ? 1 : 0
+    );
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Visitor upsert error:', err.message);
+    res.status(500).json({ error: 'Failed to save visitor' });
+  }
+});
+
+app.get('/api/visitors', (req, res) => {
+  try {
+    const key = req.query.key;
+    if (key !== 'khosha2026') return res.status(401).json({ error: 'Unauthorized' });
+    const visitors = db.prepare('SELECT * FROM visitors ORDER BY last_seen DESC LIMIT 200').all();
+    res.json(visitors);
+  } catch (err) {
+    console.error('Visitor fetch error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch visitors' });
+  }
+});
+
+// --- Stats Endpoint ---
+app.get('/api/stats', (req, res) => {
+  try {
+    const key = req.query.key;
+    if (key !== 'khosha2026') return res.status(401).json({ error: 'Unauthorized' });
+    const totalLeads = db.prepare('SELECT COUNT(*) as count FROM leads').get();
+    const totalVisitors = db.prepare('SELECT COUNT(*) as count FROM visitors').get();
+    const qualifiedVisitors = db.prepare('SELECT COUNT(*) as count FROM visitors WHERE qualified = 1').get();
+    const todayLeads = db.prepare("SELECT COUNT(*) as count FROM leads WHERE date(created_at) = date('now')").get();
+    const sources = db.prepare('SELECT source, COUNT(*) as count FROM leads GROUP BY source ORDER BY count DESC').all();
+    const pushSubscribers = db.prepare('SELECT COUNT(*) as count FROM push_subscriptions').get();
+    res.json({
+      totalLeads: totalLeads.count,
+      totalVisitors: totalVisitors.count,
+      qualifiedVisitors: qualifiedVisitors.count,
+      todayLeads: todayLeads.count,
+      pushSubscribers: pushSubscribers.count,
+      sources,
+    });
+  } catch (err) {
+    console.error('Stats error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch stats' });
+  }
+});
+
+// --- Push Subscription Endpoints ---
+const insertSub = db.prepare(
+  'INSERT INTO push_subscriptions (endpoint, keys_p256dh, keys_auth, user_agent) VALUES (?, ?, ?, ?) ON CONFLICT(endpoint) DO UPDATE SET keys_p256dh = excluded.keys_p256dh, keys_auth = excluded.keys_auth, user_agent = excluded.user_agent'
+);
+
+app.get('/api/push/vapid-key', (_req, res) => {
+  res.json({ publicKey: VAPID_PUBLIC });
+});
+
+app.post('/api/push/subscribe', (req, res) => {
+  try {
+    const { subscription, userAgent } = req.body;
+    if (!subscription?.endpoint || !subscription?.keys) {
+      return res.status(400).json({ error: 'Invalid subscription' });
+    }
+    insertSub.run(subscription.endpoint, subscription.keys.p256dh, subscription.keys.auth, userAgent || '');
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Push subscribe error:', err.message);
+    res.status(500).json({ error: 'Failed to save subscription' });
+  }
+});
+
+app.get('/api/push/subscribers', (req, res) => {
+  try {
+    if (req.query.key !== 'khosha2026') return res.status(401).json({ error: 'Unauthorized' });
+    const subs = db.prepare('SELECT * FROM push_subscriptions ORDER BY created_at DESC').all();
+    res.json(subs);
+  } catch (err) {
+    console.error('Push fetch error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch subscribers' });
+  }
+});
+
+app.post('/api/push/send', async (req, res) => {
+  try {
+    if (req.query.key !== 'khosha2026') return res.status(401).json({ error: 'Unauthorized' });
+    const { title, body, url, image, icon } = req.body;
+    if (!title || !body) return res.status(400).json({ error: 'title and body required' });
+
+    const subs = db.prepare('SELECT * FROM push_subscriptions').all();
+    const payload = JSON.stringify({ title, body, url: url || 'https://khoshasystems.com', image: image || undefined, icon: icon || undefined });
+    let sent = 0, failed = 0;
+
+    for (const sub of subs) {
+      try {
+        await webpush.sendNotification({
+          endpoint: sub.endpoint,
+          keys: { p256dh: sub.keys_p256dh, auth: sub.keys_auth }
+        }, payload);
+        sent++;
+      } catch (err) {
+        failed++;
+        if (err.statusCode === 410 || err.statusCode === 404) {
+          db.prepare('DELETE FROM push_subscriptions WHERE id = ?').run(sub.id);
+        }
+      }
+    }
+    res.json({ success: true, sent, failed, total: subs.length });
+  } catch (err) {
+    console.error('Push send error:', err.message);
+    res.status(500).json({ error: 'Failed to send notifications' });
+  }
+});
+
+// --- Serve static frontend ---
+const distPath = join(__dirname, '..', 'dist');
+if (existsSync(distPath)) {
+  app.use(express.static(distPath));
+  app.get('/{*splat}', (_req, res) => {
+    res.sendFile(join(distPath, 'index.html'));
+  });
+}
+
+app.listen(PORT, '127.0.0.1', () => {
+  console.log(`Khosha API running on http://127.0.0.1:${PORT}`);
+});

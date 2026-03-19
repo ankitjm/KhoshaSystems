@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* Bronze color theme */
+@theme {
+  --color-bronze-50: #faf6f1;
+  --color-bronze-100: #f0e6d6;
+  --color-bronze-200: #e0ccad;
+  --color-bronze-300: #d4b896;
+  --color-bronze-400: #c9a87c;
+  --color-bronze-500: #b4875e;
+  --color-bronze-600: #9a6d45;
+  --color-bronze-700: #8b6542;
+  --color-bronze-800: #6b4e33;
+  --color-bronze-900: #4a3623;
+}
+
+/* Fonts loaded via <link> in index.html for reliability */
+
+body {
+  background-color: #fafaf9;
+  color: #1c1917;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+}
+
+.font-serif, .font-heading {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.bronze-gradient-text {
+  background: linear-gradient(135deg, #8b6542, #c9a87c, #9a6d45, #c9a87c, #8b6542);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% auto;
+  animation: shine 6s ease infinite;
+}
+
+@keyframes shine {
+  0% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(180, 135, 94, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 135, 94, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.pattern-diagonal {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 35px,
+    rgba(180, 135, 94, 0.03) 35px,
+    rgba(180, 135, 94, 0.03) 36px
+  );
+}
+
+.texture-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+.overlay-dark {
+  background: linear-gradient(to bottom, rgba(28, 25, 23, 0.75), rgba(28, 25, 23, 0.85));
+}
+
+.overlay-bronze {
+  background: linear-gradient(135deg, rgba(74, 54, 35, 0.92), rgba(28, 25, 23, 0.88));
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #fafaf9; }
+::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #b4875e; }
+
+* { -webkit-tap-highlight-color: transparent; }
+
+.img-zoom {
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.img-zoom:hover {
+  transform: scale(1.05);
+}
+
+.glow-bronze {
+  box-shadow: 0 0 0 1px rgba(180, 135, 94, 0.1), 0 4px 24px rgba(180, 135, 94, 0.08);
+}
