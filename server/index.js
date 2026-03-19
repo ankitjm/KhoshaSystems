@@ -95,6 +95,38 @@ app.use((_req, res, next) => {
   next();
 });
 
+// --- Rate Limiting for /api/leads ---
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const RATE_LIMIT_MAX = 5; // max requests per window per IP
+const rateLimitMap = new Map(); // ip -> { count, resetAt }
+
+// Clean up expired entries every 5 minutes
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, entry] of rateLimitMap) {
+    if (now > entry.resetAt) rateLimitMap.delete(ip);
+  }
+}, 5 * 60 * 1000);
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT_MAX) return false;
+  entry.count++;
+  return true;
+}
+
+// --- Email Validation ---
+function isValidEmail(email) {
+  // RFC 5322 simplified: local@domain.tld
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return typeof email === 'string' && email.length <= 254 && re.test(email);
+}
+
 // --- Lead Endpoints ---
 
 // Migrate: add message column if missing (existing DBs)
@@ -138,6 +170,12 @@ app.post('/api/leads', (req, res) => {
   try {
     const { name, company, email, goal, message, source } = req.body;
     if (!email) return res.status(400).json({ error: 'Email is required' });
+    if (!isValidEmail(email)) return res.status(400).json({ error: 'Invalid email format' });
+
+    const clientIp = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.ip;
+    if (!checkRateLimit(clientIp)) {
+      return res.status(429).json({ error: 'Too many submissions. Please try again later.' });
+    }
     const result = insertLead.run(name || '', company || '', email, goal || '', message || '', source || '');
     console.log(`NEW LEAD #${result.lastInsertRowid}: ${name} <${email}> — ${company} — ${goal}`);
     // Fire push notification asynchronously (don't block response)
