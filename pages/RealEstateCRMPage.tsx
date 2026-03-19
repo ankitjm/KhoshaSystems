@@ -5,6 +5,8 @@ import { PageHero } from '../components/PageHero';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Building2, Users, Globe, Shield, BarChart3, ArrowRight, Check, Smartphone, Zap } from 'lucide-react';
+import { FAQSection } from '../components/FAQSection';
+import { realEstateCRMFAQs } from '../components/StructuredData';
 
 const features = [
   { icon: Users, label: "Lead Management", desc: "Capture leads automatically from 99acres, MagicBricks, Housing.com, and Facebook Ads. No more manual entry, no more lost inquiries." },
@@ -90,7 +92,10 @@ export const RealEstateCRMPage: React.FC = () => {
             </div>
           </div>
           <div className="h-64 md:h-96 relative overflow-hidden rounded-lg border border-stone-200">
-            <img src="/images/realestate-inline.png" alt="Real Estate CRM lead pipeline dashboard" className="w-full h-full object-cover" loading="lazy" />
+            <picture>
+              <source srcSet="/images/realestate-inline.webp" type="image/webp" />
+              <img src="/images/realestate-inline.png" alt="Real Estate CRM lead pipeline dashboard" className="w-full h-full object-cover" loading="lazy" />
+            </picture>
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent" />
             <div className="absolute bottom-4 left-4 text-white">
               <Building2 size={24} className="mb-1 text-bronze-400" />
@@ -112,6 +117,13 @@ export const RealEstateCRMPage: React.FC = () => {
           </div>
         </div>
       </Section>
+
+      {/* FAQ */}
+      <FAQSection
+        faqs={realEstateCRMFAQs}
+        title="Real Estate CRM — Frequently Asked Questions"
+        subtitle="Common questions about our CRM built for Indian real estate developers and brokers."
+      />
 
       <Section className="bg-white">
         <div className="max-w-3xl mx-auto text-center">

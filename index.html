@@ -355,20 +355,20 @@
     }
     </script>
 
-    <!-- JSON-LD Breadcrumb Schema -->
+    <!-- JSON-LD SiteNavigationElement Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.khoshasystems.com" },
-        { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.khoshasystems.com/products" },
-        { "@type": "ListItem", "position": 3, "name": "Services", "item": "https://www.khoshasystems.com/services" },
-        { "@type": "ListItem", "position": 4, "name": "Work", "item": "https://www.khoshasystems.com/work" },
-        { "@type": "ListItem", "position": 5, "name": "About", "item": "https://www.khoshasystems.com/philosophy" },
-        { "@type": "ListItem", "position": 6, "name": "Contact", "item": "https://www.khoshasystems.com/contact" },
-        { "@type": "ListItem", "position": 7, "name": "Blog", "item": "https://www.khoshasystems.com/blog" },
-        { "@type": "ListItem", "position": 8, "name": "Vancouver", "item": "https://www.khoshasystems.com/vancouver" }
+      "@type": "SiteNavigationElement",
+      "name": "Main Navigation",
+      "url": "https://www.khoshasystems.com",
+      "hasPart": [
+        { "@type": "WebPage", "name": "Products", "url": "https://www.khoshasystems.com/products" },
+        { "@type": "WebPage", "name": "Services", "url": "https://www.khoshasystems.com/services" },
+        { "@type": "WebPage", "name": "Work", "url": "https://www.khoshasystems.com/work" },
+        { "@type": "WebPage", "name": "About", "url": "https://www.khoshasystems.com/philosophy" },
+        { "@type": "WebPage", "name": "Blog", "url": "https://www.khoshasystems.com/blog" },
+        { "@type": "WebPage", "name": "Contact", "url": "https://www.khoshasystems.com/contact" }
       ]
     }
     </script>
@@ -380,6 +380,7 @@
       .min-h-screen{min-height:100vh}
     </style>
     <!-- Preload hero image for faster LCP -->
+    <link rel="preload" as="image" href="/images/hero-bg.webp" type="image/webp" />
     <link rel="preload" as="image" href="/images/hero-bg.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

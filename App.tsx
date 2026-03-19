@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
 import { ExitPopup } from './components/ExitPopup';
 import { SEOHead } from './components/SEOHead';
+import { StructuredData } from './components/StructuredData';
 import { CookieConsent } from './components/CookieConsent';
 import { StickyMobileCTA, WhatsAppButton } from './components/StickyMobileCTA';
 import { SocialProof } from './components/SocialProof';
@@ -33,6 +34,7 @@ function AppContent() {
     <>
       <ScrollToTop />
       <SEOHead />
+      <StructuredData />
       <div className="min-h-screen bg-stone-50 text-stone-800 selection:bg-bronze-500 selection:text-white scroll-smooth font-sans">
         <Navbar />
         <ExitPopup />

@@ -5,6 +5,8 @@ import { PageHero } from '../components/PageHero';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Users, Smartphone, Zap, BarChart3, Shield, ArrowRight, Check } from 'lucide-react';
+import { FAQSection } from '../components/FAQSection';
+import { vmsFAQs } from '../components/StructuredData';
 
 const features = [
   { icon: Smartphone, label: "Digital Check-In", desc: "QR code and tablet-based visitor registration. No paper registers, no illegible handwriting. Professional first impression, every time." },
@@ -99,7 +101,10 @@ export const VisitorManagementPage: React.FC = () => {
       <Section className="bg-stone-50">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="h-64 md:h-96 relative overflow-hidden rounded-lg border border-stone-200">
-            <img src="/images/vms-inline.png" alt="Visitor Management System analytics dashboard" className="w-full h-full object-cover" loading="lazy" />
+            <picture>
+              <source srcSet="/images/vms-inline.webp" type="image/webp" />
+              <img src="/images/vms-inline.png" alt="Visitor Management System analytics dashboard" className="w-full h-full object-cover" loading="lazy" />
+            </picture>
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent" />
             <div className="absolute bottom-4 left-4 text-white">
               <Users size={24} className="mb-1 text-bronze-400" />
@@ -120,6 +125,13 @@ export const VisitorManagementPage: React.FC = () => {
           </div>
         </div>
       </Section>
+
+      {/* FAQ */}
+      <FAQSection
+        faqs={vmsFAQs}
+        title="Visitor Management — Frequently Asked Questions"
+        subtitle="Common questions about our digital visitor management system for offices and real estate sites."
+      />
 
       <Section className="bg-white">
         <div className="max-w-3xl mx-auto text-center">

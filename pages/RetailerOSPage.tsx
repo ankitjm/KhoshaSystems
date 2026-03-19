@@ -5,6 +5,8 @@ import { PageHero } from '../components/PageHero';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, BarChart3, Smartphone, Zap, Cloud, ArrowRight, Check, Cpu, Package, Radio, ExternalLink } from 'lucide-react';
+import { FAQSection } from '../components/FAQSection';
+import { retailerOSFAQs } from '../components/StructuredData';
 
 const features = [
   { icon: BarChart3, label: "Real-Time Analytics", desc: "Live sales dashboards, IMEI/serial tracking, inventory levels, and margin analysis updated in real time across all your stores." },
@@ -104,7 +106,10 @@ export const RetailerOSPage: React.FC = () => {
             </div>
           </div>
           <div className="h-64 md:h-96 relative overflow-hidden rounded-lg border border-stone-200">
-            <img src="/images/retaileros-inline.png" alt="RetailerOS inventory management dashboard" className="w-full h-full object-cover" loading="lazy" />
+            <picture>
+              <source srcSet="/images/retaileros-inline.webp" type="image/webp" />
+              <img src="/images/retaileros-inline.png" alt="RetailerOS inventory management dashboard" className="w-full h-full object-cover" loading="lazy" />
+            </picture>
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent" />
             <div className="absolute bottom-4 left-4 text-white">
               <ShoppingCart size={24} className="mb-1 text-bronze-400" />
@@ -143,6 +148,13 @@ export const RetailerOSPage: React.FC = () => {
           </div>
         </div>
       </Section>
+
+      {/* FAQ */}
+      <FAQSection
+        faqs={retailerOSFAQs}
+        title="RetailerOS — Frequently Asked Questions"
+        subtitle="Common questions about our retail management platform for telecom and electronics retailers."
+      />
 
       {/* CTA */}
       <Section className="bg-white">
