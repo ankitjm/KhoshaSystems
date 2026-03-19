@@ -5,6 +5,7 @@ import webpush from 'web-push';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { existsSync } from 'fs';
+import { syncLeadToBrevo, initScheduler } from './brevo.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3007;
@@ -54,6 +55,9 @@ db.exec(`
 `);
 
 console.log('Database initialized at', join(__dirname, 'kosha.db'));
+
+// Initialize Brevo email scheduler with the database
+initScheduler(db);
 
 // --- Express App ---
 const app = express();
@@ -138,6 +142,8 @@ app.post('/api/leads', (req, res) => {
     console.log(`NEW LEAD #${result.lastInsertRowid}: ${name} <${email}> — ${company} — ${goal}`);
     // Fire push notification asynchronously (don't block response)
     notifyNewLead({ name: name || '', company: company || '', goal: goal || '' });
+    // Sync lead to Brevo for email nurture sequence (async, non-blocking)
+    syncLeadToBrevo({ name: name || '', company: company || '', email, goal: goal || '', source: source || '' });
     res.json({ success: true, id: result.lastInsertRowid });
   } catch (err) {
     console.error('Lead insert error:', err.message);
