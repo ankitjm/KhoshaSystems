@@ -127,6 +127,17 @@ function isValidEmail(email) {
   return typeof email === 'string' && email.length <= 254 && re.test(email);
 }
 
+// --- Input Sanitization ---
+function sanitizeHtml(str) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
 // --- Lead Endpoints ---
 
 // Migrate: add message column if missing (existing DBs)
@@ -176,12 +187,17 @@ app.post('/api/leads', (req, res) => {
     if (!checkRateLimit(clientIp)) {
       return res.status(429).json({ error: 'Too many submissions. Please try again later.' });
     }
-    const result = insertLead.run(name || '', company || '', email, goal || '', message || '', source || '');
-    console.log(`NEW LEAD #${result.lastInsertRowid}: ${name} <${email}> — ${company} — ${goal}`);
+    const safeName = sanitizeHtml(name || '');
+    const safeCompany = sanitizeHtml(company || '');
+    const safeGoal = sanitizeHtml(goal || '');
+    const safeMessage = sanitizeHtml(message || '');
+    const safeSource = sanitizeHtml(source || '');
+    const result = insertLead.run(safeName, safeCompany, email, safeGoal, safeMessage, safeSource);
+    console.log(`NEW LEAD #${result.lastInsertRowid}: ${safeName} <${email}> — ${safeCompany} — ${safeGoal}`);
     // Fire push notification asynchronously (don't block response)
-    notifyNewLead({ name: name || '', company: company || '', goal: goal || '' });
+    notifyNewLead({ name: safeName, company: safeCompany, goal: safeGoal });
     // Sync lead to Brevo for email nurture sequence (async, non-blocking)
-    syncLeadToBrevo({ name: name || '', company: company || '', email, goal: goal || '', source: source || '' });
+    syncLeadToBrevo({ name: safeName, company: safeCompany, email, goal: safeGoal, source: safeSource });
     res.json({ success: true, id: result.lastInsertRowid });
   } catch (err) {
     console.error('Lead insert error:', err.message);

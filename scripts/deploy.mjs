@@ -158,6 +158,7 @@ add_header X-Content-Type-Options "nosniff" always;
 add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()" always;
+add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://region1.google-analytics.com https://generativelanguage.googleapis.com https://api.emailjs.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'" always;
 `;
   await exec(conn, 'mkdir -p /etc/nginx/snippets');
   await exec(conn, `cat > /etc/nginx/snippets/security-headers.conf << 'EOF'
@@ -170,6 +171,7 @@ EOF`);
   await exec(conn, `cat > /root/Production/nginx/sites/khosha-systems.conf << 'NGINX_EOF'
 server {
     server_name khoshasystems.com;
+    server_tokens off;
 
     access_log /root/Production/logs/apps/khosha-systems-access.log;
     error_log  /root/Production/logs/apps/khosha-systems-error.log warn;
@@ -312,11 +314,15 @@ NGINX_EOF`);
 
   // 8. Security headers
   const headers = await exec(conn, `curl -skI https://khoshasystems.com/`);
-  const requiredHeaders = ['Strict-Transport-Security', 'X-Frame-Options', 'X-Content-Type-Options'];
+  const requiredHeaders = ['Strict-Transport-Security', 'X-Frame-Options', 'X-Content-Type-Options', 'Content-Security-Policy'];
   for (const h of requiredHeaders) {
     if (!headers.stdout.toLowerCase().includes(h.toLowerCase())) {
       issues.push(`Missing security header: ${h}`);
     }
+  }
+  // Verify nginx version is hidden
+  if (headers.stdout.match(/nginx\/[\d.]/)) {
+    issues.push('Nginx version exposed in Server header — add server_tokens off');
   }
   console.log(`  Security headers: ${requiredHeaders.length} checked`);
 
