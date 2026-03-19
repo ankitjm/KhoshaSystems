@@ -56,8 +56,39 @@ console.log('Database initialized at', join(__dirname, 'kosha.db'));
 
 // --- Express App ---
 const app = express();
+
+// Hide X-Powered-By header (don't reveal Express)
+app.disable('x-powered-by');
+
 app.use(cors({ origin: ['https://www.khoshasystems.com', 'https://khoshasystems.com', 'http://localhost:3000'] }));
 app.use(express.json());
+
+// --- Security Headers ---
+app.use((_req, res, next) => {
+  // HSTS: enforce HTTPS for 1 year, include subdomains, allow preload list
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  // Prevent clickjacking
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  // Prevent MIME-type sniffing
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  // Referrer policy: send origin on cross-origin, full URL on same-origin
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  // Permissions policy: disable unused browser features
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+  // Content Security Policy
+  res.setHeader('Content-Security-Policy', [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com",
+    "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://region1.google-analytics.com https://generativelanguage.googleapis.com https://api.emailjs.com",
+    "frame-ancestors 'self'",
+    "base-uri 'self'",
+    "form-action 'self'"
+  ].join('; '));
+  next();
+});
 
 // --- Lead Endpoints ---
 const insertLead = db.prepare(
@@ -221,8 +252,24 @@ app.post('/api/push/send', async (req, res) => {
 // --- Serve static frontend ---
 const distPath = join(__dirname, '..', 'dist');
 if (existsSync(distPath)) {
-  app.use(express.static(distPath));
+  // Static assets with long cache (Vite hashed filenames enable cache-busting)
+  app.use('/assets', express.static(join(distPath, 'assets'), {
+    maxAge: '1y',
+    immutable: true
+  }));
+  // Other static files with moderate cache
+  app.use(express.static(distPath, {
+    maxAge: '1h',
+    setHeaders: (res, path) => {
+      // Images, fonts — cache longer
+      if (path.match(/\.(png|jpg|jpeg|webp|svg|ico|woff2?|ttf|eot)$/)) {
+        res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+      }
+    }
+  }));
+  // SPA fallback — no cache on HTML
   app.get('/{*splat}', (_req, res) => {
+    res.setHeader('Cache-Control', 'no-cache');
     res.sendFile(join(distPath, 'index.html'));
   });
 }

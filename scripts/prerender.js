@@ -20,6 +20,12 @@ const ROUTES = [
   '/products/real-estate-crm',
   '/products/visitor-management',
   '/vancouver',
+  // Blog posts (dynamic routes need prerendering for SEO)
+  '/blog/retail-management-software-telecom-electronics-india',
+  '/blog/how-to-choose-real-estate-crm-india',
+  '/blog/legacy-modernization-checklist-indian-enterprises',
+  '/blog/ai-integration-guide-mid-size-companies-india',
+  '/blog/why-vancouver-startups-partner-with-bangalore-teams',
 ];
 
 // Simple static file server
