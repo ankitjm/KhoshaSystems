@@ -215,7 +215,7 @@ server {
 
     location / {
         root REMOTE_BASE_PLACEHOLDER/dist;
-        try_files $uri $uri/ /index.html;
+        try_files $uri $uri/index.html $uri/ /index.html;
         add_header Cache-Control "no-cache";
         include /etc/nginx/snippets/security-headers.conf;
     }
@@ -240,6 +240,19 @@ server {
     listen 80;
     server_name khoshasystems.com;
     return 404;
+}
+server {
+    listen 80;
+    listen 443 ssl;
+    server_name www.khoshasystems.com;
+    server_tokens off;
+
+    ssl_certificate /etc/letsencrypt/live/khosha.tech/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/khosha.tech/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    return 301 https://khoshasystems.com$request_uri;
 }
 NGINX_EOF`);
   // Replace placeholder with actual path

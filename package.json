@@ -9,7 +9,7 @@
     "build:fast": "vite build",
     "preview": "vite preview",
     "start": "node server/index.js",
-    "deploy": "vite build && node scripts/deploy.mjs"
+    "deploy": "vite build && node scripts/prerender.js && node scripts/deploy.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "4.3.0",
