@@ -41,12 +41,6 @@ export const Contact: React.FC = () => {
     e.preventDefault();
     setStatus('SUBMITTING');
     const dbResult = await saveLead({ name: formData.name, company: formData.company, email: formData.email, goal: formData.goal, message: formData.message, source: 'Contact Page Form' });
-    await sendNotificationEmail({
-      to_name: formData.name, to_email: formData.email,
-      from_company: formData.company, goal: formData.goal, message: "New Discovery Call Request",
-    });
-    // Send auto-reply to customer
-    await sendCustomerConfirmation({ name: formData.name, email: formData.email, goal: formData.goal });
     if (dbResult.success) {
       // Fire GA4 form_submit event
       if (typeof window !== 'undefined' && (window as any).gtag) {
@@ -57,6 +51,12 @@ export const Contact: React.FC = () => {
         });
       }
       setStatus('SUCCESS');
+      // Send emails in background — don't block user from seeing success
+      sendNotificationEmail({
+        to_name: formData.name, to_email: formData.email,
+        from_company: formData.company, goal: formData.goal, message: "New Discovery Call Request",
+      });
+      sendCustomerConfirmation({ name: formData.name, email: formData.email, goal: formData.goal });
       setFormData({ name: '', company: '', email: '', goal: 'Web Application', message: '' });
     } else {
       setStatus('ERROR');

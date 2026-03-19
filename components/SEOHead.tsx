@@ -77,20 +77,65 @@ const seoConfig: Record<string, SEOConfig> = {
     description: 'Compare Khosha VMS vs Envoy Visitors. India pricing, RERA compliance, WhatsApp alerts, Android tablet support. Enterprise visitor management at a fraction of Envoy cost.',
     keywords: 'Envoy alternative India, visitor management system vs Envoy, VMS India pricing, Envoy visitors alternative affordable, visitor management system India, RERA compliant visitor management, WhatsApp visitor notification system, Envoy competitors India, digital visitor management India'
   },
+  '/compare/retaileros-vs-shopify': {
+    title: 'RetailerOS vs Shopify POS | Telecom Retail Software with IMEI Tracking | Khoshà Systems',
+    description: 'Compare RetailerOS vs Shopify POS for telecom retail. RetailerOS offers native IMEI tracking, brand scheme management, and GST billing — features Shopify POS lacks.',
+    keywords: 'RetailerOS vs Shopify POS, Shopify POS alternative telecom, Shopify POS IMEI tracking, mobile phone shop POS alternative Shopify, telecom retail software vs Shopify, Shopify POS India GST, electronics store POS India, Shopify POS serial number tracking, best POS for mobile phone shop India'
+  },
+  '/compare/retaileros-vs-lightspeed': {
+    title: 'RetailerOS vs Lightspeed | No Lock-In Telecom Retail POS | Khoshà Systems',
+    description: 'Compare RetailerOS vs Lightspeed Retail for telecom stores. No forced payment processors, no long-term contracts, no surprise price hikes. Purpose-built for Indian telecom retail.',
+    keywords: 'RetailerOS vs Lightspeed, Lightspeed alternative India, Lightspeed POS alternative telecom, Lightspeed Retail pricing comparison, cellphone store POS vs Lightspeed, telecom retail software India, Lightspeed payment processor lock-in, electronics store POS India, best retail POS without lock-in'
+  },
+  '/compare/retaileros-vs-square': {
+    title: 'RetailerOS vs Square for Retail | Beyond Basic POS for Telecom | Khoshà Systems',
+    description: 'Compare RetailerOS vs Square for Retail. Square lacks IMEI tracking, serial numbers, and GST billing. RetailerOS is purpose-built for telecom and electronics retail in India.',
+    keywords: 'RetailerOS vs Square for Retail, Square POS alternative telecom, Square POS IMEI tracking, mobile phone shop POS vs Square, telecom retail software vs Square, Square POS India, electronics store POS alternative Square, Square for Retail serial number, best POS mobile phone shop India'
+  },
   '/blog': {
     title: 'Blog | Software Development, AI & Digital Transformation Insights | Khoshà Systems',
     description: 'Insights on software development, AI, retail tech & digital transformation from Khoshà Systems, Bangalore.',
     keywords: 'software development blog India, AI transformation insights, retail technology blog, real estate CRM guide India, digital transformation articles, SaaS development blog Bangalore, enterprise software insights'
+  },
+  '/tools/roi-calculator': {
+    title: 'ROI Calculator | Estimate Your Software Investment Returns | Khoshà Systems',
+    description: 'Calculate the return on investment for RetailerOS, Real Estate CRM, or Visitor Management System. Free ROI calculator by Khoshà Systems.',
+    keywords: 'ROI calculator software, RetailerOS ROI, real estate CRM ROI, visitor management ROI, software investment calculator India'
   }
 };
+
+// Match dynamic routes that aren't exact keys in seoConfig
+function resolveConfig(path: string): SEOConfig | null {
+  // Exact match
+  if (seoConfig[path]) return seoConfig[path];
+  // Blog post pages get their meta from BlogPostPage component directly
+  if (path.startsWith('/blog/')) return null;
+  // Fallback to home
+  return seoConfig['/'];
+}
 
 export const SEOHead: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
     const path = location.pathname;
-    const config = seoConfig[path] || seoConfig['/'];
+    const config = resolveConfig(path);
     const canonicalUrl = `${BASE_URL}${path === '/' ? '' : path}`;
+
+    // Always update canonical URL regardless of config match
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (canonical) {
+      canonical.href = canonicalUrl;
+    } else {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      canonical.href = canonicalUrl;
+      document.head.appendChild(canonical);
+    }
+
+    // Skip meta updates for blog posts — BlogPostPage handles its own meta
+    if (!config) return;
+
     const ogImage = config.ogImage || DEFAULT_OG_IMAGE;
 
     document.title = config.title;
@@ -117,17 +162,6 @@ export const SEOHead: React.FC = () => {
     updateMeta('twitter:title', config.title);
     updateMeta('twitter:description', config.description);
     updateMeta('twitter:image', ogImage);
-
-    // Update canonical — create if missing
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    if (canonical) {
-      canonical.href = canonicalUrl;
-    } else {
-      canonical = document.createElement('link');
-      canonical.rel = 'canonical';
-      canonical.href = canonicalUrl;
-      document.head.appendChild(canonical);
-    }
   }, [location.pathname]);
 
   return null;

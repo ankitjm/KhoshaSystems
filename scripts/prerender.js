@@ -26,10 +26,20 @@ const ROUTES = [
   '/blog/legacy-modernization-checklist-indian-enterprises',
   '/blog/ai-integration-guide-mid-size-companies-india',
   '/blog/why-vancouver-startups-partner-with-bangalore-teams',
+  '/blog/imei-tracking-reduces-shrinkage-telecom-retail',
+  '/blog/5-signs-real-estate-business-needs-crm',
+  '/blog/indian-telecom-retailers-switching-digital-billing',
+  '/blog/digital-visitor-management-roi-indian-corporates',
+  '/blog/retaileros-vs-manual-billing-comparison',
+  '/blog/scheme-management-simple-telecom-retailers',
+  '/blog/case-study-pune-retailer-saved-40-percent-billing-time',
   // Comparison pages
   '/compare/retaileros-vs-iqmetrix',
   '/compare/real-estate-crm-vs-selldo',
   '/compare/vms-vs-envoy',
+  '/compare/retaileros-vs-shopify',
+  '/compare/retaileros-vs-lightspeed',
+  '/compare/retaileros-vs-square',
   // Tools
   '/tools/roi-calculator',
 ];

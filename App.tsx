@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
 import { ExitPopup } from './components/ExitPopup';
@@ -28,7 +28,11 @@ const ROICalculatorPage = lazy(() => import('./pages/ROICalculatorPage').then(m 
 const RetailerOSvsIQmetrixPage = lazy(() => import('./pages/RetailerOSvsIQmetrixPage').then(m => ({ default: m.RetailerOSvsIQmetrixPage })));
 const CRMvsSellDoPage = lazy(() => import('./pages/CRMvsSellDoPage').then(m => ({ default: m.CRMvsSellDoPage })));
 const VMSvsEnvoyPage = lazy(() => import('./pages/VMSvsEnvoyPage').then(m => ({ default: m.VMSvsEnvoyPage })));
+const RetailerOSvsShopifyPage = lazy(() => import('./pages/RetailerOSvsShopifyPage').then(m => ({ default: m.RetailerOSvsShopifyPage })));
+const RetailerOSvsLightspeedPage = lazy(() => import('./pages/RetailerOSvsLightspeedPage').then(m => ({ default: m.RetailerOSvsLightspeedPage })));
+const RetailerOSvsSquarePage = lazy(() => import('./pages/RetailerOSvsSquarePage').then(m => ({ default: m.RetailerOSvsSquarePage })));
 const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 
 function AppContent() {
   // Visitor tracking (runs inside Router for access to useLocation)
@@ -60,9 +64,12 @@ function AppContent() {
             <Route path="/compare/retaileros-vs-iqmetrix" element={<RetailerOSvsIQmetrixPage />} />
             <Route path="/compare/real-estate-crm-vs-selldo" element={<CRMvsSellDoPage />} />
             <Route path="/compare/vms-vs-envoy" element={<VMSvsEnvoyPage />} />
+            <Route path="/compare/retaileros-vs-shopify" element={<RetailerOSvsShopifyPage />} />
+            <Route path="/compare/retaileros-vs-lightspeed" element={<RetailerOSvsLightspeedPage />} />
+            <Route path="/compare/retaileros-vs-square" element={<RetailerOSvsSquarePage />} />
             <Route path="/tools/roi-calculator" element={<ROICalculatorPage />} />
             <Route path="/vancouver" element={<VancouverPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
         <WhatsAppButton />

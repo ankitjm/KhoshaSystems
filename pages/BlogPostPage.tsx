@@ -29,6 +29,18 @@ export const BlogPostPage: React.FC = () => {
       updateMeta('article:published_time', post.date, true);
       updateMeta('twitter:title', post.title);
       updateMeta('twitter:description', post.description);
+
+      // Update canonical URL for this blog post
+      const canonicalUrl = `https://khoshasystems.com/blog/${post.slug}`;
+      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+      if (canonical) {
+        canonical.href = canonicalUrl;
+      } else {
+        canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        canonical.href = canonicalUrl;
+        document.head.appendChild(canonical);
+      }
     }
   }, [post]);
 
