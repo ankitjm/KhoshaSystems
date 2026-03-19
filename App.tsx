@@ -24,6 +24,7 @@ const VisitorManagementPage = lazy(() => import('./pages/VisitorManagementPage')
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
 const VancouverPage = lazy(() => import('./pages/VancouverPage').then(m => ({ default: m.VancouverPage })));
+const ROICalculatorPage = lazy(() => import('./pages/ROICalculatorPage').then(m => ({ default: m.ROICalculatorPage })));
 const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })));
 
 function AppContent() {
@@ -53,6 +54,7 @@ function AppContent() {
             <Route path="/products/visitor-management" element={<VisitorManagementPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogPostPage />} />
+            <Route path="/tools/roi-calculator" element={<ROICalculatorPage />} />
             <Route path="/vancouver" element={<VancouverPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

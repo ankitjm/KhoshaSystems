@@ -219,6 +219,7 @@ export const Contact: React.FC = () => {
                   <a href="/products/retaileros" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">RetailerOS</a>
                   <a href="/products/real-estate-crm" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">Real Estate CRM</a>
                   <a href="/products/visitor-management" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">Visitor Management</a>
+                  <a href="/tools/roi-calculator" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">ROI Calculator</a>
                 </div>
               </div>
               <div>
