@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
 
-const BASE_URL = 'https://www.khoshasystems.com';
+const BASE_URL = 'https://khoshasystems.com';
 const SCRIPT_ID = 'dynamic-structured-data';
 
 const organizationSchema = {

@@ -80,6 +80,11 @@ async function deploy() {
 
   console.log('Connected to', HOST);
 
+  // Clean old dist (preserve server/kosha.db and node_modules)
+  console.log('\n=== Cleaning old dist ===');
+  await exec(conn, `rm -rf ${REMOTE_BASE}/dist`);
+  console.log('  Old dist removed');
+
   // Create directories and upload files
   console.log('\n=== Uploading files ===');
   const sftp = await sftpConnect(conn);

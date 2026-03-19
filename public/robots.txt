@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.khoshasystems.com/sitemap.xml
+Sitemap: https://khoshasystems.com/sitemap.xml
 
 # Crawl-delay for polite crawling
 User-agent: *

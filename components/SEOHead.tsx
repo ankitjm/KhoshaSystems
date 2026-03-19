@@ -8,7 +8,7 @@ interface SEOConfig {
   ogImage?: string;
 }
 
-const BASE_URL = 'https://www.khoshasystems.com';
+const BASE_URL = 'https://khoshasystems.com';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-icon.png`;
 
 const seoConfig: Record<string, SEOConfig> = {

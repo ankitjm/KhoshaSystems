@@ -24,7 +24,7 @@ export const BlogPostPage: React.FC = () => {
       updateMeta('keywords', post.keywords);
       updateMeta('og:title', post.title, true);
       updateMeta('og:description', post.description, true);
-      updateMeta('og:url', `https://www.khoshasystems.com/blog/${post.slug}`, true);
+      updateMeta('og:url', `https://khoshasystems.com/blog/${post.slug}`, true);
       updateMeta('og:type', 'article', true);
       updateMeta('article:published_time', post.date, true);
       updateMeta('twitter:title', post.title);
