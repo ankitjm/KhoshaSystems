@@ -75,6 +75,24 @@ const breadcrumbMap: Record<string, Array<{ name: string; path: string }>> = {
     { name: 'Home', path: '' },
     { name: 'Vancouver', path: '/vancouver' },
   ],
+  '/compare/retaileros-vs-iqmetrix': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'RetailerOS vs iQmetrix', path: '/compare/retaileros-vs-iqmetrix' },
+  ],
+  '/compare/real-estate-crm-vs-selldo': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'Real Estate CRM', path: '/products/real-estate-crm' },
+    { name: 'CRM vs Sell.Do', path: '/compare/real-estate-crm-vs-selldo' },
+  ],
+  '/compare/vms-vs-envoy': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'Visitor Management', path: '/products/visitor-management' },
+    { name: 'VMS vs Envoy', path: '/compare/vms-vs-envoy' },
+  ],
 };
 
 // FAQ data for product pages
@@ -121,6 +139,79 @@ export const realEstateCRMFAQs = [
   {
     question: 'Can I manage multiple real estate projects in one CRM?',
     answer: 'Yes. The CRM supports multi-project portfolio management with separate pipelines, inventory, and analytics per project, while giving you a consolidated view across your entire portfolio.',
+  },
+];
+
+export const retailerOSvsIQmetrixFAQs = [
+  {
+    question: 'Is RetailerOS a good alternative to iQmetrix for Indian retailers?',
+    answer: 'Yes. While iQmetrix is built for the North American market (US & Canada carriers like AT&T, Verizon, T-Mobile), RetailerOS is purpose-built for Indian telecom and electronics retail with native GST billing, IMEI tracking, brand scheme management, and WhatsApp notifications.',
+  },
+  {
+    question: 'How does RetailerOS pricing compare to iQmetrix?',
+    answer: 'iQmetrix uses opaque enterprise pricing that requires a sales demo — typically expensive with long-term contracts. RetailerOS offers transparent, affordable SaaS pricing designed for Indian retailers, from single-store owners to multi-city chains.',
+  },
+  {
+    question: 'Can RetailerOS handle brand scheme tracking like Samsung, Vivo, and Oppo offers?',
+    answer: 'Yes. RetailerOS has a native scheme and offer engine that automatically tracks active brand schemes, applies eligible offers at billing, tracks pending claims, and alerts you to expiring schemes. This is not available in iQmetrix.',
+  },
+  {
+    question: 'Does RetailerOS support GST-compliant billing?',
+    answer: 'Yes. RetailerOS is fully GST-compliant with HSN code support, proper tax invoicing, reverse charge handling, and return/credit note workflows — built specifically for Indian tax requirements.',
+  },
+  {
+    question: 'How long does it take to set up RetailerOS vs iQmetrix?',
+    answer: 'RetailerOS is cloud-native and can be set up in days. iQmetrix typically requires professional services, enterprise onboarding, and deployment across their six separate modules, which can take weeks to months.',
+  },
+];
+
+export const crmVsSellDoFAQs = [
+  {
+    question: 'Is Khosha CRM a good alternative to Sell.Do for real estate?',
+    answer: 'Yes. While Sell.Do offers 50+ feature modules, many developers find it overly complex. Khosha CRM focuses on the features that drive revenue — lead management, site visit tracking, automated follow-ups, and channel partner management — at a lower price point.',
+  },
+  {
+    question: 'How does Khosha CRM pricing compare to Sell.Do?',
+    answer: 'Sell.Do charges Rs.3,499/user/month, which scales to Rs.4.2 lakh/year for just 10 users. Khosha CRM offers flat-rate pricing that does not penalize you for growing your team, making it significantly more affordable for most developers.',
+  },
+  {
+    question: 'Does Khosha CRM integrate with 99acres, MagicBricks, and Housing.com?',
+    answer: 'Yes. Khosha CRM deeply integrates with all major Indian property portals including 99acres, MagicBricks, Housing.com, as well as Facebook Ads, Google Ads, and website forms — with automatic lead deduplication.',
+  },
+  {
+    question: 'Will Khosha CRM work in Tier-2 and Tier-3 cities with slow internet?',
+    answer: 'Yes. Unlike Sell.Do which users report has performance issues on slower connections, Khosha CRM is built with a lightweight UI that works smoothly even in areas with variable internet connectivity — important for construction sites and smaller cities.',
+  },
+  {
+    question: 'Can I migrate my data from Sell.Do to Khosha CRM?',
+    answer: 'Yes. We provide assisted migration from Sell.Do including leads, contacts, pipeline data, and historical records. Our onboarding team handles the migration to ensure zero data loss and minimal disruption.',
+  },
+];
+
+export const vmsVsEnvoyFAQs = [
+  {
+    question: 'Is Khosha VMS a good alternative to Envoy for Indian offices?',
+    answer: 'Yes. Envoy is designed for US corporate offices with iPad-centric check-in and Slack/Teams notifications. Khosha VMS is built for Indian workplaces with WhatsApp notifications, RERA compliance, Aadhaar verification, Android tablet support, and INR pricing.',
+  },
+  {
+    question: 'How much does Khosha VMS cost compared to Envoy?',
+    answer: 'Envoy Premium costs $4,345/location/year (approximately Rs.3.6 lakh per location). For 5 locations, that is Rs.18+ lakh/year. Khosha VMS offers the same core capabilities at a fraction of the cost, billed in Indian Rupees.',
+  },
+  {
+    question: 'Does Khosha VMS work on Android tablets?',
+    answer: 'Yes. Unlike Envoy which is iPad-centric, Khosha VMS works on affordable Android tablets — significantly reducing hardware costs for Indian businesses setting up visitor check-in kiosks.',
+  },
+  {
+    question: 'Can Khosha VMS send WhatsApp notifications to hosts?',
+    answer: 'Yes. The moment a visitor checks in, their host receives instant WhatsApp and SMS notifications with visitor details. WhatsApp is the primary notification channel, reflecting how Indian businesses actually communicate.',
+  },
+  {
+    question: 'Does Khosha VMS support RERA compliance?',
+    answer: 'Yes. Khosha VMS maintains RERA-compliant visitor logs with photo capture, Indian ID verification (Aadhaar, PAN, Driving License), and timestamped records. All data is exportable and audit-ready.',
+  },
+  {
+    question: 'Can Khosha VMS work at construction sites with poor internet?',
+    answer: 'Yes. Khosha VMS is designed to work in low-connectivity environments typical of construction sites and locations in Tier-2/3 cities, unlike Envoy which is fully cloud-dependent and requires stable internet.',
   },
 ];
 
@@ -297,6 +388,18 @@ function getSchemasForPath(pathname: string): object[] {
         })
       );
       schemas.push(buildFAQSchema(vmsFAQs));
+      break;
+
+    case '/compare/retaileros-vs-iqmetrix':
+      schemas.push(buildFAQSchema(retailerOSvsIQmetrixFAQs));
+      break;
+
+    case '/compare/real-estate-crm-vs-selldo':
+      schemas.push(buildFAQSchema(crmVsSellDoFAQs));
+      break;
+
+    case '/compare/vms-vs-envoy':
+      schemas.push(buildFAQSchema(vmsVsEnvoyFAQs));
       break;
   }
 

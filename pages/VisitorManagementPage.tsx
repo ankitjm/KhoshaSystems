@@ -137,9 +137,14 @@ export const VisitorManagementPage: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-serif text-stone-900 mb-4">Upgrade from Paper Registers Today</h2>
           <p className="text-stone-500 mb-8">Join hundreds of offices and real estate sites across India that have gone digital with our visitor management system.</p>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-stone-900 text-white text-sm font-medium uppercase tracking-wider hover:bg-bronze-600 transition-colors rounded group">
-            Schedule a Demo <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-stone-900 text-white text-sm font-medium uppercase tracking-wider hover:bg-bronze-600 transition-colors rounded group">
+              Schedule a Demo <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link to="/compare/vms-vs-envoy" className="inline-flex items-center gap-2 px-8 py-4 border border-stone-300 text-stone-700 text-sm font-medium uppercase tracking-wider hover:border-bronze-400 transition-colors rounded group">
+              Compare vs Envoy <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </Section>
 

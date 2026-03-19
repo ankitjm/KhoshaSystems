@@ -25,6 +25,9 @@ const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.B
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
 const VancouverPage = lazy(() => import('./pages/VancouverPage').then(m => ({ default: m.VancouverPage })));
 const ROICalculatorPage = lazy(() => import('./pages/ROICalculatorPage').then(m => ({ default: m.ROICalculatorPage })));
+const RetailerOSvsIQmetrixPage = lazy(() => import('./pages/RetailerOSvsIQmetrixPage').then(m => ({ default: m.RetailerOSvsIQmetrixPage })));
+const CRMvsSellDoPage = lazy(() => import('./pages/CRMvsSellDoPage').then(m => ({ default: m.CRMvsSellDoPage })));
+const VMSvsEnvoyPage = lazy(() => import('./pages/VMSvsEnvoyPage').then(m => ({ default: m.VMSvsEnvoyPage })));
 const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })));
 
 function AppContent() {
@@ -54,6 +57,9 @@ function AppContent() {
             <Route path="/products/visitor-management" element={<VisitorManagementPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogPostPage />} />
+            <Route path="/compare/retaileros-vs-iqmetrix" element={<RetailerOSvsIQmetrixPage />} />
+            <Route path="/compare/real-estate-crm-vs-selldo" element={<CRMvsSellDoPage />} />
+            <Route path="/compare/vms-vs-envoy" element={<VMSvsEnvoyPage />} />
             <Route path="/tools/roi-calculator" element={<ROICalculatorPage />} />
             <Route path="/vancouver" element={<VancouverPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />

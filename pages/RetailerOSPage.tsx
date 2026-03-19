@@ -168,6 +168,9 @@ export const RetailerOSPage: React.FC = () => {
             <a href="https://retaileros.in" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 border border-stone-300 text-stone-700 text-sm font-medium uppercase tracking-wider hover:border-bronze-400 transition-colors rounded group">
               Visit RetailerOS.in <ExternalLink size={16} className="group-hover:translate-x-1 transition-transform" />
             </a>
+            <Link to="/compare/retaileros-vs-iqmetrix" className="inline-flex items-center gap-2 px-8 py-4 border border-stone-300 text-stone-700 text-sm font-medium uppercase tracking-wider hover:border-bronze-400 transition-colors rounded group">
+              Compare vs iQmetrix <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </Section>

@@ -62,6 +62,21 @@ const seoConfig: Record<string, SEOConfig> = {
     description: 'Khoshà Systems Vancouver — custom web apps, SaaS & AI transformation. 15+ years experience, senior team with local presence.',
     keywords: 'software development company Vancouver, custom software development Vancouver BC, AI transformation services Vancouver, SaaS development Canada, web development company Vancouver, digital transformation Vancouver, offshore development partner Canada, Vancouver software development'
   },
+  '/compare/retaileros-vs-iqmetrix': {
+    title: 'RetailerOS vs iQmetrix | India-First Telecom Retail Software Alternative | Khoshà Systems',
+    description: 'Compare RetailerOS vs iQmetrix for telecom retail. RetailerOS offers GST billing, IMEI tracking, brand scheme management built for Indian retailers at affordable pricing.',
+    keywords: 'RetailerOS vs iQmetrix, iQmetrix alternative India, telecom retail software India, RetailerOS alternative iQmetrix, mobile shop billing software vs iQmetrix, IMEI tracking software India, best retail POS India telecom, iQmetrix India pricing, telecom retail management comparison'
+  },
+  '/compare/real-estate-crm-vs-selldo': {
+    title: 'Khosha Real Estate CRM vs Sell.Do | Simpler & More Affordable CRM | Khoshà Systems',
+    description: 'Compare Khosha Real Estate CRM vs Sell.Do. Simpler, more affordable CRM for Indian developers and brokers. Flat-rate pricing, WhatsApp-first, works in Tier-2/3 cities.',
+    keywords: 'Sell.Do alternative India, real estate CRM vs Sell.Do, best real estate CRM India affordable, Sell.Do pricing comparison, CRM for real estate developers India, property CRM alternative Sell.Do, real estate lead management software India, Sell.Do competitors India'
+  },
+  '/compare/vms-vs-envoy': {
+    title: 'Khosha VMS vs Envoy | India Pricing & Compliance | Visitor Management | Khoshà Systems',
+    description: 'Compare Khosha VMS vs Envoy Visitors. India pricing, RERA compliance, WhatsApp alerts, Android tablet support. Enterprise visitor management at a fraction of Envoy cost.',
+    keywords: 'Envoy alternative India, visitor management system vs Envoy, VMS India pricing, Envoy visitors alternative affordable, visitor management system India, RERA compliant visitor management, WhatsApp visitor notification system, Envoy competitors India, digital visitor management India'
+  },
   '/blog': {
     title: 'Blog | Software Development, AI & Digital Transformation Insights | Khoshà Systems',
     description: 'Insights on software development, AI, retail tech & digital transformation from Khoshà Systems, Bangalore.',
