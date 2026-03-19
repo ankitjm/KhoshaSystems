@@ -26,6 +26,12 @@ const ROUTES = [
   '/blog/legacy-modernization-checklist-indian-enterprises',
   '/blog/ai-integration-guide-mid-size-companies-india',
   '/blog/why-vancouver-startups-partner-with-bangalore-teams',
+  // Comparison pages
+  '/compare/retaileros-vs-iqmetrix',
+  '/compare/real-estate-crm-vs-selldo',
+  '/compare/vms-vs-envoy',
+  // Tools
+  '/tools/roi-calculator',
 ];
 
 // Simple static file server

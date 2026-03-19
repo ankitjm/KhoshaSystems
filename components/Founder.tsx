@@ -7,12 +7,15 @@ export const Founder: React.FC = () => {
     <section id="founder" className="relative overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/images/founder-bg.jpg"
-          alt=""
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        <picture>
+          <source srcSet="/images/founder-bg.webp" type="image/webp" />
+          <img
+            src="/images/founder-bg.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/85 via-stone-900/80 to-stone-900/90" />
       </div>
       <div className="absolute inset-0 pattern-diagonal z-[1] pointer-events-none" />

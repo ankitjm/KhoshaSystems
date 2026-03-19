@@ -101,12 +101,15 @@ export const Work: React.FC = () => {
                   transition={{ duration: 0.5 }}
                   className="w-full h-full relative rounded-lg overflow-hidden"
                 >
-                  <img
-                    src={project.image}
-                    alt={`${project.client} - ${project.title}`}
-                    className="w-full h-full object-cover img-zoom"
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source srcSet={project.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+                    <img
+                      src={project.image}
+                      alt={`${project.client} - ${project.title}`}
+                      className="w-full h-full object-cover img-zoom"
+                      loading="lazy"
+                    />
+                  </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-stone-900/20 to-transparent" />
                   <div className="absolute bottom-4 left-4 z-10">
                     <div className="text-white/90 text-xs uppercase tracking-widest font-medium">{project.client}</div>

@@ -17,12 +17,15 @@ export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, label, back
     <section className="relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={backgroundImage}
-          alt=""
-          className="w-full h-full object-cover"
-          loading="eager"
-        />
+        <picture>
+          <source srcSet={backgroundImage.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+          <img
+            src={backgroundImage}
+            alt=""
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/80 via-stone-900/75 to-stone-900/90" />
       </div>
       <div className="absolute inset-0 pattern-diagonal z-[1] pointer-events-none" />

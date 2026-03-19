@@ -63,12 +63,15 @@ export const Services: React.FC = () => {
     <section id="architecture" className="relative overflow-hidden">
       {/* Background image with dark overlay */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/images/services-network.jpg"
-          alt=""
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        <picture>
+          <source srcSet="/images/services-network.webp" type="image/webp" />
+          <img
+            src="/images/services-network.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </picture>
         <div className="absolute inset-0 overlay-bronze" />
       </div>
       <div className="absolute inset-0 pattern-diagonal z-[1] pointer-events-none" />

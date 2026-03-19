@@ -39,12 +39,15 @@ export const Testimonials: React.FC = () => {
     <section className="relative overflow-hidden">
       {/* Subtle background image */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/images/home-workspace.jpg"
-          alt=""
-          className="w-full h-full object-cover opacity-[0.04]"
-          loading="lazy"
-        />
+        <picture>
+          <source srcSet="/images/home-workspace.webp" type="image/webp" />
+          <img
+            src="/images/home-workspace.jpg"
+            alt=""
+            className="w-full h-full object-cover opacity-[0.04]"
+            loading="lazy"
+          />
+        </picture>
       </div>
       <div className="absolute inset-0 bg-stone-50 z-0" style={{ opacity: 0.95 }} />
 

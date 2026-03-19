@@ -50,14 +50,17 @@ export const Hero: React.FC = () => {
         style={{ scale: bgScale }}
         className="absolute inset-0 z-0"
       >
-        <img
-          src="/images/hero-bg.jpg"
-          alt=""
-          className="w-full h-full object-cover"
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-        />
+        <picture>
+          <source srcSet="/images/hero-bg.webp" type="image/webp" />
+          <img
+            src="/images/hero-bg.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/80 via-stone-900/70 to-stone-900/90" />
       </motion.div>
 

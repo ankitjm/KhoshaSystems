@@ -8,12 +8,15 @@ export const CTAStrip: React.FC = () => {
     <section className="relative overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/images/why-partner-bg.jpg"
-          alt=""
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        <picture>
+          <source srcSet="/images/why-partner-bg.webp" type="image/webp" />
+          <img
+            src="/images/why-partner-bg.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-900/80 to-stone-900/90" />
       </div>
       <div className="absolute inset-0 pattern-diagonal z-[1] pointer-events-none" />

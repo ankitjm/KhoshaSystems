@@ -41,12 +41,15 @@ export const Philosophy: React.FC = () => {
           </div>
           {/* Image: data chaos */}
           <div className="rounded-lg overflow-hidden border border-stone-200">
-            <img
-              src="/images/fragmented-ops.jpg"
-              alt="Fragmented operations — overwhelming dashboards and disconnected tools"
-              className="w-full h-40 sm:h-48 object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source srcSet="/images/fragmented-ops.webp" type="image/webp" />
+              <img
+                src="/images/fragmented-ops.jpg"
+                alt="Fragmented operations — overwhelming dashboards and disconnected tools"
+                className="w-full h-40 sm:h-48 object-cover"
+                loading="lazy"
+              />
+            </picture>
           </div>
         </motion.div>
 
@@ -87,12 +90,15 @@ export const Philosophy: React.FC = () => {
           </blockquote>
           {/* Image: clean architecture */}
           <div className="rounded-lg overflow-hidden border border-bronze-200/50 glow-bronze">
-            <img
-              src="/images/unified-architecture.jpg"
-              alt="Unified system architecture — clean dashboard with connected operations"
-              className="w-full h-40 sm:h-48 object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source srcSet="/images/unified-architecture.webp" type="image/webp" />
+              <img
+                src="/images/unified-architecture.jpg"
+                alt="Unified system architecture — clean dashboard with connected operations"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </picture>
           </div>
         </motion.div>
       </div>

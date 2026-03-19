@@ -42,12 +42,15 @@ export const ServicesPage: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="h-52 sm:h-64 md:h-96 relative overflow-hidden rounded-lg border border-stone-200 group"
           >
-            <img
-              src="/images/services-craft.jpg"
-              alt="Focused workspace — engineering craft in action"
-              className="w-full h-full object-cover img-zoom"
-              loading="lazy"
-            />
+            <picture>
+              <source srcSet="/images/services-craft.webp" type="image/webp" />
+              <img
+                src="/images/services-craft.jpg"
+                alt="Focused workspace — engineering craft in action"
+                className="w-full h-full object-cover img-zoom"
+                loading="lazy"
+              />
+            </picture>
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent" />
             <div className="absolute bottom-4 left-4 z-10">
               <div className="text-white text-4xl sm:text-5xl font-bold">15+</div>
