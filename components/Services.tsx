@@ -64,7 +64,7 @@ export const Services: React.FC = () => {
       {/* Background image with dark overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=75"
+          src="/images/services-network.jpg"
           alt=""
           className="w-full h-full object-cover"
           loading="lazy"

@@ -42,8 +42,8 @@ export const Philosophy: React.FC = () => {
           {/* Image: data chaos */}
           <div className="rounded-lg overflow-hidden border border-stone-200">
             <img
-              src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=640w=800&q=80q=70"
-              alt="Data dashboard showing analytics and insights"
+              src="/images/fragmented-ops.jpg"
+              alt="Fragmented operations — overwhelming dashboards and disconnected tools"
               className="w-full h-40 sm:h-48 object-cover"
               loading="lazy"
             />
@@ -88,8 +88,8 @@ export const Philosophy: React.FC = () => {
           {/* Image: clean architecture */}
           <div className="rounded-lg overflow-hidden border border-bronze-200/50 glow-bronze">
             <img
-              src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=640w=800&q=80q=70"
-              alt="Modern server infrastructure and cloud architecture"
+              src="/images/unified-architecture.jpg"
+              alt="Unified system architecture — clean dashboard with connected operations"
               className="w-full h-40 sm:h-48 object-cover"
               loading="lazy"
             />

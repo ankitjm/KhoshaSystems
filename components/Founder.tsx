@@ -8,7 +8,7 @@ export const Founder: React.FC = () => {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=75"
+          src="/images/founder-bg.jpg"
           alt=""
           className="w-full h-full object-cover"
           loading="lazy"

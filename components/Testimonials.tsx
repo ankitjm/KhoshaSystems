@@ -40,7 +40,7 @@ export const Testimonials: React.FC = () => {
       {/* Subtle background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1200&q=75"
+          src="/images/home-workspace.jpg"
           alt=""
           className="w-full h-full object-cover opacity-[0.04]"
           loading="lazy"

@@ -27,7 +27,7 @@ export const VancouverPage: React.FC = () => {
       <PageHero
         title="Software Development in Vancouver"
         subtitle="Khoshà Systems brings 15+ years of enterprise software experience to Vancouver. Custom web apps, SaaS products, AI transformation, and digital solutions — built by a senior team with local presence."
-        backgroundImage="https://images.unsplash.com/photo-1559511260-66a68e7e59b3?auto=format&fit=crop&w=1200&q=75"
+        backgroundImage="/images/vancouver-hero.jpg"
       />
 
       {/* Vancouver + Bangalore */}

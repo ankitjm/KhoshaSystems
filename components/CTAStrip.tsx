@@ -9,7 +9,7 @@ export const CTAStrip: React.FC = () => {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=75"
+          src="/images/why-partner-bg.jpg"
           alt=""
           className="w-full h-full object-cover"
           loading="lazy"

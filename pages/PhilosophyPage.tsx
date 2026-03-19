@@ -42,7 +42,7 @@ export const PhilosophyPage: React.FC = () => {
       <PageHero
         title={<>About <span className="text-bronze-400">Khoshà Systems</span></>}
         subtitle="Born in Bangalore (Bengaluru). Built across continents. 15+ years of engineering products, platforms, and systems that drive real transformation."
-        backgroundImage="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1200&q=75"
+        backgroundImage="/images/philosophy-hero.jpg"
       />
 
       <Section className="bg-white">

@@ -9,7 +9,7 @@ export const ContactPage: React.FC = () => {
       <PageHero
         title="Get in Touch"
         subtitle="Let's discuss how we can help build your next product or transform your business."
-        backgroundImage="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=75"
+        backgroundImage="/images/contact-hero.jpg"
       />
       <Contact />
       <FAQ />

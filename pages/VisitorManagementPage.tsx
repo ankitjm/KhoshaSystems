@@ -41,7 +41,7 @@ export const VisitorManagementPage: React.FC = () => {
         label="Visitor Management"
         title={<>First Impressions, <span className="bronze-gradient-text">Digitized</span>.</>}
         subtitle="A modern visitor management platform for real estate sites, corporate offices, and co-working spaces. Digital check-ins, automated notifications, visitor analytics, and compliance — replacing outdated paper registers with intelligent visitor tracking."
-        backgroundImage="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=75"
+        backgroundImage="/images/vms-page-hero.jpg"
       >
         <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-bronze-600 text-white text-sm font-medium uppercase tracking-wider hover:bg-bronze-500 transition-colors rounded group">
           Get a Demo <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -99,7 +99,7 @@ export const VisitorManagementPage: React.FC = () => {
       <Section className="bg-stone-50">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="h-64 md:h-96 relative overflow-hidden rounded-lg border border-stone-200">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=640w=800&q=80q=70" alt="Modern corporate lobby" className="w-full h-full object-cover" loading="lazy" />
+            <img src="/images/vms-inline.png" alt="Visitor Management System analytics dashboard" className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent" />
             <div className="absolute bottom-4 left-4 text-white">
               <Users size={24} className="mb-1 text-bronze-400" />

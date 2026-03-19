@@ -14,7 +14,7 @@ export const ServicesPage: React.FC = () => {
         label="What We Do"
         title="Our Services"
         subtitle="Web apps, websites, AI transformation, mobile apps, and full digital services — built for scale and designed for impact."
-        backgroundImage="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=75"
+        backgroundImage="/images/services-hero.jpg"
       />
 
       <Services />
@@ -43,8 +43,8 @@ export const ServicesPage: React.FC = () => {
             className="h-52 sm:h-64 md:h-96 relative overflow-hidden rounded-lg border border-stone-200 group"
           >
             <img
-              src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=640w=800&q=80q=70"
-              alt="Team working on software development"
+              src="/images/services-craft.jpg"
+              alt="Focused workspace — engineering craft in action"
               className="w-full h-full object-cover img-zoom"
               loading="lazy"
             />

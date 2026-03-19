@@ -12,7 +12,7 @@ const projects = [
     title: "Visitor Management & CRM Platform",
     description: "Built a comprehensive visitor management system and CRM for one of India's leading real estate developers. Digital check-ins, automated broker notifications, lead tracking, and real-time site visit analytics — replacing manual registers with intelligent visitor intelligence.",
     stats: ["85%", "Faster Check-In", "2x", "Lead Conversion"],
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/case-prestige.jpg",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const projects = [
     title: "Enterprise Operations Dashboard",
     description: "Designed and built a unified operations platform that consolidated legacy telecom systems into one intelligent dashboard. Real-time network monitoring, automated ticket routing, and AI-powered anomaly detection — reducing operational overhead significantly.",
     stats: ["60%", "Cost Reduction", "12", "Systems Unified"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/case-arrowhead.jpg",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const projects = [
     title: "AI-Powered Investment Platform",
     description: "Developed a modern investment analytics platform with AI-driven deal scoring, portfolio management, and automated due diligence workflows. From fund tracking to investor reporting — built for the speed of venture capital.",
     stats: ["4x", "Faster Analysis", "200%", "Efficiency Gain"],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/case-unhive.jpg",
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ const projects = [
     title: "Full Digital Transformation Suite",
     description: "End-to-end digital transformation — from brand website and client portal to project management automation and integrated analytics. Built a cohesive digital ecosystem that streamlined operations across creative, sales, and delivery teams.",
     stats: ["3x", "Team Productivity", "40%", "Faster Delivery"],
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/case-phygital.jpg",
   },
 ];
 

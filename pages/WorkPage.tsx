@@ -12,7 +12,7 @@ export const WorkPage: React.FC = () => {
       <PageHero
         title="Our Work"
         subtitle="Real transformations for real businesses — from Prestige Constructions to early-stage startups."
-        backgroundImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=75"
+        backgroundImage="/images/work-hero.jpg"
       />
 
       <Work />

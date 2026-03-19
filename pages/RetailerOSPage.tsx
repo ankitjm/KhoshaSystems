@@ -42,7 +42,7 @@ export const RetailerOSPage: React.FC = () => {
         label="RetailerOS"
         title={<>The Operating System for <span className="bronze-gradient-text">Telecom & Electronics Retail</span></>}
         subtitle="A full-stack retail management platform built for mobile phone retailers, consumer electronics stores, and telecom distributors. IMEI tracking, scheme management, brand analytics, and GST billing — unified in one intelligent system."
-        backgroundImage="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=1200&q=75"
+        backgroundImage="/images/retaileros-page-hero.jpg"
       >
         <div className="flex flex-wrap gap-3">
           <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-bronze-600 text-white text-sm font-medium uppercase tracking-wider hover:bg-bronze-500 transition-colors rounded group">
@@ -104,7 +104,7 @@ export const RetailerOSPage: React.FC = () => {
             </div>
           </div>
           <div className="h-64 md:h-96 relative overflow-hidden rounded-lg border border-stone-200">
-            <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=640&q=70" alt="Mobile phone and electronics retail store" className="w-full h-full object-cover" loading="lazy" />
+            <img src="/images/retaileros-inline.png" alt="RetailerOS inventory management dashboard" className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent" />
             <div className="absolute bottom-4 left-4 text-white">
               <ShoppingCart size={24} className="mb-1 text-bronze-400" />

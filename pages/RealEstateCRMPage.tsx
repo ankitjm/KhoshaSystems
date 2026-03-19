@@ -36,7 +36,7 @@ export const RealEstateCRMPage: React.FC = () => {
         label="Real Estate CRM"
         title={<>Close Deals <span className="bronze-gradient-text">Faster</span>. Manage <span className="bronze-gradient-text">Smarter</span>.</>}
         subtitle="Purpose-built for Indian real estate developers and brokers. Manage leads from 99acres, MagicBricks, and Housing.com. Track site visits, automate follow-ups, and close deals — all from one platform designed for how real estate actually works in India."
-        backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=75"
+        backgroundImage="/images/realestate-page-hero.jpg"
       >
         <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-bronze-600 text-white text-sm font-medium uppercase tracking-wider hover:bg-bronze-500 transition-colors rounded group">
           Get a Demo <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -90,7 +90,7 @@ export const RealEstateCRMPage: React.FC = () => {
             </div>
           </div>
           <div className="h-64 md:h-96 relative overflow-hidden rounded-lg border border-stone-200">
-            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=640w=800&q=80q=70" alt="Modern apartment building" className="w-full h-full object-cover" loading="lazy" />
+            <img src="/images/realestate-inline.png" alt="Real Estate CRM lead pipeline dashboard" className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent" />
             <div className="absolute bottom-4 left-4 text-white">
               <Building2 size={24} className="mb-1 text-bronze-400" />

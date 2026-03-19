@@ -13,7 +13,7 @@ export const BlogPage: React.FC = () => {
         label="Insights"
         title={<>The Khoshà <span className="bronze-gradient-text">Blog</span></>}
         subtitle="Practical insights on software development, AI transformation, and building technology for Indian businesses."
-        backgroundImage="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=1200&q=75"
+        backgroundImage="/images/blog-hero.jpg"
       />
 
       <Section className="bg-white">
