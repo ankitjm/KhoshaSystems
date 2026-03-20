@@ -143,8 +143,25 @@ async function deploy() {
   const installResult = await exec(conn, `cd ${REMOTE_BASE} && npm install --omit=dev 2>&1`);
   console.log(installResult.stdout.trim().split('\n').slice(-3).join('\n'));
 
+  // Create PM2 ecosystem config with env vars
+  console.log('\n=== Setting up PM2 ecosystem ===');
+  const envVars = {};
+  if (process.env.BREVO_API_KEY) envVars.BREVO_API_KEY = process.env.BREVO_API_KEY;
+  if (process.env.VAPID_PUBLIC_KEY) envVars.VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
+  if (process.env.VAPID_PRIVATE_KEY) envVars.VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY;
+  if (process.env.ADMIN_API_KEY) envVars.ADMIN_API_KEY = process.env.ADMIN_API_KEY;
+  const ecosystemConfig = `module.exports = {
+  apps: [{
+    name: 'khosha-api',
+    script: 'server/index.js',
+    cwd: '${REMOTE_BASE}',
+    env: ${JSON.stringify(envVars, null, 6)}
+  }]
+};`;
+  await exec(conn, `cat > ${REMOTE_BASE}/ecosystem.config.cjs << 'ECOEOF'\n${ecosystemConfig}\nECOEOF`);
+
   console.log('\n=== Restarting app ===');
-  await exec(conn, `cd ${REMOTE_BASE} && pm2 restart khosha-api 2>/dev/null || pm2 start server/index.js --name khosha-api`);
+  await exec(conn, `cd ${REMOTE_BASE} && pm2 delete khosha-api 2>/dev/null; pm2 start ecosystem.config.cjs`);
   await exec(conn, 'pm2 save');
 
   // Verify basic health
@@ -228,7 +245,7 @@ server {
 
     location / {
         root REMOTE_BASE_PLACEHOLDER/dist;
-        try_files $uri $uri/index.html $uri/ =404;
+        try_files $uri $uri/index.html $uri/ /index.html;
         add_header Cache-Control "no-cache";
         include /etc/nginx/snippets/security-headers.conf;
     }
