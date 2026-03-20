@@ -75,6 +75,24 @@ const breadcrumbMap: Record<string, Array<{ name: string; path: string }>> = {
     { name: 'Home', path: '' },
     { name: 'Vancouver', path: '/vancouver' },
   ],
+  '/solutions/fashion-retail': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'Fashion & Apparel Retail', path: '/solutions/fashion-retail' },
+  ],
+  '/solutions/grocery': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'Grocery & Supermarket', path: '/solutions/grocery' },
+  ],
+  '/solutions/electronics': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'Electronics & Mobile', path: '/solutions/electronics' },
+  ],
   '/compare/retaileros-vs-iqmetrix': [
     { name: 'Home', path: '' },
     { name: 'Products', path: '/products' },
@@ -302,6 +320,75 @@ export const retailerOSvsSquareFAQs = [
   },
 ];
 
+export const fashionRetailFAQs = [
+  {
+    question: 'Can RetailerOS handle size-color-style inventory for fashion stores?',
+    answer: 'Yes. RetailerOS supports a full size-color-style matrix so you can track inventory at the variant level — for example, "Blue Polo T-shirt, Size L" — across all your stores. No more creating separate SKUs for each variant.',
+  },
+  {
+    question: 'Does RetailerOS help with seasonal and festive demand planning?',
+    answer: 'Yes. RetailerOS uses historical sell-through data to help you plan seasonal buys — Diwali, wedding season, summer collections, and end-of-season sales. AI-driven alerts flag slow movers early so you can markdown before stock piles up.',
+  },
+  {
+    question: 'Can I manage multiple fashion store locations?',
+    answer: 'Yes. RetailerOS supports multi-store operations with real-time inventory sync, inter-store stock transfers, centralized analytics, and role-based access for store managers and staff.',
+  },
+  {
+    question: 'Is RetailerOS suitable for boutique stores or only large chains?',
+    answer: 'RetailerOS works for both. Whether you run a single boutique or a multi-city apparel chain, the platform scales with your business. Start small and add stores as you grow — no infrastructure changes needed.',
+  },
+  {
+    question: 'Does RetailerOS support exchange and return management for apparel?',
+    answer: 'Yes. Handle size exchanges, style swaps, and returns with automated inventory adjustments. The system updates stock counts in real time across all locations so your inventory stays accurate.',
+  },
+];
+
+export const groceryRetailFAQs = [
+  {
+    question: 'Does RetailerOS track expiry dates and batch numbers for grocery items?',
+    answer: 'Yes. RetailerOS tracks expiry dates and batch numbers at the item level. You get automatic alerts before products expire, enabling timely markdowns or clearance — reducing wastage and FSSAI compliance risk.',
+  },
+  {
+    question: 'Can RetailerOS handle weight-based pricing for fruits, vegetables, and pulses?',
+    answer: 'Yes. RetailerOS supports weight-based, piece-based, and pack-based pricing. It integrates with electronic weighing scales for accurate per-gram billing of loose items like fruits, vegetables, pulses, and dry goods.',
+  },
+  {
+    question: 'Is RetailerOS fast enough for high-volume grocery checkout?',
+    answer: 'Yes. RetailerOS is optimized for grocery-speed checkout with rapid barcode scanning, quick-bill modes, and support for multiple billing counters. Even during peak hours, your checkout lines keep moving.',
+  },
+  {
+    question: 'Can RetailerOS manage supplier orders and purchase workflows?',
+    answer: 'Yes. RetailerOS generates automated purchase orders based on sell-through velocity, minimum stock levels, and supplier lead times. Track PO status, manage multiple suppliers per category, and ensure fast-moving staples never run out.',
+  },
+  {
+    question: 'Does RetailerOS work for kirana stores or only supermarkets?',
+    answer: 'RetailerOS works for both. From small kirana stores to large multi-location supermarkets, the platform scales with your needs. Start with basic billing and inventory, and enable advanced features like batch tracking and analytics as your business grows.',
+  },
+];
+
+export const electronicsRetailFAQs = [
+  {
+    question: 'How does IMEI tracking work in RetailerOS?',
+    answer: 'IMEI and serial number capture is integrated directly into the billing flow — via barcode scan, camera capture, or manual entry. Every device is tracked individually from purchase to sale with a full audit trail, eliminating spreadsheet-based tracking.',
+  },
+  {
+    question: 'Can RetailerOS manage brand schemes from Samsung, Vivo, Oppo, and Xiaomi?',
+    answer: 'Yes. RetailerOS has a native scheme and offer engine that tracks active brand schemes, auto-applies eligible cashbacks and exchange offers at billing, maintains a running tally of pending claims and approved payouts, and alerts you to expiring schemes.',
+  },
+  {
+    question: 'Does RetailerOS handle warranty registration?',
+    answer: 'Yes. Warranties are registered at the point of sale. RetailerOS tracks warranty periods, manages claims, and lets customers check warranty status via WhatsApp — no more paper warranty cards or filing cabinets.',
+  },
+  {
+    question: 'Can RetailerOS handle device trade-ins and exchanges?',
+    answer: 'Yes. RetailerOS supports device trade-ins with condition grading, fair-value estimation, and instant credit toward new purchases. Refurbished and second-hand inventory is tracked separately from new stock.',
+  },
+  {
+    question: 'Is RetailerOS suitable for single mobile shops or only large chains?',
+    answer: 'RetailerOS works for both. Whether you run a single mobile phone shop or a multi-city electronics chain, the platform scales with you. Cloud-native architecture means no infrastructure headaches as you grow.',
+  },
+];
+
 export const vmsFAQs = [
   {
     question: 'How does the digital check-in work?',
@@ -475,6 +562,18 @@ function getSchemasForPath(pathname: string): object[] {
         })
       );
       schemas.push(buildFAQSchema(vmsFAQs));
+      break;
+
+    case '/solutions/fashion-retail':
+      schemas.push(buildFAQSchema(fashionRetailFAQs));
+      break;
+
+    case '/solutions/grocery':
+      schemas.push(buildFAQSchema(groceryRetailFAQs));
+      break;
+
+    case '/solutions/electronics':
+      schemas.push(buildFAQSchema(electronicsRetailFAQs));
       break;
 
     case '/compare/retaileros-vs-iqmetrix':

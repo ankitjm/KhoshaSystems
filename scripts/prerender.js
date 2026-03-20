@@ -34,6 +34,10 @@ const ROUTES = [
   '/blog/retaileros-vs-manual-billing-comparison',
   '/blog/scheme-management-simple-telecom-retailers',
   '/blog/case-study-pune-retailer-saved-40-percent-billing-time',
+  // Solutions (vertical landing pages)
+  '/solutions/fashion-retail',
+  '/solutions/grocery',
+  '/solutions/electronics',
   // Comparison pages
   '/compare/retaileros-vs-iqmetrix',
   '/compare/real-estate-crm-vs-selldo',
@@ -96,6 +100,21 @@ const seoConfig = {
     title: 'Software Development Company Vancouver | AI & SaaS Development | Khoshà Systems',
     description: 'Khoshà Systems Vancouver — custom web apps, SaaS & AI transformation. 15+ years experience, senior team with local presence.',
     keywords: 'software development company Vancouver, custom software development Vancouver BC, AI transformation services Vancouver, SaaS development Canada, web development company Vancouver, digital transformation Vancouver, offshore development partner Canada, Vancouver software development'
+  },
+  '/solutions/fashion-retail': {
+    title: 'Fashion Retail POS & Inventory Software India | RetailerOS | Khoshà Systems',
+    description: 'RetailerOS for fashion & apparel stores. Size-color inventory matrix, seasonal planning, multi-store management, and GST billing. Built for Indian fashion retail.',
+    keywords: 'fashion retail POS India, apparel inventory management software, clothing store software India, fashion store billing software, size color inventory management, garment shop POS, multi-store fashion retail software, seasonal inventory planning retail, apparel retail management India, fashion boutique POS software'
+  },
+  '/solutions/grocery': {
+    title: 'Grocery Store & Supermarket POS Software India | RetailerOS | Khoshà Systems',
+    description: 'RetailerOS for grocery stores & supermarkets. Perishable inventory, expiry tracking, weight-based billing, barcode scanning. Built for Indian grocery retail.',
+    keywords: 'grocery POS system India, supermarket billing software, grocery store management software, kirana store POS, supermarket inventory management India, barcode billing software grocery, expiry tracking software retail, weight based billing software, grocery store software India, FMCG retail management software'
+  },
+  '/solutions/electronics': {
+    title: 'Electronics & Mobile Shop POS Software India | RetailerOS | Khoshà Systems',
+    description: 'RetailerOS for electronics & mobile stores. IMEI tracking, warranty management, brand scheme automation, exchange workflows. Purpose-built for Indian electronics retail.',
+    keywords: 'electronics store POS India, mobile shop billing software, IMEI tracking software, mobile phone shop POS India, electronics retail management software, warranty management software retail, brand scheme management electronics, mobile store inventory software, consumer electronics POS India, cellphone store software India'
   },
   '/compare/retaileros-vs-iqmetrix': {
     title: 'RetailerOS vs iQmetrix | India-First Telecom Retail Software Alternative | Khoshà Systems',
