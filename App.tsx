@@ -34,6 +34,8 @@ const RetailerOSvsSquarePage = lazy(() => import('./pages/RetailerOSvsSquarePage
 const FashionRetailPage = lazy(() => import('./pages/FashionRetailPage').then(m => ({ default: m.FashionRetailPage })));
 const GroceryRetailPage = lazy(() => import('./pages/GroceryRetailPage').then(m => ({ default: m.GroceryRetailPage })));
 const ElectronicsRetailPage = lazy(() => import('./pages/ElectronicsRetailPage').then(m => ({ default: m.ElectronicsRetailPage })));
+const SuccessStoriesPage = lazy(() => import('./pages/SuccessStoriesPage').then(m => ({ default: m.SuccessStoriesPage })));
+const KnowledgeBasePage = lazy(() => import('./pages/KnowledgeBasePage').then(m => ({ default: m.KnowledgeBasePage })));
 const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 
@@ -74,6 +76,8 @@ function AppContent() {
             <Route path="/solutions/grocery" element={<GroceryRetailPage />} />
             <Route path="/solutions/electronics" element={<ElectronicsRetailPage />} />
             <Route path="/tools/roi-calculator" element={<ROICalculatorPage />} />
+            <Route path="/success-stories" element={<SuccessStoriesPage />} />
+            <Route path="/help" element={<KnowledgeBasePage />} />
             <Route path="/vancouver" element={<VancouverPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

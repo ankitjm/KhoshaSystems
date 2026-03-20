@@ -129,6 +129,18 @@ const breadcrumbMap: Record<string, Array<{ name: string; path: string }>> = {
     { name: 'RetailerOS', path: '/products/retaileros' },
     { name: 'RetailerOS vs Square', path: '/compare/retaileros-vs-square' },
   ],
+  '/success-stories': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'Customer Success Stories', path: '/success-stories' },
+  ],
+  '/help': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'Knowledge Base', path: '/help' },
+  ],
 };
 
 // FAQ data for product pages
@@ -294,6 +306,49 @@ export const retailerOSvsLightspeedFAQs = [
   {
     question: 'Does Lightspeed work for Indian retail?',
     answer: 'Lightspeed is designed for US and Canadian markets with tax systems built for those regions. It does not support GST-compliant billing, HSN codes, or Indian carrier integrations. RetailerOS is purpose-built for Indian telecom and electronics retail.',
+  },
+];
+
+export const knowledgeBaseFAQs = [
+  {
+    question: 'How much does RetailerOS cost?',
+    answer: 'RetailerOS offers transparent SaaS pricing designed for Indian retailers — from single-store owners to multi-city chains. Contact us for current pricing or start with a 14-day free trial. No credit card required.',
+  },
+  {
+    question: 'How long does it take to set up?',
+    answer: 'Most stores go live within 48 hours. RetailerOS is cloud-native — no hardware installation, no on-premise servers. Our onboarding team handles data migration from your existing software, Excel sheets, or even paper records.',
+  },
+  {
+    question: 'Can I migrate from my current billing software?',
+    answer: 'Yes. We provide assisted migration from Tally, Marg, Busy, Excel, and most other billing software. Our team handles inventory, customer data, supplier lists, and historical records. Zero data loss, minimal disruption.',
+  },
+  {
+    question: 'Does RetailerOS work on my phone?',
+    answer: 'Yes. RetailerOS works on any modern browser — phone, tablet, or desktop. Bookmark it on your home screen for quick access. The mobile experience is fully functional for checking sales, stock, and alerts on the go.',
+  },
+  {
+    question: 'What integrations does RetailerOS support?',
+    answer: 'RetailerOS integrates with barcode scanners, electronic weighing scales, thermal receipt printers, and UPI payment systems. Brand scheme data from Samsung, Vivo, Oppo, Xiaomi, and other brands is loaded automatically.',
+  },
+  {
+    question: 'Is my data secure?',
+    answer: 'Yes. RetailerOS uses industry-standard encryption, regular automated backups, and role-based access controls. Your data is stored securely in the cloud with 99.9% uptime. Only authorized users can access your store information.',
+  },
+  {
+    question: 'Can I use RetailerOS for multiple stores?',
+    answer: 'Yes. RetailerOS supports multi-store operations with serial-level inventory tracking across locations, inter-store transfer management, centralized analytics, and role-based access for store managers and staff.',
+  },
+  {
+    question: 'What support do you offer?',
+    answer: 'WhatsApp support (fastest), phone, email, and live chat inside the app. We typically respond within 15 minutes during business hours. New customers get a dedicated onboarding manager for the first 7 days.',
+  },
+  {
+    question: 'Is RetailerOS GST-compliant?',
+    answer: 'Fully compliant — HSN code support, proper CGST/SGST breakdowns, reverse charge handling, return/credit note workflows, and e-invoice readiness. Built for Indian tax requirements from the ground up.',
+  },
+  {
+    question: 'What happens if my internet goes down?',
+    answer: 'RetailerOS is designed to handle intermittent connectivity. Critical billing functions continue to work, and data syncs automatically when the connection is restored. Your business does not stop because of a network hiccup.',
   },
 ];
 
@@ -598,6 +653,10 @@ function getSchemasForPath(pathname: string): object[] {
 
     case '/compare/retaileros-vs-square':
       schemas.push(buildFAQSchema(retailerOSvsSquareFAQs));
+      break;
+
+    case '/help':
+      schemas.push(buildFAQSchema(knowledgeBaseFAQs));
       break;
   }
 

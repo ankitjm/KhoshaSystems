@@ -116,6 +116,16 @@ const seoConfig: Record<string, SEOConfig> = {
     title: 'ROI Calculator | Estimate Your Software Investment Returns | Khoshà Systems',
     description: 'Calculate the return on investment for RetailerOS, Real Estate CRM, or Visitor Management System. Free ROI calculator by Khoshà Systems.',
     keywords: 'ROI calculator software, RetailerOS ROI, real estate CRM ROI, visitor management ROI, software investment calculator India'
+  },
+  '/success-stories': {
+    title: 'Customer Success Stories | RetailerOS Results for Indian Retailers | Khoshà Systems',
+    description: 'See how retailers across India benefit from RetailerOS — from recovering lakhs in missed scheme payouts to eliminating inventory shrinkage. Representative scenarios from telecom, electronics, fashion, and grocery retail.',
+    keywords: 'RetailerOS success stories, retail software case studies India, telecom retail results, electronics store software ROI, fashion retail POS results, grocery store software India, RetailerOS customer stories, retail management software benefits'
+  },
+  '/help': {
+    title: 'RetailerOS Knowledge Base & Help Center | Getting Started Guide | Khoshà Systems',
+    description: 'RetailerOS help center — getting started guide, FAQ, feature guides for POS, inventory, scheme management, analytics, and multi-store operations. Go live in 48 hours.',
+    keywords: 'RetailerOS help center, RetailerOS getting started, RetailerOS FAQ, retail software guide India, RetailerOS onboarding, RetailerOS knowledge base, POS software help, inventory management guide, scheme management help'
   }
 };
 
