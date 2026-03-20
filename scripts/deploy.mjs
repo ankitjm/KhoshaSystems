@@ -129,6 +129,9 @@ async function deploy() {
       'better-sqlite3': pkg.dependencies['better-sqlite3'],
       'cors': pkg.dependencies['cors'],
       'express': pkg.dependencies['express'],
+      'imap': pkg.dependencies['imap'],
+      'mailparser': pkg.dependencies['mailparser'],
+      'nodemailer': pkg.dependencies['nodemailer'],
       'web-push': pkg.dependencies['web-push'],
     }
   };
