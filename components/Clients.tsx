@@ -2,11 +2,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const clients = [
-  "PHYGITAL STUDIO", "ARROWHEAD COMMUNICATIONS", "UNHIVE VENTURES", "MI1K.CO",
-  "PRESTIGE CONSTRUCTIONS", "NOTHING", "HONORABLE"
+  { name: "Phygital Studio", logo: "/images/clients/phygital-studio-logo.png" },
+  { name: "Arrowhead Communications", logo: "/images/clients/arrowhead.jpg" },
+  { name: "Unhive Ventures", logo: "/images/clients/unhive-ventures.png" },
+  { name: "MI1K.CO", logo: "/images/clients/milk-logo.png" },
+  { name: "Prestige Constructions", logo: "/images/clients/prestige-group.png" },
+  { name: "Nothing", logo: "/images/clients/nothing-logo.webp" },
 ];
 
 export const Clients: React.FC = () => {
+  const repeated = [...clients, ...clients, ...clients];
+
   return (
     <div className="bg-white border-y border-stone-200 py-7 sm:py-9 overflow-hidden relative z-20">
       <motion.div
@@ -20,17 +26,25 @@ export const Clients: React.FC = () => {
 
       <div className="relative flex overflow-x-hidden group">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-12 sm:gap-16 md:gap-24 px-8">
-          {[...clients, ...clients, ...clients].map((logo, i) => (
-            <span key={i} className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-stone-200 uppercase tracking-tighter hover:text-bronze-400 transition-colors duration-300 cursor-default select-none">
-              {logo}
-            </span>
+          {repeated.map((client, i) => (
+            <img
+              key={i}
+              src={client.logo}
+              alt={client.name}
+              className="h-8 sm:h-10 md:h-12 w-auto object-contain opacity-40 hover:opacity-70 transition-opacity duration-300 select-none grayscale"
+              draggable={false}
+            />
           ))}
         </div>
         <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-12 sm:gap-16 md:gap-24 px-8">
-          {[...clients, ...clients, ...clients].map((logo, i) => (
-            <span key={i} className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-stone-200 uppercase tracking-tighter hover:text-bronze-400 transition-colors duration-300 cursor-default select-none">
-              {logo}
-            </span>
+          {repeated.map((client, i) => (
+            <img
+              key={i}
+              src={client.logo}
+              alt={client.name}
+              className="h-8 sm:h-10 md:h-12 w-auto object-contain opacity-40 hover:opacity-70 transition-opacity duration-300 select-none grayscale"
+              draggable={false}
+            />
           ))}
         </div>
       </div>
