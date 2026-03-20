@@ -480,6 +480,27 @@ app.patch('/api/email/drafts/:id', (req, res) => {
   }
 });
 
+// Create a new draft reply (for composing replies to emails without auto-drafts)
+app.post('/api/email/drafts', (req, res) => {
+  try {
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
+    const { email_id, to_email, to_name, subject, body } = req.body;
+    if (!email_id || !to_email || !subject || !body) {
+      return res.status(400).json({ error: 'Missing required fields: email_id, to_email, subject, body' });
+    }
+    // Verify the email exists
+    const email = db.prepare('SELECT id FROM emails WHERE id = ?').get(email_id);
+    if (!email) return res.status(404).json({ error: 'Email not found' });
+    const result = db.prepare(
+      "INSERT INTO email_drafts (email_id, to_email, to_name, subject, body, status) VALUES (?, ?, ?, ?, ?, 'draft')"
+    ).run(email_id, to_email, to_name || '', subject, body);
+    res.json({ success: true, id: Number(result.lastInsertRowid) });
+  } catch (err) {
+    console.error('Draft create error:', err.message);
+    res.status(500).json({ error: 'Failed to create draft' });
+  }
+});
+
 // Trigger manual email check
 app.post('/api/email/check', async (req, res) => {
   try {

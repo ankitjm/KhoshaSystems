@@ -24,6 +24,19 @@ if (!BREVO_API_KEY) {
 }
 const BREVO_API_URL = 'https://api.brevo.com/v3';
 
+// Branding params passed to all Brevo templates for logo/link rendering
+const BREVO_BRAND_PARAMS = {
+  LOGO_URL: 'https://khoshasystems.com/logo.png',
+  SITE_URL: 'https://khoshasystems.com',
+  RETAILEROS_URL: 'https://khoshasystems.com/retaileros',
+  CRM_URL: 'https://khoshasystems.com/realestate-crm',
+  VMS_URL: 'https://khoshasystems.com/vms',
+  CONTACT_URL: 'https://khoshasystems.com/contact',
+  LINKEDIN_URL: 'https://www.linkedin.com/company/khoshasystems',
+  COMPANY_NAME: 'Khosha Systems',
+  COMPANY_TAGLINE: 'Purpose-built software for Indian businesses',
+};
+
 const LIST_ALL_LEADS = 4;
 const LIST_RETAILEROS = 5;
 const LIST_CRM = 6;
@@ -121,13 +134,15 @@ async function addContact({ name, company, email, goal, source }) {
 
 /**
  * Send an email immediately via Brevo transactional API.
+ * Includes branding params (LOGO_URL, product URLs, etc.) so Brevo templates
+ * can render the Khosha logo and clickable product/social links.
  */
 async function sendEmail({ name, email, templateId }) {
   const firstName = (name || '').split(' ')[0] || 'there';
   await brevoRequest('POST', '/smtp/email', {
     templateId,
     to: [{ email, name: name || '' }],
-    params: { FIRSTNAME: firstName },
+    params: { FIRSTNAME: firstName, ...BREVO_BRAND_PARAMS },
   });
 }
 
@@ -201,7 +216,7 @@ async function sendNurtureSequence({ name, email }) {
   await brevoRequest('POST', '/smtp/email', {
     templateId: TEMPLATE_EDUCATION,
     to: [{ email, name: name || '' }],
-    params: { FIRSTNAME: (name || '').split(' ')[0] || 'there' },
+    params: { FIRSTNAME: (name || '').split(' ')[0] || 'there', ...BREVO_BRAND_PARAMS },
     scheduledAt: day3.toISOString(),
   });
 
@@ -245,6 +260,7 @@ export {
   addContact,
   sendNurtureSequence,
   detectVertical,
+  BREVO_BRAND_PARAMS,
   LIST_ALL_LEADS,
   LIST_RETAILEROS,
   LIST_CRM,

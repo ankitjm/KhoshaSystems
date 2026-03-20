@@ -18,6 +18,7 @@
 import Imap from 'imap';
 import { simpleParser } from 'mailparser';
 import nodemailer from 'nodemailer';
+import { wrapEmailHtml, textToEmailHtml, SITE_URL } from './email-template.js';
 
 // --- Configuration ---
 
@@ -147,7 +148,25 @@ In the meantime, feel free to explore our solutions at https://khoshasystems.com
 
 Best regards,
 Khosha Systems Team
-hello@khosha.tech`,
+veda@khosha.tech`,
+    html: wrapEmailHtml({
+      body: `
+        <p style="margin: 0 0 16px 0;">Hi ${name || 'there'},</p>
+        <p style="margin: 0 0 16px 0;">Thank you for reaching out to <strong>Khosha Systems</strong>! We've received your inquiry and are excited to learn more about how we can help.</p>
+        <p style="margin: 0 0 16px 0;">Our team will review your message and get back to you within 24 hours with detailed information tailored to your needs.</p>
+        <p style="margin: 0 0 24px 0;">In the meantime, explore our solutions:</p>
+        <table role="presentation" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
+          <tr>
+            <td style="background-color: #b8860b; border-radius: 6px; padding: 12px 24px;">
+              <a href="${SITE_URL}/contact?utm_source=email&utm_medium=reply&utm_campaign=lead-inquiry&utm_content=cta-demo" style="color: #ffffff; text-decoration: none; font-family: Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 600;">Book a Free Demo →</a>
+            </td>
+          </tr>
+        </table>
+        <p style="margin: 0 0 8px 0;">Best regards,<br><strong>Khosha Systems Team</strong><br>veda@khosha.tech</p>
+      `,
+      preheader: 'Thank you for your inquiry — we\'ll get back to you within 24 hours',
+      utmCampaign: 'lead-inquiry-reply',
+    }),
   }),
 
   support: (name) => ({
@@ -160,7 +179,18 @@ We'll get back to you as soon as possible with a resolution. If this is urgent, 
 
 Best regards,
 Khosha Systems Support
-hello@khosha.tech`,
+veda@khosha.tech`,
+    html: wrapEmailHtml({
+      body: `
+        <p style="margin: 0 0 16px 0;">Hi ${name || 'there'},</p>
+        <p style="margin: 0 0 16px 0;">Thank you for contacting <strong>Khosha Systems</strong> support. We've received your request and our team is looking into it.</p>
+        <p style="margin: 0 0 16px 0;">We'll get back to you as soon as possible with a resolution. If this is urgent, please reply to this email with <strong>"URGENT"</strong> in the subject line.</p>
+        <p style="margin: 0 0 8px 0;">Best regards,<br><strong>Khosha Systems Support</strong><br>veda@khosha.tech</p>
+      `,
+      preheader: 'We\'ve received your support request and are looking into it',
+      showProductLinks: false,
+      utmCampaign: 'support-reply',
+    }),
   }),
 };
 
@@ -222,12 +252,18 @@ function initEmailMonitor(db) {
       to_name TEXT DEFAULT '',
       subject TEXT DEFAULT '',
       body TEXT DEFAULT '',
+      body_html TEXT DEFAULT '',
       status TEXT DEFAULT 'draft',
       sent_at DATETIME,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (email_id) REFERENCES emails(id)
     )
   `);
+
+  // Add body_html column if upgrading from older schema
+  try {
+    db.exec('ALTER TABLE email_drafts ADD COLUMN body_html TEXT DEFAULT ""');
+  } catch (_) { /* column already exists */ }
 
   console.log('Email monitor: tables initialized');
 }
@@ -439,9 +475,9 @@ function processEmail(parsed) {
     const draft = generateDraftReply(classification, from.name, subject);
     if (draft) {
       _db.prepare(`
-        INSERT INTO email_drafts (email_id, to_email, to_name, subject, body, status)
-        VALUES (?, ?, ?, ?, ?, 'draft')
-      `).run(emailId, from.address || '', from.name || '', draft.subject, draft.body);
+        INSERT INTO email_drafts (email_id, to_email, to_name, subject, body, body_html, status)
+        VALUES (?, ?, ?, ?, ?, ?, 'draft')
+      `).run(emailId, from.address || '', from.name || '', draft.subject, draft.body, draft.html || '');
       console.log(`Email monitor: draft reply generated for email #${emailId}`);
     }
   }
@@ -510,12 +546,19 @@ async function sendDraftReply(draftId) {
 
   const transporter = nodemailer.createTransport(SMTP_CONFIG);
 
-  await transporter.sendMail({
+  const mailOptions = {
     from: `"Khosha Systems" <${SMTP_CONFIG.auth.user}>`,
     to: draft.to_email,
     subject: draft.subject,
     text: draft.body,
-  });
+  };
+
+  // Send HTML version if available (stored in body_html column)
+  if (draft.body_html) {
+    mailOptions.html = draft.body_html;
+  }
+
+  await transporter.sendMail(mailOptions);
 
   _db.prepare('UPDATE email_drafts SET status = ?, sent_at = datetime(?) WHERE id = ?')
     .run('sent', new Date().toISOString(), draftId);
