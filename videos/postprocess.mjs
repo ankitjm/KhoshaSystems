@@ -12,14 +12,6 @@ import fs from "node:fs";
 
 const execFileAsync = promisify(execFile);
 
-function getFfmpegPath() {
-  try {
-    const installer = await import("@ffmpeg-installer/ffmpeg");
-    if (fs.existsSync(installer.path)) return installer.path;
-  } catch {}
-  return "ffmpeg";
-}
-
 let _ffmpegPath;
 
 async function ffmpeg() {

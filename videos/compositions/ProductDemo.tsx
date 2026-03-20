@@ -394,7 +394,7 @@ export const ProductDemo: React.FC<ProductDemoProps> = ({
   const featureDuration = 50; // frames per feature
   const introDuration = 60;
   const statsDuration = 60;
-  const ctaDuration = 300 - introDuration - features.length * featureDuration - statsDuration;
+  const ctaDuration = 70; // ~2.3s for CTA
 
   return (
     <AbsoluteFill>
