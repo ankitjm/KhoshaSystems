@@ -203,7 +203,10 @@ function startServer() {
     }
   });
 
-  return new Promise(resolve => server.listen(PORT, () => resolve(server)));
+  return new Promise((resolve, reject) => {
+    server.on('error', reject);
+    server.listen(PORT, () => resolve(server));
+  });
 }
 
 // Full prerender with Puppeteer (best quality — includes rendered React content)
@@ -243,8 +246,109 @@ async function prerenderWithPuppeteer() {
   console.log(`\nPre-rendered ${ROUTES.length} routes with Puppeteer.`);
 }
 
-// Lightweight fallback: inject per-route meta tags into built index.html
-// Doesn't render React content but ensures crawlers see correct SEO metadata
+// Breadcrumb definitions for JSON-LD injection (mirrors StructuredData.tsx)
+const breadcrumbMap = {
+  '/': [{ name: 'Home', path: '' }],
+  '/products': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }],
+  '/products/retaileros': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }],
+  '/products/real-estate-crm': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Real Estate CRM', path: '/products/real-estate-crm' }],
+  '/products/visitor-management': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Visitor Management', path: '/products/visitor-management' }],
+  '/services': [{ name: 'Home', path: '' }, { name: 'Services', path: '/services' }],
+  '/work': [{ name: 'Home', path: '' }, { name: 'Work', path: '/work' }],
+  '/philosophy': [{ name: 'Home', path: '' }, { name: 'About', path: '/philosophy' }],
+  '/contact': [{ name: 'Home', path: '' }, { name: 'Contact', path: '/contact' }],
+  '/blog': [{ name: 'Home', path: '' }, { name: 'Blog', path: '/blog' }],
+  '/compare/retaileros-vs-shopify': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'RetailerOS vs Shopify POS', path: '/compare/retaileros-vs-shopify' }],
+  '/compare/retaileros-vs-lightspeed': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'RetailerOS vs Lightspeed', path: '/compare/retaileros-vs-lightspeed' }],
+  '/compare/retaileros-vs-square': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'RetailerOS vs Square', path: '/compare/retaileros-vs-square' }],
+  '/compare/retaileros-vs-iqmetrix': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'RetailerOS vs iQmetrix', path: '/compare/retaileros-vs-iqmetrix' }],
+  '/compare/real-estate-crm-vs-selldo': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Real Estate CRM', path: '/products/real-estate-crm' }, { name: 'CRM vs Sell.Do', path: '/compare/real-estate-crm-vs-selldo' }],
+  '/compare/vms-vs-envoy': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Visitor Management', path: '/products/visitor-management' }, { name: 'VMS vs Envoy', path: '/compare/vms-vs-envoy' }],
+  '/solutions/fashion-retail': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'Fashion & Apparel Retail', path: '/solutions/fashion-retail' }],
+  '/solutions/grocery': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'Grocery & Supermarket', path: '/solutions/grocery' }],
+  '/solutions/electronics': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'Electronics & Mobile', path: '/solutions/electronics' }],
+  '/success-stories': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'Customer Success Stories', path: '/success-stories' }],
+  '/help': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'Knowledge Base', path: '/help' }],
+};
+
+// FAQ data for comparison pages (mirrors StructuredData.tsx exports)
+const faqMap = {
+  '/compare/retaileros-vs-shopify': [
+    { question: 'Does Shopify POS support IMEI or serial number tracking?', answer: 'No. Shopify POS has no native serial number or IMEI tracking. RetailerOS has native IMEI capture via barcode, camera, or manual entry with a full audit trail.' },
+    { question: 'How does RetailerOS pricing compare to Shopify POS?', answer: 'Shopify POS Pro costs $89/month per location for advanced features. RetailerOS includes all features in one transparent price with no tiered upselling.' },
+    { question: 'Can Shopify POS handle brand scheme management?', answer: 'No. Shopify POS has no concept of brand schemes or cashbacks. RetailerOS has a built-in engine that tracks schemes from Samsung, Vivo, Oppo, Xiaomi, and other brands.' },
+    { question: 'Is Shopify POS suitable for Indian telecom retailers?', answer: 'Shopify POS is designed for general retail and e-commerce. It lacks GST-compliant billing, IMEI tracking, brand scheme management, and WhatsApp notifications — all native to RetailerOS.' },
+    { question: 'Can RetailerOS match Shopify for e-commerce?', answer: 'RetailerOS is focused on in-store telecom retail — IMEI tracking, billing, scheme management, and multi-store inventory. If your primary need is in-store telecom retail, RetailerOS is the better choice.' },
+  ],
+  '/compare/retaileros-vs-lightspeed': [
+    { question: 'Does Lightspeed force you to use their payment processor?', answer: 'Yes. Lightspeed requires merchants to use Lightspeed Payments or face significantly higher subscription costs. RetailerOS works with any payment processor.' },
+    { question: 'How does RetailerOS pricing compare to Lightspeed?', answer: 'Lightspeed starts at $89/month for Basic, $149 for Core, $289 for Plus — typically annual contracts. RetailerOS offers all features at one transparent price.' },
+    { question: 'Does Lightspeed support telecom-specific features?', answer: 'No. Lightspeed is a general retail POS without IMEI tracking, brand scheme management, or GST billing. RetailerOS is purpose-built for Indian telecom retail.' },
+    { question: 'Can I switch from Lightspeed to RetailerOS?', answer: 'Yes. RetailerOS has no long-term contracts. We provide assisted migration from Lightspeed including inventory, product catalog, and customer data.' },
+    { question: 'Does RetailerOS lock you into a payment processor?', answer: 'No. RetailerOS works with any payment processor or gateway you choose, with no lock-in or pricing penalties.' },
+  ],
+  '/compare/retaileros-vs-square': [
+    { question: 'Does Square for Retail support IMEI or serial number tracking?', answer: 'No. Square has no native serial number or IMEI tracking capability. RetailerOS has native IMEI capture via barcode, camera, or manual entry.' },
+    { question: 'How does RetailerOS pricing compare to Square?', answer: 'Square Free plan has basic features; Plus at $60/month/location. RetailerOS includes all features — IMEI, schemes, GST, analytics — in one plan.' },
+    { question: 'Is Square suitable for Indian telecom retail?', answer: 'Square is not available in India and lacks GST billing, IMEI tracking, brand scheme management, and WhatsApp notifications. RetailerOS is purpose-built for Indian telecom retail.' },
+    { question: 'Does Square handle brand scheme management?', answer: 'No. Square has no brand scheme or cashback tracking. RetailerOS auto-tracks schemes from Samsung, Vivo, Oppo, Xiaomi, and applies them at billing.' },
+    { question: 'Can RetailerOS work offline?', answer: 'RetailerOS is cloud-native with offline-resilient features for billing continuity. Square also supports offline payments but lacks the telecom-specific workflows.' },
+  ],
+  '/compare/retaileros-vs-iqmetrix': [
+    { question: 'Is RetailerOS a good alternative to iQmetrix for Indian retailers?', answer: 'Yes. iQmetrix is built for the North American market. RetailerOS is purpose-built for Indian telecom with native GST billing, IMEI tracking, and brand scheme management.' },
+    { question: 'How does RetailerOS pricing compare to iQmetrix?', answer: 'iQmetrix uses opaque enterprise pricing with long-term contracts. RetailerOS offers transparent, affordable SaaS pricing for Indian retailers.' },
+    { question: 'Does RetailerOS support GST-compliant billing?', answer: 'Yes. Fully GST-compliant with HSN codes, tax invoicing, reverse charge handling, and return/credit note workflows.' },
+  ],
+  '/compare/real-estate-crm-vs-selldo': [
+    { question: 'Is Khosha CRM a good alternative to Sell.Do?', answer: 'Yes. Khosha CRM focuses on features that drive revenue — lead management, site visit tracking, automated follow-ups — at a lower price point than Sell.Do.' },
+    { question: 'How does pricing compare to Sell.Do?', answer: 'Sell.Do charges Rs.3,499/user/month. Khosha CRM offers flat-rate pricing that does not penalize you for growing your team.' },
+    { question: 'Does Khosha CRM integrate with Indian property portals?', answer: 'Yes. Integrates with 99acres, MagicBricks, Housing.com, Facebook Ads, Google Ads, and website forms with automatic lead deduplication.' },
+  ],
+  '/compare/vms-vs-envoy': [
+    { question: 'Is Khosha VMS a good alternative to Envoy?', answer: 'Yes. Khosha VMS is built for Indian workplaces with WhatsApp notifications, RERA compliance, Android tablet support, and INR pricing.' },
+    { question: 'How much does Khosha VMS cost compared to Envoy?', answer: 'Envoy Premium costs $4,345/location/year. Khosha VMS offers the same core capabilities at a fraction of the cost, billed in INR.' },
+    { question: 'Does Khosha VMS work on Android tablets?', answer: 'Yes. Unlike Envoy which is iPad-centric, Khosha VMS works on affordable Android tablets.' },
+  ],
+};
+
+function buildBreadcrumbJsonLd(items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: item.path === '' ? BASE_URL : `${BASE_URL}${item.path}`,
+    })),
+  };
+}
+
+function buildFAQJsonLd(faqs) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  };
+}
+
+function getJsonLdScripts(route) {
+  const scripts = [];
+  if (breadcrumbMap[route]) {
+    scripts.push(JSON.stringify(buildBreadcrumbJsonLd(breadcrumbMap[route])));
+  }
+  if (faqMap[route]) {
+    scripts.push(JSON.stringify(buildFAQJsonLd(faqMap[route])));
+  }
+  return scripts.map(s => `<script type="application/ld+json">${s}</script>`).join('\n');
+}
+
+// Lightweight fallback: inject per-route meta tags + JSON-LD into built index.html
+// Doesn't render React content but ensures crawlers see correct SEO metadata and structured data
 function prerenderMetaOnly() {
   console.log('Pre-rendering with meta-tag injection (Puppeteer unavailable)...');
   const templateHtml = readFileSync(join(DIST, 'index.html'), 'utf8');
@@ -306,6 +410,20 @@ function prerenderMetaOnly() {
       /<meta property="og:url" content="[^"]*" \/>/,
       `<meta property="og:url" content="${canonicalUrl}" />`
     );
+
+    // Inject JSON-LD structured data (breadcrumbs, FAQ schemas)
+    const jsonLd = getJsonLdScripts(route);
+    if (jsonLd) {
+      html = html.replace('</head>', `${jsonLd}\n</head>`);
+    }
+
+    // Inject noscript fallback with page title and description for crawlers
+    if (config) {
+      html = html.replace(
+        '<div id="root">',
+        `<div id="root"><noscript><h1>${config.title}</h1><p>${config.description}</p></noscript>`
+      );
+    }
 
     // Write the file
     const outDir = join(DIST, route === '/' ? '' : route);
