@@ -6,7 +6,7 @@
  */
 
 import { Client } from 'ssh2';
-import { readFileSync, readdirSync, statSync } from 'fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
 import { join, relative, posix } from 'path';
 
 const HOST = process.env.DEPLOY_HOST || '147.93.111.188';
@@ -136,6 +136,21 @@ async function deploy() {
     sftp.writeFile(`${REMOTE_BASE}/package.json`, JSON.stringify(prodPkg, null, 2), err => err ? reject(err) : resolve());
   });
   console.log('  package.json uploaded');
+
+  // Upload monitoring scripts
+  console.log('\n=== Uploading monitoring scripts ===');
+  await mkdirpRemote(sftp, `${REMOTE_BASE}/monitoring`);
+  const monitoringLocalDir = join(PROJECT_ROOT, 'monitoring');
+  if (existsSync(monitoringLocalDir)) {
+    const monFiles = getAllFiles(monitoringLocalDir);
+    for (const file of monFiles) {
+      const remotePath = posix.join(REMOTE_BASE, 'monitoring', file.remote.replace(/\\/g, '/'));
+      await sftpWriteFile(sftp, remotePath, file.local);
+    }
+    console.log(`  monitoring: ${monFiles.length} files uploaded`);
+  } else {
+    console.log('  monitoring/ directory not found, skipping');
+  }
   sftp.end();
 
   // Install deps and restart
@@ -169,6 +184,14 @@ async function deploy() {
   const apiCheck = await exec(conn, `curl -sk -o /dev/null -w "%{http_code}" https://khoshasystems.com/api/push/vapid-key`);
   const siteCheck = await exec(conn, `curl -sk -o /dev/null -w "%{http_code}" https://khoshasystems.com/`);
   console.log(`\nAPI: ${apiCheck.stdout.trim()}, Site: ${siteCheck.stdout.trim()}`);
+
+  // Set up monitoring cron jobs and logrotate
+  console.log('\n=== Setting up monitoring ===');
+  await exec(conn, `chmod +x ${REMOTE_BASE}/monitoring/*.sh 2>/dev/null`);
+  if (existsSync(monitoringLocalDir)) {
+    const setupResult = await exec(conn, `bash ${REMOTE_BASE}/monitoring/setup-monitoring.sh 2>&1`);
+    console.log(setupResult.stdout.trim().split('\n').slice(-5).join('\n'));
+  }
 
   // Fix Nginx: security headers must be in a snippet included by each location block
   // (Nginx's add_header in a location block overrides server-level add_header)
