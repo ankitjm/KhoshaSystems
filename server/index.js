@@ -186,6 +186,9 @@ async function notifyNewLead(lead) {
 
 app.post('/api/leads', (req, res) => {
   try {
+    if (!req.body || typeof req.body !== 'object') {
+      return res.status(400).json({ error: 'Invalid request body' });
+    }
     const { name, company, email, goal, message, source } = req.body;
     if (!email) return res.status(400).json({ error: 'Email is required' });
     if (!isValidEmail(email)) return res.status(400).json({ error: 'Invalid email format' });

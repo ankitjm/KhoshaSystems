@@ -12,7 +12,7 @@ export const sendNotificationEmail = async (data: Record<string, unknown>) => {
       EMAILJS_TEMPLATE_ID,
       {
         ...data,
-        to_email: 'ankit@khoshasystems.com',
+        to_email: 'nischal@khoshasystems.com',
       },
       EMAILJS_PUBLIC_KEY
     );
