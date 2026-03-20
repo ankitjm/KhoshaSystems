@@ -161,14 +161,17 @@ async function deploy() {
   const installResult = await exec(conn, `cd ${REMOTE_BASE} && npm install --omit=dev 2>&1`);
   console.log(installResult.stdout.trim().split('\n').slice(-3).join('\n'));
 
-  // Create PM2 ecosystem config with env vars
+  // Preserve existing ecosystem config (with server-side env vars like IMAP/SMTP credentials)
+  // Only create a new one if none exists on the server
   console.log('\n=== Setting up PM2 ecosystem ===');
-  const envVars = {};
-  if (process.env.BREVO_API_KEY) envVars.BREVO_API_KEY = process.env.BREVO_API_KEY;
-  if (process.env.VAPID_PUBLIC_KEY) envVars.VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
-  if (process.env.VAPID_PRIVATE_KEY) envVars.VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY;
-  if (process.env.ADMIN_API_KEY) envVars.ADMIN_API_KEY = process.env.ADMIN_API_KEY;
-  const ecosystemConfig = `module.exports = {
+  const existingEco = await exec(conn, `test -f ${REMOTE_BASE}/ecosystem.config.cjs && echo EXISTS || echo MISSING`);
+  if (existingEco.stdout.trim() === 'MISSING') {
+    const envVars = {};
+    if (process.env.BREVO_API_KEY) envVars.BREVO_API_KEY = process.env.BREVO_API_KEY;
+    if (process.env.VAPID_PUBLIC_KEY) envVars.VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
+    if (process.env.VAPID_PRIVATE_KEY) envVars.VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY;
+    if (process.env.ADMIN_API_KEY) envVars.ADMIN_API_KEY = process.env.ADMIN_API_KEY;
+    const ecosystemConfig = `module.exports = {
   apps: [{
     name: 'khosha-api',
     script: 'server/index.js',
@@ -176,7 +179,10 @@ async function deploy() {
     env: ${JSON.stringify(envVars, null, 6)}
   }]
 };`;
-  await exec(conn, `cat > ${REMOTE_BASE}/ecosystem.config.cjs << 'ECOEOF'\n${ecosystemConfig}\nECOEOF`);
+    await exec(conn, `cat > ${REMOTE_BASE}/ecosystem.config.cjs << 'ECOEOF'\n${ecosystemConfig}\nECOEOF`);
+  } else {
+    console.log('  Preserving existing ecosystem.config.cjs (server-side env vars)');
+  }
 
   console.log('\n=== Restarting app ===');
   await exec(conn, `cd ${REMOTE_BASE} && pm2 delete khosha-api 2>/dev/null; pm2 start ecosystem.config.cjs`);
