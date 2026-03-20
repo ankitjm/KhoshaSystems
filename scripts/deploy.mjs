@@ -11,7 +11,11 @@ import { join, relative, posix } from 'path';
 
 const HOST = process.env.DEPLOY_HOST || '147.93.111.188';
 const USERNAME = process.env.DEPLOY_USER || 'root';
-const PASSWORD = process.env.DEPLOY_PASS || 'Kh0shaSystem&';
+const PASSWORD = process.env.DEPLOY_PASS;
+if (!PASSWORD) {
+  console.error('ERROR: DEPLOY_PASS environment variable is required');
+  process.exit(1);
+}
 const REMOTE_BASE = '/var/www/khoshasystems';
 
 const PROJECT_ROOT = join(import.meta.dirname, '..');
