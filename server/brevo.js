@@ -18,10 +18,10 @@
  *   13 = khosha-nurture-3-social-proof (Day 7)
  */
 
-if (!process.env.BREVO_API_KEY) {
-  throw new Error('BREVO_API_KEY environment variable is required. Set it in .env or PM2 ecosystem config.');
-}
 const BREVO_API_KEY = process.env.BREVO_API_KEY;
+if (!BREVO_API_KEY) {
+  console.warn('WARNING: BREVO_API_KEY not set — Brevo email integration will be disabled');
+}
 const BREVO_API_URL = 'https://api.brevo.com/v3';
 
 const LIST_ALL_LEADS = 4;
@@ -221,6 +221,10 @@ async function sendNurtureSequence({ name, email }) {
  * Called from the /api/leads endpoint. Runs async, does not block response.
  */
 async function syncLeadToBrevo(lead) {
+  if (!BREVO_API_KEY) {
+    console.warn('Brevo: skipping sync — API key not configured');
+    return;
+  }
   try {
     const result = await addContact(lead);
     console.log(`Brevo: contact synced — ${lead.email} → ${result.vertical} (lists: ${result.listIds.join(',')})`);

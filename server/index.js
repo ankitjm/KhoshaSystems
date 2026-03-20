@@ -11,9 +11,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3007;
 
 // --- VAPID Keys for Web Push ---
-const VAPID_PUBLIC = 'BOJiJxR8DMf1j-bXjnOFF_v6ge4LqLivLgFqpZkWeTkRZ6NjCRuUqHPD_rJD78A9J1Y3DkWPikWCFp2_q3POfm8';
-const VAPID_PRIVATE = 'WO0HFIM9g9lXR2qqMHxI53ORHAE5cfoskssu4nGht94';
-webpush.setVapidDetails('mailto:hello@khoshasystems.com', VAPID_PUBLIC, VAPID_PRIVATE);
+const VAPID_PUBLIC = process.env.VAPID_PUBLIC_KEY || 'BOJiJxR8DMf1j-bXjnOFF_v6ge4LqLivLgFqpZkWeTkRZ6NjCRuUqHPD_rJD78A9J1Y3DkWPikWCFp2_q3POfm8';
+const VAPID_PRIVATE = process.env.VAPID_PRIVATE_KEY;
+if (!VAPID_PRIVATE) {
+  console.warn('WARNING: VAPID_PRIVATE_KEY not set — web push notifications disabled');
+} else {
+  webpush.setVapidDetails('mailto:hello@khoshasystems.com', VAPID_PUBLIC, VAPID_PRIVATE);
+}
+
+// --- Admin API Key ---
+const ADMIN_API_KEY = process.env.ADMIN_API_KEY || 'khosha2026';
 
 // --- Database Setup ---
 const db = new Database(join(__dirname, 'kosha.db'));
@@ -158,7 +165,7 @@ async function notifyNewLead(lead) {
     const payload = JSON.stringify({
       title: `New Lead: ${lead.name}`,
       body: `${lead.company} — ${lead.goal}`,
-      url: 'https://khoshasystems.com/api/leads?key=khosha2026',
+      url: 'https://khoshasystems.com/admin',
     });
     for (const sub of subs) {
       try {
@@ -208,7 +215,7 @@ app.post('/api/leads', (req, res) => {
 app.get('/api/leads', (req, res) => {
   try {
     const key = req.query.key;
-    if (key !== 'khosha2026') return res.status(401).json({ error: 'Unauthorized' });
+    if (key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
     const leads = db.prepare('SELECT * FROM leads ORDER BY created_at DESC').all();
     res.json(leads);
   } catch (err) {
@@ -248,7 +255,7 @@ app.post('/api/visitors', (req, res) => {
 app.get('/api/visitors', (req, res) => {
   try {
     const key = req.query.key;
-    if (key !== 'khosha2026') return res.status(401).json({ error: 'Unauthorized' });
+    if (key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
     const visitors = db.prepare('SELECT * FROM visitors ORDER BY last_seen DESC LIMIT 200').all();
     res.json(visitors);
   } catch (err) {
@@ -261,7 +268,7 @@ app.get('/api/visitors', (req, res) => {
 app.get('/api/stats', (req, res) => {
   try {
     const key = req.query.key;
-    if (key !== 'khosha2026') return res.status(401).json({ error: 'Unauthorized' });
+    if (key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
     const totalLeads = db.prepare('SELECT COUNT(*) as count FROM leads').get();
     const totalVisitors = db.prepare('SELECT COUNT(*) as count FROM visitors').get();
     const qualifiedVisitors = db.prepare('SELECT COUNT(*) as count FROM visitors WHERE qualified = 1').get();
@@ -307,7 +314,7 @@ app.post('/api/push/subscribe', (req, res) => {
 
 app.get('/api/push/subscribers', (req, res) => {
   try {
-    if (req.query.key !== 'khosha2026') return res.status(401).json({ error: 'Unauthorized' });
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
     const subs = db.prepare('SELECT * FROM push_subscriptions ORDER BY created_at DESC').all();
     res.json(subs);
   } catch (err) {
@@ -318,7 +325,7 @@ app.get('/api/push/subscribers', (req, res) => {
 
 app.post('/api/push/send', async (req, res) => {
   try {
-    if (req.query.key !== 'khosha2026') return res.status(401).json({ error: 'Unauthorized' });
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
     const { title, body, url, image, icon } = req.body;
     if (!title || !body) return res.status(400).json({ error: 'title and body required' });
 

@@ -213,9 +213,18 @@ server {
         include /etc/nginx/snippets/security-headers.conf;
     }
 
+    error_page 404 /404.html;
+
+    location = /404.html {
+        root REMOTE_BASE_PLACEHOLDER/dist;
+        internal;
+        add_header Cache-Control "no-cache";
+        include /etc/nginx/snippets/security-headers.conf;
+    }
+
     location / {
         root REMOTE_BASE_PLACEHOLDER/dist;
-        try_files $uri $uri/index.html $uri/ /index.html;
+        try_files $uri $uri/index.html $uri/ =404;
         add_header Cache-Control "no-cache";
         include /etc/nginx/snippets/security-headers.conf;
     }
@@ -345,7 +354,13 @@ NGINX_EOF`);
   }
   console.log(`  JSON-LD: ${homeHtml.stdout.includes('application/ld+json') ? '✓' : '✗'}`);
 
-  // 10. No hardcoded www API URLs in JS bundles
+  // 10. Non-existent URLs return 404 (not soft 404 with 200)
+  const notFoundCheck = await exec(conn, `curl -sk -o /dev/null -w "%{http_code}" https://khoshasystems.com/nonexistent-xyz-test`);
+  const notFoundCode = notFoundCheck.stdout.trim();
+  if (notFoundCode !== '404') issues.push(`Non-existent URL returned ${notFoundCode} instead of 404 (soft 404 SEO issue)`);
+  console.log(`  404 status: ${notFoundCode === '404' ? '✓' : '✗ got ' + notFoundCode}`);
+
+  // 11. No hardcoded www API URLs in JS bundles
   const wwwApiCheck = await exec(conn, `grep -rl "www.khoshasystems.com/api" ${REMOTE_BASE}/dist/assets/*.js 2>/dev/null | wc -l`);
   if (parseInt(wwwApiCheck.stdout.trim()) > 0) {
     issues.push('JS bundles still contain hardcoded www.khoshasystems.com/api URLs');
