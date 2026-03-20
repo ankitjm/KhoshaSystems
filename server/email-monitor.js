@@ -7,7 +7,7 @@
  * Env vars required:
  *   IMAP_HOST        — Hostinger IMAP server (default: imap.hostinger.com)
  *   IMAP_PORT        — IMAP port (default: 993)
- *   IMAP_USER        — mailbox email (e.g. hello@khosha.tech)
+ *   IMAP_USER        — mailbox email (default: veda@khosha.tech)
  *   IMAP_PASS        — mailbox password
  *   SMTP_HOST        — Hostinger SMTP server (default: smtp.hostinger.com)
  *   SMTP_PORT        — SMTP port (default: 465)
