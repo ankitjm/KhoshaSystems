@@ -6,6 +6,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { existsSync } from 'fs';
 import { syncLeadToBrevo, initScheduler } from './brevo.js';
+import { initEmailMonitor, startEmailMonitor, checkNewEmails, sendDraftReply, getInboxStatus } from './email-monitor.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3007;
@@ -65,6 +66,10 @@ console.log('Database initialized at', join(__dirname, 'kosha.db'));
 
 // Initialize Brevo email scheduler with the database
 initScheduler(db);
+
+// Initialize email monitor (IMAP inbox checking)
+initEmailMonitor(db);
+startEmailMonitor();
 
 // --- Express App ---
 const app = express();
@@ -354,6 +359,135 @@ app.post('/api/push/send', async (req, res) => {
   } catch (err) {
     console.error('Push send error:', err.message);
     res.status(500).json({ error: 'Failed to send notifications' });
+  }
+});
+
+// --- Email Monitor Endpoints ---
+
+// Inbox status (for ops watchdog and admin)
+app.get('/api/email/status', (req, res) => {
+  try {
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
+    res.json(getInboxStatus());
+  } catch (err) {
+    console.error('Email status error:', err.message);
+    res.status(500).json({ error: 'Failed to get email status' });
+  }
+});
+
+// List emails with optional filters
+app.get('/api/email/messages', (req, res) => {
+  try {
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
+    const { classification, needs_reply, limit } = req.query;
+    let sql = 'SELECT id, message_id, mailbox, from_name, from_email, to_email, subject, classification, is_read, is_replied, needs_reply, lead_captured, received_at, created_at FROM emails';
+    const conditions = [];
+    const params = [];
+    if (classification) { conditions.push('classification = ?'); params.push(classification); }
+    if (needs_reply === '1') { conditions.push('needs_reply = 1 AND is_replied = 0'); }
+    if (conditions.length > 0) sql += ' WHERE ' + conditions.join(' AND ');
+    sql += ' ORDER BY received_at DESC';
+    sql += ` LIMIT ${parseInt(limit) || 50}`;
+    const emails = db.prepare(sql).all(...params);
+    res.json(emails);
+  } catch (err) {
+    console.error('Email list error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch emails' });
+  }
+});
+
+// Get single email with full body
+app.get('/api/email/messages/:id', (req, res) => {
+  try {
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
+    const email = db.prepare('SELECT * FROM emails WHERE id = ?').get(req.params.id);
+    if (!email) return res.status(404).json({ error: 'Email not found' });
+    // Mark as read
+    if (!email.is_read) {
+      db.prepare('UPDATE emails SET is_read = 1 WHERE id = ?').run(req.params.id);
+      email.is_read = 1;
+    }
+    // Fetch associated drafts
+    const drafts = db.prepare('SELECT * FROM email_drafts WHERE email_id = ?').all(req.params.id);
+    res.json({ ...email, drafts });
+  } catch (err) {
+    console.error('Email detail error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch email' });
+  }
+});
+
+// List draft replies
+app.get('/api/email/drafts', (req, res) => {
+  try {
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
+    const { status } = req.query;
+    let sql = 'SELECT d.*, e.subject as original_subject, e.from_email as original_from FROM email_drafts d JOIN emails e ON d.email_id = e.id';
+    if (status) {
+      sql += ' WHERE d.status = ?';
+      const drafts = db.prepare(sql + ' ORDER BY d.created_at DESC').all(status);
+      return res.json(drafts);
+    }
+    const drafts = db.prepare(sql + ' ORDER BY d.created_at DESC').all();
+    res.json(drafts);
+  } catch (err) {
+    console.error('Drafts list error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch drafts' });
+  }
+});
+
+// Approve a draft reply (changes status from 'draft' to 'approved')
+app.post('/api/email/drafts/:id/approve', (req, res) => {
+  try {
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
+    const draft = db.prepare('SELECT * FROM email_drafts WHERE id = ?').get(req.params.id);
+    if (!draft) return res.status(404).json({ error: 'Draft not found' });
+    if (draft.status !== 'draft') return res.status(400).json({ error: `Draft is already ${draft.status}` });
+    db.prepare("UPDATE email_drafts SET status = 'approved' WHERE id = ?").run(req.params.id);
+    res.json({ success: true, status: 'approved' });
+  } catch (err) {
+    console.error('Draft approve error:', err.message);
+    res.status(500).json({ error: 'Failed to approve draft' });
+  }
+});
+
+// Send an approved draft reply
+app.post('/api/email/drafts/:id/send', async (req, res) => {
+  try {
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
+    const result = await sendDraftReply(parseInt(req.params.id));
+    res.json(result);
+  } catch (err) {
+    console.error('Draft send error:', err.message);
+    res.status(500).json({ error: err.message || 'Failed to send draft' });
+  }
+});
+
+// Edit a draft reply before approving
+app.patch('/api/email/drafts/:id', (req, res) => {
+  try {
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
+    const draft = db.prepare('SELECT * FROM email_drafts WHERE id = ?').get(req.params.id);
+    if (!draft) return res.status(404).json({ error: 'Draft not found' });
+    if (draft.status !== 'draft') return res.status(400).json({ error: `Cannot edit — draft is ${draft.status}` });
+    const { subject, body } = req.body;
+    if (subject) db.prepare('UPDATE email_drafts SET subject = ? WHERE id = ?').run(subject, req.params.id);
+    if (body) db.prepare('UPDATE email_drafts SET body = ? WHERE id = ?').run(body, req.params.id);
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Draft edit error:', err.message);
+    res.status(500).json({ error: 'Failed to edit draft' });
+  }
+});
+
+// Trigger manual email check
+app.post('/api/email/check', async (req, res) => {
+  try {
+    if (req.query.key !== ADMIN_API_KEY) return res.status(401).json({ error: 'Unauthorized' });
+    const results = await checkNewEmails();
+    res.json({ success: true, newEmails: results.length, emails: results });
+  } catch (err) {
+    console.error('Email check error:', err.message);
+    res.status(500).json({ error: 'Failed to check emails' });
   }
 });
 
