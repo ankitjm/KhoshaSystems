@@ -1,5 +1,5 @@
 import { createServer } from 'http';
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -47,6 +47,11 @@ const ROUTES = [
   '/compare/retaileros-vs-square',
   // Tools
   '/tools/roi-calculator',
+  // Additional pages
+  '/success-stories',
+  '/help',
+  // 404 page (prerendered so nginx can serve it with proper 404 status)
+  '/404',
 ];
 
 // SEO config mirrored from components/SEOHead.tsx — keep in sync
@@ -155,6 +160,21 @@ const seoConfig = {
     title: 'ROI Calculator | Estimate Your Software Investment Returns | Khoshà Systems',
     description: 'Calculate the return on investment for RetailerOS, Real Estate CRM, or Visitor Management System. Free ROI calculator by Khoshà Systems.',
     keywords: 'ROI calculator software, RetailerOS ROI, real estate CRM ROI, visitor management ROI, software investment calculator India'
+  },
+  '/success-stories': {
+    title: 'Customer Success Stories | Real Results with Khoshà Systems Software',
+    description: 'See how businesses across India use RetailerOS, Real Estate CRM, and Visitor Management to grow revenue and cut costs.',
+    keywords: 'customer success stories, RetailerOS case studies, real estate CRM success, software ROI India, Khosha Systems customers'
+  },
+  '/help': {
+    title: 'Knowledge Base | RetailerOS Help & Documentation | Khoshà Systems',
+    description: 'Get help with RetailerOS, Real Estate CRM, and Visitor Management. Guides, FAQs, and documentation from Khoshà Systems.',
+    keywords: 'RetailerOS help, RetailerOS documentation, Khosha Systems knowledge base, RetailerOS FAQ, retail software help India'
+  },
+  '/404': {
+    title: 'Page Not Found | Khoshà Systems',
+    description: 'The page you are looking for does not exist or has been moved.',
+    keywords: ''
   }
 };
 
@@ -307,6 +327,14 @@ async function prerender() {
     console.log(`\nPuppeteer failed: ${err.message}`);
     console.log('Falling back to meta-tag injection...\n');
     prerenderMetaOnly();
+  }
+
+  // Copy 404/index.html to 404.html at dist root for nginx error_page directive
+  const notFoundSrc = join(DIST, '404', 'index.html');
+  const notFoundDest = join(DIST, '404.html');
+  if (existsSync(notFoundSrc)) {
+    copyFileSync(notFoundSrc, notFoundDest);
+    console.log('  ✓ Copied 404/index.html → 404.html');
   }
 }
 

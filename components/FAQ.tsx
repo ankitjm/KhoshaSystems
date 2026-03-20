@@ -56,7 +56,10 @@ export const FAQ: React.FC = () => {
               className="border border-stone-200 bg-white rounded-lg overflow-hidden"
             >
               <button
+                id={`faq-button-${index}`}
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                aria-expanded={openIndex === index}
+                aria-controls={`faq-panel-${index}`}
                 className="w-full flex justify-between items-center p-5 sm:p-6 text-left hover:bg-stone-50 transition-colors"
               >
                 <span className={`font-medium text-sm sm:text-base ${openIndex === index ? 'text-bronze-600' : 'text-stone-700'}`}>
@@ -68,6 +71,9 @@ export const FAQ: React.FC = () => {
               <AnimatePresence>
                 {openIndex === index && (
                   <motion.div
+                    id={`faq-panel-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-button-${index}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}

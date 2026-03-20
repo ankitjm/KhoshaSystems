@@ -34,7 +34,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
           {faqs.map((faq, i) => (
             <div key={i} className="border border-stone-200 rounded-lg bg-white overflow-hidden">
               <button
+                id={`faq-section-button-${i}`}
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                aria-expanded={openIndex === i}
+                aria-controls={`faq-section-panel-${i}`}
                 className="w-full flex items-center justify-between p-5 text-left hover:bg-stone-50 transition-colors"
               >
                 <span className="text-stone-900 font-medium text-sm sm:text-base pr-4">
@@ -50,6 +53,9 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
               <AnimatePresence>
                 {openIndex === i && (
                   <motion.div
+                    id={`faq-section-panel-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-section-button-${i}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
