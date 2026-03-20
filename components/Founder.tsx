@@ -43,7 +43,7 @@ export const Founder: React.FC = () => {
             className="relative inline-block"
           >
             <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 mx-auto mb-6 sm:mb-8 rounded-full overflow-hidden border-2 border-bronze-400 p-1 bg-stone-800">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80&facepad=2" alt="Ankit Mehta - Founder & Chief Architect" className="w-full h-full object-cover rounded-full" />
+              <img src="/images/founder-photo.jpg" alt="Ankit Mehta - Founder & Chief Architect" className="w-full h-full object-cover rounded-full" />
             </div>
           </motion.div>
 
