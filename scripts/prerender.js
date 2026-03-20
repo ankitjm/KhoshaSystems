@@ -50,6 +50,15 @@ const ROUTES = [
   // Additional pages
   '/success-stories',
   '/help',
+  // New content pages
+  '/pricing',
+  '/use-cases',
+  '/features',
+  '/getting-started',
+  // New blog posts
+  '/blog/how-to-choose-retail-management-software',
+  '/blog/retaileros-vs-traditional-pos-modern-retailers',
+  '/blog/best-pos-systems-small-retailers-2026',
   // 404 page (prerendered so nginx can serve it with proper 404 status)
   '/404',
 ];
@@ -170,6 +179,26 @@ const seoConfig = {
     title: 'Knowledge Base | RetailerOS Help & Documentation | Khoshà Systems',
     description: 'Get help with RetailerOS, Real Estate CRM, and Visitor Management. Guides, FAQs, and documentation from Khoshà Systems.',
     keywords: 'RetailerOS help, RetailerOS documentation, Khosha Systems knowledge base, RetailerOS FAQ, retail software help India'
+  },
+  '/pricing': {
+    title: 'RetailerOS Pricing — Telecom Retail Management Software | Khoshà Systems',
+    description: 'RetailerOS pricing starts at ₹1,999/store/month. IMEI tracking, GST billing, scheme management, and multi-store analytics. 14-day free trial, no credit card required.',
+    keywords: 'RetailerOS pricing, telecom retail software pricing India, mobile shop billing software cost, IMEI tracking software pricing, retail management software India pricing, GST billing software mobile shops'
+  },
+  '/use-cases': {
+    title: 'RetailerOS Use Cases — Real Results from Indian Retailers | Khoshà Systems',
+    description: 'See how Indian retailers use RetailerOS for IMEI tracking, scheme recovery, and multi-store management. Real use cases from electronics, telecom, and fashion retail.',
+    keywords: 'RetailerOS use cases, retail software use cases India, telecom retail case study, electronics store software results, IMEI tracking use case, scheme management results, multi-store retail India'
+  },
+  '/features': {
+    title: 'RetailerOS Features — IMEI Tracking, GST Billing, Scheme Management | Khoshà Systems',
+    description: 'Detailed feature walkthroughs for RetailerOS: IMEI tracking, GST-compliant billing, multi-store dashboard, AI analytics, and brand scheme management for Indian retailers.',
+    keywords: 'RetailerOS features, IMEI tracking software features, GST billing software India, multi-store dashboard retail, brand scheme management software, retail analytics India, RetailerOS feature list'
+  },
+  '/getting-started': {
+    title: 'Getting Started with RetailerOS — Onboarding Guide | Khoshà Systems',
+    description: 'Step-by-step onboarding guide for RetailerOS. Go live in under 48 hours. Account setup, data import, billing configuration, inventory, team setup, and brand schemes.',
+    keywords: 'RetailerOS onboarding, RetailerOS setup guide, getting started RetailerOS, retail software onboarding India, RetailerOS data migration, RetailerOS training'
   },
   '/404': {
     title: 'Page Not Found | Khoshà Systems',

@@ -36,6 +36,10 @@ const GroceryRetailPage = lazy(() => import('./pages/GroceryRetailPage').then(m 
 const ElectronicsRetailPage = lazy(() => import('./pages/ElectronicsRetailPage').then(m => ({ default: m.ElectronicsRetailPage })));
 const SuccessStoriesPage = lazy(() => import('./pages/SuccessStoriesPage').then(m => ({ default: m.SuccessStoriesPage })));
 const KnowledgeBasePage = lazy(() => import('./pages/KnowledgeBasePage').then(m => ({ default: m.KnowledgeBasePage })));
+const PricingPage = lazy(() => import('./pages/PricingPage').then(m => ({ default: m.PricingPage })));
+const UseCasesPage = lazy(() => import('./pages/UseCasesPage').then(m => ({ default: m.UseCasesPage })));
+const FeaturesPage = lazy(() => import('./pages/FeaturesPage').then(m => ({ default: m.FeaturesPage })));
+const GettingStartedPage = lazy(() => import('./pages/GettingStartedPage').then(m => ({ default: m.GettingStartedPage })));
 const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 
@@ -83,6 +87,10 @@ function AppContent() {
               <Route path="/solutions/grocery" element={<GroceryRetailPage />} />
               <Route path="/solutions/electronics" element={<ElectronicsRetailPage />} />
               <Route path="/tools/roi-calculator" element={<ROICalculatorPage />} />
+              <Route path="/pricing" element={<PricingPage />} />
+              <Route path="/use-cases" element={<UseCasesPage />} />
+              <Route path="/features" element={<FeaturesPage />} />
+              <Route path="/getting-started" element={<GettingStartedPage />} />
               <Route path="/success-stories" element={<SuccessStoriesPage />} />
               <Route path="/help" element={<KnowledgeBasePage />} />
               <Route path="/vancouver" element={<VancouverPage />} />

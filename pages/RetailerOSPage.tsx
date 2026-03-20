@@ -149,6 +149,32 @@ export const RetailerOSPage: React.FC = () => {
         </div>
       </Section>
 
+      {/* Explore More */}
+      <Section className="bg-stone-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Explore RetailerOS</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { label: 'Pricing', desc: 'Plans from ₹1,999/store/month', href: '/pricing' },
+              { label: 'Features', desc: 'Detailed feature walkthroughs', href: '/features' },
+              { label: 'Use Cases', desc: 'Real results from retailers', href: '/use-cases' },
+              { label: 'Getting Started', desc: 'Go live in 48 hours', href: '/getting-started' },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="bg-white border border-stone-200 rounded-lg p-5 hover:border-bronze-400 hover:shadow-sm transition-all group"
+              >
+                <h3 className="font-medium text-stone-800 text-sm mb-1 group-hover:text-bronze-600 transition-colors flex items-center gap-1">
+                  {link.label} <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                </h3>
+                <p className="text-stone-500 text-xs">{link.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       {/* FAQ */}
       <FAQSection
         faqs={retailerOSFAQs}
