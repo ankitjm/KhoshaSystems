@@ -256,6 +256,11 @@ server {
     gzip_comp_level 6;
     gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml;
 
+    brotli on;
+    brotli_comp_level 6;
+    brotli_static on;
+    brotli_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml;
+
     listen 443 ssl;
     ssl_certificate /etc/letsencrypt/live/khosha.tech/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/khosha.tech/privkey.pem;
