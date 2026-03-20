@@ -18,7 +18,10 @@
  *   13 = khosha-nurture-3-social-proof (Day 7)
  */
 
-const BREVO_API_KEY = process.env.BREVO_API_KEY || 'REDACTED_USE_ENV_VAR';
+if (!process.env.BREVO_API_KEY) {
+  throw new Error('BREVO_API_KEY environment variable is required. Set it in .env or PM2 ecosystem config.');
+}
+const BREVO_API_KEY = process.env.BREVO_API_KEY;
 const BREVO_API_URL = 'https://api.brevo.com/v3';
 
 const LIST_ALL_LEADS = 4;
