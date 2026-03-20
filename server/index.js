@@ -386,8 +386,9 @@ app.get('/api/email/messages', (req, res) => {
     if (classification) { conditions.push('classification = ?'); params.push(classification); }
     if (needs_reply === '1') { conditions.push('needs_reply = 1 AND is_replied = 0'); }
     if (conditions.length > 0) sql += ' WHERE ' + conditions.join(' AND ');
-    sql += ' ORDER BY received_at DESC';
-    sql += ` LIMIT ${parseInt(limit) || 50}`;
+    sql += ' ORDER BY received_at DESC LIMIT ?';
+    const safeLimit = Math.min(Math.max(1, parseInt(limit) || 50), 1000);
+    params.push(safeLimit);
     const emails = db.prepare(sql).all(...params);
     res.json(emails);
   } catch (err) {

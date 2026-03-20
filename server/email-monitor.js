@@ -27,7 +27,7 @@ const IMAP_CONFIG = {
   user: process.env.IMAP_USER || '',
   password: process.env.IMAP_PASS || '',
   tls: true,
-  tlsOptions: { rejectUnauthorized: false },
+  tlsOptions: { rejectUnauthorized: true },
   connTimeout: 30000,
   authTimeout: 15000,
 };
@@ -261,6 +261,9 @@ function stopEmailMonitor() {
   }
 }
 
+const MAX_EMAIL_SIZE = 25 * 1024 * 1024; // 25 MB per email
+let _isChecking = false;
+
 /**
  * Connect to IMAP and fetch new unseen emails.
  */
@@ -270,32 +273,41 @@ function checkNewEmails() {
     return Promise.resolve([]);
   }
 
+  if (_isChecking) {
+    console.warn('Email monitor: previous check still in progress, skipping');
+    return Promise.resolve([]);
+  }
+
+  _isChecking = true;
+
   return new Promise((resolve) => {
     const imap = new Imap(IMAP_CONFIG);
     const fetchedEmails = [];
+
+    function cleanup(results) {
+      _isChecking = false;
+      try { imap.end(); } catch (_) { /* already closed */ }
+      resolve(results);
+    }
 
     imap.once('ready', () => {
       imap.openBox('INBOX', true, (err) => {
         if (err) {
           console.error('Email monitor: failed to open INBOX:', err.message);
-          imap.end();
-          resolve([]);
+          cleanup([]);
           return;
         }
 
-        // Search for unseen emails
         imap.search(['UNSEEN'], (err, uids) => {
           if (err) {
             console.error('Email monitor: search error:', err.message);
-            imap.end();
-            resolve([]);
+            cleanup([]);
             return;
           }
 
           if (!uids || uids.length === 0) {
             console.log('Email monitor: no new emails');
-            imap.end();
-            resolve([]);
+            cleanup([]);
             return;
           }
 
@@ -304,43 +316,60 @@ function checkNewEmails() {
           const fetch = imap.fetch(uids, {
             bodies: '',
             struct: true,
-            markSeen: false, // Don't auto-mark as seen
+            markSeen: false,
           });
 
+          let messagesToProcess = uids.length;
+          let messagesProcessed = 0;
+
           fetch.on('message', (msg) => {
-            let rawBuffer = Buffer.alloc(0);
+            const chunks = [];
+            let bufferSize = 0;
+            let oversized = false;
 
             msg.on('body', (stream) => {
-              const chunks = [];
-              stream.on('data', (chunk) => chunks.push(chunk));
-              stream.on('end', () => {
-                rawBuffer = Buffer.concat(chunks);
+              stream.on('data', (chunk) => {
+                bufferSize += chunk.length;
+                if (bufferSize > MAX_EMAIL_SIZE) {
+                  if (!oversized) {
+                    console.warn(`Email monitor: email exceeds ${MAX_EMAIL_SIZE / 1024 / 1024}MB limit, skipping`);
+                    oversized = true;
+                  }
+                  return;
+                }
+                chunks.push(chunk);
               });
             });
 
             msg.once('end', () => {
-              // Parse email asynchronously
+              if (oversized) {
+                messagesProcessed++;
+                if (messagesProcessed === messagesToProcess) cleanup(fetchedEmails);
+                return;
+              }
+              const rawBuffer = Buffer.concat(chunks);
               simpleParser(rawBuffer)
                 .then((parsed) => {
-                  const result = processEmail(parsed);
-                  if (result) fetchedEmails.push(result);
+                  try {
+                    const result = processEmail(parsed);
+                    if (result) fetchedEmails.push(result);
+                  } catch (processErr) {
+                    console.error('Email monitor: processing error:', processErr.message);
+                  }
                 })
                 .catch((parseErr) => {
                   console.error('Email monitor: parse error:', parseErr.message);
+                })
+                .finally(() => {
+                  messagesProcessed++;
+                  if (messagesProcessed === messagesToProcess) cleanup(fetchedEmails);
                 });
             });
           });
 
           fetch.once('error', (fetchErr) => {
             console.error('Email monitor: fetch error:', fetchErr.message);
-          });
-
-          fetch.once('end', () => {
-            // Wait a moment for async parsing to complete
-            setTimeout(() => {
-              imap.end();
-              resolve(fetchedEmails);
-            }, 2000);
+            cleanup(fetchedEmails);
           });
         });
       });
@@ -348,6 +377,7 @@ function checkNewEmails() {
 
     imap.once('error', (err) => {
       console.error('Email monitor: IMAP connection error:', err.message);
+      _isChecking = false;
       resolve([]);
     });
 
