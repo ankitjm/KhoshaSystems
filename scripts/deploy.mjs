@@ -245,7 +245,7 @@ server {
 
     location / {
         root REMOTE_BASE_PLACEHOLDER/dist;
-        try_files $uri $uri/index.html $uri/ /index.html;
+        try_files $uri $uri/index.html $uri/ =404;
         add_header Cache-Control "no-cache";
         include /etc/nginx/snippets/security-headers.conf;
     }
