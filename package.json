@@ -9,11 +9,20 @@
     "build:fast": "vite build",
     "preview": "vite preview",
     "start": "node server/index.js",
-    "deploy": "vite build && node scripts/prerender.js && node scripts/deploy.mjs"
+    "deploy": "vite build && node scripts/prerender.js && node scripts/deploy.mjs",
+    "video:preview": "npx remotion studio --entry-point videos/index.ts",
+    "video:render": "node videos/render.mjs",
+    "video:render:demo": "node videos/render.mjs --config videos/configs/retaileros-demo.json",
+    "video:render:product": "node videos/render.mjs --composition ProductDemo --skip-postprocess",
+    "video:render:social": "node videos/render.mjs --composition SocialClip --skip-postprocess"
   },
   "dependencies": {
     "@emailjs/browser": "4.3.0",
     "@google/genai": "latest",
+    "@remotion/bundler": "^4.0.438",
+    "@remotion/cli": "^4.0.438",
+    "@remotion/renderer": "^4.0.438",
+    "@remotion/zod-types": "^4.0.438",
     "better-sqlite3": "^12.6.2",
     "cors": "^2.8.6",
     "express": "^5.2.1",
@@ -22,10 +31,12 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-router-dom": "6.22.3",
+    "remotion": "^4.0.438",
     "ssh2": "^1.17.0",
     "web-push": "^3.6.7"
   },
   "devDependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.2.0",
@@ -35,7 +46,7 @@
     "puppeteer": "^24.38.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1",
-    "typescript": "~5.8.2",
+    "typescript": "^5.9.3",
     "vite": "^6.4.1"
   }
 }
