@@ -49,39 +49,47 @@ function AppContent() {
       <SEOHead />
       <StructuredData />
       <div className="min-h-screen bg-stone-50 text-stone-800 selection:bg-bronze-500 selection:text-white scroll-smooth font-sans">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:px-4 focus:py-2 focus:bg-bronze-600 focus:text-white focus:rounded focus:text-sm focus:font-medium focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         <Navbar />
         <ExitPopup />
         <PushPrompt />
         <SocialProof />
-        <Suspense fallback={<div className="min-h-screen" />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/philosophy" element={<PhilosophyPage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/work" element={<WorkPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/products/retaileros" element={<RetailerOSPage />} />
-            <Route path="/products/real-estate-crm" element={<RealEstateCRMPage />} />
-            <Route path="/products/visitor-management" element={<VisitorManagementPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogPostPage />} />
-            <Route path="/compare/retaileros-vs-iqmetrix" element={<RetailerOSvsIQmetrixPage />} />
-            <Route path="/compare/real-estate-crm-vs-selldo" element={<CRMvsSellDoPage />} />
-            <Route path="/compare/vms-vs-envoy" element={<VMSvsEnvoyPage />} />
-            <Route path="/compare/retaileros-vs-shopify" element={<RetailerOSvsShopifyPage />} />
-            <Route path="/compare/retaileros-vs-lightspeed" element={<RetailerOSvsLightspeedPage />} />
-            <Route path="/compare/retaileros-vs-square" element={<RetailerOSvsSquarePage />} />
-            <Route path="/solutions/fashion-retail" element={<FashionRetailPage />} />
-            <Route path="/solutions/grocery" element={<GroceryRetailPage />} />
-            <Route path="/solutions/electronics" element={<ElectronicsRetailPage />} />
-            <Route path="/tools/roi-calculator" element={<ROICalculatorPage />} />
-            <Route path="/success-stories" element={<SuccessStoriesPage />} />
-            <Route path="/help" element={<KnowledgeBasePage />} />
-            <Route path="/vancouver" element={<VancouverPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
+        <main id="main-content">
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/philosophy" element={<PhilosophyPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/work" element={<WorkPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/products/retaileros" element={<RetailerOSPage />} />
+              <Route path="/products/real-estate-crm" element={<RealEstateCRMPage />} />
+              <Route path="/products/visitor-management" element={<VisitorManagementPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/compare/retaileros-vs-iqmetrix" element={<RetailerOSvsIQmetrixPage />} />
+              <Route path="/compare/real-estate-crm-vs-selldo" element={<CRMvsSellDoPage />} />
+              <Route path="/compare/vms-vs-envoy" element={<VMSvsEnvoyPage />} />
+              <Route path="/compare/retaileros-vs-shopify" element={<RetailerOSvsShopifyPage />} />
+              <Route path="/compare/retaileros-vs-lightspeed" element={<RetailerOSvsLightspeedPage />} />
+              <Route path="/compare/retaileros-vs-square" element={<RetailerOSvsSquarePage />} />
+              <Route path="/solutions/fashion-retail" element={<FashionRetailPage />} />
+              <Route path="/solutions/grocery" element={<GroceryRetailPage />} />
+              <Route path="/solutions/electronics" element={<ElectronicsRetailPage />} />
+              <Route path="/tools/roi-calculator" element={<ROICalculatorPage />} />
+              <Route path="/success-stories" element={<SuccessStoriesPage />} />
+              <Route path="/help" element={<KnowledgeBasePage />} />
+              <Route path="/vancouver" element={<VancouverPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </main>
         <WhatsAppButton />
         <StickyMobileCTA />
         <CookieConsent />

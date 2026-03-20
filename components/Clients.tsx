@@ -15,7 +15,7 @@ export const Clients: React.FC = () => {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto px-5 sm:px-6 mb-4 sm:mb-6 text-center"
       >
-        <span className="text-[10px] sm:text-xs font-medium tracking-widest text-stone-400 uppercase">Trusted By Industry Leaders</span>
+        <span className="text-[10px] sm:text-xs font-medium tracking-widest text-stone-500 uppercase">Trusted By Industry Leaders</span>
       </motion.div>
 
       <div className="relative flex overflow-x-hidden group">

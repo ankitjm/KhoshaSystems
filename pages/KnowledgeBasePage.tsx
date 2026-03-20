@@ -187,7 +187,7 @@ const FAQItem: React.FC<{
       <span className="text-stone-900 font-medium text-sm sm:text-base pr-4">{faq.question}</span>
       <ChevronDown
         size={18}
-        className={`text-stone-400 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+        className={`text-stone-500 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
       />
     </button>
     <AnimatePresence>
@@ -262,7 +262,7 @@ export const KnowledgeBasePage: React.FC = () => {
               >
                 <link.icon size={24} className="text-bronze-500 mx-auto mb-3" />
                 <h3 className="text-stone-900 font-medium text-lg mb-1">{link.label}</h3>
-                <p className="text-stone-400 text-sm">{link.desc}</p>
+                <p className="text-stone-500 text-sm">{link.desc}</p>
               </motion.a>
             ))}
           </div>
@@ -300,7 +300,7 @@ export const KnowledgeBasePage: React.FC = () => {
                     </span>
                   </div>
                   <p className="text-stone-500 text-sm leading-relaxed mb-2">{step.description}</p>
-                  <p className="text-stone-400 text-xs italic">Tip: {step.tip}</p>
+                  <p className="text-stone-500 text-xs italic">Tip: {step.tip}</p>
                 </div>
               </motion.div>
             ))}
@@ -354,7 +354,7 @@ export const KnowledgeBasePage: React.FC = () => {
                 <p className="text-stone-500 text-sm leading-relaxed mb-4">{guide.description}</p>
                 <ul className="space-y-1.5">
                   {guide.features.map((feat, j) => (
-                    <li key={j} className="text-stone-400 text-xs flex items-center gap-2">
+                    <li key={j} className="text-stone-500 text-xs flex items-center gap-2">
                       <span className="w-1 h-1 rounded-full bg-bronze-400 shrink-0" />
                       {feat}
                     </li>
@@ -388,7 +388,7 @@ export const KnowledgeBasePage: React.FC = () => {
               >
                 <ch.icon size={24} className="text-bronze-500 mx-auto mb-3" />
                 <h3 className="text-stone-900 font-medium text-sm mb-1">{ch.channel}</h3>
-                <p className="text-stone-400 text-xs">{ch.detail}</p>
+                <p className="text-stone-500 text-xs">{ch.detail}</p>
               </motion.div>
             ))}
           </div>

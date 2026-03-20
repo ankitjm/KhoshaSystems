@@ -29,7 +29,7 @@ export const Alchemy: React.FC = () => {
                </svg>
             </motion.div>
             <span className="text-stone-600 font-serif text-base sm:text-lg">Challenge</span>
-            <span className="text-[11px] sm:text-xs text-stone-400 uppercase tracking-wider">Complexity & Debt</span>
+            <span className="text-[11px] sm:text-xs text-stone-500 uppercase tracking-wider">Complexity & Debt</span>
           </motion.div>
 
           <motion.div
@@ -61,7 +61,7 @@ export const Alchemy: React.FC = () => {
                </svg>
             </motion.div>
             <span className="text-stone-800 font-serif text-base sm:text-lg">Framework</span>
-            <span className="text-[11px] sm:text-xs text-stone-400 uppercase tracking-wider">Architecture</span>
+            <span className="text-[11px] sm:text-xs text-stone-500 uppercase tracking-wider">Architecture</span>
           </motion.div>
 
           <motion.div

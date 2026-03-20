@@ -62,7 +62,7 @@ export const RetailerOSvsIQmetrixPage: React.FC = () => {
                 className="text-center p-8 bg-stone-50 rounded-lg border border-stone-200">
                 <div className="text-4xl sm:text-5xl font-bold text-stone-900 mb-2">{stat.value}</div>
                 <div className="text-bronze-600 font-medium text-sm uppercase tracking-wider mb-2">{stat.label}</div>
-                <p className="text-stone-400 text-sm">{stat.desc}</p>
+                <p className="text-stone-500 text-sm">{stat.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -91,8 +91,8 @@ export const RetailerOSvsIQmetrixPage: React.FC = () => {
                     <td className="py-4 px-4 text-sm text-stone-700">
                       <div className="flex items-start gap-2">
                         {row.winner === "retaileros" && <Check size={16} className="text-green-600 mt-0.5 shrink-0" />}
-                        {row.winner === "tie" && <span className="text-stone-400 mt-0.5 shrink-0">—</span>}
-                        {row.winner === "iqmetrix" && <span className="text-stone-400 mt-0.5 shrink-0">—</span>}
+                        {row.winner === "tie" && <span className="text-stone-500 mt-0.5 shrink-0">—</span>}
+                        {row.winner === "iqmetrix" && <span className="text-stone-500 mt-0.5 shrink-0">—</span>}
                         <span>{row.retaileros}</span>
                       </div>
                     </td>
@@ -100,7 +100,7 @@ export const RetailerOSvsIQmetrixPage: React.FC = () => {
                       <div className="flex items-start gap-2">
                         {row.winner === "iqmetrix" && <Check size={16} className="text-green-600 mt-0.5 shrink-0" />}
                         {row.winner === "retaileros" && <X size={16} className="text-red-400 mt-0.5 shrink-0" />}
-                        {row.winner === "tie" && <span className="text-stone-400 mt-0.5 shrink-0">—</span>}
+                        {row.winner === "tie" && <span className="text-stone-500 mt-0.5 shrink-0">—</span>}
                         <span>{row.iqmetrix}</span>
                       </div>
                     </td>
@@ -139,10 +139,10 @@ export const RetailerOSvsIQmetrixPage: React.FC = () => {
             <div className="p-6 bg-white border border-stone-200 rounded-lg">
               <h3 className="font-medium text-stone-900 mb-4">Choose iQmetrix if you...</h3>
               <ul className="space-y-3 text-sm text-stone-500">
-                <li className="flex items-start gap-2"><Check size={16} className="text-stone-400 mt-0.5 shrink-0" /> Operate stores in the US or Canada</li>
-                <li className="flex items-start gap-2"><Check size={16} className="text-stone-400 mt-0.5 shrink-0" /> Need integrations with AT&T, Verizon, or T-Mobile</li>
-                <li className="flex items-start gap-2"><Check size={16} className="text-stone-400 mt-0.5 shrink-0" /> Have a large IT team for enterprise deployment</li>
-                <li className="flex items-start gap-2"><Check size={16} className="text-stone-400 mt-0.5 shrink-0" /> Want a platform with 27 years of North American market experience</li>
+                <li className="flex items-start gap-2"><Check size={16} className="text-stone-500 mt-0.5 shrink-0" /> Operate stores in the US or Canada</li>
+                <li className="flex items-start gap-2"><Check size={16} className="text-stone-500 mt-0.5 shrink-0" /> Need integrations with AT&T, Verizon, or T-Mobile</li>
+                <li className="flex items-start gap-2"><Check size={16} className="text-stone-500 mt-0.5 shrink-0" /> Have a large IT team for enterprise deployment</li>
+                <li className="flex items-start gap-2"><Check size={16} className="text-stone-500 mt-0.5 shrink-0" /> Want a platform with 27 years of North American market experience</li>
               </ul>
             </div>
             <div className="p-6 bg-bronze-50 border border-bronze-200 rounded-lg">

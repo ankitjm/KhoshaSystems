@@ -95,7 +95,7 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ value, label }) => {
       >
         {value}
       </motion.div>
-      <div className="text-[11px] sm:text-xs text-stone-400 uppercase tracking-wider mt-1">{label}</div>
+      <div className="text-[11px] sm:text-xs text-stone-500 uppercase tracking-wider mt-1">{label}</div>
     </div>
   );
 };
@@ -207,7 +207,7 @@ export const Products: React.FC = () => {
                     >
                       <feature.icon size={20} className="text-bronze-500 mb-3 group-hover:scale-110 transition-transform" />
                       <h4 className="text-stone-900 font-medium mb-1 text-sm">{feature.label}</h4>
-                      <p className="text-stone-400 text-xs leading-relaxed">{feature.desc}</p>
+                      <p className="text-stone-500 text-xs leading-relaxed">{feature.desc}</p>
                     </motion.div>
                   ))}
                 </div>

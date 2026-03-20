@@ -73,7 +73,7 @@ export const PushPrompt: React.FC = () => {
                 </button>
               </div>
             </div>
-            <button onClick={dismiss} className="text-stone-400 hover:text-stone-600 transition-colors">
+            <button onClick={dismiss} className="text-stone-500 hover:text-stone-600 transition-colors">
               <X size={14} />
             </button>
           </div>

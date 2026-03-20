@@ -65,7 +65,7 @@ export const ElectronicsRetailPage: React.FC = () => {
                 className="text-center p-8 bg-stone-50 rounded-lg border border-stone-200">
                 <div className="text-4xl sm:text-5xl font-bold text-stone-900 mb-2">{stat.value}</div>
                 <div className="text-bronze-600 font-medium text-sm uppercase tracking-wider mb-2">{stat.label}</div>
-                <p className="text-stone-400 text-sm">{stat.desc}</p>
+                <p className="text-stone-500 text-sm">{stat.desc}</p>
               </motion.div>
             ))}
           </div>

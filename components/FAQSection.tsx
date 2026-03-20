@@ -45,7 +45,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
                 </span>
                 <ChevronDown
                   size={18}
-                  className={`text-stone-400 shrink-0 transition-transform duration-200 ${
+                  className={`text-stone-500 shrink-0 transition-transform duration-200 ${
                     openIndex === i ? 'rotate-180' : ''
                   }`}
                 />

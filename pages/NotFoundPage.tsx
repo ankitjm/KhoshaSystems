@@ -6,7 +6,7 @@ export const NotFoundPage: React.FC = () => {
   return (
     <>
       <div className="min-h-screen flex flex-col items-center justify-center bg-stone-50 px-4 text-center">
-        <h1 className="text-7xl font-serif font-bold text-stone-300 mb-4">404</h1>
+        <h1 className="text-7xl font-serif font-bold text-stone-500 mb-4">404</h1>
         <h2 className="text-2xl font-serif text-stone-800 mb-2">Page not found</h2>
         <p className="text-stone-500 max-w-md mb-8">
           The page you're looking for doesn't exist or has been moved.
@@ -25,7 +25,7 @@ export const NotFoundPage: React.FC = () => {
             Contact Us
           </Link>
         </div>
-        <div className="mt-12 flex flex-wrap gap-6 justify-center text-sm text-stone-400">
+        <div className="mt-12 flex flex-wrap gap-6 justify-center text-sm text-stone-500">
           <Link to="/products" className="hover:text-stone-600 transition-colors">Products</Link>
           <Link to="/services" className="hover:text-stone-600 transition-colors">Services</Link>
           <Link to="/blog" className="hover:text-stone-600 transition-colors">Blog</Link>

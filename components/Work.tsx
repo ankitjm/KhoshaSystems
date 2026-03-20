@@ -77,7 +77,7 @@ export const Work: React.FC = () => {
               Proven Results.
             </motion.h2>
           </div>
-          <Link to="/contact" className="flex items-center gap-2 text-stone-400 hover:text-bronze-600 transition-colors text-sm">
+          <Link to="/contact" className="flex items-center gap-2 text-stone-500 hover:text-bronze-600 transition-colors text-sm">
             Start your project <ArrowUpRight size={16} />
           </Link>
         </div>
@@ -123,7 +123,7 @@ export const Work: React.FC = () => {
                    <span className="text-[11px] sm:text-xs font-semibold px-2.5 py-1 bg-stone-100 border border-stone-200 text-stone-500 uppercase tracking-wider rounded">
                      {project.category}
                    </span>
-                   <span className="text-[11px] sm:text-xs text-stone-400 uppercase tracking-widest">{project.client}</span>
+                   <span className="text-[11px] sm:text-xs text-stone-500 uppercase tracking-widest">{project.client}</span>
                  </div>
                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900 group-hover:text-bronze-700 transition-colors duration-300">{project.title}</h3>
                  <p className="text-stone-500 leading-relaxed text-sm sm:text-base md:text-lg">{project.description}</p>
@@ -137,7 +137,7 @@ export const Work: React.FC = () => {
                      >
                        {project.stats[0]}
                      </motion.div>
-                     <div className="text-[11px] sm:text-xs text-stone-400 uppercase tracking-wider">{project.stats[1]}</div>
+                     <div className="text-[11px] sm:text-xs text-stone-500 uppercase tracking-wider">{project.stats[1]}</div>
                    </div>
                    <div>
                      <motion.div
@@ -149,7 +149,7 @@ export const Work: React.FC = () => {
                      >
                        {project.stats[2]}
                      </motion.div>
-                     <div className="text-[11px] sm:text-xs text-stone-400 uppercase tracking-wider">{project.stats[3]}</div>
+                     <div className="text-[11px] sm:text-xs text-stone-500 uppercase tracking-wider">{project.stats[3]}</div>
                    </div>
                  </div>
               </div>

@@ -62,7 +62,7 @@ export const VMSvsEnvoyPage: React.FC = () => {
                 className="text-center p-8 bg-stone-50 rounded-lg border border-stone-200">
                 <div className="text-4xl sm:text-5xl font-bold text-stone-900 mb-2">{stat.value}</div>
                 <div className="text-bronze-600 font-medium text-sm uppercase tracking-wider mb-2">{stat.label}</div>
-                <p className="text-stone-400 text-sm">{stat.desc}</p>
+                <p className="text-stone-500 text-sm">{stat.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -91,8 +91,8 @@ export const VMSvsEnvoyPage: React.FC = () => {
                     <td className="py-4 px-4 text-sm text-stone-700">
                       <div className="flex items-start gap-2">
                         {row.winner === "khosha" && <Check size={16} className="text-green-600 mt-0.5 shrink-0" />}
-                        {row.winner === "tie" && <span className="text-stone-400 mt-0.5 shrink-0">—</span>}
-                        {row.winner === "envoy" && <span className="text-stone-400 mt-0.5 shrink-0">—</span>}
+                        {row.winner === "tie" && <span className="text-stone-500 mt-0.5 shrink-0">—</span>}
+                        {row.winner === "envoy" && <span className="text-stone-500 mt-0.5 shrink-0">—</span>}
                         <span>{row.khosha}</span>
                       </div>
                     </td>
@@ -100,7 +100,7 @@ export const VMSvsEnvoyPage: React.FC = () => {
                       <div className="flex items-start gap-2">
                         {row.winner === "envoy" && <Check size={16} className="text-green-600 mt-0.5 shrink-0" />}
                         {row.winner === "khosha" && <X size={16} className="text-red-400 mt-0.5 shrink-0" />}
-                        {row.winner === "tie" && <span className="text-stone-400 mt-0.5 shrink-0">—</span>}
+                        {row.winner === "tie" && <span className="text-stone-500 mt-0.5 shrink-0">—</span>}
                         <span>{row.envoy}</span>
                       </div>
                     </td>
@@ -139,10 +139,10 @@ export const VMSvsEnvoyPage: React.FC = () => {
             <div className="p-6 bg-white border border-stone-200 rounded-lg">
               <h3 className="font-medium text-stone-900 mb-4">Choose Envoy if you...</h3>
               <ul className="space-y-3 text-sm text-stone-500">
-                <li className="flex items-start gap-2"><Check size={16} className="text-stone-400 mt-0.5 shrink-0" /> Have offices primarily in the US, UK, or Europe</li>
-                <li className="flex items-start gap-2"><Check size={16} className="text-stone-400 mt-0.5 shrink-0" /> Need 100+ access control integrations (Okta, Brivo)</li>
-                <li className="flex items-start gap-2"><Check size={16} className="text-stone-400 mt-0.5 shrink-0" /> Require GDPR, SOC 2, or ITAR compliance</li>
-                <li className="flex items-start gap-2"><Check size={16} className="text-stone-400 mt-0.5 shrink-0" /> Want a full workplace platform (desks, rooms, parking, deliveries)</li>
+                <li className="flex items-start gap-2"><Check size={16} className="text-stone-500 mt-0.5 shrink-0" /> Have offices primarily in the US, UK, or Europe</li>
+                <li className="flex items-start gap-2"><Check size={16} className="text-stone-500 mt-0.5 shrink-0" /> Need 100+ access control integrations (Okta, Brivo)</li>
+                <li className="flex items-start gap-2"><Check size={16} className="text-stone-500 mt-0.5 shrink-0" /> Require GDPR, SOC 2, or ITAR compliance</li>
+                <li className="flex items-start gap-2"><Check size={16} className="text-stone-500 mt-0.5 shrink-0" /> Want a full workplace platform (desks, rooms, parking, deliveries)</li>
               </ul>
             </div>
             <div className="p-6 bg-bronze-50 border border-bronze-200 rounded-lg">

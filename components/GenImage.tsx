@@ -78,13 +78,13 @@ export const GenImage: React.FC<GenImageProps> = ({
             onClick={handleAuth}
             className="group/btn flex flex-col items-center gap-3 hover:scale-105 transition-transform"
           >
-            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white flex items-center justify-center border border-stone-200 group-hover/btn:border-bronze-400 group-hover/btn:text-bronze-600 transition-colors text-stone-400">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white flex items-center justify-center border border-stone-200 group-hover/btn:border-bronze-400 group-hover/btn:text-bronze-600 transition-colors text-stone-500">
               <Lock size={18} />
             </div>
             <span className="text-[11px] sm:text-xs text-stone-500 font-mono tracking-widest uppercase group-hover/btn:text-stone-700 transition-colors">
               {triggerLabel}
             </span>
-            <span className="text-[10px] text-stone-400">(Requires API Key)</span>
+            <span className="text-[10px] text-stone-500">(Requires API Key)</span>
           </button>
         ) : error ? (
            <div className="flex flex-col items-center gap-2">

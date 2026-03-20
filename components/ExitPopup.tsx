@@ -27,7 +27,7 @@ export const ExitPopup: React.FC = () => {
   };
 
   return (
-    <Modal isOpen={isVisible} onClose={() => setIsVisible(false)}>
+    <Modal isOpen={isVisible} onClose={() => setIsVisible(false)} ariaLabel="Download system architecture blueprint">
       {status === 'SUCCESS' ? (
         <div className="text-center py-6 sm:py-8">
           <div className="w-14 h-14 sm:w-16 sm:h-16 bg-bronze-50 rounded-full flex items-center justify-center mx-auto mb-5 sm:mb-6 text-bronze-600">

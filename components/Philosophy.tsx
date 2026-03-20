@@ -14,7 +14,7 @@ export const Philosophy: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="space-y-6 sm:space-y-8"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium text-stone-400">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium text-stone-500">
             Most businesses run on <span className="text-stone-700 line-through decoration-stone-300">duct tape.</span>
           </h2>
           <p className="text-stone-500 text-base sm:text-lg leading-relaxed">
@@ -22,7 +22,7 @@ export const Philosophy: React.FC = () => {
             This is <strong className="text-stone-700">technical debt</strong>.
           </p>
           <div className="p-5 sm:p-6 border border-stone-200 bg-white rounded-lg">
-            <div className="flex items-center gap-3 sm:gap-4 mb-4 text-stone-400">
+            <div className="flex items-center gap-3 sm:gap-4 mb-4 text-stone-500">
                <Activity className="animate-pulse" size={18} />
                <span className="uppercase tracking-widest text-[11px] sm:text-xs">Fragmented Operations</span>
             </div>

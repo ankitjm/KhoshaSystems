@@ -73,7 +73,7 @@ export const Phases: React.FC = () => {
               >
                 {p.accent && !p.highlight && <div className="absolute top-0 left-0 w-full h-1 bg-bronze-400" />}
                 <div className={`text-[11px] sm:text-xs font-semibold uppercase tracking-widest mb-3 sm:mb-4 flex items-center gap-2 ${
-                  p.highlight ? 'text-bronze-500' : p.accent ? 'text-bronze-600' : 'text-stone-400'
+                  p.highlight ? 'text-bronze-500' : p.accent ? 'text-bronze-600' : 'text-stone-500'
                 }`}>
                   {p.phase}
                   {p.highlight && <motion.div animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2, repeat: Infinity }} className="w-1.5 h-1.5 bg-bronze-500 rounded-full" />}
@@ -83,7 +83,7 @@ export const Phases: React.FC = () => {
                   p.highlight ? 'bg-bronze-500' : p.accent ? 'bg-bronze-400' : 'bg-stone-200 group-hover:bg-stone-400'
                 }`} />
                 <p className={`italic mb-3 sm:mb-4 text-sm ${p.accent ? 'text-bronze-600' : 'text-stone-500'}`}>"{p.tagline}"</p>
-                <p className={`text-sm leading-relaxed ${p.highlight ? 'text-stone-600' : 'text-stone-400'}`}>{p.description}</p>
+                <p className={`text-sm leading-relaxed ${p.highlight ? 'text-stone-600' : 'text-stone-500'}`}>{p.description}</p>
               </motion.div>
             ))}
          </motion.div>
