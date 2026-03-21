@@ -27,24 +27,26 @@ export const Clients: React.FC = () => {
       <div className="relative flex overflow-x-hidden group">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-12 sm:gap-16 md:gap-24 px-8">
           {repeated.map((client, i) => (
-            <img
-              key={i}
-              src={client.logo}
-              alt={client.name}
-              className="h-8 sm:h-10 md:h-12 w-auto object-contain opacity-40 hover:opacity-70 transition-opacity duration-300 select-none grayscale"
-              draggable={false}
-            />
+            <div key={i} className="w-24 sm:w-28 md:w-32 h-8 sm:h-10 md:h-12 flex-shrink-0 flex items-center justify-center">
+              <img
+                src={client.logo}
+                alt={client.name}
+                className="max-w-full max-h-full object-contain opacity-40 hover:opacity-70 transition-opacity duration-300 select-none grayscale"
+                draggable={false}
+              />
+            </div>
           ))}
         </div>
         <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-12 sm:gap-16 md:gap-24 px-8">
           {repeated.map((client, i) => (
-            <img
-              key={i}
-              src={client.logo}
-              alt={client.name}
-              className="h-8 sm:h-10 md:h-12 w-auto object-contain opacity-40 hover:opacity-70 transition-opacity duration-300 select-none grayscale"
-              draggable={false}
-            />
+            <div key={i} className="w-24 sm:w-28 md:w-32 h-8 sm:h-10 md:h-12 flex-shrink-0 flex items-center justify-center">
+              <img
+                src={client.logo}
+                alt={client.name}
+                className="max-w-full max-h-full object-contain opacity-40 hover:opacity-70 transition-opacity duration-300 select-none grayscale"
+                draggable={false}
+              />
+            </div>
           ))}
         </div>
       </div>
