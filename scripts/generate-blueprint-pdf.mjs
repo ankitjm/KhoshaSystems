@@ -829,7 +829,7 @@ const html = `<!DOCTYPE html>
         <strong class="white">WhatsApp:</strong> <span class="accent">Direct chat available on our website</span>
       </p>
       <p style="font-size: 11px; margin-bottom: 0; color: ${textColor};">
-        <strong class="white">Email:</strong> <span class="accent">hello@khoshasystems.com</span>
+        <strong class="white">Email:</strong> <span class="accent">ankit@khoshasystems.com</span>
       </p>
     </div>
   </div>

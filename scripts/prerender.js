@@ -107,7 +107,7 @@ const seoConfig = {
   },
   '/contact': {
     title: 'Contact Khoshà Systems | Software Company in Indiranagar, Bangalore',
-    description: 'Get in touch for web apps, SaaS, AI or digital transformation. Indiranagar, Bangalore. Email: hello@khoshasystems.com',
+    description: 'Get in touch for web apps, SaaS, AI or digital transformation. Indiranagar, Bangalore. Email: ankit@khoshasystems.com',
     keywords: 'contact software company Bangalore, hire web developers Bangalore, software development quote India, digital transformation consultation Bangalore, Indiranagar tech company contact, software outsourcing company Bangalore, startup tech partner Bangalore'
   },
   '/vancouver': {

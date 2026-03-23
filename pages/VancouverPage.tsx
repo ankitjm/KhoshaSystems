@@ -147,8 +147,8 @@ export const VancouverPage: React.FC = () => {
             <Link to="/contact" className="inline-flex items-center gap-2 px-6 py-3 bg-stone-900 text-white text-sm font-medium uppercase tracking-wider hover:bg-bronze-600 transition-colors rounded-md group">
               Schedule a Call <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <a href="mailto:hello@khoshasystems.com" className="inline-flex items-center gap-2 px-6 py-3 border border-stone-300 text-stone-700 text-sm font-medium uppercase tracking-wider hover:border-bronze-400 transition-colors rounded-md">
-              hello@khoshasystems.com
+            <a href="mailto:ankit@khoshasystems.com" className="inline-flex items-center gap-2 px-6 py-3 border border-stone-300 text-stone-700 text-sm font-medium uppercase tracking-wider hover:border-bronze-400 transition-colors rounded-md">
+              ankit@khoshasystems.com
             </a>
           </div>
         </div>

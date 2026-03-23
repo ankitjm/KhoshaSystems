@@ -38,8 +38,8 @@ export const Navbar: React.FC = () => {
               <MapPin size={10} className="text-bronze-500" /> Indiranagar, Bangalore
             </span>
             <span className="text-stone-700">|</span>
-            <a href="mailto:hello@khoshasystems.com" className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase hover:text-white transition-colors">
-              <Mail size={10} className="text-bronze-500" /> hello@khoshasystems.com
+            <a href="mailto:ankit@khoshasystems.com" className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase hover:text-white transition-colors">
+              <Mail size={10} className="text-bronze-500" /> ankit@khoshasystems.com
             </a>
           </div>
           <div className="flex items-center gap-5">
@@ -60,8 +60,8 @@ export const Navbar: React.FC = () => {
           <span className="flex items-center gap-1 text-[9px] tracking-wider uppercase">
             <MapPin size={9} className="text-bronze-500" /> Bangalore, India
           </span>
-          <a href="mailto:hello@khoshasystems.com" className="flex items-center gap-1 text-[9px] tracking-wider uppercase">
-            <Mail size={9} className="text-bronze-500" /> hello@khoshasystems.com
+          <a href="mailto:ankit@khoshasystems.com" className="flex items-center gap-1 text-[9px] tracking-wider uppercase">
+            <Mail size={9} className="text-bronze-500" /> ankit@khoshasystems.com
           </a>
         </div>
       </div>
@@ -174,9 +174,9 @@ export const Navbar: React.FC = () => {
                   <Phone size={13} className="text-bronze-500 shrink-0" />
                   <span className="text-sm">+91 888 497 2272</span>
                 </a>
-                <a href="mailto:hello@khoshasystems.com" className="flex items-center gap-2.5 text-stone-400">
+                <a href="mailto:ankit@khoshasystems.com" className="flex items-center gap-2.5 text-stone-400">
                   <Mail size={13} className="text-bronze-500 shrink-0" />
-                  <span className="text-sm">hello@khoshasystems.com</span>
+                  <span className="text-sm">ankit@khoshasystems.com</span>
                 </a>
                 <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2.5 text-stone-400">
                   <MapPin size={13} className="text-bronze-500 mt-0.5 shrink-0" />

@@ -22,7 +22,7 @@ const organizationSchema = {
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    email: 'hello@khoshasystems.com',
+    email: 'ankit@khoshasystems.com',
     contactType: 'sales',
     availableLanguage: ['English', 'Hindi'],
   },

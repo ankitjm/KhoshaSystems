@@ -34,7 +34,7 @@ export const sendCustomerConfirmation = async (data: { name: string; email: stri
         to_email: data.email,
         from_name: 'Khoshà Systems',
         subject: 'We received your inquiry',
-        message: `Hi ${data.name},\n\nThank you for reaching out to Khoshà Systems regarding "${data.goal}".\n\nWe have received your inquiry and our team will connect with you over a call within 24 hours.\n\nIf you need immediate assistance, feel free to email us at hello@khoshasystems.com.\n\nWarm regards,\nAnkit Mehta\nFounder & Chief Architect\nKhoshà Systems\nIndiranagar, Bangalore`,
+        message: `Hi ${data.name},\n\nThank you for reaching out to Khoshà Systems regarding "${data.goal}".\n\nWe have received your inquiry and our team will connect with you over a call within 24 hours.\n\nIf you need immediate assistance, feel free to email us at ankit@khoshasystems.com.\n\nWarm regards,\nAnkit Mehta\nFounder & Chief Architect\nKhoshà Systems\nIndiranagar, Bangalore`,
       },
       EMAILJS_PUBLIC_KEY
     );

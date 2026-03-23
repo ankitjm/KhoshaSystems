@@ -108,4 +108,4 @@ The Vancouver tech ecosystem is maturing. The companies that will win are not ne
 
 If you are a Vancouver-based startup or scale-up evaluating your engineering strategy, we would welcome a conversation. Not a sales pitch — a genuine discussion about whether this model fits your specific situation, what the tradeoffs are, and how to structure it for success.
 
-Reach out to us at [hello@khoshasystems.com](mailto:hello@khoshasystems.com) or visit [khoshasystems.com](https://khoshasystems.com) to start the conversation.
+Reach out to us at [ankit@khoshasystems.com](mailto:ankit@khoshasystems.com) or visit [khoshasystems.com](https://khoshasystems.com) to start the conversation.

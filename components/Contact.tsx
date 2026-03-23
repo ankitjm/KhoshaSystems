@@ -96,11 +96,11 @@ export const Contact: React.FC = () => {
                   </div>
                   <span className="text-sm sm:text-base hover:text-white transition-colors">WhatsApp Us</span>
                 </a>
-                <a href="mailto:hello@khoshasystems.com" className="flex items-center gap-3 sm:gap-4 text-stone-300 group">
+                <a href="mailto:ankit@khoshasystems.com" className="flex items-center gap-3 sm:gap-4 text-stone-300 group">
                   <div className="p-2.5 sm:p-3 bg-stone-800 rounded-full group-hover:bg-bronze-600 group-hover:text-white transition-colors">
                     <Mail size={18} />
                   </div>
-                  <span className="text-sm sm:text-base hover:text-white transition-colors">hello@khoshasystems.com</span>
+                  <span className="text-sm sm:text-base hover:text-white transition-colors">ankit@khoshasystems.com</span>
                 </a>
                 <div className="flex items-center gap-3 sm:gap-4 text-stone-300">
                   <div className="p-2.5 sm:p-3 bg-stone-800 rounded-full"><MapPin size={18} /></div>
@@ -245,7 +245,7 @@ export const Contact: React.FC = () => {
                 <div className="space-y-2">
                   <a href="tel:+918884972272" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">+91 888 497 2272</a>
                   <a href="https://wa.me/918884972272" target="_blank" rel="noopener noreferrer" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">WhatsApp</a>
-                  <a href="mailto:hello@khoshasystems.com" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">Email Us</a>
+                  <a href="mailto:ankit@khoshasystems.com" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">Email Us</a>
                   <a href="https://www.linkedin.com/company/khoshasystems" target="_blank" rel="noopener noreferrer" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">LinkedIn</a>
                   <span className="block text-stone-600 text-xs">Indiranagar, Bangalore</span>
                   <span className="block text-stone-600 text-xs">Karnataka 560038</span>
