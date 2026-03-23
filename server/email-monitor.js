@@ -514,16 +514,19 @@ function captureLead(parsed, emailId) {
     return;
   }
 
-  // Insert new lead
+  // Insert new lead (sanitize to prevent stored XSS)
+  const esc = (s) => (typeof s !== 'string' ? '' : s
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#x27;'));
   try {
     _db.prepare(
       'INSERT INTO leads (name, company, email, goal, message, source) VALUES (?, ?, ?, ?, ?, ?)'
     ).run(
-      contact.name,
-      contact.company,
+      esc(contact.name),
+      esc(contact.company),
       contact.email,
       'Email Inquiry',
-      contact.message,
+      esc(contact.message),
       'Email Inbox'
     );
     _db.prepare('UPDATE emails SET lead_captured = 1 WHERE id = ?').run(emailId);

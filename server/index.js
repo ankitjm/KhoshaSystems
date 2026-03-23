@@ -17,7 +17,7 @@ const VAPID_PRIVATE = process.env.VAPID_PRIVATE_KEY;
 if (!VAPID_PRIVATE) {
   console.warn('WARNING: VAPID_PRIVATE_KEY not set — web push notifications disabled');
 } else {
-  webpush.setVapidDetails('mailto:hello@khoshasystems.com', VAPID_PUBLIC, VAPID_PRIVATE);
+  webpush.setVapidDetails('mailto:ankit@khoshasystems.com', VAPID_PUBLIC, VAPID_PRIVATE);
 }
 
 // --- Admin API Key ---
@@ -158,6 +158,27 @@ try {
   console.log('Migrated: added message column to leads');
 } catch (_) { /* column already exists */ }
 
+// Migrate: sanitize any existing leads that contain raw HTML (one-time)
+try {
+  const unsafeLeads = db.prepare(
+    "SELECT id, name, company, email, goal, message, source FROM leads WHERE name LIKE '%<%' OR company LIKE '%<%' OR message LIKE '%<%' OR email LIKE '%<%' OR goal LIKE '%<%' OR source LIKE '%<%'"
+  ).all();
+  if (unsafeLeads.length > 0) {
+    const update = db.prepare(
+      'UPDATE leads SET name=?, company=?, email=?, goal=?, message=?, source=? WHERE id=?'
+    );
+    for (const lead of unsafeLeads) {
+      update.run(
+        sanitizeHtml(lead.name || ''), sanitizeHtml(lead.company || ''),
+        sanitizeHtml(lead.email || ''), sanitizeHtml(lead.goal || ''),
+        sanitizeHtml(lead.message || ''), sanitizeHtml(lead.source || ''),
+        lead.id
+      );
+    }
+    console.log(`Migrated: sanitized ${unsafeLeads.length} leads with raw HTML`);
+  }
+} catch (err) { console.error('Lead HTML sanitize migration error:', err.message); }
+
 const insertLead = db.prepare(
   'INSERT INTO leads (name, company, email, goal, message, source) VALUES (?, ?, ?, ?, ?, ?)'
 );
@@ -207,7 +228,8 @@ app.post('/api/leads', (req, res) => {
     const safeGoal = sanitizeHtml(goal || '');
     const safeMessage = sanitizeHtml(message || '');
     const safeSource = sanitizeHtml(source || '');
-    const result = insertLead.run(safeName, safeCompany, email, safeGoal, safeMessage, safeSource);
+    const safeEmail = sanitizeHtml(email);
+    const result = insertLead.run(safeName, safeCompany, safeEmail, safeGoal, safeMessage, safeSource);
     console.log(`NEW LEAD #${result.lastInsertRowid}: ${safeName} <${email}> — ${safeCompany} — ${safeGoal}`);
     // Fire push notification asynchronously (don't block response)
     notifyNewLead({ name: safeName, company: safeCompany, goal: safeGoal });
