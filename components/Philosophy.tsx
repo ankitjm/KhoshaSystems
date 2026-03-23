@@ -14,7 +14,7 @@ export const Philosophy: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="space-y-6 sm:space-y-8"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium text-stone-500">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-stone-500">
             Most businesses run on <span className="text-stone-700 line-through decoration-stone-300">duct tape.</span>
           </h2>
           <p className="text-stone-500 text-base sm:text-lg leading-relaxed">

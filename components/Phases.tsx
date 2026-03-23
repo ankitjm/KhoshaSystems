@@ -46,7 +46,7 @@ export const Phases: React.FC = () => {
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           className="text-center text-2xl sm:text-3xl md:text-5xl font-serif text-stone-900 mb-10 sm:mb-16"
+           className="text-center text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-stone-900 mb-10 sm:mb-16"
          >
            The Evolution Path
          </motion.h2>

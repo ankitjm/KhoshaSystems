@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Bronze color theme */
+/* Bronze color theme + font overrides */
 @theme {
   --color-bronze-50: #faf6f1;
   --color-bronze-100: #f0e6d6;
@@ -12,25 +12,24 @@
   --color-bronze-700: #8b6542;
   --color-bronze-800: #6b4e33;
   --color-bronze-900: #4a3623;
+  --font-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Fonts loaded via <link> in index.html for reliability */
 
-body {
-  background-color: #fafaf9;
-  color: #1c1917;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+  body {
+    background-color: #fafaf9;
+    color: #1c1917;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 700;
-}
-
-.font-serif, .font-heading {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+  }
 }
 
 .bronze-gradient-text {

@@ -40,7 +40,7 @@ export const FAQ: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl md:text-5xl font-serif text-stone-900 mb-8 sm:mb-12 text-center"
+          className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-stone-900 mb-8 sm:mb-12 text-center"
         >
           Common Questions
         </motion.h2>

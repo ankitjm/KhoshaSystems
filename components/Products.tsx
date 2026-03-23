@@ -127,7 +127,7 @@ export const Products: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-6xl font-serif text-stone-900 mb-6"
+            className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-stone-900 mb-6"
           >
             SaaS Products That <span className="bronze-gradient-text">Ship Results.</span>
           </motion.h2>

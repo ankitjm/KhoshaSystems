@@ -85,23 +85,23 @@ export const Services: React.FC = () => {
         >
           <div className="max-w-7xl mx-auto mb-12 sm:mb-16">
             <div className="text-center mb-12 sm:mb-16">
-              <motion.h2
+              <motion.span
                 initial={{ opacity: 0, y: -10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-sm font-semibold tracking-[0.2em] text-bronze-400 uppercase mb-3 sm:mb-4"
+                className="text-sm font-semibold tracking-[0.2em] text-bronze-400 uppercase mb-3 sm:mb-4 block"
               >
                 What We Do
-              </motion.h2>
-              <motion.h3
+              </motion.span>
+              <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-3xl sm:text-4xl md:text-6xl font-serif text-white mb-5 sm:mb-6"
+                className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-white mb-5 sm:mb-6"
               >
                 Services & Capabilities
-              </motion.h3>
+              </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export const Services: React.FC = () => {
                     <div className="w-11 h-11 sm:w-12 sm:h-12 bg-white/10 border border-white/10 rounded-lg flex items-center justify-center mb-5 sm:mb-6 group-hover:border-bronze-400/40 group-hover:text-bronze-400 transition-all duration-300 text-white/70 group-hover:scale-110">
                       <pillar.icon size={22} />
                     </div>
-                    <h4 className="text-xl sm:text-2xl font-serif text-white mb-2 group-hover:text-bronze-300 transition-colors">{pillar.title}</h4>
+                    <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2 group-hover:text-bronze-300 transition-colors">{pillar.title}</h3>
                     <p className="text-[11px] sm:text-sm uppercase tracking-widest text-white/30 mb-4 sm:mb-6">{pillar.subtitle}</p>
                     <p className="text-white/50 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base min-h-[72px] sm:min-h-[80px]">
                       {pillar.description}

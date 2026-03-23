@@ -72,7 +72,7 @@ export const Testimonials: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-2xl sm:text-3xl md:text-5xl font-serif text-stone-900"
+                className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-stone-900"
               >
                 What Our <span className="text-bronze-600">Partners</span> Say
               </motion.h2>

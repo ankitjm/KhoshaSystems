@@ -72,7 +72,7 @@ export const Work: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-6xl font-serif text-stone-900 mt-3 sm:mt-4"
+              className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-stone-900 mt-3 sm:mt-4"
             >
               Proven Results.
             </motion.h2>
