@@ -50,8 +50,15 @@ const organizationSchema = {
     contactType: 'sales',
     availableLanguage: ['English', 'Hindi'],
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 12.9946,
+    longitude: 77.5712,
+  },
+  hasMap: 'https://maps.google.com/?q=Khosha+Systems,+Kumara+Park+West,+Seshadripuram,+Bangalore+560020',
   sameAs: [
     'https://www.linkedin.com/company/khoshasystems',
+    'https://www.google.com/maps/place/Khosha+Systems/@12.9946,77.5712,17z/',
   ],
 };
 
@@ -613,6 +620,30 @@ function getSchemasForPath(pathname: string): object[] {
   switch (pathname) {
     case '/':
       schemas.push({ '@context': 'https://schema.org', ...organizationSchema });
+      break;
+
+    case '/contact':
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        '@id': `${BASE_URL}/#localbusiness`,
+        name: 'Khoshà Systems',
+        image: `${BASE_URL}/og-icon.png`,
+        url: BASE_URL,
+        telephone: '+918884972272',
+        email: 'ankit@khoshasystems.com',
+        address: organizationSchema.address,
+        geo: organizationSchema.geo,
+        hasMap: organizationSchema.hasMap,
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '09:00',
+          closes: '18:00',
+        },
+        priceRange: '$$',
+        areaServed: organizationSchema.areaServed,
+      });
       break;
 
     case '/products/retaileros':

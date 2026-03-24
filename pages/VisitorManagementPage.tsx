@@ -50,6 +50,15 @@ export const VisitorManagementPage: React.FC = () => {
         </Link>
       </PageHero>
 
+      {/* GEO: Entity definition block — quotable by AI search engines */}
+      <Section className="bg-white border-b border-stone-100">
+        <div className="max-w-3xl mx-auto text-center" data-speakable="true">
+          <p className="text-lg sm:text-xl text-stone-700 leading-relaxed">
+            <strong>Khosha Visitor Management System</strong> is a digital visitor tracking platform by Khosha Systems, designed for Indian real estate sites, corporate offices, and co-working spaces. It replaces paper registers with QR-code check-ins, sends instant WhatsApp notifications to hosts, captures visitor photos and IDs for compliance, and provides footfall analytics — all while maintaining RERA-compliant audit trails.
+          </p>
+        </div>
+      </Section>
+
       <Section className="bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

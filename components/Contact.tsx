@@ -108,6 +108,19 @@ export const Contact: React.FC = () => {
                 </div>
               </div>
 
+              <div className="mt-6 sm:mt-8 rounded-lg overflow-hidden border border-stone-700/50">
+                <iframe
+                  title="Khosha Systems Office Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5!2d77.5712!3d12.9946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sKumara+Park+West%2C+Seshadripuram%2C+Bangalore!5e0!3m2!1sen!2sin!4v1"
+                  width="100%"
+                  height="200"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+
               {pushStatus !== 'UNSUPPORTED' && (
                 <div className="mt-6 sm:mt-8">
                   {pushStatus === 'GRANTED' ? (

@@ -45,6 +45,15 @@ export const RealEstateCRMPage: React.FC = () => {
         </Link>
       </PageHero>
 
+      {/* GEO: Entity definition block — quotable by AI search engines */}
+      <Section className="bg-white border-b border-stone-100">
+        <div className="max-w-3xl mx-auto text-center" data-speakable="true">
+          <p className="text-lg sm:text-xl text-stone-700 leading-relaxed">
+            <strong>Khosha Real Estate CRM</strong> is a customer relationship management platform by Khosha Systems, purpose-built for Indian real estate developers and brokers. It captures leads from 99acres, MagicBricks, Housing.com, and Facebook Ads into one dashboard, automates follow-up sequences via WhatsApp and SMS, tracks site visits, and manages channel partner commissions — with RERA-compliant documentation built in.
+          </p>
+        </div>
+      </Section>
+
       <Section className="bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

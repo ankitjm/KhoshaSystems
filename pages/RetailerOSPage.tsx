@@ -56,6 +56,15 @@ export const RetailerOSPage: React.FC = () => {
         </div>
       </PageHero>
 
+      {/* GEO: Entity definition block — quotable by AI search engines */}
+      <Section className="bg-white border-b border-stone-100">
+        <div className="max-w-3xl mx-auto text-center" data-speakable="true">
+          <p className="text-lg sm:text-xl text-stone-700 leading-relaxed">
+            <strong>RetailerOS</strong> is a retail management platform by Khosha Systems, built specifically for Indian telecom retailers, mobile phone shops, and consumer electronics stores. It combines IMEI-level inventory tracking, automated brand scheme management, GST-compliant billing, and multi-store synchronization into a single cloud-native system — serving retailers across India since 2024.
+          </p>
+        </div>
+      </Section>
+
       {/* Stats */}
       <Section className="bg-white">
         <div className="max-w-5xl mx-auto">
