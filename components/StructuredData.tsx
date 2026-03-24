@@ -11,6 +11,30 @@ const organizationSchema = {
   alternateName: 'Khosha Systems',
   url: BASE_URL,
   logo: `${BASE_URL}/og-icon.png`,
+  description: 'Khosha Systems is a Bangalore-based software company building industry-specific SaaS products for Indian retailers, real estate developers, and enterprises — including RetailerOS for telecom retail, a Real Estate CRM, and a Visitor Management System.',
+  foundingDate: '2010',
+  foundingLocation: {
+    '@type': 'Place',
+    name: 'Bangalore, India',
+  },
+  numberOfEmployees: {
+    '@type': 'QuantitativeValue',
+    minValue: 10,
+    maxValue: 50,
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'India' },
+    { '@type': 'Country', name: 'Canada' },
+  ],
+  knowsAbout: [
+    'Retail Point of Sale Software',
+    'IMEI Tracking',
+    'GST Billing',
+    'Real Estate CRM',
+    'Visitor Management Systems',
+    'Telecom Retail Management',
+    'Brand Scheme Management',
+  ],
   founder: { '@type': 'Person', name: 'Ankit Mehta', jobTitle: 'Founder & Chief Architect' },
   address: {
     '@type': 'PostalAddress',
@@ -26,7 +50,9 @@ const organizationSchema = {
     contactType: 'sales',
     availableLanguage: ['English', 'Hindi'],
   },
-  sameAs: ['https://www.linkedin.com/company/khoshasystems'],
+  sameAs: [
+    'https://www.linkedin.com/company/khoshasystems',
+  ],
 };
 
 // Breadcrumb definitions per route
@@ -533,11 +559,21 @@ function buildArticleSchema(post: {
     datePublished: post.date,
     dateModified: post.date,
     url: `${BASE_URL}/blog/${post.slug}`,
-    author: {
-      '@type': 'Organization',
-      name: 'Khoshà Systems',
-      url: BASE_URL,
-    },
+    inLanguage: 'en',
+    author: [
+      {
+        '@type': 'Person',
+        name: 'Ankit Mehta',
+        jobTitle: 'Founder & Chief Architect',
+        url: `${BASE_URL}/philosophy`,
+        worksFor: { '@type': 'Organization', name: 'Khoshà Systems' },
+      },
+      {
+        '@type': 'Organization',
+        name: 'Khoshà Systems',
+        url: BASE_URL,
+      },
+    ],
     publisher: {
       '@type': 'Organization',
       name: 'Khoshà Systems',
@@ -546,6 +582,11 @@ function buildArticleSchema(post: {
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${BASE_URL}/blog/${post.slug}`,
+    },
+    isPartOf: {
+      '@type': 'Blog',
+      name: 'Khosha Systems Blog',
+      url: `${BASE_URL}/blog`,
     },
   };
 }
