@@ -46,25 +46,93 @@ export const BlogPostPage: React.FC = () => {
 
   if (!post) return <Navigate to="/blog" replace />;
 
+  const renderInline = (text: string): React.ReactNode[] => {
+    const parts: React.ReactNode[] = [];
+    const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+    let lastIndex = 0;
+    let match;
+    let key = 0;
+    while ((match = regex.exec(text)) !== null) {
+      if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index));
+      if (match[1] && match[2]) {
+        parts.push(<a key={key++} href={match[2]} className="text-bronze-600 underline hover:text-bronze-800 transition-colors">{match[1]}</a>);
+      } else if (match[3]) {
+        parts.push(<strong key={key++} className="text-stone-800">{match[3]}</strong>);
+      } else if (match[4]) {
+        parts.push(<em key={key++}>{match[4]}</em>);
+      }
+      lastIndex = match.index + match[0].length;
+    }
+    if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+    return parts;
+  };
+
+  const renderParagraph = (para: string, key: number) => {
+    const trimmed = para.trim();
+
+    // Bullet list
+    const bulletLines = trimmed.split('\n').filter(l => l.trim().startsWith('- '));
+    if (bulletLines.length > 0 && bulletLines.length === trimmed.split('\n').filter(l => l.trim()).length) {
+      return (
+        <ul key={key} className="list-disc list-inside space-y-2 text-stone-600 text-base leading-relaxed">
+          {bulletLines.map((line, j) => <li key={j}>{renderInline(line.trim().replace(/^- /, ''))}</li>)}
+        </ul>
+      );
+    }
+
+    // Numbered list
+    const numberedLines = trimmed.split('\n').filter(l => /^\d+\.\s/.test(l.trim()));
+    if (numberedLines.length > 0 && numberedLines.length === trimmed.split('\n').filter(l => l.trim()).length) {
+      return (
+        <ol key={key} className="list-decimal list-inside space-y-2 text-stone-600 text-base leading-relaxed">
+          {numberedLines.map((line, j) => <li key={j}>{renderInline(line.trim().replace(/^\d+\.\s/, ''))}</li>)}
+        </ol>
+      );
+    }
+
+    // Table
+    if (trimmed.includes('|') && trimmed.split('\n').length >= 2) {
+      const rows = trimmed.split('\n').filter(l => l.trim().startsWith('|'));
+      if (rows.length >= 2) {
+        const parseRow = (row: string) => row.split('|').slice(1, -1).map(c => c.trim());
+        const isSeparator = (row: string) => /^\|[\s\-:|]+\|$/.test(row.trim());
+        const headerRow = parseRow(rows[0]);
+        const dataRows = rows.filter(r => !isSeparator(r)).slice(1);
+        return (
+          <div key={key} className="overflow-x-auto my-4">
+            <table className="w-full text-sm text-stone-600 border-collapse">
+              <thead>
+                <tr className="border-b-2 border-stone-300">
+                  {headerRow.map((cell, j) => <th key={j} className="text-left py-2 px-3 font-semibold text-stone-800">{renderInline(cell)}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {dataRows.map((row, j) => (
+                  <tr key={j} className="border-b border-stone-200">
+                    {parseRow(row).map((cell, k) => <td key={k} className="py-2 px-3">{renderInline(cell)}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
+    }
+
+    return <p key={key} className="text-stone-600 text-base leading-relaxed">{renderInline(trimmed)}</p>;
+  };
+
   const renderContent = (block: string) => {
-    if (block.startsWith('### ')) return <h3 className="text-xl font-serif text-stone-900 mt-8 mb-3">{block.replace('### ', '')}</h3>;
-    if (block.startsWith('## ')) return <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 mt-10 mb-4">{block.replace('## ', '')}</h2>;
+    if (block.startsWith('### ')) return <h3 className="text-xl font-serif text-stone-900 mt-8 mb-3">{renderInline(block.replace('### ', ''))}</h3>;
+    if (block.startsWith('## ')) return <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 mt-10 mb-4">{renderInline(block.replace('## ', ''))}</h2>;
     if (block.includes('\n\n')) {
       return (
         <div className="space-y-4">
-          {block.split('\n\n').map((para, i) => {
-            const isBold = para.startsWith('**') && para.includes('.**');
-            if (isBold) { const boldEnd = para.indexOf('.**') + 2; return <p key={i} className="text-stone-600 text-base leading-relaxed"><strong className="text-stone-800">{para.substring(2, boldEnd - 1)}</strong>{para.substring(boldEnd + 1)}</p>; }
-            return <p key={i} className="text-stone-600 text-base leading-relaxed">{para}</p>;
-          })}
+          {block.split('\n\n').map((para, i) => renderParagraph(para, i))}
         </div>
       );
     }
-    if (block.startsWith('**')) {
-      const boldEnd = block.indexOf('.**') + 2;
-      if (boldEnd > 1) return <p className="text-stone-600 text-base leading-relaxed"><strong className="text-stone-800">{block.substring(2, boldEnd - 1)}</strong>{block.substring(boldEnd + 1)}</p>;
-    }
-    return <p className="text-stone-600 text-base leading-relaxed">{block}</p>;
+    return renderParagraph(block, 0);
   };
 
   return (
