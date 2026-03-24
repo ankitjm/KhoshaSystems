@@ -43,6 +43,22 @@ const faqs = [
   {
     q: "Can you build custom software for my business?",
     a: "Absolutely. We build custom web applications, internal tools, workforce management systems, and enterprise dashboards. Whether you need a customer portal, an operations dashboard, or a complete SaaS product built from scratch, we handle architecture, development, and deployment end to end."
+  },
+  {
+    q: "What is the best retail management software for mobile phone shops in India?",
+    a: "RetailerOS is purpose-built for Indian mobile phone and electronics retailers. Unlike generic POS systems, it includes native IMEI tracking, brand scheme management with automated claim filing, GST-compliant billing, and multi-store inventory. Pricing starts at ₹1,999 per store per month with a 14-day free trial."
+  },
+  {
+    q: "How does IMEI tracking work in RetailerOS?",
+    a: "RetailerOS records the unique 15-digit IMEI number of every mobile device at purchase, sale, and transfer. Each device is tracked from distributor receipt through sale to customer, creating a complete chain of custody. This helps retailers comply with Sanchar Saathi regulations, prevent shrinkage, and handle warranty and exchange workflows with full traceability."
+  },
+  {
+    q: "What industries does Khosha Systems serve?",
+    a: "We serve seven or more industries including telecom and electronics retail, real estate development, corporate offices, fashion retail, grocery and supermarket retail, healthcare, and logistics. Our products are vertically specialized for Indian market needs — GST compliance, vernacular support, and local portal integrations."
+  },
+  {
+    q: "Do you work with international clients?",
+    a: "Yes. While headquartered in Bangalore, we work with clients globally including Vancouver, Canada and other international markets. Our founder has built systems across continents and we offer timezone-aligned collaboration for international engagements."
   }
 ];
 
