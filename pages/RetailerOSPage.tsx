@@ -184,6 +184,31 @@ export const RetailerOSPage: React.FC = () => {
         </div>
       </Section>
 
+      {/* Also from Khosha */}
+      <Section className="bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Also from Khoshà Systems</h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              { label: 'Real Estate CRM', desc: 'Lead management for developers & brokers', href: '/products/real-estate-crm' },
+              { label: 'Visitor Management', desc: 'Digital check-in for offices & sites', href: '/products/visitor-management' },
+              { label: 'Success Stories', desc: 'Results from retailers across India', href: '/success-stories' },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="bg-stone-50 border border-stone-200 rounded-lg p-5 hover:border-bronze-400 hover:shadow-sm transition-all group"
+              >
+                <h3 className="font-medium text-stone-800 text-sm mb-1 group-hover:text-bronze-600 transition-colors flex items-center gap-1">
+                  {link.label} <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                </h3>
+                <p className="text-stone-500 text-xs">{link.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       {/* FAQ */}
       <FAQSection
         faqs={retailerOSFAQs}

@@ -169,6 +169,30 @@ const breadcrumbMap: Record<string, Array<{ name: string; path: string }>> = {
     { name: 'RetailerOS', path: '/products/retaileros' },
     { name: 'Customer Success Stories', path: '/success-stories' },
   ],
+  '/getting-started': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'Getting Started', path: '/getting-started' },
+  ],
+  '/pricing': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'Pricing', path: '/pricing' },
+  ],
+  '/features': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'Features', path: '/features' },
+  ],
+  '/use-cases': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'RetailerOS', path: '/products/retaileros' },
+    { name: 'Use Cases', path: '/use-cases' },
+  ],
   '/help': [
     { name: 'Home', path: '' },
     { name: 'Products', path: '/products' },
@@ -551,6 +575,51 @@ function buildProductSchema(product: {
   };
 }
 
+function buildHowToSchema(steps: Array<{ title: string; description: string; items: string[]; time: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Set Up RetailerOS for Your Store',
+    description: 'Step-by-step onboarding guide for RetailerOS. Most store owners go live in under 48 hours.',
+    totalTime: 'PT2H',
+    estimatedCost: {
+      '@type': 'MonetaryAmount',
+      currency: 'INR',
+      value: '0',
+    },
+    step: steps.map((step, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: step.title,
+      text: step.description + ' ' + step.items.join(' '),
+      url: `${BASE_URL}/getting-started#step-${i + 1}`,
+    })),
+  };
+}
+
+function buildPersonSchema(person: {
+  name: string;
+  jobTitle: string;
+  description: string;
+  image?: string;
+  sameAs?: string[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: person.name,
+    jobTitle: person.jobTitle,
+    description: person.description,
+    ...(person.image && { image: `${BASE_URL}${person.image}` }),
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Khoshà Systems',
+      url: BASE_URL,
+    },
+    ...(person.sameAs && { sameAs: person.sameAs }),
+  };
+}
+
 function buildArticleSchema(post: {
   title: string;
   description: string;
@@ -738,6 +807,32 @@ function getSchemasForPath(pathname: string): object[] {
 
     case '/help':
       schemas.push(buildFAQSchema(knowledgeBaseFAQs));
+      break;
+
+    case '/getting-started':
+      schemas.push(
+        buildHowToSchema([
+          { title: 'Account Setup', description: 'Sign up at retaileros.in using your mobile number or email. Add your business details and GST number.', items: ['Sign up at retaileros.in', 'Add business details', 'Enter GST number', 'Add store locations'], time: 'PT15M' },
+          { title: 'Import Your Data', description: 'Bring your existing data into RetailerOS.', items: ['Upload inventory via CSV or Excel with bulk IMEI imports', 'Import customer list', 'Add distributors and suppliers'], time: 'PT30M' },
+          { title: 'Configure Billing', description: 'Set up GST-compliant billing.', items: ['Verify GSTIN and tax preferences', 'Add HSN codes', 'Choose invoice template', 'Set up payment methods'], time: 'PT15M' },
+          { title: 'Set Up Inventory', description: 'Configure IMEI-level inventory tracking.', items: ['Scan IMEIs via phone camera or barcode scanner', 'Organize by brand and category', 'Set reorder points', 'Review dashboard'], time: 'PT30M' },
+          { title: 'Add Your Team', description: 'Invite staff and assign roles.', items: ['Invite team members by mobile or email', 'Set roles: Sales staff, Store manager, Owner', 'Quick training with practice transaction'], time: 'PT10M' },
+          { title: 'Connect Brand Schemes', description: 'Activate brand scheme tracking.', items: ['Browse schemes from Samsung, Vivo, Oppo, Xiaomi, Realme', 'Activate relevant schemes', 'Auto-match eligible sales', 'View earnings in real time'], time: 'PT10M' },
+          { title: 'Go Live', description: 'Make your first sale on RetailerOS.', items: ['Open billing screen', 'Add customer', 'Apply discounts or schemes', 'Generate and share invoice'], time: 'PT5M' },
+        ])
+      );
+      break;
+
+    case '/philosophy':
+      schemas.push(
+        buildPersonSchema({
+          name: 'Ankit Mehta',
+          jobTitle: 'Founder & Chief Architect',
+          description: 'Founder of Khoshà Systems with 15+ years of experience building enterprise software across Canada and India. Architect-led approach to web applications, SaaS products, and AI transformation.',
+          image: '/images/founder-photo.jpg',
+          sameAs: ['https://www.linkedin.com/company/khoshasystems'],
+        })
+      );
       break;
   }
 

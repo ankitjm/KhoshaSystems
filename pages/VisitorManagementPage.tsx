@@ -135,6 +135,32 @@ export const VisitorManagementPage: React.FC = () => {
         </div>
       </Section>
 
+      {/* Explore More */}
+      <Section className="bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Also from Khoshà Systems</h2>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { label: 'RetailerOS', desc: 'Retail management for telecom & electronics stores', href: '/products/retaileros' },
+              { label: 'Real Estate CRM', desc: 'Lead management for developers & brokers', href: '/products/real-estate-crm' },
+              { label: 'Our Work', desc: 'Case studies and client results', href: '/work' },
+              { label: 'Compare vs Envoy', desc: 'See how we stack up', href: '/compare/vms-vs-envoy' },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="bg-stone-50 border border-stone-200 rounded-lg p-5 hover:border-bronze-400 hover:shadow-sm transition-all group"
+              >
+                <h3 className="font-medium text-stone-800 text-sm mb-1 group-hover:text-bronze-600 transition-colors flex items-center gap-1">
+                  {link.label} <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                </h3>
+                <p className="text-stone-500 text-xs">{link.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       {/* FAQ */}
       <FAQSection
         faqs={vmsFAQs}
