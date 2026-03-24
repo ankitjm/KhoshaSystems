@@ -178,7 +178,7 @@ export const Navbar: React.FC = () => {
                   <Mail size={13} className="text-bronze-500 shrink-0" />
                   <span className="text-sm">ankit@khoshasystems.com</span>
                 </a>
-                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2.5 text-stone-400">
+                <a href="https://maps.google.com/?q=SS+Apt+13+4th+Cross+Rd+Kumara+Park+West+Seshadripuram+Bangalore+Karnataka+560020" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2.5 text-stone-400">
                   <MapPin size={13} className="text-bronze-500 mt-0.5 shrink-0" />
                   <span className="text-sm">Kumara Park, Seshadripuram, Bangalore</span>
                 </a>

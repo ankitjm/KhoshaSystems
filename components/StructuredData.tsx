@@ -11,7 +11,8 @@ const organizationSchema = {
   alternateName: 'Khosha Systems',
   url: BASE_URL,
   logo: `${BASE_URL}/og-icon.png`,
-  description: 'Khosha Systems is a Bangalore-based software company building industry-specific SaaS products for Indian retailers, real estate developers, and enterprises — including RetailerOS for telecom retail, a Real Estate CRM, and a Visitor Management System.',
+  description: 'Khoshà Systems is a Bangalore-based IT and digital transformation company founded in 2010, building web applications, SaaS products, and AI transformation services.',
+  slogan: 'Purpose-built software for Indian businesses',
   foundingDate: '2010',
   foundingLocation: {
     '@type': 'Place',
@@ -556,7 +557,12 @@ function buildArticleSchema(post: {
   date: string;
   slug: string;
   coverImage: string;
+  content?: string[];
 }) {
+  const fullText = post.content ? post.content.join(' ') : '';
+  const wordCount = fullText ? fullText.split(/\s+/).filter(Boolean).length : 1200;
+  const articleBody = post.description || (fullText ? fullText.slice(0, 200) : '');
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -567,6 +573,9 @@ function buildArticleSchema(post: {
     dateModified: post.date,
     url: `${BASE_URL}/blog/${post.slug}`,
     inLanguage: 'en',
+    wordCount,
+    articleBody,
+    isAccessibleForFree: true,
     author: [
       {
         '@type': 'Person',

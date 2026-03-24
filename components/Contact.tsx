@@ -102,10 +102,10 @@ export const Contact: React.FC = () => {
                   </div>
                   <span className="text-sm sm:text-base hover:text-white transition-colors">ankit@khoshasystems.com</span>
                 </a>
-                <div className="flex items-center gap-3 sm:gap-4 text-stone-300">
-                  <div className="p-2.5 sm:p-3 bg-stone-800 rounded-full"><MapPin size={18} /></div>
-                  <span className="text-sm sm:text-base">Kumara Park, Seshadripuram, Bangalore</span>
-                </div>
+                <a href="https://maps.google.com/?q=SS+Apt+13+4th+Cross+Rd+Kumara+Park+West+Seshadripuram+Bangalore+Karnataka+560020" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 sm:gap-4 text-stone-300 group">
+                  <div className="p-2.5 sm:p-3 bg-stone-800 rounded-full group-hover:bg-bronze-600 group-hover:text-white transition-colors"><MapPin size={18} /></div>
+                  <span className="text-sm sm:text-base hover:text-white transition-colors">Kumara Park, Seshadripuram, Bangalore</span>
+                </a>
               </div>
 
               <div className="mt-6 sm:mt-8 rounded-lg overflow-hidden border border-stone-700/50">
