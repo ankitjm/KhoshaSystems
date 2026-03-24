@@ -104,7 +104,7 @@ export const Contact: React.FC = () => {
                 </a>
                 <div className="flex items-center gap-3 sm:gap-4 text-stone-300">
                   <div className="p-2.5 sm:p-3 bg-stone-800 rounded-full"><MapPin size={18} /></div>
-                  <span className="text-sm sm:text-base">Kumara Park West, Bangalore (Bengaluru), Karnataka</span>
+                  <span className="text-sm sm:text-base">Kumara Park, Seshadripuram, Bangalore</span>
                 </div>
               </div>
 
@@ -247,8 +247,8 @@ export const Contact: React.FC = () => {
                   <a href="https://wa.me/918884972272" target="_blank" rel="noopener noreferrer" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">WhatsApp</a>
                   <a href="mailto:ankit@khoshasystems.com" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">Email Us</a>
                   <a href="https://www.linkedin.com/company/khoshasystems" target="_blank" rel="noopener noreferrer" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">LinkedIn</a>
-                  <span className="block text-stone-600 text-xs">Kumara Park West, Bangalore</span>
-                  <span className="block text-stone-600 text-xs">Karnataka 560020</span>
+                  <span className="block text-stone-600 text-xs">Kumara Park, Seshadripuram</span>
+                  <span className="block text-stone-600 text-xs">Bangalore</span>
                 </div>
               </div>
             </div>

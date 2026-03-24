@@ -54,7 +54,7 @@ const seoConfig: Record<string, SEOConfig> = {
   },
   '/contact': {
     title: 'Contact Khoshà Systems | Software Company in Kumara Park, Bangalore',
-    description: 'Get in touch for web apps, SaaS, AI or digital transformation. Kumara Park West, Bangalore. Email: ankit@khoshasystems.com',
+    description: 'Get in touch for web apps, SaaS, AI or digital transformation. Kumara Park, Seshadripuram, Bangalore. Email: ankit@khoshasystems.com',
     keywords: 'contact software company Bangalore, hire web developers Bangalore, software development quote India, digital transformation consultation Bangalore, Kumara Park tech company contact, software outsourcing company Bangalore, startup tech partner Bangalore'
   },
   '/vancouver': {
