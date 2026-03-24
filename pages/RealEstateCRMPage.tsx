@@ -160,6 +160,18 @@ export const RealEstateCRMPage: React.FC = () => {
         subtitle="Common questions about our CRM built for Indian real estate developers and brokers."
       />
 
+      {/* Related Resources for internal linking */}
+      <Section className="bg-stone-50 border-t border-stone-100">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold text-stone-900 mb-6">Learn More</h2>
+          <ul className="space-y-3">
+            <li><Link to="/blog/how-to-choose-real-estate-crm-india" className="text-amber-700 hover:text-amber-800 underline">How to Choose the Right Real Estate CRM in India</Link></li>
+            <li><Link to="/blog/5-signs-real-estate-business-needs-crm" className="text-amber-700 hover:text-amber-800 underline">5 Signs Your Real Estate Business Needs a CRM</Link></li>
+            <li><Link to="/compare/real-estate-crm-vs-selldo" className="text-amber-700 hover:text-amber-800 underline">Khosha Real Estate CRM vs Sell.Do</Link></li>
+          </ul>
+        </div>
+      </Section>
+
       <Section className="bg-white">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-serif text-stone-900 mb-4">Ready to Transform Your Real Estate Sales?</h2>

@@ -216,6 +216,21 @@ export const RetailerOSPage: React.FC = () => {
         subtitle="Common questions about our retail management platform for telecom and electronics retailers."
       />
 
+      {/* Related Resources for internal linking */}
+      <Section className="bg-stone-50 border-t border-stone-100">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold text-stone-900 mb-6">Learn More</h2>
+          <ul className="space-y-3">
+            <li><Link to="/blog/retail-management-software-telecom-electronics-india" className="text-amber-700 hover:text-amber-800 underline">Why Telecom & Electronics Retailers Need Purpose-Built Software</Link></li>
+            <li><Link to="/blog/how-to-choose-retail-management-software" className="text-amber-700 hover:text-amber-800 underline">How to Choose Retail Management Software: Complete Guide</Link></li>
+            <li><Link to="/blog/scheme-management-simple-telecom-retailers" className="text-amber-700 hover:text-amber-800 underline">Scheme Management Made Simple for Telecom Retailers</Link></li>
+            <li><Link to="/blog/imei-tracking-reduces-shrinkage-telecom-retail" className="text-amber-700 hover:text-amber-800 underline">How IMEI Tracking Reduces Shrinkage in Telecom Retail</Link></li>
+            <li><Link to="/compare/retaileros-vs-shopify" className="text-amber-700 hover:text-amber-800 underline">RetailerOS vs Shopify POS</Link></li>
+            <li><Link to="/compare/retaileros-vs-square" className="text-amber-700 hover:text-amber-800 underline">RetailerOS vs Square POS</Link></li>
+          </ul>
+        </div>
+      </Section>
+
       {/* CTA */}
       <Section className="bg-white">
         <div className="max-w-3xl mx-auto text-center">

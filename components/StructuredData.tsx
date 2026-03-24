@@ -597,6 +597,25 @@ function buildHowToSchema(steps: Array<{ title: string; description: string; ite
   };
 }
 
+function buildBlogHowToSchema(
+  name: string,
+  description: string,
+  steps: Array<{ name: string; text: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name,
+    description,
+    step: steps.map((step, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: step.name,
+      text: step.text,
+    })),
+  };
+}
+
 function buildPersonSchema(person: {
   name: string;
   jobTitle: string;
@@ -843,6 +862,37 @@ function getSchemasForPath(pathname: string): object[] {
     const post = blogPosts.find((p) => p.slug === slug);
     if (post) {
       schemas.push(buildArticleSchema(post));
+    }
+
+    // Blog post HowTo schema for guide/checklist posts
+    if (slug === 'how-to-choose-retail-management-software') {
+      schemas.push(buildBlogHowToSchema(
+        'How to Choose Retail Management Software',
+        'A 5-step guide to evaluating and selecting retail management software for Indian retailers, covering retail type assessment, feature evaluation, cost analysis, compliance verification, and hands-on testing.',
+        [
+          { name: 'Define Your Retail Type', text: 'Identify your retail segment (telecom, fashion, grocery, multi-category) and list 3-4 non-negotiable capabilities for your specific type.' },
+          { name: 'Must-Have Features Checklist', text: 'Evaluate inventory management, billing compliance, multi-store support, brand scheme management, and reporting capabilities.' },
+          { name: 'Evaluate Total Cost of Ownership', text: 'Map setup fees, hardware requirements, payment processing fees, contract terms, hidden price increases, and training costs.' },
+          { name: 'Check Compliance and Localization', text: 'Verify GST compliance with CGST/SGST/IGST, HSN codes, e-invoicing, regional language support, and Indian payment methods.' },
+          { name: 'Test Before You Commit', text: 'Run real billing scenarios, test inventory workflows, check report accuracy, and evaluate onboarding support during trial.' },
+        ]
+      ));
+    }
+
+    if (slug === 'how-to-choose-real-estate-crm-india') {
+      schemas.push(buildBlogHowToSchema(
+        'How to Choose a Real Estate CRM in India',
+        'A 7-step guide to evaluating real estate CRM platforms for Indian developers and brokers, covering lead capture, deduplication, site visits, channel partners, RERA compliance, WhatsApp integration, and pipeline visualization.',
+        [
+          { name: 'Automatic Lead Capture from Property Portals', text: 'Ensure CRM pulls leads from 99acres, MagicBricks, Housing.com, and Facebook/Google ads automatically.' },
+          { name: 'Lead Deduplication', text: 'Verify CRM recognizes duplicate inquiries from multiple portals as one prospect.' },
+          { name: 'Site Visit Scheduling and Tracking', text: 'Check for built-in scheduling, WhatsApp/SMS reminders, and post-visit follow-up sequences.' },
+          { name: 'Channel Partner Portal', text: 'Ensure brokers get their own dashboard to see inventory, submit leads, and track commissions.' },
+          { name: 'RERA Compliance Features', text: 'Verify audit trails, document storage, and compliance reporting.' },
+          { name: 'WhatsApp Integration', text: 'Confirm automated follow-ups and document sharing via WhatsApp Business API.' },
+          { name: 'Pipeline Visualization', text: 'Check for visual sales pipeline with stage-based analytics.' },
+        ]
+      ));
     }
   }
 

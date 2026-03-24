@@ -168,6 +168,17 @@ export const VisitorManagementPage: React.FC = () => {
         subtitle="Common questions about our digital visitor management system for offices and real estate sites."
       />
 
+      {/* Related Resources for internal linking */}
+      <Section className="bg-stone-50 border-t border-stone-100">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold text-stone-900 mb-6">Learn More</h2>
+          <ul className="space-y-3">
+            <li><Link to="/blog/digital-visitor-management-roi-indian-corporates" className="text-amber-700 hover:text-amber-800 underline">Digital Visitor Management ROI for Indian Corporates</Link></li>
+            <li><Link to="/compare/vms-vs-envoy" className="text-amber-700 hover:text-amber-800 underline">Khosha VMS vs Envoy</Link></li>
+          </ul>
+        </div>
+      </Section>
+
       <Section className="bg-white">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-serif text-stone-900 mb-4">Upgrade from Paper Registers Today</h2>
