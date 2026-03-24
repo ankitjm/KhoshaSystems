@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "Are you based in Bangalore (Bengaluru)?",
-    a: "Yes — headquartered in Indiranagar, Bangalore (Bengaluru), Karnataka. We work with clients across India and globally. Our founder Ankit Mehta has 15+ years of experience building systems across continents, from Canada to India."
+    a: "Yes — headquartered in Kumara Park West, Bangalore (Bengaluru), Karnataka. We work with clients across India and globally. Our founder Ankit Mehta has 15+ years of experience building systems across continents, from Canada to India."
   },
   {
     q: "Do you offer ongoing support after delivery?",

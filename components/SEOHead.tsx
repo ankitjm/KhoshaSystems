@@ -15,7 +15,7 @@ const seoConfig: Record<string, SEOConfig> = {
   '/': {
     title: 'Khoshà Systems | Software Development & AI Transformation Company | Bangalore',
     description: 'Khoshà Systems builds web apps, SaaS products & AI solutions from Bangalore. RetailerOS, Real Estate CRM, Visitor Management. 15+ years experience.',
-    keywords: 'software development company Bangalore, web application development company Bangalore, SaaS product development company India, AI transformation services Bangalore, custom software development Bangalore, digital transformation company Bangalore, RetailerOS, real estate CRM India, visitor management system India, legacy modernization services India, software company Bengaluru, IT company Indiranagar Bangalore'
+    keywords: 'software development company Bangalore, web application development company Bangalore, SaaS product development company India, AI transformation services Bangalore, custom software development Bangalore, digital transformation company Bangalore, RetailerOS, real estate CRM India, visitor management system India, legacy modernization services India, software company Bengaluru, IT company Kumara Park Bangalore'
   },
   '/products': {
     title: 'SaaS Products | RetailerOS, Real Estate CRM & Visitor Management | Khoshà Systems',
@@ -50,12 +50,12 @@ const seoConfig: Record<string, SEOConfig> = {
   '/philosophy': {
     title: 'About Khoshà Systems | Architect-Led Software Company | 15+ Years | Bangalore',
     description: 'Founded by Ankit Mehta in Bangalore. 15+ years building enterprise software across continents. Architect-led, quality-first approach.',
-    keywords: 'about Khoshà Systems, Khosha Systems Bangalore, Ankit Mehta founder, software company Indiranagar Bangalore, technology consulting India, architect-led software company, best software company Bangalore for startups, tech company Indiranagar, software company Bengaluru'
+    keywords: 'about Khoshà Systems, Khosha Systems Bangalore, Ankit Mehta founder, software company Kumara Park Bangalore, technology consulting India, architect-led software company, best software company Bangalore for startups, tech company Kumara Park, software company Bengaluru'
   },
   '/contact': {
-    title: 'Contact Khoshà Systems | Software Company in Indiranagar, Bangalore',
-    description: 'Get in touch for web apps, SaaS, AI or digital transformation. Indiranagar, Bangalore. Email: ankit@khoshasystems.com',
-    keywords: 'contact software company Bangalore, hire web developers Bangalore, software development quote India, digital transformation consultation Bangalore, Indiranagar tech company contact, software outsourcing company Bangalore, startup tech partner Bangalore'
+    title: 'Contact Khoshà Systems | Software Company in Kumara Park, Bangalore',
+    description: 'Get in touch for web apps, SaaS, AI or digital transformation. Kumara Park West, Bangalore. Email: ankit@khoshasystems.com',
+    keywords: 'contact software company Bangalore, hire web developers Bangalore, software development quote India, digital transformation consultation Bangalore, Kumara Park tech company contact, software outsourcing company Bangalore, startup tech partner Bangalore'
   },
   '/vancouver': {
     title: 'Software Development Company Vancouver | AI & SaaS Development | Khoshà Systems',

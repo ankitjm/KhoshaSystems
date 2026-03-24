@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-5 sm:px-6 flex justify-between items-center h-8">
           <div className="flex items-center gap-5">
             <span className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase">
-              <MapPin size={10} className="text-bronze-500" /> Indiranagar, Bangalore
+              <MapPin size={10} className="text-bronze-500" /> Kumara Park West, Bangalore
             </span>
             <span className="text-stone-700">|</span>
             <a href="mailto:ankit@khoshasystems.com" className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase hover:text-white transition-colors">
@@ -180,7 +180,7 @@ export const Navbar: React.FC = () => {
                 </a>
                 <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2.5 text-stone-400">
                   <MapPin size={13} className="text-bronze-500 mt-0.5 shrink-0" />
-                  <span className="text-sm">Indiranagar, Bangalore (Bengaluru), Karnataka</span>
+                  <span className="text-sm">Kumara Park West, Bangalore (Bengaluru), Karnataka</span>
                 </a>
                 <div className="flex items-center gap-2.5 text-stone-400">
                   <Clock size={13} className="text-bronze-500 shrink-0" />

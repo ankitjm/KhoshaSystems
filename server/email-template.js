@@ -110,7 +110,7 @@ function wrapEmailHtml({ body, preheader = '', showProductLinks = true, utmCampa
                   <td style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #6b7280; line-height: 1.5;">
                     <strong style="color: #1f2937;">Khosha Systems</strong><br>
                     Purpose-built software for Indian businesses<br>
-                    Indiranagar, Bangalore
+                    Kumara Park West, Bangalore
                   </td>
                   <td align="right" valign="top" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px;">
                     <a href="${utm(SITE_URL, 'footer-website')}" style="color: #b8860b; text-decoration: none;">Website</a>

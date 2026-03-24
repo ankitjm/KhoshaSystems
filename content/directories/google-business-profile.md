@@ -12,7 +12,7 @@ Our flagship products include RetailerOS (telecom and electronics retail managem
 
 We do not resell templates or rebrand foreign software. Every product is engineered ground-up for Indian market needs — GST compliance, local portal integrations, vernacular support, and scalable architecture.
 
-Based in Indiranagar, Bengaluru. Serving businesses across India.
+Based in Kumara Park West, Bengaluru. Serving businesses across India.
 
 > Character count: ~710
 
@@ -108,7 +108,7 @@ Digital visitor management for offices, co-working spaces, and gated communities
 **From the business:**
 - "15+ years in software development"
 - "3 flagship products: RetailerOS, Real Estate CRM, VMS"
-- "Based in Indiranagar, Bengaluru"
+- "Based in Kumara Park West, Bengaluru"
 - "Founded by Ankit Mehta"
 - "Products built specifically for Indian markets"
 - "End-to-end: architecture to deployment"
@@ -151,7 +151,7 @@ Yes. Our AI Transformation service is designed for exactly this. We start by ide
 Yes. Our products handle GST compliance, integrate with Indian platforms (99acres, MagicBricks, IndiaMART), support Indian payment systems, and are designed for Indian network and infrastructure conditions. This is not a foreign product localized for India — it is built here, for here.
 
 ### Q8: Where is your office located?
-We are based in Indiranagar, Bengaluru, Karnataka. We work with clients across India and can operate remotely. For local clients, in-person meetings are available by appointment.
+We are based in Kumara Park West, Bengaluru, Karnataka. We work with clients across India and can operate remotely. For local clients, in-person meetings are available by appointment.
 
 ---
 
@@ -227,7 +227,7 @@ Free to attend. Limited seats. Register to confirm.
 ### Office / Workspace Photos
 
 **Photo 1: Office exterior**
-Caption: "Khosha Systems office, Indiranagar, Bengaluru"
+Caption: "Khosha Systems office, Kumara Park West, Bengaluru"
 Description: Clear shot of the office entrance or building exterior with signage visible. Daytime, well-lit.
 
 **Photo 2: Workspace interior**
@@ -288,7 +288,7 @@ Description: Branded cover image. Could be a collage of product screenshots, the
 - Software company in Bangalore
 - Software development company Bengaluru
 - Custom software development India
-- IT company Indiranagar Bangalore
+- IT company Kumara Park Bangalore
 - Software company near me (local intent)
 
 ### Product-Specific Keywords

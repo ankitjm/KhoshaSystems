@@ -6,6 +6,10 @@
 **Primary hook:** Sanchar Saathi IMEI compliance deadline.
 **Tone:** Professional, direct, urgent (compliance angle). Founder-led — not salesy.
 
+## Email Branding
+
+All emails use the shared branded HTML template with Khosha Systems logo header and clickable product links footer. See `content/emails/welcome-nurture-sequence.md` → "Email Branding" section for Brevo template variables.
+
 ---
 
 ## Email 1 — Demo Request Follow-Up
@@ -47,7 +51,7 @@ No pitch deck, no pressure. If RetailerOS isn't the right fit for your setup, I'
 Warm regards,
 Ankit Mehta
 Founder & Chief Architect, Khosha Systems
-Indiranagar, Bangalore
+Kumara Park West, Bangalore
 
 P.S. With Sanchar Saathi enforcement tightening, retailers without proper IMEI tracking are facing real compliance risk. Worth a 15-minute conversation to see where you stand.
 

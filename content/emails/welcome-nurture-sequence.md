@@ -5,6 +5,33 @@
 **From:** Ankit Mehta, Founder & Chief Architect — Khosha Systems <hello@khoshasystems.com>
 **Personalization:** Four vertical variants — RetailerOS, Real Estate CRM, VMS. Default to "General" if vertical is unknown.
 
+## Email Branding (All Emails)
+
+All emails in this sequence MUST use the shared branded HTML template (`server/email-template.js`). This ensures:
+
+- **Logo header**: Khosha Systems logo (`https://khoshasystems.com/logo.png`) linked to homepage
+- **Product links footer**: Clickable links to RetailerOS, Real Estate CRM, and VMS product pages
+- **Company footer**: Address, website, contact, LinkedIn links
+- **UTM tracking**: All links include `utm_source=email&utm_medium=campaign&utm_campaign=welcome-nurture-mar2026`
+
+### Brevo Template Variables (for logo/links)
+
+These params are automatically passed to Brevo templates via `brevo.js`:
+
+| Variable | Value |
+|----------|-------|
+| `{{params.LOGO_URL}}` | `https://khoshasystems.com/logo.png` |
+| `{{params.SITE_URL}}` | `https://khoshasystems.com` |
+| `{{params.RETAILEROS_URL}}` | `https://khoshasystems.com/retaileros` |
+| `{{params.CRM_URL}}` | `https://khoshasystems.com/realestate-crm` |
+| `{{params.VMS_URL}}` | `https://khoshasystems.com/vms` |
+| `{{params.CONTACT_URL}}` | `https://khoshasystems.com/contact` |
+| `{{params.LINKEDIN_URL}}` | `https://www.linkedin.com/company/khoshasystems` |
+| `{{params.COMPANY_NAME}}` | `Khosha Systems` |
+| `{{params.COMPANY_TAGLINE}}` | `Purpose-built software for Indian businesses` |
+
+**Action required:** Update Brevo templates 11, 12, 13 in the Brevo dashboard to use these variables for logo header and footer links.
+
 ---
 
 ## Email 1 — Welcome + Product Overview (Day 0)
@@ -52,7 +79,7 @@ If you'd like to see how RetailerOS fits your specific setup, I'd love to walk y
 Warm regards,
 Ankit Mehta
 Founder & Chief Architect, Khosha Systems
-Indiranagar, Bangalore
+Kumara Park West, Bangalore
 
 ---
 
@@ -83,7 +110,7 @@ Want to see how it works for your projects? I'll walk you through it — takes 1
 Warm regards,
 Ankit Mehta
 Founder & Chief Architect, Khosha Systems
-Indiranagar, Bangalore
+Kumara Park West, Bangalore
 
 ---
 
@@ -115,7 +142,7 @@ I'd love to show you a quick demo — takes 15 minutes.
 Warm regards,
 Ankit Mehta
 Founder & Chief Architect, Khosha Systems
-Indiranagar, Bangalore
+Kumara Park West, Bangalore
 
 ---
 
@@ -144,7 +171,7 @@ Want to explore which solution fits your needs? Let's talk — takes 15 minutes.
 Warm regards,
 Ankit Mehta
 Founder & Chief Architect, Khosha Systems
-Indiranagar, Bangalore
+Kumara Park West, Bangalore
 
 ---
 

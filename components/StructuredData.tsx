@@ -14,10 +14,10 @@ const organizationSchema = {
   founder: { '@type': 'Person', name: 'Ankit Mehta', jobTitle: 'Founder & Chief Architect' },
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Indiranagar',
+    streetAddress: 'SS Apt, 13, 4th Cross Rd, 4th Block, Kumara Park West, Seshadripuram',
     addressLocality: 'Bangalore',
     addressRegion: 'Karnataka',
-    postalCode: '560038',
+    postalCode: '560020',
     addressCountry: 'IN',
   },
   contactPoint: {
