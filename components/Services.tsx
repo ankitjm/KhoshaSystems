@@ -67,7 +67,7 @@ export const Services: React.FC = () => {
           <source srcSet="/images/services-network.webp" type="image/webp" />
           <img
             src="/images/services-network.jpg"
-            alt=""
+            alt="Network architecture representing Khoshà Systems software services"
             className="w-full h-full object-cover"
             loading="lazy"
           />

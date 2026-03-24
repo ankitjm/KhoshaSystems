@@ -54,7 +54,7 @@ export const Hero: React.FC = () => {
           <source srcSet="/images/hero-bg.webp" type="image/webp" />
           <img
             src="/images/hero-bg.jpg"
-            alt=""
+            alt="Khoshà Systems workspace — software development and AI transformation"
             className="w-full h-full object-cover"
             loading="eager"
             fetchPriority="high"

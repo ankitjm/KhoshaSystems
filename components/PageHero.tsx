@@ -8,11 +8,12 @@ interface PageHeroProps {
   subtitle?: string;
   label?: string;
   backgroundImage: string;
+  backgroundAlt?: string;
   backLink?: { label: string; href: string };
   children?: React.ReactNode;
 }
 
-export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, label, backgroundImage, backLink, children }) => {
+export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, label, backgroundImage, backgroundAlt = 'Page section background', backLink, children }) => {
   return (
     <section className="relative overflow-hidden">
       {/* Background */}
@@ -21,7 +22,7 @@ export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, label, back
           <source srcSet={backgroundImage.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
           <img
             src={backgroundImage}
-            alt=""
+            alt={backgroundAlt}
             className="w-full h-full object-cover"
             loading="eager"
           />

@@ -11,7 +11,7 @@ export const Founder: React.FC = () => {
           <source srcSet="/images/founder-bg.webp" type="image/webp" />
           <img
             src="/images/founder-bg.jpg"
-            alt=""
+            alt="Khoshà Systems leadership and architecture background"
             className="w-full h-full object-cover"
             loading="lazy"
           />

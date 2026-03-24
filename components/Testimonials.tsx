@@ -43,7 +43,7 @@ export const Testimonials: React.FC = () => {
           <source srcSet="/images/home-workspace.webp" type="image/webp" />
           <img
             src="/images/home-workspace.jpg"
-            alt=""
+            alt="Modern workspace environment at Khoshà Systems"
             className="w-full h-full object-cover opacity-[0.04]"
             loading="lazy"
           />

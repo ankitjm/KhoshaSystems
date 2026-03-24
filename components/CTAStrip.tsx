@@ -12,7 +12,7 @@ export const CTAStrip: React.FC = () => {
           <source srcSet="/images/why-partner-bg.webp" type="image/webp" />
           <img
             src="/images/why-partner-bg.jpg"
-            alt=""
+            alt="Professional team collaboration at Khoshà Systems"
             className="w-full h-full object-cover"
             loading="lazy"
           />
