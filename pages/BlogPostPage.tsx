@@ -26,12 +26,14 @@ export const BlogPostPage: React.FC = () => {
       updateMeta('og:description', post.description, true);
       updateMeta('og:url', `https://khoshasystems.com/blog/${post.slug}`, true);
       updateMeta('og:type', 'article', true);
-      updateMeta('article:published_time', post.date, true);
-      updateMeta('article:modified_time', post.date, true);
+      updateMeta('og:image', `https://khoshasystems.com${post.coverImage}`, true);
+      updateMeta('article:published_time', `${post.date}T00:00:00+05:30`, true);
+      updateMeta('article:modified_time', `${post.date}T00:00:00+05:30`, true);
       updateMeta('article:author', 'Ankit Mehta', true);
       updateMeta('article:section', post.category, true);
       updateMeta('twitter:title', post.title);
       updateMeta('twitter:description', post.description);
+      updateMeta('twitter:image', `https://khoshasystems.com${post.coverImage}`);
 
       // Update canonical URL for this blog post
       const canonicalUrl = `https://khoshasystems.com/blog/${post.slug}`;

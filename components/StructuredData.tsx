@@ -630,7 +630,8 @@ function buildArticleSchema(post: {
 }) {
   const fullText = post.content ? post.content.join(' ') : '';
   const wordCount = fullText ? fullText.split(/\s+/).filter(Boolean).length : 1200;
-  const articleBody = post.description || (fullText ? fullText.slice(0, 200) : '');
+  // Use full article text (truncated to 500 chars for schema) instead of just the description
+  const articleBody = fullText ? fullText.replace(/[#*\[\]()]/g, '').slice(0, 500) : post.description;
 
   return {
     '@context': 'https://schema.org',
@@ -638,8 +639,8 @@ function buildArticleSchema(post: {
     headline: post.title,
     description: post.description,
     image: `${BASE_URL}${post.coverImage}`,
-    datePublished: post.date,
-    dateModified: post.date,
+    datePublished: `${post.date}T00:00:00+05:30`,
+    dateModified: `${post.date}T00:00:00+05:30`,
     url: `${BASE_URL}/blog/${post.slug}`,
     inLanguage: 'en',
     wordCount,
