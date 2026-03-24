@@ -27,6 +27,22 @@ const faqs = [
   {
     q: "Do you offer ongoing support after delivery?",
     a: "Yes. We offer partnership retainers for ongoing optimization, feature development, monitoring, and scaling. The products we build are designed to grow with your business."
+  },
+  {
+    q: "What is RetailerOS?",
+    a: "RetailerOS is our retail management SaaS built specifically for multi-brand consumer electronics retailers in India. It covers billing, inventory, CRM, WhatsApp automation, scheme tracking, repairs, and marketplace — everything a phone or electronics shop needs to run efficiently. It handles GST invoicing, UPI payments, IMEI tracking, and brand scheme claims out of the box."
+  },
+  {
+    q: "How is Khosha Systems different from other software companies?",
+    a: "We're architect-led, not sales-led. Our founder has 15+ years of hands-on engineering experience building systems across Canada and India. We build and operate our own SaaS products (RetailerOS, Real Estate CRM, Visitor Management), which means we understand production-grade software from the inside. When we build for clients, we bring that product-thinking — not just code delivery."
+  },
+  {
+    q: "Do you use AI in your products and services?",
+    a: "Yes. We integrate AI across our products and client projects — from invoice image analysis using computer vision, to AI-powered automation workflows, to LLM-based tools for content and customer support. We also offer AI transformation consulting to help businesses identify where AI creates real ROI, not just hype."
+  },
+  {
+    q: "Can you build custom software for my business?",
+    a: "Absolutely. We build custom web applications, internal tools, workforce management systems, and enterprise dashboards. Whether you need a customer portal, an operations dashboard, or a complete SaaS product built from scratch, we handle architecture, development, and deployment end to end."
   }
 ];
 
