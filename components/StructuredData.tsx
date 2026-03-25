@@ -45,8 +45,10 @@ const organizationSchema = {
     postalCode: '560020',
     addressCountry: 'IN',
   },
+  telephone: '+918884972272',
   contactPoint: {
     '@type': 'ContactPoint',
+    telephone: '+918884972272',
     email: 'ankit@khoshasystems.com',
     contactType: 'sales',
     availableLanguage: ['English', 'Hindi'],
@@ -639,6 +641,47 @@ function buildPersonSchema(person: {
   };
 }
 
+// WebPage schema for static (non-blog) pages — gives Google freshness signals
+const webPageMeta: Record<string, { name: string; description: string }> = {
+  '/': { name: 'Khoshà Systems — Software Development & AI Transformation', description: 'Khoshà Systems builds web apps, SaaS products & AI solutions from Bangalore.' },
+  '/products': { name: 'SaaS Products — RetailerOS, Real Estate CRM & VMS', description: 'Production-ready SaaS products for Indian businesses.' },
+  '/products/retaileros': { name: 'RetailerOS — Telecom & Electronics Retail Management', description: 'Retail management platform with IMEI tracking, scheme management, GST billing.' },
+  '/products/real-estate-crm': { name: 'Real Estate CRM India', description: 'CRM for Indian real estate developers and brokers.' },
+  '/products/visitor-management': { name: 'Visitor Management System India', description: 'Digital visitor management for offices and real estate sites.' },
+  '/services': { name: 'Web Development, AI & Digital Transformation Services', description: 'Custom web apps, AI transformation, and digital modernization from Bangalore.' },
+  '/work': { name: 'Our Work — Software Projects & Case Studies', description: 'Portfolio of web apps, SaaS products & digital transformation projects.' },
+  '/philosophy': { name: 'About Khoshà Systems — Architect-Led Software Company', description: 'Founded by Ankit Mehta with 15+ years of enterprise software experience.' },
+  '/contact': { name: 'Contact Khoshà Systems', description: 'Get in touch for software development, SaaS, or AI transformation.' },
+  '/pricing': { name: 'RetailerOS Pricing', description: 'RetailerOS pricing starts at ₹1,999/store/month.' },
+  '/blog': { name: 'Khosha Systems Blog', description: 'Insights on software development, AI, retail tech & digital transformation.' },
+};
+
+function buildWebPageSchema(pathname: string) {
+  const meta = webPageMeta[pathname];
+  if (!meta) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${BASE_URL}${pathname === '/' ? '' : pathname}`,
+    name: meta.name,
+    description: meta.description,
+    url: `${BASE_URL}${pathname === '/' ? '' : pathname}`,
+    datePublished: '2026-02-15T00:00:00+05:30',
+    dateModified: '2026-03-24T00:00:00+05:30',
+    inLanguage: 'en',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Khoshà Systems',
+      url: BASE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Khoshà Systems',
+      logo: { '@type': 'ImageObject', url: `${BASE_URL}/og-icon.png` },
+    },
+  };
+}
+
 function buildArticleSchema(post: {
   title: string;
   description: string;
@@ -713,6 +756,10 @@ function getSchemasForPath(pathname: string): object[] {
   } else if (breadcrumbMap[pathname]) {
     schemas.push(buildBreadcrumbSchema(breadcrumbMap[pathname]));
   }
+
+  // WebPage schema for static pages
+  const webPage = buildWebPageSchema(pathname);
+  if (webPage) schemas.push(webPage);
 
   // Page-specific schemas
   switch (pathname) {
