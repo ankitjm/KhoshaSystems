@@ -17,8 +17,8 @@ export const BlogPage: React.FC = () => {
       />
 
       <Section className="bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="space-y-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {blogPosts.map((post, i) => (
               <motion.article
                 key={post.slug}
@@ -30,18 +30,18 @@ export const BlogPage: React.FC = () => {
               >
                 <Link
                   to={`/blog/${post.slug}`}
-                  className="block border border-stone-200 rounded-lg hover:border-bronze-300 hover:shadow-sm transition-all bg-white overflow-hidden"
+                  className="flex flex-col h-full border border-stone-200 rounded-lg hover:border-bronze-300 hover:shadow-sm transition-all bg-white overflow-hidden"
                 >
-                  <div className="aspect-[21/9] overflow-hidden">
+                  <div className="aspect-[4/3] overflow-hidden">
                     <img
                       src={post.coverImage}
                       alt={post.coverAlt}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading={i < 2 ? "eager" : "lazy"}
+                      loading={i < 3 ? "eager" : "lazy"}
                     />
                   </div>
-                  <div className="p-6 sm:p-8">
-                    <div className="flex flex-wrap gap-3 mb-4">
+                  <div className="flex flex-col flex-1 p-5">
+                    <div className="flex flex-wrap gap-2 mb-3">
                       <span className="text-[11px] font-semibold text-bronze-600 uppercase tracking-widest bg-bronze-50 px-3 py-1 rounded-full">
                         {post.category}
                       </span>
@@ -52,10 +52,10 @@ export const BlogPage: React.FC = () => {
                         <Clock size={12} /> {post.readTime}
                       </span>
                     </div>
-                    <h2 className="text-xl sm:text-2xl font-serif text-stone-900 mb-3 group-hover:text-bronze-700 transition-colors">
+                    <h2 className="text-lg font-serif text-stone-900 mb-2 group-hover:text-bronze-700 transition-colors">
                       {post.title}
                     </h2>
-                    <p className="text-stone-500 text-sm sm:text-base leading-relaxed mb-4">
+                    <p className="text-stone-500 text-sm leading-relaxed mb-4 flex-1">
                       {post.description}
                     </p>
                     <span className="inline-flex items-center gap-2 text-bronze-600 text-sm font-medium group-hover:gap-3 transition-all">

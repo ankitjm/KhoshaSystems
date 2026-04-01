@@ -62,7 +62,7 @@ export const BlogPostPage: React.FC = () => {
       if (match[1] && match[2]) {
         parts.push(<a key={key++} href={match[2]} className="text-bronze-600 underline hover:text-bronze-800 transition-colors">{match[1]}</a>);
       } else if (match[3]) {
-        parts.push(<strong key={key++} className="text-stone-800">{match[3]}</strong>);
+        parts.push(<strong key={key++} className="font-bold text-stone-800">{match[3]}</strong>);
       } else if (match[4]) {
         parts.push(<em key={key++}>{match[4]}</em>);
       }
