@@ -57,6 +57,11 @@ const seoConfig: Record<string, SEOConfig> = {
     description: 'Get in touch for web apps, SaaS, AI or digital transformation. Kumara Park, Seshadripuram, Bangalore. Email: ankit@khoshasystems.com',
     keywords: 'contact software company Bangalore, hire web developers Bangalore, software development quote India, digital transformation consultation Bangalore, Kumara Park tech company contact, software outsourcing company Bangalore, startup tech partner Bangalore'
   },
+  '/services/openclaw-installation': {
+    title: 'OpenClaw Installation Service | AI Agent Platform Setup | ₹25,000 | Khoshà Systems',
+    description: 'Get OpenClaw AI agent platform installed on your server. Includes VPS setup, Telegram & WhatsApp integration, SSL, and 30 days support. ₹25,000 one-time.',
+    keywords: 'OpenClaw installation service, AI agent platform setup, OpenClaw deployment, AI chatbot installation, Telegram bot setup, WhatsApp Business API integration, AI agent server setup, OpenClaw VPS installation, AI automation platform setup India, AI agent deployment service'
+  },
   '/vancouver': {
     title: 'Software Development Company Vancouver | AI & SaaS Development | Khoshà Systems',
     description: 'Khoshà Systems Vancouver — custom web apps, SaaS & AI transformation. 15+ years experience, senior team with local presence.',

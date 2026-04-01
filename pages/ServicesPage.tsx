@@ -6,6 +6,8 @@ import { Contact } from '../components/Contact';
 import { CTAStrip } from '../components/CTAStrip';
 import { PageHero } from '../components/PageHero';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Bot } from 'lucide-react';
 
 export const ServicesPage: React.FC = () => {
   return (
@@ -16,6 +18,37 @@ export const ServicesPage: React.FC = () => {
         subtitle="Web apps, websites, AI transformation, mobile apps, and full digital services — built for scale and designed for impact."
         backgroundImage="/images/services-hero.jpg"
       />
+
+      {/* Featured: OpenClaw Installation */}
+      <Section className="bg-stone-900 text-white">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center gap-8 p-8 bg-stone-800 rounded-xl border border-stone-700"
+          >
+            <div className="flex-shrink-0">
+              <div className="w-16 h-16 rounded-full bg-bronze-600/20 flex items-center justify-center">
+                <Bot className="text-bronze-500" size={32} />
+              </div>
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <div className="text-bronze-500 text-xs uppercase tracking-widest mb-1">New Service</div>
+              <h3 className="text-xl font-serif mb-2">OpenClaw Installation — ₹25,000</h3>
+              <p className="text-stone-400 text-sm">
+                We install and configure the OpenClaw AI agent platform on your own server — complete with Telegram, WhatsApp integration, and 30 days of support.
+              </p>
+            </div>
+            <Link
+              to="/services/openclaw-installation"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-bronze-600 text-white text-sm font-medium uppercase tracking-wider hover:bg-bronze-500 transition-colors rounded whitespace-nowrap group"
+            >
+              Learn More <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
+        </div>
+      </Section>
 
       <Services />
       <Phases />

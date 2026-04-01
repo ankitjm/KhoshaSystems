@@ -40,6 +40,7 @@ const PricingPage = lazy(() => import('./pages/PricingPage').then(m => ({ defaul
 const UseCasesPage = lazy(() => import('./pages/UseCasesPage').then(m => ({ default: m.UseCasesPage })));
 const FeaturesPage = lazy(() => import('./pages/FeaturesPage').then(m => ({ default: m.FeaturesPage })));
 const GettingStartedPage = lazy(() => import('./pages/GettingStartedPage').then(m => ({ default: m.GettingStartedPage })));
+const OpenClawInstallationPage = lazy(() => import('./pages/OpenClawInstallationPage').then(m => ({ default: m.OpenClawInstallationPage })));
 const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 
@@ -93,6 +94,7 @@ function AppContent() {
               <Route path="/getting-started" element={<GettingStartedPage />} />
               <Route path="/success-stories" element={<SuccessStoriesPage />} />
               <Route path="/help" element={<KnowledgeBasePage />} />
+              <Route path="/services/openclaw-installation" element={<OpenClawInstallationPage />} />
               <Route path="/vancouver" element={<VancouverPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
