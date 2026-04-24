@@ -275,9 +275,24 @@ server {
         include /etc/nginx/snippets/security-headers.conf;
     }
 
+    # SEO: redirect /index.html to /
+    location = /index.html {
+        return 301 /;
+    }
+
+    # SEO: redirect /path/index.html to /path (strip index.html)
+    location ~ ^(/.+)/index\.html$ {
+        return 301 $1;
+    }
+
+    # SEO: strip trailing slashes from non-root paths (canonical without trailing slash)
+    # Excludes paths with file extensions (e.g. /assets/, /images/) — those have
+    # their own location blocks matched first by nginx's prefix-match priority.
+    rewrite ^/(.*[^/])/$ /$1 permanent;
+
     location / {
         root REMOTE_BASE_PLACEHOLDER/dist;
-        try_files $uri $uri/index.html $uri/ =404;
+        try_files $uri $uri/index.html =404;
         add_header Cache-Control "no-cache";
         include /etc/nginx/snippets/security-headers.conf;
     }

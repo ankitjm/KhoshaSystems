@@ -170,7 +170,7 @@ export const SEOHead: React.FC = () => {
   useEffect(() => {
     const path = location.pathname;
     const config = resolveConfig(path);
-    const canonicalUrl = `${BASE_URL}${path === '/' ? '' : path}`;
+    const canonicalUrl = `${BASE_URL}${path}`;
 
     // Always update canonical URL regardless of config match
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;

@@ -385,7 +385,7 @@ function prerenderMetaOnly() {
   for (const route of ROUTES) {
     const config = seoConfig[route];
     // Blog posts don't have static seo config (set dynamically); copy template with canonical fix
-    const canonicalUrl = route === '/' ? BASE_URL : `${BASE_URL}${route}`;
+    const canonicalUrl = route === '/' ? `${BASE_URL}/` : `${BASE_URL}${route}`;
     const ogImage = (config && config.ogImage) || DEFAULT_OG_IMAGE;
 
     let html = templateHtml;
@@ -439,6 +439,15 @@ function prerenderMetaOnly() {
       /<meta property="og:url" content="[^"]*" \/>/,
       `<meta property="og:url" content="${canonicalUrl}" />`
     );
+
+    // Fix hreflang: only home (/) and /vancouver have regional alternates.
+    // All other pages have no regional equivalent — remove hreflang to avoid
+    // conflicting signals (en-IN pointing to home on every non-home page).
+    if (route !== '/' && route !== '/vancouver') {
+      html = html.replace(/<link rel="alternate" hreflang="en-IN"[^>]*\/>\n?/g, '');
+      html = html.replace(/<link rel="alternate" hreflang="x-default"[^>]*\/>\n?/g, '');
+      html = html.replace(/<link rel="alternate" hreflang="en-CA"[^>]*\/>\n?/g, '');
+    }
 
     // Inject JSON-LD structured data (breadcrumbs, FAQ schemas)
     const jsonLd = getJsonLdScripts(route);
