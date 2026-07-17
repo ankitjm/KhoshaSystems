@@ -266,7 +266,7 @@ export const Contact: React.FC = () => {
               </div>
             </div>
             <div className="pt-5 border-t border-stone-800 flex flex-col sm:flex-row justify-between items-center text-stone-600 text-[10px] sm:text-[11px] uppercase tracking-wider gap-2">
-              <p>&copy; {new Date().getFullYear()} Khoshà Systems. All rights reserved.</p>
+              <p>&copy; {new Date().getFullYear()} Khoshà Systems. All rights reserved. <span className="text-stone-700">v{__APP_VERSION__}</span></p>
               <div className="flex gap-4 sm:gap-6">
                 <a href="/sitemap.xml" className="hover:text-stone-400 transition-colors">Sitemap</a>
                 <span className="text-stone-700">Software Company, Bangalore (Bengaluru)</span>

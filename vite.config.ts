@@ -1,7 +1,10 @@
 import path from 'path';
+import { readFileSync } from 'fs';
 import { defineConfig, loadEnv } from 'vite';
 import type { Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
+
+const pkg = JSON.parse(readFileSync(path.resolve(__dirname, 'package.json'), 'utf-8'));
 
 // Convert render-blocking CSS to async loading in production
 function asyncCssPlugin(): Plugin {
@@ -28,7 +31,8 @@ export default defineConfig(({ mode }) => {
       plugins: [react(), asyncCssPlugin()],
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+        __APP_VERSION__: JSON.stringify(pkg.version)
       },
       resolve: {
         alias: {
