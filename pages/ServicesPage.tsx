@@ -20,7 +20,7 @@ export const ServicesPage: React.FC = () => {
       />
 
       {/* Featured: OpenClaw Installation */}
-      <Section className="bg-stone-900 text-white">
+      {/*<Section className="bg-stone-900 text-white">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -48,7 +48,7 @@ export const ServicesPage: React.FC = () => {
             </Link>
           </motion.div>
         </div>
-      </Section>
+      </Section>*/}
 
       <Services />
       <Phases />

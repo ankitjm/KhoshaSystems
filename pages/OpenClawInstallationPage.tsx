@@ -1,4 +1,4 @@
-import React from 'react';
+{/*import React from 'react';
 import { Section } from '../components/Section';
 import { Contact } from '../components/Contact';
 import { PageHero } from '../components/PageHero';
@@ -59,10 +59,10 @@ export const OpenClawInstallationPage: React.FC = () => {
             Contact Us <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
-      </PageHero>
+      </PageHero>*/}
 
       {/* Pricing stats */}
-      <Section className="bg-white border-b border-stone-100">
+      {/*<Section className="bg-white border-b border-stone-100">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
@@ -85,10 +85,10 @@ export const OpenClawInstallationPage: React.FC = () => {
             </motion.div>
           </div>
         </div>
-      </Section>
+      </Section>*/}
 
       {/* What You Get */}
-      <Section className="bg-white">
+      {/*<Section className="bg-white">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 mb-8 text-center">What You Get</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -102,10 +102,10 @@ export const OpenClawInstallationPage: React.FC = () => {
             ))}
           </div>
         </div>
-      </Section>
+      </Section>/*}
 
       {/* Full Inclusion Checklist */}
-      <Section className="bg-stone-50">
+      {/*<Section className="bg-stone-50">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 mb-8 text-center">Everything Included</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -118,10 +118,10 @@ export const OpenClawInstallationPage: React.FC = () => {
             ))}
           </div>
         </div>
-      </Section>
+      </Section>*/}
 
       {/* How It Works — 5 Steps */}
-      <Section className="bg-white">
+      {/*<Section className="bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 mb-10 text-center">How It Works</h2>
           <div className="space-y-6">
@@ -139,10 +139,10 @@ export const OpenClawInstallationPage: React.FC = () => {
             ))}
           </div>
         </div>
-      </Section>
+      </Section>*/}
 
       {/* Target Audience */}
-      <Section className="bg-stone-50">
+      {/*<Section className="bg-stone-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 mb-8 text-center">Who This Is For</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -155,10 +155,10 @@ export const OpenClawInstallationPage: React.FC = () => {
             ))}
           </div>
         </div>
-      </Section>
+      </Section>*/}
 
       {/* CTA */}
-      <Section className="bg-stone-900 text-white">
+      {/*<Section className="bg-stone-900 text-white">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-serif mb-4">Ready to Deploy Your AI Agents?</h2>
           <p className="text-stone-400 mb-8 text-sm sm:text-base">
@@ -179,3 +179,4 @@ export const OpenClawInstallationPage: React.FC = () => {
     </div>
   );
 };
+*/}
