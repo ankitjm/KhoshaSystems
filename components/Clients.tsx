@@ -6,7 +6,6 @@ const clients = [
   { name: "Arrowhead Communications", logo: "/images/clients/arrowhead.jpg" },
   { name: "Unhive Ventures", logo: "/images/clients/unhive-ventures.png" },
   { name: "MI1K.CO", logo: "/images/clients/milk-logo.png" },
-  { name: "Prestige Constructions", logo: "/images/clients/prestige-group.png" },
   { name: "Nothing", logo: "/images/clients/nothing-logo.webp" },
 ];
 
