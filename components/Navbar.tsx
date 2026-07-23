@@ -100,6 +100,13 @@ export const Navbar: React.FC = () => {
                 {item.label}
               </Link>
             ))}
+            {/* TEMP: review link, remove before merging */}
+            <Link
+              to="/preview-demo"
+              className="border border-dashed border-bronze-400 text-bronze-600 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider hover:bg-bronze-50 transition-all duration-300 rounded"
+            >
+              Demo
+            </Link>
             <Link
               to="/contact"
               className="bg-stone-900 text-white px-4 py-1.5 text-[10px] font-medium uppercase tracking-wider hover:bg-bronze-600 transition-all duration-300 rounded"
@@ -159,7 +166,14 @@ export const Navbar: React.FC = () => {
                   </Link>
                 </motion.div>
               ))}
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="mt-3">
+              {/* TEMP: review link, remove before merging */}
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32 }} className="mt-3">
+                <Link to="/preview-demo" onClick={() => setIsMobileOpen(false)}
+                  className="block w-full border border-dashed border-bronze-400 text-bronze-600 text-center py-2.5 text-sm font-medium uppercase tracking-wider rounded">
+                  Demo Preview
+                </Link>
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="mt-2">
                 <Link to="/contact" onClick={() => setIsMobileOpen(false)}
                   className="block w-full bg-stone-900 text-white text-center py-3 text-sm font-medium uppercase tracking-wider rounded active:bg-bronze-600 transition-colors">
                   Get Started
