@@ -43,6 +43,7 @@ const GettingStartedPage = lazy(() => import('./pages/GettingStartedPage').then(
 // const OpenClawInstallationPage = lazy(() => import('./pages/OpenClawInstallationPage').then(m => ({ default: m.OpenClawInstallationPage })));
 const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
+const PreviewDemoPage = lazy(() => import('./pages/PreviewDemoPage').then(m => ({ default: m.PreviewDemoPage })));
 
 function AppContent() {
   // Visitor tracking (runs inside Router for access to useLocation)
@@ -96,6 +97,7 @@ function AppContent() {
               <Route path="/help" element={<KnowledgeBasePage />} />
               {/* <Route path="/services/openclaw-installation" element={<OpenClawInstallationPage />} /> */}
               <Route path="/vancouver" element={<VancouverPage />} />
+              <Route path="/preview-demo" element={<PreviewDemoPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
