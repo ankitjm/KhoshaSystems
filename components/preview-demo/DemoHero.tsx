@@ -39,7 +39,6 @@ const AnimatedStat: React.FC<{ value: string; label: string; delay: number }> = 
 export const DemoHero: React.FC<{ align?: 'left' | 'center' | 'right' }> = ({ align = 'center' }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   const itemsClass = align === 'left' ? 'items-start' : align === 'right' ? 'items-end' : 'items-center';
@@ -55,6 +54,8 @@ export const DemoHero: React.FC<{ align?: 'left' | 'center' | 'right' }> = ({ al
         className="absolute inset-0 z-0"
       >
         <picture>
+          <source media="(max-width: 767px)" srcSet="/images/hero-bg-mobile.webp" type="image/webp" />
+          <source media="(max-width: 767px)" srcSet="/images/hero-bg-mobile.jpg" />
           <source srcSet="/images/hero-bg.webp" type="image/webp" />
           <img
             src="/images/hero-bg.jpg"
@@ -94,7 +95,7 @@ export const DemoHero: React.FC<{ align?: 'left' | 'center' | 'right' }> = ({ al
         <Globe size={40} />
       </motion.div>
 
-      <motion.div style={{ opacity }} className={`relative z-10 ${textAlignClass} max-w-5xl px-5 sm:px-6 pt-20 sm:pt-24`}>
+      <motion.div className={`relative z-10 ${textAlignClass} max-w-5xl px-5 sm:px-6 pt-20 sm:pt-24`}>
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -193,7 +194,7 @@ export const DemoHero: React.FC<{ align?: 'left' | 'center' | 'right' }> = ({ al
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1 }}
-        className={`relative z-10 mt-8 sm:mt-10 w-auto max-w-[calc(100%-2.5rem)] sm:max-w-none ${statsMarginClass}`}
+        className={`relative z-10 mt-8 sm:mt-10 w-auto max-w-[calc(100%-2.5rem)] sm:max-w-none px-5 sm:px-6 ${statsMarginClass}`}
       >
         <div className={`flex items-center ${justifyClass} gap-3 sm:gap-10 md:gap-14 px-3 sm:px-8 py-2 sm:py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full overflow-hidden`}>
           {stats.map((stat, i) => (

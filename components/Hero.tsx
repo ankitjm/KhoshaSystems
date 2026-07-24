@@ -51,6 +51,8 @@ export const Hero: React.FC = () => {
         className="absolute inset-0 z-0"
       >
         <picture>
+          <source media="(max-width: 767px)" srcSet="/images/hero-bg-mobile.webp" type="image/webp" />
+          <source media="(max-width: 767px)" srcSet="/images/hero-bg-mobile.jpg" />
           <source srcSet="/images/hero-bg.webp" type="image/webp" />
           <img
             src="/images/hero-bg.jpg"
