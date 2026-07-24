@@ -1,5 +1,4 @@
 import React from 'react';
-import { DemoHero } from '../components/preview-demo/DemoHero';
 import { ProductsGrid } from '../components/preview-demo/ProductsGrid';
 import { ProductsDirectory } from '../components/preview-demo/ProductsDirectory';
 import { ProductsBento } from '../components/preview-demo/ProductsBento';
@@ -14,19 +13,11 @@ const SectionLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 );
 
 /**
- * Temporary review page — bundles the Hero alignment variants and the 5 Products
- * layout explorations in one place for review. Not linked from navigation.
+ * Temporary review page — the 5 Products layout explorations only. Not linked from navigation.
  */
-export const PreviewDemoPage: React.FC = () => {
+export const PreviewDemoProductsPage: React.FC = () => {
   return (
     <div>
-      <SectionLabel>Hero — Centered (default)</SectionLabel>
-      <DemoHero />
-      <SectionLabel>Hero — Left aligned</SectionLabel>
-      <DemoHero align="left" />
-      <SectionLabel>Hero — Right aligned</SectionLabel>
-      <DemoHero align="right" />
-
       <SectionLabel>Products Layout A — Sectioned Grid</SectionLabel>
       <ProductsGrid />
 

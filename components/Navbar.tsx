@@ -100,12 +100,18 @@ export const Navbar: React.FC = () => {
                 {item.label}
               </Link>
             ))}
-            {/* TEMP: review link, remove before merging */}
+            {/* TEMP: review links, remove before merging */}
             <Link
-              to="/preview-demo"
+              to="/preview-demo-hero"
               className="border border-dashed border-bronze-400 text-bronze-600 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider hover:bg-bronze-50 transition-all duration-300 rounded"
             >
-              Demo
+              Hero Demo
+            </Link>
+            <Link
+              to="/preview-demo-products"
+              className="border border-dashed border-bronze-400 text-bronze-600 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider hover:bg-bronze-50 transition-all duration-300 rounded"
+            >
+              Products Demo
             </Link>
             <Link
               to="/contact"
@@ -166,11 +172,17 @@ export const Navbar: React.FC = () => {
                   </Link>
                 </motion.div>
               ))}
-              {/* TEMP: review link, remove before merging */}
+              {/* TEMP: review links, remove before merging */}
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32 }} className="mt-3">
-                <Link to="/preview-demo" onClick={() => setIsMobileOpen(false)}
+                <Link to="/preview-demo-hero" onClick={() => setIsMobileOpen(false)}
                   className="block w-full border border-dashed border-bronze-400 text-bronze-600 text-center py-2.5 text-sm font-medium uppercase tracking-wider rounded">
-                  Demo Preview
+                  Hero Demo
+                </Link>
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.33 }} className="mt-2">
+                <Link to="/preview-demo-products" onClick={() => setIsMobileOpen(false)}
+                  className="block w-full border border-dashed border-bronze-400 text-bronze-600 text-center py-2.5 text-sm font-medium uppercase tracking-wider rounded">
+                  Products Demo
                 </Link>
               </motion.div>
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="mt-2">
