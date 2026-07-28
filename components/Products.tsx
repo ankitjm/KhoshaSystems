@@ -72,10 +72,10 @@ const products = [
     ]
   },
   {
-    name: "Immigration",
+    name: "Canada Immigration",
     slug: "/contact",
-    tagline: "Case Management for Immigration Consultants",
-    description: "A case-management platform for immigration consultancies and agents — track applicants, manage documentation, and stay on top of every case stage from one dashboard.",
+    tagline: "Case Management for Canada Immigration Consultants",
+    description: "A case-management platform built for Canada-focused immigration consultancies and agents — track applicants, manage documentation, and stay on top of every case stage from one dashboard.",
     icon: Plane,
     color: "stone",
     logo: null,
@@ -83,7 +83,7 @@ const products = [
       { icon: Users, label: "Applicant Tracking", desc: "Manage every case and applicant from a single pipeline" },
       { icon: Shield, label: "Document Vault", desc: "Secure storage for passports, visas, and supporting documents" },
       { icon: BarChart3, label: "Case Pipeline", desc: "Visual stage-based tracking from consultation to approval" },
-      { icon: Globe, label: "Multi-Country Support", desc: "Track cases across different destination countries and visa types" },
+      { icon: Globe, label: "Visa Category Tracking", desc: "Track cases across study, work, and permanent residency streams" },
     ],
     stats: [
       { value: "Custom", label: "Built for Your Practice" },
