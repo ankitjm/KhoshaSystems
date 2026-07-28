@@ -18,7 +18,12 @@ const ROUTES = [
   '/contact',
   '/blog',
   '/products/retaileros',
+  '/products/retaileros-2',
+  '/products/retaileros-3',
   '/products/real-estate-crm',
+  '/products/real-desk',
+  '/products/real-desk-journey',
+  '/products/real-desk-hub',
   '/products/visitor-management',
   '/vancouver',
   // Blog posts (dynamic routes need prerendering for SEO)
