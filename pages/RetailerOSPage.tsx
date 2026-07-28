@@ -4,17 +4,52 @@ import { Contact } from '../components/Contact';
 import { PageHero } from '../components/PageHero';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, BarChart3, Smartphone, Zap, Cloud, ArrowRight, Check, Cpu, Package, Radio, ExternalLink } from 'lucide-react';
+import { ShoppingCart, ArrowRight, Check, ExternalLink, BarChart3, Package, Receipt, Wallet, Percent, Wrench, MessageCircle, Quote, Star } from 'lucide-react';
 import { FAQSection } from '../components/FAQSection';
 import { retailerOSFAQs } from '../components/StructuredData';
 
-const features = [
-  { icon: BarChart3, label: "Real-Time Analytics", desc: "Live sales dashboards, IMEI/serial tracking, inventory levels, and margin analysis updated in real time across all your stores." },
-  { icon: Radio, label: "Telecom & Electronics Ready", desc: "IMEI management, serial number tracking, warranty registration, and scheme/offer management built for telecom and electronics retail." },
-  { icon: Zap, label: "AI-Powered Insights", desc: "Demand forecasting, slow-moving SKU alerts, smart reorder suggestions, and brand-wise performance analysis." },
-  { icon: Cloud, label: "Cloud-Native", desc: "Scale from 1 store to 100 without infrastructure headaches. Automatic backups, zero downtime updates." },
-  { icon: Package, label: "Scheme & Offer Engine", desc: "Manage brand schemes, cashbacks, exchange offers, and combo deals. Track scheme claims and pending payouts automatically." },
-  { icon: Cpu, label: "Brand & Distributor Portal", desc: "Give your brand partners and distributors visibility into sell-through data, scheme utilization, and inventory levels." },
+const dayOneImpact = [
+  { value: "11 hrs", label: "Saved Weekly", desc: "on counter reconciliation and manual IMEI matching" },
+  { value: "0.4s", label: "Bill to WhatsApp", desc: "from print to the customer's phone, automatically" },
+  { value: "97%", label: "Fewer IMEI Mismatches", desc: "at stock audits, versus manual tracking" },
+  { value: "3 hrs", label: "Earlier Closing", desc: "6 PM close instead of 9 PM, most nights" },
+];
+
+const modules = [
+  {
+    image: "/images/Retailerosimg/inventory.png",
+    icon: Package,
+    title: "Inventory",
+    desc: "Live IMEI ledger. Every phone tracked from scan to sale, across every store.",
+  },
+  {
+    image: "/images/Retailerosimg/khaata.png",
+    icon: Wallet,
+    title: "Khaata",
+    desc: "From notebook to system. Partial payments, reminders, and a full audit trail — khaata that doesn't break.",
+  },
+  {
+    image: "/images/Retailerosimg/billing.png",
+    icon: Receipt,
+    title: "Billing",
+    desc: "Scan, sell, print thermal, send on WhatsApp. GST and IMEI captured automatically on every bill.",
+  },
+  {
+    image: "/images/Retailerosimg/Reports.png",
+    icon: BarChart3,
+    title: "Schemes, Service & Reports",
+    desc: "Brand cashback applied automatically at billing, repair status sent on WhatsApp, and daily sales, stock, and profit reports — without spreadsheets.",
+  },
+];
+
+const moduleCategories = [
+  { n: "01", name: "Selling", items: ["Sales Desk", "Schemes", "Pricing", "Invoices"] },
+  { n: "02", name: "Inventory", items: ["Inventory", "IMEI Tracker", "Purchase Orders", "Stores"] },
+  { n: "03", name: "Customers", items: ["Clients (CRM)", "Marketing", "Help / Inquiries"] },
+  { n: "04", name: "Service", items: ["Repairs", "Claims"] },
+  { n: "05", name: "Operations", items: ["Cash Register", "Expenses", "Staff"] },
+  { n: "06", name: "Finance", items: ["Finance", "Reports"] },
+  { n: "07", name: "Platform", items: ["Onboarding", "Launcher", "Settings", "Integrations", "Marketplace"] },
 ];
 
 const benefits = [
@@ -30,10 +65,30 @@ const benefits = [
   "Detailed brand-wise margin analysis",
 ];
 
-const stats = [
-  { value: "40%", label: "Faster Checkout", desc: "Streamlined billing with IMEI auto-capture reduces queue time" },
-  { value: "3x", label: "Inventory Accuracy", desc: "Serial-level tracking eliminates stock discrepancies across stores" },
-  { value: "60%", label: "Less Manual Work", desc: "Scheme tracking, reorders, and notifications run on autopilot" },
+const connectedSteps = [
+  { icon: Package, label: "Inventory", desc: "IMEI marked sold instantly" },
+  { icon: Percent, label: "Schemes", desc: "Brand cashback queued automatically" },
+  { icon: Wallet, label: "Khaata", desc: "Customer ledger updated in real time" },
+  { icon: MessageCircle, label: "WhatsApp", desc: "Receipt delivered in 0.4 seconds" },
+  { icon: BarChart3, label: "Reports", desc: "Daily numbers updated — billed amount, bill count, week-on-week trend" },
+];
+
+const testimonials = [
+  {
+    quote: "We saved 11 hours every week that used to go into manually matching IMEI numbers against paper stock registers.",
+    author: "Suresh Patel",
+    role: "Mobile Retailer, 2 Counters",
+  },
+  {
+    quote: "Every WhatsApp receipt has gone through for 9 months straight — 100% delivered, zero complaints from customers waiting on a bill.",
+    author: "Rakesh Verma",
+    role: "Mobile Retailer, 1 Counter",
+  },
+  {
+    quote: "We now bill over ₹2 crore a month across four counters, with every brand scheme applied automatically. No more chasing distributors for cashback.",
+    author: "Mohammed Iqbal",
+    role: "Electronics Retailer, 4 Counters",
+  },
 ];
 
 export const RetailerOSPage: React.FC = () => {
@@ -42,8 +97,8 @@ export const RetailerOSPage: React.FC = () => {
       <PageHero
         backLink={{ label: "All Products", href: "/products" }}
         label="RetailerOS"
-        title={<>The Operating System for <span className="bronze-gradient-text">Telecom & Electronics Retail</span></>}
-        subtitle="A full-stack retail management platform built for mobile phone retailers, consumer electronics stores, and telecom distributors. IMEI tracking, scheme management, brand analytics, and GST billing — unified in one intelligent system."
+        title={<>The Operating System for <span className="bronze-gradient-text">Your Retail Counter</span></>}
+        subtitle="Billing, inventory, schemes, repairs, customer credit, and WhatsApp receipts — one system that quietly runs everything behind the counter. Built for mobile phone retailers, consumer electronics stores, and telecom distributors."
         backgroundImage="/images/retaileros-page-hero.jpg"
       >
         <div className="flex flex-wrap gap-3">
@@ -65,34 +120,103 @@ export const RetailerOSPage: React.FC = () => {
         </div>
       </Section>
 
-      {/* Stats */}
+      {/* Day One Impact */}
       <Section className="bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {stats.map((stat, i) => (
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10 sm:mb-12">
+            <span className="text-bronze-600 font-semibold tracking-widest uppercase text-sm block mb-3">Day One Impact</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900">What Changes on <span className="bronze-gradient-text">Day One</span></h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+            {dayOneImpact.map((stat, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="text-center p-8 bg-stone-50 rounded-lg border border-stone-200">
-                <div className="text-4xl sm:text-5xl font-bold text-stone-900 mb-2">{stat.value}</div>
-                <div className="text-bronze-600 font-medium text-sm uppercase tracking-wider mb-2">{stat.label}</div>
-                <p className="text-stone-400 text-sm">{stat.desc}</p>
+                className="text-center p-6 sm:p-8 bg-stone-50 rounded-lg border border-stone-200">
+                <div className="text-3xl sm:text-4xl font-bold text-stone-900 mb-2">{stat.value}</div>
+                <div className="text-bronze-600 font-medium text-xs sm:text-sm uppercase tracking-wider mb-2">{stat.label}</div>
+                <p className="text-stone-400 text-xs sm:text-sm">{stat.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* Features */}
+      {/* Product in Action */}
+      <Section className="bg-stone-900 relative overflow-hidden">
+        <div className="absolute inset-0 pattern-diagonal z-0 pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-bronze-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center relative z-10">
+          <div>
+            <span className="text-bronze-400 font-semibold tracking-widest uppercase text-sm block mb-3">See It Live</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white mb-4">One Login. <span className="bronze-gradient-text">Your Whole Shop.</span></h2>
+            <p className="text-white/60 mb-8 leading-relaxed">The counter view your staff actually uses — one screen carries the whole transaction, from scan to scheme payout.</p>
+            <div className="space-y-3">
+              {[
+                "Live billing ticket updates as items are scanned",
+                "IMEI auto-captured per line item — no manual entry",
+                "Brand scheme cashback applied automatically at checkout",
+                "GST breakdown (CGST/SGST) calculated in real time",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-2.5">
+                  <Check size={16} className="text-bronze-400 mt-0.5 shrink-0" />
+                  <span className="text-white/70 text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+            className="rounded-2xl overflow-hidden glow-bronze">
+            <img src="/images/retaileros-hero-mockup.png" alt="RetailerOS billing dashboard shown on a laptop and phone" className="w-full h-auto" loading="lazy" />
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* Modules — visual showcase */}
       <Section className="bg-stone-50">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-serif text-stone-900 mb-4 text-center">Core Capabilities</h2>
-          <p className="text-stone-500 text-center max-w-2xl mx-auto mb-12">Everything a telecom or electronics retailer needs — from IMEI tracking and scheme management to multi-store analytics.</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.1 }}
-                className="p-6 sm:p-8 bg-white border border-stone-200 rounded-lg hover:border-bronze-300 hover:shadow-sm transition-all">
-                <feature.icon size={24} className="text-bronze-500 mb-4" />
-                <h3 className="text-stone-900 font-medium text-lg mb-2">{feature.label}</h3>
-                <p className="text-stone-500 text-sm leading-relaxed">{feature.desc}</p>
+          <div className="text-center mb-10 sm:mb-12">
+            <span className="text-bronze-600 font-semibold tracking-widest uppercase text-sm block mb-3">The Modules</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900 mb-4">Six Modules. <span className="bronze-gradient-text">One Counter.</span></h2>
+            <p className="text-stone-500 max-w-2xl mx-auto">From the first scan to the last WhatsApp receipt — everything runs through one system.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {modules.map((mod, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="bg-white border border-stone-200 rounded-lg overflow-hidden hover:border-bronze-300 hover:shadow-sm transition-all">
+                <img src={mod.image} alt={`RetailerOS ${mod.title} screen`} className="w-full h-auto" loading="lazy" />
+                <div className="p-5 sm:p-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <mod.icon size={18} className="text-bronze-500" />
+                    <h3 className="text-stone-900 font-medium text-base">{mod.title}</h3>
+                  </div>
+                  <p className="text-stone-500 text-sm leading-relaxed">{mod.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* 23 Modules across 7 categories */}
+      <Section className="bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10 sm:mb-12">
+            <span className="text-bronze-600 font-semibold tracking-widest uppercase text-sm block mb-3">Full Platform</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900 mb-4">23 Modules Across <span className="bronze-gradient-text">Every Function</span></h2>
+            <p className="text-stone-500 max-w-2xl mx-auto">Not just billing — the entire back-of-shop, connected.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {moduleCategories.map((cat, i) => (
+              <motion.div key={cat.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+                className="p-5 bg-stone-50 border border-stone-200 rounded-lg">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-bronze-400 font-serif font-bold text-sm">{cat.n}</span>
+                  <h3 className="text-stone-900 font-medium text-sm">{cat.name}</h3>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {cat.items.map((item) => (
+                    <span key={item} className="text-[11px] text-stone-600 bg-white border border-stone-200 rounded-full px-2.5 py-1">{item}</span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -100,7 +224,7 @@ export const RetailerOSPage: React.FC = () => {
       </Section>
 
       {/* Benefits */}
-      <Section className="bg-white">
+      <Section className="bg-stone-50">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl sm:text-4xl font-serif text-stone-900 mb-4">Built for Telecom & Electronics Retail in India</h2>
@@ -128,8 +252,30 @@ export const RetailerOSPage: React.FC = () => {
         </div>
       </Section>
 
+      {/* Connected Systems */}
+      <Section className="bg-stone-900 relative overflow-hidden">
+        <div className="absolute inset-0 pattern-diagonal z-0 pointer-events-none" />
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="text-center mb-10 sm:mb-12">
+            <span className="text-bronze-400 font-semibold tracking-widest uppercase text-sm block mb-3">Connected By Default</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white mb-4">One Bill. <span className="bronze-gradient-text">Every System Updated.</span></h2>
+            <p className="text-white/60 max-w-xl mx-auto">No double-entry. Ever. Here's what happens the moment your staff prints one receipt.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {connectedSteps.map((step, i) => (
+              <motion.div key={step.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="p-5 bg-white/5 border border-white/10 rounded-lg glow-bronze">
+                <step.icon size={20} className="text-bronze-400 mb-3" />
+                <h3 className="text-white font-medium text-sm mb-1">{step.label}</h3>
+                <p className="text-white/50 text-xs leading-relaxed">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       {/* Comparison */}
-      <Section className="bg-stone-50">
+      <Section className="bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-serif text-stone-900 mb-4">RetailerOS vs Legacy Retail Software</h2>
           <p className="text-stone-500 mb-12 max-w-2xl mx-auto">Traditional tools like Gofrugal, Ginesys, or Tally weren't built for IMEI-based retail, brand scheme tracking, or cloud-first operations. RetailerOS is.</p>
@@ -158,8 +304,34 @@ export const RetailerOSPage: React.FC = () => {
         </div>
       </Section>
 
-      {/* Explore More */}
+      {/* Testimonials */}
       <Section className="bg-stone-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10 sm:mb-12">
+            <span className="text-bronze-600 font-semibold tracking-widest uppercase text-sm block mb-3">From the Counter</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900">What <span className="bronze-gradient-text">Retailers</span> Say</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="bg-white p-6 sm:p-7 border border-stone-200 hover:border-bronze-300 transition-all rounded-lg relative glow-bronze">
+                <Quote size={24} className="text-bronze-200 absolute top-4 right-4" />
+                <div className="flex gap-1 text-bronze-500 mb-4">
+                  {[...Array(5)].map((_, si) => <Star key={si} size={13} fill="currentColor" />)}
+                </div>
+                <p className="text-stone-600 mb-5 leading-relaxed text-sm italic">"{t.quote}"</p>
+                <div className="border-t border-stone-100 pt-4">
+                  <div className="text-stone-900 font-serif text-sm font-medium">{t.author}</div>
+                  <div className="text-[11px] text-bronze-600 uppercase tracking-widest">{t.role}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Explore More */}
+      <Section className="bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Explore RetailerOS</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -185,7 +357,7 @@ export const RetailerOSPage: React.FC = () => {
       </Section>
 
       {/* Also from Khosha */}
-      <Section className="bg-white">
+      <Section className="bg-stone-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Also from Khoshà Systems</h2>
           <div className="grid sm:grid-cols-3 gap-4">
@@ -197,7 +369,7 @@ export const RetailerOSPage: React.FC = () => {
               <Link
                 key={link.href}
                 to={link.href}
-                className="bg-stone-50 border border-stone-200 rounded-lg p-5 hover:border-bronze-400 hover:shadow-sm transition-all group"
+                className="bg-white border border-stone-200 rounded-lg p-5 hover:border-bronze-400 hover:shadow-sm transition-all group"
               >
                 <h3 className="font-medium text-stone-800 text-sm mb-1 group-hover:text-bronze-600 transition-colors flex items-center gap-1">
                   {link.label} <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -243,9 +415,6 @@ export const RetailerOSPage: React.FC = () => {
             <a href="https://retaileros.in" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 border border-stone-300 text-stone-700 text-sm font-medium uppercase tracking-wider hover:border-bronze-400 transition-colors rounded group">
               Visit RetailerOS.in <ExternalLink size={16} className="group-hover:translate-x-1 transition-transform" />
             </a>
-            <Link to="/compare/retaileros-vs-iqmetrix" className="inline-flex items-center gap-2 px-8 py-4 border border-stone-300 text-stone-700 text-sm font-medium uppercase tracking-wider hover:border-bronze-400 transition-colors rounded group">
-              Compare vs iQmetrix <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
           </div>
         </div>
       </Section>

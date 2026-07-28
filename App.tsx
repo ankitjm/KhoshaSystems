@@ -19,7 +19,12 @@ const ServicesPage = lazy(() => import('./pages/ServicesPage').then(m => ({ defa
 const WorkPage = lazy(() => import('./pages/WorkPage').then(m => ({ default: m.WorkPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const RetailerOSPage = lazy(() => import('./pages/RetailerOSPage').then(m => ({ default: m.RetailerOSPage })));
+const RetailerOSAltPage = lazy(() => import('./pages/RetailerOSAltPage').then(m => ({ default: m.RetailerOSAltPage })));
+const RetailerOSBentoPage = lazy(() => import('./pages/RetailerOSBentoPage').then(m => ({ default: m.RetailerOSBentoPage })));
 const RealEstateCRMPage = lazy(() => import('./pages/RealEstateCRMPage').then(m => ({ default: m.RealEstateCRMPage })));
+const RealDeskPage = lazy(() => import('./pages/RealDeskPage').then(m => ({ default: m.RealDeskPage })));
+const RealDeskJourneyPage = lazy(() => import('./pages/RealDeskJourneyPage').then(m => ({ default: m.RealDeskJourneyPage })));
+const RealDeskHubPage = lazy(() => import('./pages/RealDeskHubPage').then(m => ({ default: m.RealDeskHubPage })));
 const VisitorManagementPage = lazy(() => import('./pages/VisitorManagementPage').then(m => ({ default: m.VisitorManagementPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
@@ -74,7 +79,12 @@ function AppContent() {
               <Route path="/work" element={<WorkPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/products/retaileros" element={<RetailerOSPage />} />
+              <Route path="/products/retaileros-2" element={<RetailerOSAltPage />} />
+              <Route path="/products/retaileros-3" element={<RetailerOSBentoPage />} />
               <Route path="/products/real-estate-crm" element={<RealEstateCRMPage />} />
+              <Route path="/products/real-desk" element={<RealDeskPage />} />
+              <Route path="/products/real-desk-journey" element={<RealDeskJourneyPage />} />
+              <Route path="/products/real-desk-hub" element={<RealDeskHubPage />} />
               <Route path="/products/visitor-management" element={<VisitorManagementPage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
