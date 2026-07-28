@@ -225,6 +225,14 @@ export const retailerOSFAQs = [
     question: 'Is RetailerOS GST-compliant?',
     answer: 'Fully GST-compliant with HSN code support, proper tax invoicing, reverse charge handling, and return/credit note workflows. Built for Indian tax requirements from the ground up.',
   },
+  {
+    question: 'Does RetailerOS handle customer credit (khaata)?',
+    answer: 'Yes. RetailerOS digitizes khaata — partial payments, payment reminders, and a full audit trail per customer — replacing the notebook ledger without losing the flexibility retailers rely on.',
+  },
+  {
+    question: 'Can customers get automatic updates on repairs and service?',
+    answer: 'Yes. The Service module tracks repair status from drop-off to ready-for-pickup, and sends the customer automatic WhatsApp updates at each stage — no manual follow-up calls needed.',
+  },
 ];
 
 export const realEstateCRMFAQs = [
