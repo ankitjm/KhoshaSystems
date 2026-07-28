@@ -86,12 +86,12 @@ export const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex gap-4 lg:gap-5 items-center">
+          <div className="hidden md:flex gap-2.5 lg:gap-5 items-center">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.href}
-                className={`text-[10px] uppercase tracking-widest transition-colors duration-200 ${
+                className={`text-[9px] lg:text-[10px] uppercase tracking-wider lg:tracking-widest whitespace-nowrap transition-colors duration-200 ${
                   location.pathname === item.href
                     ? 'text-bronze-700 font-semibold'
                     : 'text-stone-400 hover:text-stone-800'
@@ -102,7 +102,7 @@ export const Navbar: React.FC = () => {
             ))}
             <Link
               to="/contact"
-              className="bg-stone-900 text-white px-4 py-1.5 text-[10px] font-medium uppercase tracking-wider hover:bg-bronze-600 transition-all duration-300 rounded"
+              className="bg-stone-900 text-white px-3 lg:px-4 py-1.5 text-[9px] lg:text-[10px] font-medium uppercase tracking-wider hover:bg-bronze-600 transition-all duration-300 rounded whitespace-nowrap"
             >
               Get Started
             </Link>
