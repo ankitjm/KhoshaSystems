@@ -4,7 +4,7 @@ import { Contact } from '../components/Contact';
 import { PageHero } from '../components/PageHero';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Layers, Zap, Database, Network, Sparkles } from 'lucide-react';
+import { ArrowRight, Layers, Zap, Database, Network, Sparkles, Route, GitBranch } from 'lucide-react';
 
 const suiteStats = [
   { value: "09", label: "Connected Products" },
@@ -159,23 +159,29 @@ export const RealDeskPage: React.FC = () => {
         </div>
       </Section>
 
-      {/* The nine products */}
+      {/* The nine products — expandable grid */}
       <Section className="bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-bronze-600 font-semibold tracking-widest uppercase text-sm block mb-4">The Suite</span>
             <h2 className="text-3xl sm:text-4xl font-serif text-stone-900 mb-4">Nine Products. One Pipeline.</h2>
-            <p className="text-stone-500">Each one owns a step of the buyer's journey — and hands off directly to the next.</p>
+            <p className="text-stone-500">Hover any card for what it does, and what it hands off.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
             {products.map((product, i) => (
-              <motion.div key={product.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.05 * i }}
-                className={`rounded-lg overflow-hidden transition-all flex flex-col hover:-translate-y-1 ${
+              <motion.div
+                key={product.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.04 * i }}
+                className={`group rounded-xl overflow-hidden transition-all ${
                   product.isHub
-                    ? 'bg-gradient-to-br from-bronze-500 via-bronze-600 to-bronze-800 shadow-lg shadow-bronze-900/20 ring-1 ring-bronze-300/40'
+                    ? 'bg-gradient-to-br from-bronze-500 via-bronze-600 to-bronze-800 shadow-lg shadow-bronze-900/20 hover:shadow-xl'
                     : 'bg-white border border-stone-200 hover:border-bronze-300 hover:shadow-md'
-                }`}>
-                <div className={`relative h-40 flex items-center justify-center p-6 ${product.isHub ? 'bg-black/10' : 'bg-gradient-to-b from-stone-50 to-white border-b border-stone-100'}`}>
+                }`}
+              >
+                <div className={`relative h-36 flex items-center justify-center p-6 ${product.isHub ? 'bg-black/10' : 'bg-gradient-to-b from-stone-50 to-white border-b border-stone-100'}`}>
                   <span className={`absolute top-3 left-3 font-serif font-bold text-sm ${product.isHub ? 'text-white/50' : 'text-stone-300'}`}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -186,8 +192,8 @@ export const RealDeskPage: React.FC = () => {
                   )}
                   <img src={product.image} alt={`${product.name} — RealDesk`} className="max-h-full max-w-full object-contain" loading="lazy" />
                 </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-center gap-2 flex-wrap mb-1">
+                <div className="p-5">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <h3 className={`font-serif font-medium text-lg ${product.isHub ? 'text-white' : 'text-stone-900'}`}>{product.name}</h3>
                     {product.isHub && (
                       <span className="inline-flex items-center gap-1 text-[9px] uppercase tracking-widest font-semibold text-white bg-white/15 px-2 py-1 rounded-full">
@@ -195,21 +201,56 @@ export const RealDeskPage: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  <p className={`text-xs uppercase tracking-wider font-medium mb-3 ${product.isHub ? 'text-bronze-100' : 'text-bronze-600'}`}>{product.tagline}</p>
-                  <p className={`text-sm leading-relaxed mb-3 ${product.isHub ? 'text-white/80' : 'text-stone-500'}`}>{product.description}</p>
-                  {product.depth && (
-                    <ul className="space-y-1.5 mb-3">
-                      {product.depth.map((d, j) => (
-                        <li key={j} className="text-xs text-stone-500 flex items-start gap-2">
-                          <span className="text-bronze-400 mt-0.5">—</span> {d}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  <p className={`text-xs mt-auto pt-3 border-t ${product.isHub ? 'border-white/20 text-bronze-100' : 'border-stone-200 text-stone-400'}`}>{product.feeds}</p>
+                  <p className={`text-xs uppercase tracking-wider font-medium mt-1 ${product.isHub ? 'text-bronze-100' : 'text-bronze-600'}`}>{product.tagline}</p>
+                </div>
+
+                <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                  <div className="overflow-hidden">
+                    <div className={`px-5 pb-5 pt-1 ${product.isHub ? '' : 'border-t border-stone-100'}`}>
+                      <p className={`text-sm leading-relaxed mb-3 ${product.isHub ? 'text-white/85' : 'text-stone-600'}`}>{product.description}</p>
+                      {product.depth && (
+                        <ul className="space-y-1.5 mb-3">
+                          {product.depth.map((d, j) => (
+                            <li key={j} className={`text-xs flex items-start gap-2 ${product.isHub ? 'text-white/70' : 'text-stone-500'}`}>
+                              <span className="text-bronze-400 mt-0.5">—</span> {d}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      <p className={`text-xs pt-3 border-t ${product.isHub ? 'border-white/20 text-bronze-100' : 'border-stone-200 text-stone-400'}`}>{product.feeds}</p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Go deeper */}
+      <Section className="bg-stone-50">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <span className="text-bronze-600 font-semibold tracking-widest uppercase text-sm block mb-4">Two Ways to Go Deeper</span>
+            <h2 className="text-3xl sm:text-4xl font-serif text-stone-900">Same Suite. Two Lenses.</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <Link to="/products/real-desk-journey" className="group bg-white border border-stone-200 rounded-xl p-8 hover:border-bronze-300 hover:shadow-md transition-all">
+              <Route className="text-bronze-500 mb-4" size={28} />
+              <h3 className="text-stone-900 font-serif text-xl mb-2">Follow the Buyer's Journey</h3>
+              <p className="text-stone-500 text-sm leading-relaxed mb-4">Walk through all nine products in order — from the first landing page to final possession — with the full story behind each handoff.</p>
+              <span className="inline-flex items-center gap-2 text-bronze-600 text-sm font-medium group-hover:gap-3 transition-all">
+                See the journey <ArrowRight size={16} />
+              </span>
+            </Link>
+            <Link to="/products/real-desk-hub" className="group bg-white border border-stone-200 rounded-xl p-8 hover:border-bronze-300 hover:shadow-md transition-all">
+              <GitBranch className="text-bronze-500 mb-4" size={28} />
+              <h3 className="text-stone-900 font-serif text-xl mb-2">See the Architecture</h3>
+              <p className="text-stone-500 text-sm leading-relaxed mb-4">The hub-and-spoke shape RealDesk's own home screen draws — every product on a ring around the CRM, plus a closer look at the two most built-out today.</p>
+              <span className="inline-flex items-center gap-2 text-bronze-600 text-sm font-medium group-hover:gap-3 transition-all">
+                See the hub <ArrowRight size={16} />
+              </span>
+            </Link>
           </div>
         </div>
       </Section>
