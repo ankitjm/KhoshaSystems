@@ -165,7 +165,10 @@ export const RealDeskPage: React.FC = () => {
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-bronze-600 font-semibold tracking-widest uppercase text-sm block mb-4">The Suite</span>
             <h2 className="text-3xl sm:text-4xl font-serif text-stone-900 mb-4">Nine Products. One Pipeline.</h2>
-            <p className="text-stone-500">Hover any card for what it does, and what it hands off.</p>
+            <p className="text-stone-500">
+              <span className="lg:hidden">What each product does, and what it hands off.</span>
+              <span className="hidden lg:inline">Hover any card for what it does, and what it hands off.</span>
+            </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
             {products.map((product, i) => (
@@ -204,7 +207,7 @@ export const RealDeskPage: React.FC = () => {
                   <p className={`text-xs uppercase tracking-wider font-medium mt-1 ${product.isHub ? 'text-bronze-100' : 'text-bronze-600'}`}>{product.tagline}</p>
                 </div>
 
-                <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                <div className="grid grid-rows-[1fr] lg:grid-rows-[0fr] lg:group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-in-out">
                   <div className="overflow-hidden">
                     <div className={`px-5 pb-5 pt-1 ${product.isHub ? '' : 'border-t border-stone-100'}`}>
                       <p className={`text-sm leading-relaxed mb-3 ${product.isHub ? 'text-white/85' : 'text-stone-600'}`}>{product.description}</p>
