@@ -74,7 +74,7 @@ export const Work: React.FC = () => {
               transition={{ delay: 0.1 }}
               className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-stone-900 mt-3 sm:mt-4"
             >
-              Proven Results.
+              Things We Love to Work On.
             </motion.h2>
           </div>
           <Link to="/contact" className="flex items-center gap-2 text-stone-500 hover:text-bronze-600 transition-colors text-sm">

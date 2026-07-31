@@ -4,13 +4,7 @@ import { Contact } from '../components/Contact';
 import { PageHero } from '../components/PageHero';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Layers, Zap, Database, Network, Sparkles, Route, GitBranch } from 'lucide-react';
-
-const suiteStats = [
-  { value: "09", label: "Connected Products" },
-  { value: "05", label: "Lead Capture Points" },
-  { value: "01", label: "Source of Truth — the CRM" },
-];
+import { ArrowRight, Network, Sparkles, Route, GitBranch } from 'lucide-react';
 
 const products = [
   {
@@ -120,42 +114,6 @@ export const RealDeskPage: React.FC = () => {
           <p className="text-lg sm:text-xl text-stone-700 leading-relaxed">
             <strong>RealDesk</strong> is a connected sales suite by Khoshà Systems for real estate developers and brokers. Nine products — each owning one step of the buyer's journey — write to a single CRM, so every enquiry, scan, walk-in, EOI, and channel-partner referral lands in one pipeline instead of nine disconnected tools.
           </p>
-        </div>
-      </Section>
-
-      {/* Suite stats */}
-      <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {suiteStats.map((stat, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="text-center p-8 bg-stone-50 rounded-lg border border-stone-200">
-                <div className="text-4xl sm:text-5xl font-bold text-stone-900 mb-2">{stat.value}</div>
-                <div className="text-bronze-600 font-medium text-sm uppercase tracking-wider">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* Why one system */}
-      <Section className="bg-stone-50">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <Layers className="text-bronze-500 mb-4" size={28} />
-            <h3 className="text-stone-900 font-medium text-lg mb-2">One System, Not Nine Brochures</h3>
-            <p className="text-stone-500 text-sm leading-relaxed">Every product hands off the thing that actually moves — a web enquiry, a QR scan, a booked unit — to the CRM or the product downstream of it. Nothing sits in a spreadsheet waiting to be re-entered.</p>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-            <Database className="text-bronze-500 mb-4" size={28} />
-            <h3 className="text-stone-900 font-medium text-lg mb-2">The CRM Is the Hub</h3>
-            <p className="text-stone-500 text-sm leading-relaxed">Every other product writes to the CRM; the CRM writes to none of them. Direct enquiries and channel-partner referrals land in the same pipeline — not side by side in separate systems.</p>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <Zap className="text-bronze-500 mb-4" size={28} />
-            <h3 className="text-stone-900 font-medium text-lg mb-2">From First Enquiry to Possession</h3>
-            <p className="text-stone-500 text-sm leading-relaxed">The suite covers the full buyer's journey — five lead capture points, sales presentation, booking, and post-sales handover — so nothing falls through the gaps between teams.</p>
-          </motion.div>
         </div>
       </Section>
 
