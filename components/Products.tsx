@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Section } from './Section';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShoppingCart, Building2, Users, ArrowRight, Zap, Shield, BarChart3, Globe, Bot, Plane, Cloud } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -105,30 +105,6 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-interface AnimatedCounterProps {
-  value: string;
-  label: string;
-}
-
-const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ value, label }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-
-  return (
-    <div ref={ref} className="text-center">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-        className="text-2xl sm:text-3xl font-bold text-stone-900"
-      >
-        {value}
-      </motion.div>
-      <div className="text-[11px] sm:text-xs text-stone-500 uppercase tracking-wider mt-1">{label}</div>
-    </div>
-  );
-};
-
 export const Products: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
@@ -176,73 +152,54 @@ export const Products: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="space-y-20 sm:space-y-28"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {products.map((product, index) => (
+          {products.map((product) => (
             <motion.div
               key={product.name}
               variants={itemVariants}
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center ${index % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}
+              className="h-full flex flex-col bg-white border border-stone-200 rounded-xl p-6 hover:border-bronze-300 hover:shadow-md transition-all duration-300"
             >
-              {/* Product Info */}
-              <div className={index % 2 === 1 ? 'lg:[direction:ltr]' : ''}>
-                {product.logo ? (
-                  <img src={product.logo.src} alt={product.logo.alt} className="h-14 sm:h-16 md:h-20 w-auto mb-4" />
-                ) : (
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                      product.color === 'bronze' ? 'bg-bronze-50 text-bronze-600 border border-bronze-200' : 'bg-stone-100 text-stone-700 border border-stone-200'
-                    }`}>
-                      <product.icon size={24} />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900">{product.name}</h3>
-                    </div>
+              {product.logo ? (
+                <div className="h-9 sm:h-10 flex items-center mb-4">
+                  <img src={product.logo.src} alt={product.logo.alt} className="max-h-8 sm:max-h-9 max-w-[150px] w-auto" />
+                </div>
+              ) : (
+                <div className="flex items-center gap-2.5 mb-4">
+                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                    product.color === 'bronze' ? 'bg-bronze-50 text-bronze-600 border border-bronze-200' : 'bg-stone-100 text-stone-700 border border-stone-200'
+                  }`}>
+                    <product.icon size={18} />
                   </div>
-                )}
-                <p className="text-bronze-600 font-medium text-sm uppercase tracking-wider mb-4">{product.tagline}</p>
-                <p className="text-stone-500 text-base sm:text-lg leading-relaxed mb-8">{product.description}</p>
+                  <h3 className="text-lg font-serif text-stone-900">{product.name}</h3>
+                </div>
+              )}
+              <p className="text-bronze-600 font-medium text-[11px] uppercase tracking-wider mb-3">{product.tagline}</p>
+              <p className="text-stone-500 text-sm leading-relaxed mb-4">{product.description}</p>
 
-                {/* Stats */}
-                <div className="flex gap-8 sm:gap-12 mb-8 pb-8 border-b border-stone-200">
+              <div className="mt-auto">
+                <div className="flex gap-4 pt-4 mb-4 border-t border-stone-100">
                   {product.stats.map((stat, i) => (
-                    <AnimatedCounter key={i} value={stat.value} label={stat.label} />
+                    <div key={i} className="flex-1 min-w-0 text-center">
+                      <div className="text-sm sm:text-base font-bold text-stone-900 leading-tight">{stat.value}</div>
+                      <div className="text-[9px] text-stone-400 uppercase tracking-wider leading-tight">{stat.label}</div>
+                    </div>
                   ))}
                 </div>
 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-col gap-2">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-stone-900 text-white text-sm font-medium uppercase tracking-wider hover:bg-bronze-600 transition-colors rounded-md group"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-stone-900 text-white text-xs font-medium uppercase tracking-wider hover:bg-bronze-600 transition-colors rounded-md group"
                   >
-                    Get a Demo <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    Get a Demo <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
                   <Link
                     to={product.slug}
-                    className="inline-flex items-center gap-2 px-6 py-3 border border-stone-300 text-stone-700 text-sm font-medium uppercase tracking-wider hover:border-bronze-400 hover:text-bronze-700 transition-colors rounded-md group"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-stone-300 text-stone-700 text-xs font-medium uppercase tracking-wider hover:border-bronze-400 hover:text-bronze-700 transition-colors rounded-md group"
                   >
-                    Explore {product.name} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    Explore {product.name} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
-                </div>
-              </div>
-
-              {/* Feature Grid */}
-              <div className={index % 2 === 1 ? 'lg:[direction:ltr]' : ''}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {product.features.map((feature, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.1 + i * 0.1 }}
-                      className="group p-5 sm:p-6 bg-stone-50 border border-stone-200 rounded-lg hover:border-bronze-300 hover:shadow-sm transition-all duration-300"
-                    >
-                      <feature.icon size={20} className="text-bronze-500 mb-3 group-hover:scale-110 transition-transform" />
-                      <h4 className="text-stone-900 font-medium mb-1 text-sm">{feature.label}</h4>
-                      <p className="text-stone-500 text-xs leading-relaxed">{feature.desc}</p>
-                    </motion.div>
-                  ))}
                 </div>
               </div>
             </motion.div>
