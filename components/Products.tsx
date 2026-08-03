@@ -9,7 +9,7 @@ const products = [
     name: "RetailerOS",
     slug: "/products/retaileros",
     tagline: "Built for Telecom & Electronics Retail",
-    description: "A full-stack retail management platform for mobile phone retailers, consumer electronics stores, and telecom distributors. IMEI tracking, scheme management, brand analytics, and GST billing — unified in one intelligent system.",
+    description: "A retail management platform for mobile phone retailers, consumer electronics stores, and telecom distributors. IMEI tracking, scheme management, brand analytics, and GST billing — all unified in one intelligent system.",
     icon: ShoppingCart,
     color: "bronze",
     logo: {
@@ -55,7 +55,7 @@ const products = [
     name: "AI Automation",
     slug: "/services",
     tagline: "AI That Works While You Don't",
-    description: "Custom AI automation for business operations — workflow automation, AI-powered support tooling, and document processing, built around the systems you already use.",
+    description: "Custom AI automation for business operations — workflow automation, AI-powered support tooling, and document processing, built around the systems you already use. It's designed to fit into your existing workflow, not force you into a new one.",
     icon: Bot,
     color: "bronze",
     logo: null,
@@ -75,7 +75,7 @@ const products = [
     name: "Canada Immigration",
     slug: "/contact",
     tagline: "Case Management for Canada Immigration Consultants",
-    description: "A case-management platform built for Canada-focused immigration consultancies and agents — track applicants, manage documentation, and stay on top of every case stage from one dashboard.",
+    description: "A case-management platform built for Canada-focused immigration consultancies and agents. Track applicants, manage documentation, and stay on top of every case stage from one dashboard.",
     icon: Plane,
     color: "stone",
     logo: null,
@@ -117,7 +117,7 @@ export const Products: React.FC = () => {
         className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-bronze-100/20 to-transparent rounded-full blur-[120px] pointer-events-none"
       />
 
-      <div ref={sectionRef} className="max-w-7xl mx-auto relative z-10">
+      <div ref={sectionRef} className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16 sm:mb-20">
           <motion.span
             initial={{ opacity: 0, y: -10 }}
@@ -152,33 +152,35 @@ export const Products: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start"
         >
           {products.map((product) => (
             <motion.div
               key={product.name}
               variants={itemVariants}
-              className="h-full flex flex-col bg-white border border-stone-200 rounded-xl p-6 hover:border-bronze-300 hover:shadow-md transition-all duration-300"
+              className="grid grid-cols-1 sm:grid-cols-[1.1fr_1fr] gap-6 bg-white border border-stone-200 rounded-xl p-6 hover:border-bronze-300 hover:shadow-md transition-all duration-300"
             >
-              {product.logo ? (
-                <div className="h-9 sm:h-10 flex items-center mb-4">
-                  <img src={product.logo.src} alt={product.logo.alt} className="max-h-8 sm:max-h-9 max-w-[150px] w-auto" />
-                </div>
-              ) : (
-                <div className="flex items-center gap-2.5 mb-4">
-                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                    product.color === 'bronze' ? 'bg-bronze-50 text-bronze-600 border border-bronze-200' : 'bg-stone-100 text-stone-700 border border-stone-200'
-                  }`}>
-                    <product.icon size={18} />
+              <div className="min-w-0">
+                {product.logo ? (
+                  <div className="h-9 sm:h-10 flex items-center mb-3">
+                    <img src={product.logo.src} alt={product.logo.alt} className="max-h-8 sm:max-h-9 max-w-[150px] w-auto" />
                   </div>
-                  <h3 className="text-lg font-serif text-stone-900">{product.name}</h3>
-                </div>
-              )}
-              <p className="text-bronze-600 font-medium text-[11px] uppercase tracking-wider mb-3">{product.tagline}</p>
-              <p className="text-stone-500 text-sm leading-relaxed mb-4">{product.description}</p>
+                ) : (
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                      product.color === 'bronze' ? 'bg-bronze-50 text-bronze-600 border border-bronze-200' : 'bg-stone-100 text-stone-700 border border-stone-200'
+                    }`}>
+                      <product.icon size={18} />
+                    </div>
+                    <h3 className="text-lg font-serif text-stone-900">{product.name}</h3>
+                  </div>
+                )}
+                <p className="text-bronze-600 font-medium text-[11px] uppercase tracking-wider mb-2">{product.tagline}</p>
+                <p className="text-stone-500 text-sm leading-relaxed">{product.description}</p>
+              </div>
 
-              <div className="mt-auto">
-                <div className="flex gap-4 pt-4 mb-4 border-t border-stone-100">
+              <div className="sm:border-l sm:border-stone-100 sm:pl-6 flex flex-col justify-center items-center text-center">
+                <div className="flex gap-3 mb-4">
                   {product.stats.map((stat, i) => (
                     <div key={i} className="flex-1 min-w-0 text-center">
                       <div className="text-sm sm:text-base font-bold text-stone-900 leading-tight">{stat.value}</div>
