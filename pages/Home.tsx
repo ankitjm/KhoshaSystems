@@ -4,7 +4,6 @@ import { Clients } from '../components/Clients';
 import { Philosophy } from '../components/Philosophy';
 import { Services } from '../components/Services';
 import { Products } from '../components/Products';
-import { Work } from '../components/Work';
 import { Testimonials } from '../components/Testimonials';
 import { FAQ } from '../components/FAQ';
 import { Founder } from '../components/Founder';
@@ -20,7 +19,6 @@ export const Home: React.FC = () => {
       <Products />
       <Services />
       <CTAStrip />
-      <Work />
       <Testimonials />
       <Founder />
       <FAQ />
