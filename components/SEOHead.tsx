@@ -27,16 +27,6 @@ const seoConfig: Record<string, SEOConfig> = {
     description: 'RetailerOS — retail management for mobile & electronics stores. IMEI tracking, scheme management, GST billing. Built by Khoshà Systems.',
     keywords: 'RetailerOS, telecom retail management software India, mobile phone shop billing software, IMEI tracking software retailers, consumer electronics retail software, scheme management software retail, telecom distributor software India, mobile retail POS India, electronics store inventory management, brand scheme tracking software, cashback management software retailers, GST-compliant retail billing software, multi-store retail management software, retail SaaS platform India, retaileros.in'
   },
-  '/products/real-estate-crm': {
-    title: 'Real Estate CRM India | Lead Management for Developers & Brokers | Khoshà Systems',
-    description: 'CRM for Indian real estate. Capture leads from 99acres, MagicBricks, Housing.com. Track site visits, automate follow-ups. RERA-compliant.',
-    keywords: 'real estate CRM software India, CRM for real estate developers India, real estate lead management software, property CRM India, CRM for builders and developers, real estate broker CRM India, 99acres lead management CRM, MagicBricks CRM integration, RERA-compliant CRM software, real estate channel partner management, site visit tracking software real estate, real estate follow-up automation India, real estate sales CRM Bangalore'
-  },
-  '/products/visitor-management': {
-    title: 'Visitor Management System India | Digital Check-In & Analytics | Khoshà Systems',
-    description: 'Visitor management for offices & real estate sites. QR check-in, WhatsApp alerts, analytics, RERA-compliant logs. 90% faster check-in.',
-    keywords: 'visitor management system India, digital visitor management software, visitor check-in system offices, visitor management system real estate, contactless visitor management, QR code visitor check-in system, visitor tracking software India, office visitor management system, co-working space visitor management, RERA-compliant visitor log system, WhatsApp visitor notification system, visitor analytics software'
-  },
   '/services': {
     title: 'Web Development, AI Integration & Digital Transformation Services | Khoshà Systems Bangalore',
     description: 'Custom web apps, AI transformation, mobile apps, website design & legacy modernization. Full-stack services from Bangalore, India.',
@@ -44,8 +34,8 @@ const seoConfig: Record<string, SEOConfig> = {
   },
   '/work': {
     title: 'Our Work | Software Projects & Case Studies | Khoshà Systems Bangalore',
-    description: 'Portfolio: web apps, SaaS products & digital transformation for Prestige Constructions, Arrowhead Communications & more.',
-    keywords: 'software development case studies Bangalore, digital transformation success stories India, enterprise software portfolio, web application projects, AI integration case studies, custom software development portfolio, Prestige Constructions technology partner'
+    description: 'Portfolio: web apps, SaaS products & digital transformation for Arrowhead Communications, leading real estate developers & more.',
+    keywords: 'software development case studies Bangalore, digital transformation success stories India, enterprise software portfolio, web application projects, AI integration case studies, custom software development portfolio'
   },
   '/philosophy': {
     title: 'About Khoshà Systems | Architect-Led Software Company | 15+ Years | Bangalore',
@@ -116,11 +106,6 @@ const seoConfig: Record<string, SEOConfig> = {
     title: 'Blog | Software Development, AI & Digital Transformation Insights | Khoshà Systems',
     description: 'Insights on software development, AI, retail tech & digital transformation from Khoshà Systems, Bangalore.',
     keywords: 'software development blog India, AI transformation insights, retail technology blog, real estate CRM guide India, digital transformation articles, SaaS development blog Bangalore, enterprise software insights'
-  },
-  '/tools/roi-calculator': {
-    title: 'ROI Calculator | Estimate Your Software Investment Returns | Khoshà Systems',
-    description: 'Calculate the return on investment for RetailerOS, Real Estate CRM, or Visitor Management System. Free ROI calculator by Khoshà Systems.',
-    keywords: 'ROI calculator software, RetailerOS ROI, real estate CRM ROI, visitor management ROI, software investment calculator India'
   },
   '/success-stories': {
     title: 'Customer Success Stories | RetailerOS Results for Indian Retailers | Khoshà Systems',

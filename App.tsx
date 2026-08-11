@@ -10,6 +10,7 @@ import { StickyMobileCTA, WhatsAppButton } from './components/StickyMobileCTA';
 import { SocialProof } from './components/SocialProof';
 import { PushPrompt } from './components/PushPrompt';
 import { useVisitorTracking } from './hooks/useVisitorTracking';
+import { useCtaTracking } from './hooks/useCtaTracking';
 
 // Lazy-loaded pages for code splitting
 const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
@@ -21,15 +22,15 @@ const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ defaul
 const RetailerOSPage = lazy(() => import('./pages/RetailerOSPage').then(m => ({ default: m.RetailerOSPage })));
 const RetailerOSAltPage = lazy(() => import('./pages/RetailerOSAltPage').then(m => ({ default: m.RetailerOSAltPage })));
 const RetailerOSBentoPage = lazy(() => import('./pages/RetailerOSBentoPage').then(m => ({ default: m.RetailerOSBentoPage })));
-const RealEstateCRMPage = lazy(() => import('./pages/RealEstateCRMPage').then(m => ({ default: m.RealEstateCRMPage })));
+// const RealEstateCRMPage = lazy(() => import('./pages/RealEstateCRMPage').then(m => ({ default: m.RealEstateCRMPage })));
 const RealDeskPage = lazy(() => import('./pages/RealDeskPage').then(m => ({ default: m.RealDeskPage })));
 // const RealDeskJourneyPage = lazy(() => import('./pages/RealDeskJourneyPage').then(m => ({ default: m.RealDeskJourneyPage })));
 // const RealDeskHubPage = lazy(() => import('./pages/RealDeskHubPage').then(m => ({ default: m.RealDeskHubPage })));
-const VisitorManagementPage = lazy(() => import('./pages/VisitorManagementPage').then(m => ({ default: m.VisitorManagementPage })));
+// const VisitorManagementPage = lazy(() => import('./pages/VisitorManagementPage').then(m => ({ default: m.VisitorManagementPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
 const VancouverPage = lazy(() => import('./pages/VancouverPage').then(m => ({ default: m.VancouverPage })));
-const ROICalculatorPage = lazy(() => import('./pages/ROICalculatorPage').then(m => ({ default: m.ROICalculatorPage })));
+// const ROICalculatorPage = lazy(() => import('./pages/ROICalculatorPage').then(m => ({ default: m.ROICalculatorPage })));
 const RetailerOSvsIQmetrixPage = lazy(() => import('./pages/RetailerOSvsIQmetrixPage').then(m => ({ default: m.RetailerOSvsIQmetrixPage })));
 const CRMvsSellDoPage = lazy(() => import('./pages/CRMvsSellDoPage').then(m => ({ default: m.CRMvsSellDoPage })));
 const VMSvsEnvoyPage = lazy(() => import('./pages/VMSvsEnvoyPage').then(m => ({ default: m.VMSvsEnvoyPage })));
@@ -53,6 +54,7 @@ const PreviewDemoPage = lazy(() => import('./pages/PreviewDemoPage').then(m => (
 function AppContent() {
   // Visitor tracking (runs inside Router for access to useLocation)
   useVisitorTracking();
+  useCtaTracking();
 
   return (
     <>
@@ -82,11 +84,11 @@ function AppContent() {
               <Route path="/products/retaileros" element={<RetailerOSPage />} />
               <Route path="/products/retaileros-2" element={<RetailerOSAltPage />} />
               <Route path="/products/retaileros-3" element={<RetailerOSBentoPage />} />
-              <Route path="/products/real-estate-crm" element={<RealEstateCRMPage />} />
+              {/* <Route path="/products/real-estate-crm" element={<RealEstateCRMPage />} /> */}
               <Route path="/products/real-desk" element={<RealDeskPage />} />
               {/* <Route path="/products/real-desk-journey" element={<RealDeskJourneyPage />} /> */}
               {/* <Route path="/products/real-desk-hub" element={<RealDeskHubPage />} /> */}
-              <Route path="/products/visitor-management" element={<VisitorManagementPage />} />
+              {/* <Route path="/products/visitor-management" element={<VisitorManagementPage />} /> */}
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/compare/retaileros-vs-iqmetrix" element={<RetailerOSvsIQmetrixPage />} />
@@ -98,7 +100,7 @@ function AppContent() {
               <Route path="/solutions/fashion-retail" element={<FashionRetailPage />} />
               <Route path="/solutions/grocery" element={<GroceryRetailPage />} />
               <Route path="/solutions/electronics" element={<ElectronicsRetailPage />} />
-              <Route path="/tools/roi-calculator" element={<ROICalculatorPage />} />
+              {/* <Route path="/tools/roi-calculator" element={<ROICalculatorPage />} /> */}
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/use-cases" element={<UseCasesPage />} />
               <Route path="/features" element={<FeaturesPage />} />

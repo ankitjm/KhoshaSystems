@@ -114,7 +114,7 @@ export const FeaturesPage: React.FC = () => {
         title="RetailerOS Features"
         subtitle="Five core capabilities that help store owners stop bleeding money, stay compliant, and run tighter operations across every location. Starting at ₹1,999/month per store."
         label="Feature Walkthroughs"
-        backgroundImage="/images/hero-products.jpg"
+        backgroundImage="/images/retaileros-page-hero.jpg"
         backLink={{ label: 'Back to RetailerOS', href: '/products/retaileros' }}
       >
         <Link

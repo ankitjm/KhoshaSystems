@@ -158,7 +158,7 @@ export const GettingStartedPage: React.FC = () => {
         title="Getting Started with RetailerOS"
         subtitle="Most store owners go live in under 48 hours. Our support team is with you at every step — on WhatsApp, phone, email, or live chat."
         label="Onboarding Guide"
-        backgroundImage="/images/hero-products.jpg"
+        backgroundImage="/images/retaileros-page-hero.jpg"
         backLink={{ label: 'Back to RetailerOS', href: '/products/retaileros' }}
       />
 

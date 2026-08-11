@@ -17,8 +17,25 @@ export const PushPrompt: React.FC = () => {
     if (!('Notification' in window) || !('serviceWorker' in navigator)) return;
     if (Notification.permission === 'granted' || Notification.permission === 'denied') return;
 
-    const timer = setTimeout(() => setVisible(true), 30000);
-    return () => clearTimeout(timer);
+    let timer: ReturnType<typeof setTimeout>;
+    const armPrompt = () => {
+      timer = setTimeout(() => setVisible(true), 5000);
+      cleanupListeners();
+    };
+    const cleanupListeners = () => {
+      window.removeEventListener('scroll', armPrompt);
+      window.removeEventListener('click', armPrompt);
+      window.removeEventListener('keydown', armPrompt);
+    };
+
+    window.addEventListener('scroll', armPrompt, { once: true, passive: true });
+    window.addEventListener('click', armPrompt, { once: true });
+    window.addEventListener('keydown', armPrompt, { once: true });
+
+    return () => {
+      clearTimeout(timer);
+      cleanupListeners();
+    };
   }, []);
 
   const requestPermission = async () => {

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const projects = [
   {
     id: 1,
-    client: "Prestige Constructions",
+    client: "Leading Real Estate Developer",
     category: "Real Estate",
     title: "Visitor Management & CRM Platform",
     description: "Built a comprehensive visitor management system and CRM for one of India's leading real estate developers. Digital check-ins, automated broker notifications, lead tracking, and real-time site visit analytics — replacing manual registers with intelligent visitor intelligence.",
@@ -152,6 +152,7 @@ export const Work: React.FC = () => {
                      <div className="text-[11px] sm:text-xs text-stone-500 uppercase tracking-wider">{project.stats[3]}</div>
                    </div>
                  </div>
+                 <p className="text-stone-400 text-[10px] sm:text-[11px] italic">Based on client-reported figures comparing performance before and after implementation.</p>
               </div>
             </motion.div>
           ))}

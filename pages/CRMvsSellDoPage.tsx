@@ -36,7 +36,7 @@ export const CRMvsSellDoPage: React.FC = () => {
   return (
     <div>
       <PageHero
-        backLink={{ label: "Real Estate CRM", href: "/products/real-estate-crm" }}
+        backLink={{ label: "Real Desk", href: "/products/real-desk" }}
         label="Comparison"
         title={<>Khosha Real Estate CRM vs Sell.Do: <span className="bronze-gradient-text">Simpler, More Affordable</span></>}
         subtitle="Sell.Do has served 1,000+ real estate companies since 2011. But if you're a developer or broker who wants a CRM that's focused, affordable, and fast to deploy — without paying for features you'll never use — there's a better option."

@@ -36,7 +36,7 @@ export const VMSvsEnvoyPage: React.FC = () => {
   return (
     <div>
       <PageHero
-        backLink={{ label: "Visitor Management", href: "/products/visitor-management" }}
+        backLink={{ label: "Real Desk", href: "/products/real-desk" }}
         label="Comparison"
         title={<>Khosha VMS vs Envoy: <span className="bronze-gradient-text">India Pricing, India Compliance</span></>}
         subtitle="Envoy powers 16,000+ workplaces globally. But at $4,345+ per location per year with no Indian compliance, WhatsApp support, or local team — Indian businesses deserve a visitor management system built for their needs."

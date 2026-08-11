@@ -12,7 +12,7 @@ const comparisonRows = [
   { feature: "IMEI / Serial Number Tracking", retaileros: "Native IMEI capture via barcode, camera, or manual entry with full audit trail", square: "No serial number tracking at all — not even a barcode field (must use SKU workaround)", winner: "retaileros" },
   { feature: "Telecom Scheme Management", retaileros: "Built-in engine for brand schemes, cashbacks, and exchange offers", square: "Not available — designed for general retail and food service", winner: "retaileros" },
   { feature: "GST-Compliant Billing", retaileros: "Native GST invoicing with HSN codes, reverse charge, and credit notes", square: "US-focused tax system — no GST support for Indian businesses", winner: "retaileros" },
-  { feature: "Free Tier", retaileros: "Full-featured trial — no crippled free tier that locks you in", square: "Free tier available but with basic features and 2.6% + $0.10 processing fees", winner: "tie" },
+  { feature: "Free Tier", retaileros: "Full-featured trial — no crippled free tier that locks you in", square: "Free tier available but with basic features and 2.6% + $0.15 processing fees", winner: "tie" },
   { feature: "Fund Security", retaileros: "Standard payment processing — your funds are your funds", square: "Known for freezing and holding merchant funds without warning", winner: "retaileros" },
   { feature: "Per-Store Pricing", retaileros: "Different pricing rules per store location", square: "Uniform pricing — cross-location features only on Premium ($149/mo)", winner: "retaileros" },
   { feature: "WhatsApp Notifications", retaileros: "Built-in WhatsApp alerts for customers and staff", square: "Not available", winner: "retaileros" },

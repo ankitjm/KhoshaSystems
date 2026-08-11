@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: "Who do you work with — startups or enterprises?",
-    a: "Both. Whether you're a seed-stage startup building your first product or an enterprise like Prestige Constructions modernizing operations, we adapt our approach to your stage, budget, and ambition."
+    a: "Both. Whether you're a seed-stage startup building your first product or an established enterprise modernizing operations, we adapt our approach to your stage, budget, and ambition."
   },
   {
     q: "What products do you offer?",
