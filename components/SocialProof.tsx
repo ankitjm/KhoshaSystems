@@ -4,7 +4,7 @@ import { TrendingUp, Shield, Zap, Award } from 'lucide-react';
 
 const highlights = [
   { icon: TrendingUp, text: "50+ products built across 7 industries", color: "text-emerald-600", bg: "bg-emerald-50" },
-  { icon: Shield, text: "Trusted by Prestige, Unhive & more", color: "text-blue-600", bg: "bg-blue-50" },
+  { icon: Shield, text: "Trusted across real estate, retail & tech", color: "text-blue-600", bg: "bg-blue-50" },
   { icon: Zap, text: "AI-powered solutions shipping weekly", color: "text-amber-600", bg: "bg-amber-50" },
   { icon: Award, text: "15+ years of engineering expertise", color: "text-bronze-600", bg: "bg-bronze-50" },
 ];

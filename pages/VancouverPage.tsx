@@ -108,8 +108,8 @@ export const VancouverPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
               { name: "RetailerOS", desc: "Retail management platform for telecom and electronics stores — IMEI tracking, scheme management, billing, analytics.", link: "/products/retaileros" },
-              { name: "Real Estate CRM", desc: "Purpose-built for Indian real estate — lead management, site visits, channel partner portal.", link: "/products/real-estate-crm" },
-              { name: "Visitor Management", desc: "Digital check-ins, instant alerts, visitor analytics, and compliance for offices and sites.", link: "/products/visitor-management" },
+              { name: "Real Desk", desc: "Connected sales suite for real estate developers and brokers — lead capture, presentation, bookings, and post-sales in one CRM.", link: "/products/real-desk" },
+              { name: "AI Automation", desc: "Custom AI automation for business operations — workflow automation, AI-powered support tooling, and document processing.", link: "/services" },
             ].map((product, i) => (
               <motion.div
                 key={i}

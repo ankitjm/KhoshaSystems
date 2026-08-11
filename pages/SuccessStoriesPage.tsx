@@ -257,7 +257,7 @@ export const SuccessStoriesPage: React.FC = () => {
             </div>
 
             {/* Results */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3">
               {cs.results.map((result, i) => (
                 <motion.div
                   key={i}
@@ -272,6 +272,7 @@ export const SuccessStoriesPage: React.FC = () => {
                 </motion.div>
               ))}
             </div>
+            <p className="text-stone-400 text-[11px] italic mb-10">Based on client-reported figures comparing performance before and after implementation.</p>
 
             {/* Quote */}
             <motion.blockquote
@@ -311,13 +312,6 @@ export const SuccessStoriesPage: React.FC = () => {
               className="inline-flex items-center gap-2 px-8 py-4 bg-stone-900 text-white text-sm font-medium uppercase tracking-wider hover:bg-bronze-600 transition-colors rounded group"
             >
               Schedule a Demo{' '}
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              to="/tools/roi-calculator"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-stone-300 text-stone-700 text-sm font-medium uppercase tracking-wider hover:border-bronze-400 transition-colors rounded group"
-            >
-              Calculate Your ROI{' '}
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>

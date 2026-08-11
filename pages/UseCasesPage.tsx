@@ -118,7 +118,7 @@ export const UseCasesPage: React.FC = () => {
         title="RetailerOS Use Cases"
         subtitle="Real patterns from hundreds of Indian retailers. The names are illustrative, but the problems — and the numbers — are not."
         label="Use Cases"
-        backgroundImage="/images/hero-products.jpg"
+        backgroundImage="/images/retaileros-page-hero.jpg"
         backLink={{ label: 'Back to Products', href: '/products/retaileros' }}
       />
 

@@ -20,9 +20,7 @@ const ROUTES = [
   '/products/retaileros',
   '/products/retaileros-2',
   '/products/retaileros-3',
-  '/products/real-estate-crm',
   '/products/real-desk',
-  '/products/visitor-management',
   '/vancouver',
   // Blog posts (dynamic routes need prerendering for SEO)
   '/blog/retail-management-software-telecom-electronics-india',
@@ -48,8 +46,6 @@ const ROUTES = [
   '/compare/retaileros-vs-shopify',
   '/compare/retaileros-vs-lightspeed',
   '/compare/retaileros-vs-square',
-  // Tools
-  '/tools/roi-calculator',
   // Additional pages
   '/success-stories',
   '/help',
@@ -83,16 +79,6 @@ const seoConfig = {
     description: 'RetailerOS — retail management for mobile & electronics stores. IMEI tracking, scheme management, GST billing. Built by Khoshà Systems.',
     keywords: 'RetailerOS, telecom retail management software India, mobile phone shop billing software, IMEI tracking software retailers, consumer electronics retail software, scheme management software retail, telecom distributor software India, mobile retail POS India, electronics store inventory management, brand scheme tracking software, cashback management software retailers, GST-compliant retail billing software, multi-store retail management software, retail SaaS platform India, retaileros.in'
   },
-  '/products/real-estate-crm': {
-    title: 'Real Estate CRM India | Lead Management for Developers & Brokers | Khoshà Systems',
-    description: 'CRM for Indian real estate. Capture leads from 99acres, MagicBricks, Housing.com. Track site visits, automate follow-ups. RERA-compliant.',
-    keywords: 'real estate CRM software India, CRM for real estate developers India, real estate lead management software, property CRM India, CRM for builders and developers, real estate broker CRM India, 99acres lead management CRM, MagicBricks CRM integration, RERA-compliant CRM software, real estate channel partner management, site visit tracking software real estate, real estate follow-up automation India, real estate sales CRM Bangalore'
-  },
-  '/products/visitor-management': {
-    title: 'Visitor Management System India | Digital Check-In & Analytics | Khoshà Systems',
-    description: 'Visitor management for offices & real estate sites. QR check-in, WhatsApp alerts, analytics, RERA-compliant logs. 90% faster check-in.',
-    keywords: 'visitor management system India, digital visitor management software, visitor check-in system offices, visitor management system real estate, contactless visitor management, QR code visitor check-in system, visitor tracking software India, office visitor management system, co-working space visitor management, RERA-compliant visitor log system, WhatsApp visitor notification system, visitor analytics software'
-  },
   '/services': {
     title: 'Web Development, AI Integration & Digital Transformation Services | Khoshà Systems Bangalore',
     description: 'Custom web apps, AI transformation, mobile apps, website design & legacy modernization. Full-stack services from Bangalore, India.',
@@ -100,8 +86,8 @@ const seoConfig = {
   },
   '/work': {
     title: 'Our Work | Software Projects & Case Studies | Khoshà Systems Bangalore',
-    description: 'Portfolio: web apps, SaaS products & digital transformation for Prestige Constructions, Arrowhead Communications & more.',
-    keywords: 'software development case studies Bangalore, digital transformation success stories India, enterprise software portfolio, web application projects, AI integration case studies, custom software development portfolio, Prestige Constructions technology partner'
+    description: 'Portfolio: web apps, SaaS products & digital transformation for Arrowhead Communications, leading real estate developers & more.',
+    keywords: 'software development case studies Bangalore, digital transformation success stories India, enterprise software portfolio, web application projects, AI integration case studies, custom software development portfolio'
   },
   '/philosophy': {
     title: 'About Khoshà Systems | Architect-Led Software Company | 15+ Years | Bangalore',
@@ -167,11 +153,6 @@ const seoConfig = {
     title: 'Blog | Software Development, AI & Digital Transformation Insights | Khoshà Systems',
     description: 'Insights on software development, AI, retail tech & digital transformation from Khoshà Systems, Bangalore.',
     keywords: 'software development blog India, AI transformation insights, retail technology blog, real estate CRM guide India, digital transformation articles, SaaS development blog Bangalore, enterprise software insights'
-  },
-  '/tools/roi-calculator': {
-    title: 'ROI Calculator | Estimate Your Software Investment Returns | Khoshà Systems',
-    description: 'Calculate the return on investment for RetailerOS, Real Estate CRM, or Visitor Management System. Free ROI calculator by Khoshà Systems.',
-    keywords: 'ROI calculator software, RetailerOS ROI, real estate CRM ROI, visitor management ROI, software investment calculator India'
   },
   '/success-stories': {
     title: 'Customer Success Stories | Real Results with Khoshà Systems Software',
@@ -283,8 +264,7 @@ const breadcrumbMap = {
   '/': [{ name: 'Home', path: '' }],
   '/products': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }],
   '/products/retaileros': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }],
-  '/products/real-estate-crm': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Real Estate CRM', path: '/products/real-estate-crm' }],
-  '/products/visitor-management': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Visitor Management', path: '/products/visitor-management' }],
+  '/products/real-desk': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Real Desk', path: '/products/real-desk' }],
   '/services': [{ name: 'Home', path: '' }, { name: 'Services', path: '/services' }],
   '/work': [{ name: 'Home', path: '' }, { name: 'Work', path: '/work' }],
   '/philosophy': [{ name: 'Home', path: '' }, { name: 'About', path: '/philosophy' }],
@@ -294,8 +274,8 @@ const breadcrumbMap = {
   '/compare/retaileros-vs-lightspeed': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'RetailerOS vs Lightspeed', path: '/compare/retaileros-vs-lightspeed' }],
   '/compare/retaileros-vs-square': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'RetailerOS vs Square', path: '/compare/retaileros-vs-square' }],
   '/compare/retaileros-vs-iqmetrix': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'RetailerOS vs iQmetrix', path: '/compare/retaileros-vs-iqmetrix' }],
-  '/compare/real-estate-crm-vs-selldo': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Real Estate CRM', path: '/products/real-estate-crm' }, { name: 'CRM vs Sell.Do', path: '/compare/real-estate-crm-vs-selldo' }],
-  '/compare/vms-vs-envoy': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Visitor Management', path: '/products/visitor-management' }, { name: 'VMS vs Envoy', path: '/compare/vms-vs-envoy' }],
+  '/compare/real-estate-crm-vs-selldo': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Real Desk', path: '/products/real-desk' }, { name: 'CRM vs Sell.Do', path: '/compare/real-estate-crm-vs-selldo' }],
+  '/compare/vms-vs-envoy': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Real Desk', path: '/products/real-desk' }, { name: 'VMS vs Envoy', path: '/compare/vms-vs-envoy' }],
   '/solutions/fashion-retail': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'Fashion & Apparel Retail', path: '/solutions/fashion-retail' }],
   '/solutions/grocery': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'Grocery & Supermarket', path: '/solutions/grocery' }],
   '/solutions/electronics': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }, { name: 'Electronics & Mobile', path: '/solutions/electronics' }],

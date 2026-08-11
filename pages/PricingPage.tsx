@@ -61,11 +61,6 @@ const testimonials = [
     name: 'Priya Kulkarni',
     title: 'Owner, Mobile Junction, Pune',
   },
-  {
-    quote: 'Inter-store transfer discrepancies dropped to zero. We saved ₹2.1 lakh in the first quarter through better inventory optimization alone.',
-    name: 'Vikram Hegde',
-    title: 'Owner, TrendSet Fashion, Bangalore — 5 Stores',
-  },
 ];
 
 const faqs = [
@@ -110,7 +105,7 @@ export const PricingPage: React.FC = () => {
         title="Simple, Transparent Pricing"
         subtitle="One platform. Every feature. No hidden charges. Whether you run a single shop or a 50-store chain, RetailerOS gives you the tools to track every IMEI, capture every scheme payout, and bill GST-compliant — all from day one."
         label="RetailerOS Pricing"
-        backgroundImage="/images/hero-products.jpg"
+        backgroundImage="/images/retaileros-page-hero.jpg"
       >
         <Link
           to="/contact"
@@ -368,7 +363,7 @@ export const PricingPage: React.FC = () => {
       <Section className="bg-stone-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-serif font-bold text-stone-800 mb-10 text-center">Trusted by Retailers Across India</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {testimonials.map((t) => (
               <motion.div
                 key={t.name}
@@ -417,12 +412,6 @@ export const PricingPage: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 bg-bronze-600 text-white px-6 py-3 rounded text-sm font-medium hover:bg-bronze-700 transition-colors"
             >
               Start Free Trial <ArrowRight size={16} />
-            </Link>
-            <Link
-              to="/tools/roi-calculator"
-              className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 rounded text-sm font-medium hover:bg-white/20 transition-colors"
-            >
-              Calculate Your ROI
             </Link>
           </div>
         </div>

@@ -11,7 +11,7 @@ export const WorkPage: React.FC = () => {
     <div>
       <PageHero
         title="Our Work"
-        subtitle="Real transformations for real businesses — from Prestige Constructions to early-stage startups."
+        subtitle="Real transformations for real businesses — from established enterprises to early-stage startups."
         backgroundImage="/images/work-hero.jpg"
       />
 

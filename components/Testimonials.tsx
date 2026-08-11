@@ -7,7 +7,7 @@ const testimonials = [
   {
     quote: "Khoshà Systems didn't just build software. They understood our real estate operations inside-out and delivered a visitor management system that transformed how we run our sites.",
     author: "Senior Director",
-    role: "Prestige Constructions",
+    role: "Leading Real Estate Developer",
     stars: 5
   },
   {

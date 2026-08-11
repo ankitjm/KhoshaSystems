@@ -362,8 +362,8 @@ export const RetailerOSPage: React.FC = () => {
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Also from Khoshà Systems</h2>
           <div className="grid sm:grid-cols-3 gap-4">
             {[
-              { label: 'Real Estate CRM', desc: 'Lead management for developers & brokers', href: '/products/real-estate-crm' },
-              { label: 'Visitor Management', desc: 'Digital check-in for offices & sites', href: '/products/visitor-management' },
+              { label: 'Real Desk', desc: 'Connected sales suite for real estate developers & brokers', href: '/products/real-desk' },
+              { label: 'AI Automation', desc: 'Custom AI automation for business operations', href: '/services' },
               { label: 'Success Stories', desc: 'Results from retailers across India', href: '/success-stories' },
             ].map((link) => (
               <Link

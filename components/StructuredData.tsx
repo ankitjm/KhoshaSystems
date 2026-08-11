@@ -77,15 +77,10 @@ const breadcrumbMap: Record<string, Array<{ name: string; path: string }>> = {
     { name: 'Products', path: '/products' },
     { name: 'RetailerOS', path: '/products/retaileros' },
   ],
-  '/products/real-estate-crm': [
+  '/products/real-desk': [
     { name: 'Home', path: '' },
     { name: 'Products', path: '/products' },
-    { name: 'Real Estate CRM', path: '/products/real-estate-crm' },
-  ],
-  '/products/visitor-management': [
-    { name: 'Home', path: '' },
-    { name: 'Products', path: '/products' },
-    { name: 'Visitor Management', path: '/products/visitor-management' },
+    { name: 'Real Desk', path: '/products/real-desk' },
   ],
   '/services': [
     { name: 'Home', path: '' },
@@ -138,13 +133,13 @@ const breadcrumbMap: Record<string, Array<{ name: string; path: string }>> = {
   '/compare/real-estate-crm-vs-selldo': [
     { name: 'Home', path: '' },
     { name: 'Products', path: '/products' },
-    { name: 'Real Estate CRM', path: '/products/real-estate-crm' },
+    { name: 'Real Desk', path: '/products/real-desk' },
     { name: 'CRM vs Sell.Do', path: '/compare/real-estate-crm-vs-selldo' },
   ],
   '/compare/vms-vs-envoy': [
     { name: 'Home', path: '' },
     { name: 'Products', path: '/products' },
-    { name: 'Visitor Management', path: '/products/visitor-management' },
+    { name: 'Real Desk', path: '/products/real-desk' },
     { name: 'VMS vs Envoy', path: '/compare/vms-vs-envoy' },
   ],
   '/compare/retaileros-vs-shopify': [
@@ -654,8 +649,7 @@ const webPageMeta: Record<string, { name: string; description: string }> = {
   '/': { name: 'Khoshà Systems — Software Development & AI Transformation', description: 'Khoshà Systems builds web apps, SaaS products & AI solutions from Bangalore.' },
   '/products': { name: 'SaaS Products — RetailerOS, Real Estate CRM & VMS', description: 'Production-ready SaaS products for Indian businesses.' },
   '/products/retaileros': { name: 'RetailerOS — Telecom & Electronics Retail Management', description: 'Retail management platform with IMEI tracking, scheme management, GST billing.' },
-  '/products/real-estate-crm': { name: 'Real Estate CRM India', description: 'CRM for Indian real estate developers and brokers.' },
-  '/products/visitor-management': { name: 'Visitor Management System India', description: 'Digital visitor management for offices and real estate sites.' },
+  '/products/real-desk': { name: 'Real Desk — The Connected Sales Suite', description: 'Connected sales suite for real estate developers and brokers.' },
   '/services': { name: 'Web Development, AI & Digital Transformation Services', description: 'Custom web apps, AI transformation, and digital modernization from Bangalore.' },
   '/work': { name: 'Our Work — Software Projects & Case Studies', description: 'Portfolio of web apps, SaaS products & digital transformation projects.' },
   '/philosophy': { name: 'About Khoshà Systems — Architect-Led Software Company', description: 'Founded by Ankit Mehta with 15+ years of enterprise software experience.' },
@@ -812,36 +806,6 @@ function getSchemasForPath(pathname: string): object[] {
         })
       );
       schemas.push(buildFAQSchema(retailerOSFAQs));
-      break;
-
-    case '/products/real-estate-crm':
-      schemas.push(
-        buildProductSchema({
-          name: 'Real Estate CRM by Khoshà Systems',
-          description:
-            'Purpose-built CRM for Indian real estate developers and brokers. Manage leads from 99acres, MagicBricks, Housing.com. Track site visits, automate follow-ups, and close deals faster.',
-          url: `${BASE_URL}/products/real-estate-crm`,
-          features:
-            'Lead Management, Channel Partner Portal, Document Vault, Sales Pipeline, Site Visit Tracking, Automated Follow-Ups, RERA Compliance, Multi-Project Management',
-          image: '/images/product-crm.png',
-        })
-      );
-      schemas.push(buildFAQSchema(realEstateCRMFAQs));
-      break;
-
-    case '/products/visitor-management':
-      schemas.push(
-        buildProductSchema({
-          name: 'Visitor Management System by Khoshà Systems',
-          description:
-            'Modern visitor management for real estate sites, corporate offices, and co-working spaces. Digital check-ins, WhatsApp notifications, visitor analytics, and RERA-compliant visitor logs.',
-          url: `${BASE_URL}/products/visitor-management`,
-          features:
-            'Digital Check-In, Instant Alerts, Visitor Analytics, Compliance Ready, QR Code Check-In, Multi-Location Dashboard, Badge Printing, Pre-Registration',
-          image: '/images/product-vms.png',
-        })
-      );
-      schemas.push(buildFAQSchema(vmsFAQs));
       break;
 
     case '/solutions/fashion-retail':

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X } from 'lucide-react';
+import { loadAnalytics } from '../utils/analytics';
 
 const CONSENT_KEY = 'khosha_cookie_consent';
 
@@ -17,6 +18,7 @@ export const CookieConsent: React.FC = () => {
 
   const accept = () => {
     localStorage.setItem(CONSENT_KEY, JSON.stringify({ analytics: true, marketing: true, date: new Date().toISOString() }));
+    loadAnalytics();
     setVisible(false);
   };
 
