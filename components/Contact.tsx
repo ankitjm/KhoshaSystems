@@ -102,7 +102,7 @@ export const Contact: React.FC = () => {
                   </div>
                   <span className="text-sm sm:text-base hover:text-white transition-colors">ankit@khoshasystems.com</span>
                 </a>
-                <a href="https://maps.google.com/?q=SS+Apt+13+4th+Cross+Rd+Kumara+Park+West+Seshadripuram+Bangalore+Karnataka+560020" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 sm:gap-4 text-stone-300 group">
+                <a href="https://maps.google.com/?q=The+Phygital+Studio,+46,+5th+Main+Road,+10th+Cross+Rd,+Kumara+Park+West,+Bengaluru,+Karnataka+560020" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 sm:gap-4 text-stone-300 group">
                   <div className="p-2.5 sm:p-3 bg-stone-800 rounded-full group-hover:bg-bronze-600 group-hover:text-white transition-colors"><MapPin size={18} /></div>
                   <span className="text-sm sm:text-base hover:text-white transition-colors">Kumara Park, Seshadripuram, Bangalore</span>
                 </a>
@@ -111,7 +111,7 @@ export const Contact: React.FC = () => {
               <div className="mt-6 sm:mt-8 rounded-lg overflow-hidden border border-stone-700/50">
                 <iframe
                   title="Khosha Systems Office Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5!2d77.5712!3d12.9946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sKumara+Park+West%2C+Seshadripuram%2C+Bangalore!5e0!3m2!1sen!2sin!4v1"
+                  src="https://maps.google.com/maps?q=The+Phygital+Studio,+46,+5th+Main+Road,+10th+Cross+Rd,+Kumara+Park+West,+Bengaluru,+Karnataka+560020&z=17&output=embed"
                   width="100%"
                   height="200"
                   style={{ border: 0 }}
@@ -266,7 +266,7 @@ export const Contact: React.FC = () => {
               </div>
             </div>
             <div className="pt-5 border-t border-stone-800 flex flex-col sm:flex-row justify-between items-center text-stone-600 text-[10px] sm:text-[11px] uppercase tracking-wider gap-2">
-              <p>&copy; {new Date().getFullYear()} Khoshà Systems. All rights reserved. <span className="text-stone-700">v{__APP_VERSION__}</span></p>
+              <p>&copy; {new Date().getFullYear()} Khosha Systems. All rights reserved. <span className="text-stone-700">v{__APP_VERSION__}</span></p>
               <div className="flex gap-4 sm:gap-6">
                 <a href="/sitemap.xml" className="hover:text-stone-400 transition-colors">Sitemap</a>
                 <span className="text-stone-700">Software Company, Bangalore (Bengaluru)</span>

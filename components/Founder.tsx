@@ -11,7 +11,7 @@ export const Founder: React.FC = () => {
           <source srcSet="/images/founder-bg.webp" type="image/webp" />
           <img
             src="/images/founder-bg.jpg"
-            alt="Khoshà Systems leadership and architecture background"
+            alt="Khosha Systems leadership and architecture background"
             className="w-full h-full object-cover"
             loading="lazy"
           />
@@ -66,7 +66,7 @@ export const Founder: React.FC = () => {
             className="text-center mb-8"
           >
             <div className="text-white font-semibold tracking-widest uppercase text-sm">Ankit Mehta</div>
-            <div className="text-white/40 text-xs sm:text-sm mt-1">Founder & Chief Architect, Khoshà Systems</div>
+            <div className="text-white/40 text-xs sm:text-sm mt-1">Founder & Chief Architect, Khosha Systems</div>
           </motion.div>
 
           {/* Credentials strip */}

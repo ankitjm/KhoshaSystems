@@ -377,7 +377,7 @@ const CTAScene: React.FC<{ ctaText: string; productName: string }> = ({
             fontFamily: BRAND.fonts.body,
           }}
         >
-          khoshà SYSTEMS • Precision-Engineered Business Solutions
+          khosha SYSTEMS • Precision-Engineered Business Solutions
         </div>
       </div>
     </AbsoluteFill>

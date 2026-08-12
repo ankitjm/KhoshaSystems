@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const testimonials = [
   {
-    quote: "Khoshà Systems didn't just build software. They understood our real estate operations inside-out and delivered a visitor management system that transformed how we run our sites.",
+    quote: "Khosha Systems didn't just build software. They understood our real estate operations inside-out and delivered a visitor management system that transformed how we run our sites.",
     author: "Senior Director",
     role: "Leading Real Estate Developer",
     stars: 5
@@ -43,7 +43,7 @@ export const Testimonials: React.FC = () => {
           <source srcSet="/images/home-workspace.webp" type="image/webp" />
           <img
             src="/images/home-workspace.jpg"
-            alt="Modern workspace environment at Khoshà Systems"
+            alt="Modern workspace environment at Khosha Systems"
             className="w-full h-full object-cover opacity-[0.04]"
             loading="lazy"
           />

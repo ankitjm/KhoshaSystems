@@ -40,7 +40,7 @@ export const PhilosophyPage: React.FC = () => {
   return (
     <div>
       <PageHero
-        title={<>About <span className="text-bronze-400">Khoshà Systems</span></>}
+        title={<>About <span className="text-bronze-400">Khosha Systems</span></>}
         subtitle="Born in Bangalore (Bengaluru). Built across continents. 15+ years of engineering products, platforms, and systems that drive real transformation."
         backgroundImage="/images/philosophy-hero.jpg"
       />

@@ -54,7 +54,7 @@ export const CRMvsSellDoPage: React.FC = () => {
           <p className="text-stone-500 text-center max-w-2xl mx-auto mb-12">Sell.Do is feature-rich — sometimes too rich. For real estate teams that want to focus on selling, not navigating complex software, Khosha CRM is the smarter choice.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { value: "60%", label: "Lower Cost", desc: "Flat-rate pricing vs per-user fees that scale with every hire" },
+              { value: "Flat-Rate", label: "Pricing", desc: "Doesn't scale per-user like Sell.Do's ₹3,499/user/month" },
               { value: "3 Days", label: "To Go Live", desc: "Focused onboarding vs weeks of enterprise setup" },
               { value: "85%", label: "Follow-Up Rate", desc: "Automated WhatsApp and SMS sequences that actually work" },
             ].map((stat, i) => (

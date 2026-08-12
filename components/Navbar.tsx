@@ -78,7 +78,7 @@ export const Navbar: React.FC = () => {
           <Link to="/" className="flex items-center gap-3 group relative z-50" onClick={() => setIsMobileOpen(false)}>
             <img
               src="/logo.png"
-              alt="Khoshà Systems"
+              alt="Khosha Systems"
               width="199"
               height="75"
               className="h-9 sm:h-11 md:h-14 w-auto"

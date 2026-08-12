@@ -11,7 +11,7 @@ export const BlogPage: React.FC = () => {
     <div>
       <PageHero
         label="Insights"
-        title={<>The Khoshà <span className="bronze-gradient-text">Blog</span></>}
+        title={<>The Khosha <span className="bronze-gradient-text">Blog</span></>}
         subtitle="Practical insights on software development, AI transformation, and building technology for Indian businesses."
         backgroundImage="/images/blog-hero.jpg"
       />

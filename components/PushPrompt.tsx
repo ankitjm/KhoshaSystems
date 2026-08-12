@@ -73,7 +73,7 @@ export const PushPrompt: React.FC = () => {
             <div className="flex-1">
               <p className="text-stone-800 text-sm font-medium mb-1">Stay Updated</p>
               <p className="text-stone-500 text-xs mb-3">
-                Get notified about new products, insights, and special offers from Khoshà Systems.
+                Get notified about new products, insights, and special offers from Khosha Systems.
               </p>
               <div className="flex gap-2">
                 <button

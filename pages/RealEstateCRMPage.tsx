@@ -130,7 +130,7 @@ export const RealEstateCRMPage: React.FC = () => {
       {/* Explore More */}
       <Section className="bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Also from Khoshà Systems</h2>
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Also from Khosha Systems</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {[
               { label: 'RetailerOS', desc: 'Retail management for telecom & electronics stores', href: '/products/retaileros' },

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Image generation script for Khoshà Systems website
+ * Image generation script for Khosha Systems website
  * Uses Google AI Studio (Gemini) to generate images per the visual audit
  */
 
@@ -273,7 +273,7 @@ async function main() {
     }
   }
 
-  console.log(`\nKhoshà Systems — Image Generation`);
+  console.log(`\nKhosha Systems — Image Generation`);
   console.log(`Tasks: ${tasks.length} | Output: ${OUTPUT_DIR}\n`);
 
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });

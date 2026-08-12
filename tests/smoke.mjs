@@ -50,11 +50,11 @@ async function run() {
     fail('Homepage loads', e.message);
   }
 
-  // 2. Title contains Khoshà
+  // 2. Title contains Khosha
   try {
     const title = await page.title();
     if (title.includes('Khosh')) pass(`Title: "${title.substring(0, 60)}..."`);
-    else fail('Title contains Khoshà', `Got: "${title}"`);
+    else fail('Title contains Khosha', `Got: "${title}"`);
   } catch (e) { fail('Title check', e.message); }
 
   // 3. Meta tags present

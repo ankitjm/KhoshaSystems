@@ -152,7 +152,7 @@ export const Products: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch"
         >
           {products.map((product) => (
             <motion.div

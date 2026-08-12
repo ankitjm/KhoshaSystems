@@ -1,4 +1,4 @@
-# Khoshà Systems — Complete Website Overhaul Plan
+# Khosha Systems — Complete Website Overhaul Plan
 
 ## PHASE 1: Font & Global Visual Consistency
 
@@ -49,7 +49,7 @@ The existing EmailJS setup sends notifications. Update the email utility to:
 
 ### 2B. Customer Auto-Reply Email
 - Create a **second EmailJS template** call for customer confirmation
-- Template content: "Hi {name}, we've received your inquiry about {goal}. Our team will connect with you over a call within 24 hours. — Khoshà Systems"
+- Template content: "Hi {name}, we've received your inquiry about {goal}. Our team will connect with you over a call within 24 hours. — Khosha Systems"
 - Add `sendCustomerConfirmation()` function in `utils/email.ts`
 - Call it from Contact.tsx and ExitPopup.tsx after successful form submit
 
@@ -125,7 +125,7 @@ When a visitor becomes qualified (>90s, >1 page):
 
 ### 5A. Push Notification Permission
 - After a visitor has been on the site for 30 seconds, show a subtle in-app prompt:
-  "Get notified about new products and insights from Khoshà Systems"
+  "Get notified about new products and insights from Khosha Systems"
 - NOT the browser native prompt first — show a custom UI first
 - Only trigger browser permission if they click "Yes"
 - Store permission status in localStorage

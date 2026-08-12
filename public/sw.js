@@ -2,7 +2,7 @@
 
 self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : {};
-  const title = data.title || 'Khoshà Systems';
+  const title = data.title || 'Khosha Systems';
   const options = {
     body: data.body || 'You have a new update.',
     icon: data.icon || '/logo.png',

@@ -105,7 +105,7 @@ const useCases: UseCaseData[] = [
       { metric: '₹2.1L', label: 'Saved in first quarter' },
       { metric: '60%', label: 'Fewer stockouts at individual stores' },
     ],
-    quote: 'I thought I needed a retail ERP that cost ₹10–15 lakh to set up. RetailerOS gave me everything I needed at ₹1,999 per store per month.',
+    quote: 'I thought I needed a retail ERP that cost ₹10–15 lakh to set up. RetailerOS gave me everything I needed at ₹2,999 per store per month.',
     quoteAttrib: 'Vikram H., Founder, TrendSet Fashion, Bangalore',
     cta: 'Growing beyond a single store? Start your 14-day free trial and get multi-store visibility from day one.',
   },

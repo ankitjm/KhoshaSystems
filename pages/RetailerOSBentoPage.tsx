@@ -42,8 +42,8 @@ const personas = [
 ];
 
 const plans = [
-  { icon: Store, name: "General Trade", price: "₹1,999", period: "/store/mo", desc: "Single-store operators", highlight: false },
-  { icon: BarChart3, name: "Multi-Store Chain", price: "₹2,999", period: "/store/mo", desc: "Chains with 2+ locations", highlight: true },
+  { icon: Store, name: "General Trade", price: "₹2,999", period: "/store/mo", desc: "Single-store operators", highlight: false },
+  { icon: BarChart3, name: "Multi-Store Chain", price: "₹7,499", period: "/store/mo", desc: "Chains with 2+ locations", highlight: true },
   { icon: Shield, name: "Enterprise", price: "Custom", period: "volume pricing", desc: "Chains with 15+ stores", highlight: false },
 ];
 

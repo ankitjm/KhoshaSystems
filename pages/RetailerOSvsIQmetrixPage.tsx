@@ -55,7 +55,7 @@ export const RetailerOSvsIQmetrixPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { value: "100%", label: "India-Focused", desc: "GST billing, Indian carrier integrations, WhatsApp notifications" },
-              { value: "1/10th", label: "The Cost", desc: "Affordable SaaS pricing vs enterprise contracts" },
+              { value: "0", label: "Sales Calls Needed", desc: "Clear SaaS pricing you can see without a demo request" },
               { value: "Days", label: "Not Months", desc: "Cloud-native setup vs enterprise deployment cycles" },
             ].map((stat, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}

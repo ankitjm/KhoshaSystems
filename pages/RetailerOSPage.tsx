@@ -336,7 +336,7 @@ export const RetailerOSPage: React.FC = () => {
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Explore RetailerOS</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { label: 'Pricing', desc: 'Plans from ₹1,999/store/month', href: '/pricing' },
+              { label: 'Pricing', desc: 'Plans from ₹2,999/store/month', href: '/pricing' },
               { label: 'Features', desc: 'Detailed feature walkthroughs', href: '/features' },
               { label: 'Use Cases', desc: 'Real results from retailers', href: '/use-cases' },
               { label: 'Getting Started', desc: 'Go live in 48 hours', href: '/getting-started' },
@@ -359,7 +359,7 @@ export const RetailerOSPage: React.FC = () => {
       {/* Also from Khosha */}
       <Section className="bg-stone-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Also from Khoshà Systems</h2>
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-800 mb-8 text-center">Also from Khosha Systems</h2>
           <div className="grid sm:grid-cols-3 gap-4">
             {[
               { label: 'Real Desk', desc: 'Connected sales suite for real estate developers & brokers', href: '/products/real-desk' },
