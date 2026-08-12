@@ -17,7 +17,7 @@ const ERROR_RATE_MANUAL = 0.08; // 8% error rate with manual processes
 const ERROR_RATE_WITH_RETAILEROS = 0.005; // 0.5% with RetailerOS
 const AVG_COST_PER_ERROR_INR = 850; // avg cost per billing/inventory error
 const HOURLY_LABOR_COST_INR = 250; // avg employee cost per hour
-const RETAILEROS_MONTHLY_PER_STORE_INR = 4999; // RetailerOS pricing estimate
+const RETAILEROS_MONTHLY_PER_STORE_INR = 2999; // RetailerOS pricing estimate
 const SCHEME_LEAKAGE_RECOVERY_PCT = 0.03; // 3% revenue recovered from scheme tracking
 const AVG_TRANSACTION_VALUE_INR = 1200;
 

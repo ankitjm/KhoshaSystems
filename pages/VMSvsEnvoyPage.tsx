@@ -54,7 +54,7 @@ export const VMSvsEnvoyPage: React.FC = () => {
           <p className="text-stone-500 text-center max-w-2xl mx-auto mb-12">Envoy is a great product — for US corporate offices. For Indian workplaces, construction sites, and real estate offices, you need something built for your reality.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { value: "1/5th", label: "The Cost", desc: "INR pricing vs $4,345+/location/year in USD" },
+              { value: "INR", label: "Priced in Rupees", desc: "No USD billing, no $4,345+/location/year enterprise pricing" },
               { value: "100%", label: "India-Compliant", desc: "RERA, Aadhaar, and Indian data residency built in" },
               { value: "90%", label: "Faster Check-In", desc: "Digital QR check-in replaces paper registers in seconds" },
             ].map((stat, i) => (

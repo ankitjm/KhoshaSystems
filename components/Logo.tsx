@@ -22,9 +22,9 @@ export const Logo: React.FC<LogoProps> = ({ className = "h-8" }) => {
       {/* Dot */}
       <circle cx="30" cy="30" r="5" fill="#1c1917" />
 
-      {/* khoshà text */}
+      {/* khosha text */}
       <text x="68" y="38" fontFamily="'Inter', sans-serif" fontWeight="600" fontSize="32" letterSpacing="-0.5" fill="#1c1917">
-        khoshà
+        khosha
       </text>
 
       {/* SYSTEMS text */}

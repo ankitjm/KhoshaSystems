@@ -12,7 +12,7 @@ export const CTAStrip: React.FC = () => {
           <source srcSet="/images/why-partner-bg.webp" type="image/webp" />
           <img
             src="/images/why-partner-bg.jpg"
-            alt="Professional team collaboration at Khoshà Systems"
+            alt="Professional team collaboration at Khosha Systems"
             className="w-full h-full object-cover"
             loading="lazy"
           />
@@ -52,9 +52,9 @@ export const CTAStrip: React.FC = () => {
               className="grid grid-cols-2 gap-4"
             >
               {[
-                { number: "99%", label: "Client Retention", desc: "Long-term partnerships" },
+                { number: "Long-Term", label: "Client Relationships", desc: "Most clients return for repeat projects" },
                 { number: "15+", label: "Years Experience", desc: "Enterprise-grade delivery" },
-                { number: "50+", label: "Products Shipped", desc: "Across 7 industries" },
+                { number: "50+", label: "Projects Delivered", desc: "Across 7 industries" },
                 { number: "24h", label: "Response Time", desc: "Dedicated support" },
               ].map((item, i) => (
                 <motion.div

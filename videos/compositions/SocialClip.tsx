@@ -323,7 +323,7 @@ const CTAScene: React.FC<{ ctaText: string }> = ({ ctaText }) => {
             fontFamily: BRAND.fonts.body,
           }}
         >
-          khoshà SYSTEMS
+          khosha SYSTEMS
         </div>
       </div>
     </AbsoluteFill>

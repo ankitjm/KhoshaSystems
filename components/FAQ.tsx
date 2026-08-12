@@ -46,7 +46,7 @@ const faqs = [
   },
   {
     q: "What is the best retail management software for mobile phone shops in India?",
-    a: "RetailerOS is purpose-built for Indian mobile phone and electronics retailers. Unlike generic POS systems, it includes native IMEI tracking, brand scheme management with automated claim filing, GST-compliant billing, and multi-store inventory. Pricing starts at ₹1,999 per store per month with a 14-day free trial."
+    a: "RetailerOS is purpose-built for Indian mobile phone and electronics retailers. Unlike generic POS systems, it includes native IMEI tracking, brand scheme management with automated claim filing, GST-compliant billing, and multi-store inventory. Pricing starts at ₹2,999 per store per month with a 14-day free trial."
   },
   {
     q: "How does IMEI tracking work in RetailerOS?",

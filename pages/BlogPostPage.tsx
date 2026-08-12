@@ -13,7 +13,7 @@ export const BlogPostPage: React.FC = () => {
 
   useEffect(() => {
     if (post) {
-      document.title = `${post.title} | Khoshà Systems Blog`;
+      document.title = `${post.title} | Khosha Systems Blog`;
       const updateMeta = (name: string, content: string, property = false) => {
         const attr = property ? 'property' : 'name';
         let meta = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
@@ -164,7 +164,7 @@ export const BlogPostPage: React.FC = () => {
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-bronze-100 flex items-center justify-center text-bronze-600 font-serif text-lg">K</div>
               <div>
-                <div className="text-stone-900 font-medium">Khoshà Systems</div>
+                <div className="text-stone-900 font-medium">Khosha Systems</div>
                 <div className="text-stone-400 text-sm">Software Development & AI Transformation | Bangalore</div>
               </div>
             </div>

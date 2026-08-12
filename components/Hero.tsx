@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const stats = [
   { value: "15+", label: "Years" },
-  { value: "50+", label: "Products" },
+  { value: "50+", label: "Projects Delivered" },
   { value: "7+", label: "Industries" },
 ];
 
@@ -44,7 +44,7 @@ export const Hero: React.FC = () => {
   const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   return (
-    <header ref={containerRef} role="banner" aria-label="Khoshà Systems - Web Apps, SaaS Products & AI Transformation" className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pb-20 sm:pb-24">
+    <header ref={containerRef} role="banner" aria-label="Khosha Systems - Web Apps, SaaS Products & AI Transformation" className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pb-20 sm:pb-24">
       {/* Background image with parallax */}
       <motion.div
         style={{ scale: bgScale }}
@@ -54,7 +54,7 @@ export const Hero: React.FC = () => {
           <source srcSet="/images/hero-bg.webp" type="image/webp" />
           <img
             src="/images/hero-bg.jpg"
-            alt="Khoshà Systems workspace — software development and AI transformation"
+            alt="Khosha Systems workspace — software development and AI transformation"
             className="w-full h-full object-cover"
             loading="eager"
             fetchPriority="high"

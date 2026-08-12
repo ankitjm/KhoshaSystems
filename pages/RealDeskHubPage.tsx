@@ -63,7 +63,7 @@ export const RealDeskHubPage: React.FC = () => {
       <Section className="bg-white border-b border-stone-100">
         <div className="max-w-3xl mx-auto text-center" data-speakable="true">
           <p className="text-lg sm:text-xl text-stone-700 leading-relaxed">
-            <strong>RealDesk</strong> is a connected sales suite by Khoshà Systems for real estate developers and brokers. Eight products surround one CRM — every one of them writes to it, and it writes to none of them.
+            <strong>RealDesk</strong> is a connected sales suite by Khosha Systems for real estate developers and brokers. Eight products surround one CRM — every one of them writes to it, and it writes to none of them.
           </p>
         </div>
       </Section>

@@ -26,7 +26,7 @@ export const VancouverPage: React.FC = () => {
     <div>
       <PageHero
         title="Software Development in Vancouver"
-        subtitle="Khoshà Systems brings 15+ years of enterprise software experience to Vancouver. Custom web apps, SaaS products, AI transformation, and digital solutions — built by a senior team with local presence."
+        subtitle="Khosha Systems brings 15+ years of enterprise software experience to Vancouver. Custom web apps, SaaS products, AI transformation, and digital solutions — built by a senior team with local presence."
         backgroundImage="/images/vancouver-hero.jpg"
       />
 
@@ -41,7 +41,7 @@ export const VancouverPage: React.FC = () => {
               Your Vancouver Software Partner
             </h2>
             <p className="text-stone-500 text-base sm:text-lg max-w-2xl mx-auto">
-              We're not an offshore body shop. Khoshà Systems is a product company that also builds for clients.
+              We're not an offshore body shop. Khosha Systems is a product company that also builds for clients.
               We've shipped three SaaS products of our own — so we understand what it takes to build software that works in production.
             </p>
           </div>

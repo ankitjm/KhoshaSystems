@@ -112,7 +112,7 @@ export const FeaturesPage: React.FC = () => {
     <>
       <PageHero
         title="RetailerOS Features"
-        subtitle="Five core capabilities that help store owners stop bleeding money, stay compliant, and run tighter operations across every location. Starting at ₹1,999/month per store."
+        subtitle="Five core capabilities that help store owners stop bleeding money, stay compliant, and run tighter operations across every location. Starting at ₹2,999/month per store."
         label="Feature Walkthroughs"
         backgroundImage="/images/retaileros-page-hero.jpg"
         backLink={{ label: 'Back to RetailerOS', href: '/products/retaileros' }}
@@ -182,7 +182,7 @@ export const FeaturesPage: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-4">See Every Feature in Action</h2>
           <p className="text-white/60 text-lg mb-8">
-            14-day free trial. No credit card. No lock-in. Plans from ₹1,999/month per store.
+            14-day free trial. No credit card. No lock-in. Plans from ₹2,999/month per store.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

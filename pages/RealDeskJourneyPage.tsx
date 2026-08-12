@@ -120,7 +120,7 @@ export const RealDeskJourneyPage: React.FC = () => {
       <Section className="bg-white border-b border-stone-100">
         <div className="max-w-3xl mx-auto text-center" data-speakable="true">
           <p className="text-lg sm:text-xl text-stone-700 leading-relaxed">
-            <strong>RealDesk</strong> is a connected sales suite by Khoshà Systems for real estate developers and brokers — nine products, each owning one step of the buyer's journey, all writing to a single CRM from first enquiry to possession.
+            <strong>RealDesk</strong> is a connected sales suite by Khosha Systems for real estate developers and brokers — nine products, each owning one step of the buyer's journey, all writing to a single CRM from first enquiry to possession.
           </p>
         </div>
       </Section>

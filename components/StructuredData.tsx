@@ -7,11 +7,11 @@ const SCRIPT_ID = 'dynamic-structured-data';
 
 const organizationSchema = {
   '@type': 'Organization',
-  name: 'Khoshà Systems',
+  name: 'Khosha Systems',
   alternateName: 'Khosha Systems',
   url: BASE_URL,
   logo: `${BASE_URL}/og-icon.png`,
-  description: 'Khoshà Systems is a Bangalore-based IT and digital transformation company founded in 2010, building web applications, SaaS products, and AI transformation services.',
+  description: 'Khosha Systems is a Bangalore-based IT and digital transformation company founded in 2010, building web applications, SaaS products, and AI transformation services.',
   slogan: 'Purpose-built software for Indian businesses',
   foundingDate: '2010',
   foundingLocation: {
@@ -575,7 +575,7 @@ function buildProductSchema(product: {
     description: product.description,
     ...(product.image && { image: `${BASE_URL}${product.image}` }),
     offers: { '@type': 'Offer', category: 'SaaS' },
-    author: { '@type': 'Organization', name: 'Khoshà Systems' },
+    author: { '@type': 'Organization', name: 'Khosha Systems' },
     featureList: product.features,
   };
 }
@@ -637,7 +637,7 @@ function buildPersonSchema(person: {
     ...(person.image && { image: `${BASE_URL}${person.image}` }),
     worksFor: {
       '@type': 'Organization',
-      name: 'Khoshà Systems',
+      name: 'Khosha Systems',
       url: BASE_URL,
     },
     ...(person.sameAs && { sameAs: person.sameAs }),
@@ -646,15 +646,15 @@ function buildPersonSchema(person: {
 
 // WebPage schema for static (non-blog) pages — gives Google freshness signals
 const webPageMeta: Record<string, { name: string; description: string }> = {
-  '/': { name: 'Khoshà Systems — Software Development & AI Transformation', description: 'Khoshà Systems builds web apps, SaaS products & AI solutions from Bangalore.' },
+  '/': { name: 'Khosha Systems — Software Development & AI Transformation', description: 'Khosha Systems builds web apps, SaaS products & AI solutions from Bangalore.' },
   '/products': { name: 'SaaS Products — RetailerOS, Real Estate CRM & VMS', description: 'Production-ready SaaS products for Indian businesses.' },
   '/products/retaileros': { name: 'RetailerOS — Telecom & Electronics Retail Management', description: 'Retail management platform with IMEI tracking, scheme management, GST billing.' },
   '/products/real-desk': { name: 'Real Desk — The Connected Sales Suite', description: 'Connected sales suite for real estate developers and brokers.' },
   '/services': { name: 'Web Development, AI & Digital Transformation Services', description: 'Custom web apps, AI transformation, and digital modernization from Bangalore.' },
   '/work': { name: 'Our Work — Software Projects & Case Studies', description: 'Portfolio of web apps, SaaS products & digital transformation projects.' },
-  '/philosophy': { name: 'About Khoshà Systems — Architect-Led Software Company', description: 'Founded by Ankit Mehta with 15+ years of enterprise software experience.' },
-  '/contact': { name: 'Contact Khoshà Systems', description: 'Get in touch for software development, SaaS, or AI transformation.' },
-  '/pricing': { name: 'RetailerOS Pricing', description: 'RetailerOS pricing starts at ₹1,999/store/month.' },
+  '/philosophy': { name: 'About Khosha Systems — Architect-Led Software Company', description: 'Founded by Ankit Mehta with 15+ years of enterprise software experience.' },
+  '/contact': { name: 'Contact Khosha Systems', description: 'Get in touch for software development, SaaS, or AI transformation.' },
+  '/pricing': { name: 'RetailerOS Pricing', description: 'RetailerOS pricing starts at ₹2,999/store/month.' },
   '/blog': { name: 'Khosha Systems Blog', description: 'Insights on software development, AI, retail tech & digital transformation.' },
 };
 
@@ -673,12 +673,12 @@ function buildWebPageSchema(pathname: string) {
     inLanguage: 'en',
     isPartOf: {
       '@type': 'WebSite',
-      name: 'Khoshà Systems',
+      name: 'Khosha Systems',
       url: BASE_URL,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Khoshà Systems',
+      name: 'Khosha Systems',
       logo: { '@type': 'ImageObject', url: `${BASE_URL}/og-icon.png` },
     },
   };
@@ -716,17 +716,17 @@ function buildArticleSchema(post: {
         name: 'Ankit Mehta',
         jobTitle: 'Founder & Chief Architect',
         url: `${BASE_URL}/philosophy`,
-        worksFor: { '@type': 'Organization', name: 'Khoshà Systems' },
+        worksFor: { '@type': 'Organization', name: 'Khosha Systems' },
       },
       {
         '@type': 'Organization',
-        name: 'Khoshà Systems',
+        name: 'Khosha Systems',
         url: BASE_URL,
       },
     ],
     publisher: {
       '@type': 'Organization',
-      name: 'Khoshà Systems',
+      name: 'Khosha Systems',
       logo: { '@type': 'ImageObject', url: `${BASE_URL}/og-icon.png` },
     },
     mainEntityOfPage: {
@@ -774,7 +774,7 @@ function getSchemasForPath(pathname: string): object[] {
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
         '@id': `${BASE_URL}/#localbusiness`,
-        name: 'Khoshà Systems',
+        name: 'Khosha Systems',
         image: `${BASE_URL}/og-icon.png`,
         url: BASE_URL,
         telephone: '+918884972272',
@@ -867,7 +867,7 @@ function getSchemasForPath(pathname: string): object[] {
         buildPersonSchema({
           name: 'Ankit Mehta',
           jobTitle: 'Founder & Chief Architect',
-          description: 'Founder of Khoshà Systems with 15+ years of experience building enterprise software across Canada and India. Architect-led approach to web applications, SaaS products, and AI transformation.',
+          description: 'Founder of Khosha Systems with 15+ years of experience building enterprise software across Canada and India. Architect-led approach to web applications, SaaS products, and AI transformation.',
           image: '/images/founder-photo.jpg',
           sameAs: ['https://www.linkedin.com/company/khoshasystems'],
         })

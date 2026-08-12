@@ -300,7 +300,7 @@ const html = `<!DOCTYPE html>
   <div class="brand-block">
     <div class="logo">K</div>
     <div class="info">
-      <strong>Khoshà Systems</strong>
+      <strong>Khosha Systems</strong>
       Precision-Engineered Business Solutions
     </div>
   </div>
@@ -312,7 +312,7 @@ const html = `<!DOCTYPE html>
 <!-- ==================== PAGE 2: THE PROBLEM ==================== -->
 <div class="page">
   <div class="page-header">
-    <span class="brand">Khoshà Systems</span>
+    <span class="brand">Khosha Systems</span>
     <span>The Business Owner's Blueprint</span>
   </div>
 
@@ -373,7 +373,7 @@ const html = `<!DOCTYPE html>
 <!-- ==================== PAGE 3: WHAT IF ==================== -->
 <div class="page">
   <div class="page-header">
-    <span class="brand">Khoshà Systems</span>
+    <span class="brand">Khosha Systems</span>
     <span>The Business Owner's Blueprint</span>
   </div>
 
@@ -447,7 +447,7 @@ const html = `<!DOCTYPE html>
 <!-- ==================== PAGE 4: THE FRAMEWORK ==================== -->
 <div class="page">
   <div class="page-header">
-    <span class="brand">Khoshà Systems</span>
+    <span class="brand">Khosha Systems</span>
     <span>The Business Owner's Blueprint</span>
   </div>
 
@@ -522,7 +522,7 @@ const html = `<!DOCTYPE html>
 <!-- ==================== PAGE 5: WHAT WE BUILD ==================== -->
 <div class="page">
   <div class="page-header">
-    <span class="brand">Khoshà Systems</span>
+    <span class="brand">Khosha Systems</span>
     <span>The Business Owner's Blueprint</span>
   </div>
 
@@ -570,11 +570,11 @@ const html = `<!DOCTYPE html>
 <!-- ==================== PAGE 6: HOW WE'RE DIFFERENT ==================== -->
 <div class="page">
   <div class="page-header">
-    <span class="brand">Khoshà Systems</span>
+    <span class="brand">Khosha Systems</span>
     <span>The Business Owner's Blueprint</span>
   </div>
 
-  <div class="label">Why Khoshà</div>
+  <div class="label">Why Khosha</div>
   <h2>We're Not Another Software Company</h2>
 
   <p style="color: ${textColor}; font-size: 12px; margin-bottom: 24px;">
@@ -610,7 +610,7 @@ const html = `<!DOCTYPE html>
 <!-- ==================== PAGE 7: REAL RESULTS ==================== -->
 <div class="page">
   <div class="page-header">
-    <span class="brand">Khoshà Systems</span>
+    <span class="brand">Khosha Systems</span>
     <span>The Business Owner's Blueprint</span>
   </div>
 
@@ -668,7 +668,7 @@ const html = `<!DOCTYPE html>
 <!-- ==================== PAGE 8: YOUR READINESS CHECKLIST ==================== -->
 <div class="page">
   <div class="page-header">
-    <span class="brand">Khoshà Systems</span>
+    <span class="brand">Khosha Systems</span>
     <span>The Business Owner's Blueprint</span>
   </div>
 
@@ -732,7 +732,7 @@ const html = `<!DOCTYPE html>
 <!-- ==================== PAGE 9: INVESTMENT & FAQ ==================== -->
 <div class="page">
   <div class="page-header">
-    <span class="brand">Khoshà Systems</span>
+    <span class="brand">Khosha Systems</span>
     <span>The Business Owner's Blueprint</span>
   </div>
 
@@ -773,7 +773,7 @@ const html = `<!DOCTYPE html>
 <!-- ==================== PAGE 10: CTA ==================== -->
 <div class="page" style="display: flex; flex-direction: column; justify-content: center;">
   <div class="page-header" style="position: absolute; top: 20mm; left: 24mm; right: 24mm;">
-    <span class="brand">Khoshà Systems</span>
+    <span class="brand">Khosha Systems</span>
     <span>The Business Owner's Blueprint</span>
   </div>
 
@@ -835,7 +835,7 @@ const html = `<!DOCTYPE html>
   </div>
 
   <div class="footer-note">
-    © 2026 Khoshà Systems &nbsp;·&nbsp; khoshasystems.com &nbsp;·&nbsp; Precision-Engineered Business Solutions
+    © 2026 Khosha Systems &nbsp;·&nbsp; khoshasystems.com &nbsp;·&nbsp; Precision-Engineered Business Solutions
   </div>
 </div>
 

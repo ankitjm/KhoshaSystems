@@ -25,7 +25,7 @@ const plans = [
   {
     icon: Store,
     name: "General Trade",
-    price: "₹1,999",
+    price: "₹2,999",
     period: "/store/month",
     desc: "For independent retailers and single-store operators",
     features: ["IMEI & serial number tracking", "GST-compliant invoicing", "Brand scheme auto-loading", "Exchange & buyback workflows"],
@@ -35,7 +35,7 @@ const plans = [
   {
     icon: BarChart3,
     name: "Multi-Store Chain",
-    price: "₹2,999",
+    price: "₹7,499",
     period: "/store/month",
     desc: "For retail chains with 2+ locations",
     features: ["Everything in General Trade", "Multi-store inventory sync", "AI-powered demand forecasting", "API access & dedicated manager"],

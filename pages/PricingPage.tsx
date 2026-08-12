@@ -133,7 +133,7 @@ export const PricingPage: React.FC = () => {
                 <p className="text-sm text-stone-500">For independent retailers and single-store operators</p>
               </div>
               <div className="mb-6">
-                <span className="text-3xl font-bold text-stone-900">₹1,999</span>
+                <span className="text-3xl font-bold text-stone-900">₹2,999</span>
                 <span className="text-stone-500 text-sm">/store/month</span>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
@@ -179,7 +179,7 @@ export const PricingPage: React.FC = () => {
                 <p className="text-sm text-stone-500">For retail chains with 2+ locations</p>
               </div>
               <div className="mb-6">
-                <span className="text-3xl font-bold text-stone-900">₹2,999</span>
+                <span className="text-3xl font-bold text-stone-900">₹7,499</span>
                 <span className="text-stone-500 text-sm">/store/month</span>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
@@ -272,20 +272,20 @@ export const PricingPage: React.FC = () => {
                 <tbody>
                   <tr className="border-b border-stone-100">
                     <td className="py-3 px-4 font-medium text-stone-700">Quarterly</td>
-                    <td className="py-3 px-4 text-center text-stone-600">₹1,999/store/mo</td>
-                    <td className="py-3 px-4 text-center text-stone-600">₹2,999/store/mo</td>
+                    <td className="py-3 px-4 text-center text-stone-600">₹2,849/store/mo</td>
+                    <td className="py-3 px-4 text-center text-stone-600">₹7,124/store/mo</td>
                     <td className="py-3 px-4 text-center text-green-600 font-medium">5% off</td>
                   </tr>
                   <tr className="border-b border-stone-100">
                     <td className="py-3 px-4 font-medium text-stone-700">Half-Yearly</td>
-                    <td className="py-3 px-4 text-center text-stone-600">₹1,899/store/mo</td>
-                    <td className="py-3 px-4 text-center text-stone-600">₹2,849/store/mo</td>
+                    <td className="py-3 px-4 text-center text-stone-600">₹2,699/store/mo</td>
+                    <td className="py-3 px-4 text-center text-stone-600">₹6,749/store/mo</td>
                     <td className="py-3 px-4 text-center text-green-600 font-medium">10% off</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-4 font-medium text-stone-700">Yearly</td>
-                    <td className="py-3 px-4 text-center text-stone-600">₹1,599/store/mo</td>
                     <td className="py-3 px-4 text-center text-stone-600">₹2,399/store/mo</td>
+                    <td className="py-3 px-4 text-center text-stone-600">₹5,999/store/mo</td>
                     <td className="py-3 px-4 text-center text-green-600 font-medium">20% off</td>
                   </tr>
                 </tbody>
