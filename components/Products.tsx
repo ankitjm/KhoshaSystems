@@ -73,7 +73,7 @@ const products = [
   },
   {
     name: "Canada Immigration",
-    slug: "/contact",
+    slug: "/products/canada-immigration",
     tagline: "Case Management for Canada Immigration Consultants",
     description: "A case-management platform built for Canada-focused immigration consultancies and agents. Track applicants, manage documentation, and stay on top of every case stage from one dashboard.",
     icon: Plane,

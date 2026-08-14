@@ -82,6 +82,11 @@ const breadcrumbMap: Record<string, Array<{ name: string; path: string }>> = {
     { name: 'Products', path: '/products' },
     { name: 'Real Desk', path: '/products/real-desk' },
   ],
+  '/products/canada-immigration': [
+    { name: 'Home', path: '' },
+    { name: 'Products', path: '/products' },
+    { name: 'Canada Immigration', path: '/products/canada-immigration' },
+  ],
   '/services': [
     { name: 'Home', path: '' },
     { name: 'Services', path: '/services' },
@@ -650,6 +655,7 @@ const webPageMeta: Record<string, { name: string; description: string }> = {
   '/products': { name: 'SaaS Products — RetailerOS, Real Estate CRM & VMS', description: 'Production-ready SaaS products for Indian businesses.' },
   '/products/retaileros': { name: 'RetailerOS — Telecom & Electronics Retail Management', description: 'Retail management platform with IMEI tracking, scheme management, GST billing.' },
   '/products/real-desk': { name: 'Real Desk — The Connected Sales Suite', description: 'Connected sales suite for real estate developers and brokers.' },
+  '/products/canada-immigration': { name: 'PASSAGE — Immigration Practice Operating System', description: 'Practice-management platform for Canadian RCIC-licensed immigration consultancies.' },
   '/services': { name: 'Web Development, AI & Digital Transformation Services', description: 'Custom web apps, AI transformation, and digital modernization from Bangalore.' },
   '/work': { name: 'Our Work — Software Projects & Case Studies', description: 'Portfolio of web apps, SaaS products & digital transformation projects.' },
   '/philosophy': { name: 'About Khosha Systems — Architect-Led Software Company', description: 'Founded by Ankit Mehta with 15+ years of enterprise software experience.' },

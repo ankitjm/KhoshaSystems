@@ -232,7 +232,7 @@ export const Contact: React.FC = () => {
                   <a href="/products/retaileros" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">RetailerOS</a>
                   <a href="/products/real-desk" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">Real Desk</a>
                   <a href="/services" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">AI Automation</a>
-                  <a href="/contact" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">Canada Immigration</a>
+                  <a href="/products/canada-immigration" className="block text-stone-500 hover:text-stone-300 text-xs transition-colors">Canada Immigration</a>
                 </div>
               </div>
               <div>
