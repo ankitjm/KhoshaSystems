@@ -102,7 +102,7 @@ export const Contact: React.FC = () => {
                   </div>
                   <span className="text-sm sm:text-base hover:text-white transition-colors">ankit@khoshasystems.com</span>
                 </a>
-                <a href="https://maps.google.com/?q=The+Phygital+Studio,+46,+5th+Main+Road,+10th+Cross+Rd,+Kumara+Park+West,+Bengaluru,+Karnataka+560020" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 sm:gap-4 text-stone-300 group">
+                <a href="https://maps.google.com/?q=SS+Apt+13+4th+Cross+Rd+Kumara+Park+West+Seshadripuram+Bangalore+Karnataka+560020" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 sm:gap-4 text-stone-300 group">
                   <div className="p-2.5 sm:p-3 bg-stone-800 rounded-full group-hover:bg-bronze-600 group-hover:text-white transition-colors"><MapPin size={18} /></div>
                   <span className="text-sm sm:text-base hover:text-white transition-colors">Kumara Park, Seshadripuram, Bangalore</span>
                 </a>
@@ -111,7 +111,7 @@ export const Contact: React.FC = () => {
               <div className="mt-6 sm:mt-8 rounded-lg overflow-hidden border border-stone-700/50">
                 <iframe
                   title="Khosha Systems Office Location"
-                  src="https://maps.google.com/maps?q=The+Phygital+Studio,+46,+5th+Main+Road,+10th+Cross+Rd,+Kumara+Park+West,+Bengaluru,+Karnataka+560020&z=17&output=embed"
+                  src="https://maps.google.com/maps?q=SS+Apt+13+4th+Cross+Rd+Kumara+Park+West+Seshadripuram+Bangalore+Karnataka+560020&z=16&output=embed"
                   width="100%"
                   height="200"
                   style={{ border: 0 }}
