@@ -21,6 +21,7 @@ const ROUTES = [
   '/products/retaileros-2',
   '/products/retaileros-3',
   '/products/real-desk',
+  '/products/canada-immigration',
   '/vancouver',
   // Blog posts (dynamic routes need prerendering for SEO)
   '/blog/retail-management-software-telecom-electronics-india',
@@ -73,6 +74,11 @@ const seoConfig = {
     title: 'SaaS Products | RetailerOS, Real Estate CRM & Visitor Management | Khosha Systems',
     description: 'Production-ready SaaS: RetailerOS for retail, Real Estate CRM for Indian developers, Visitor Management for offices. Built in Bangalore.',
     keywords: 'RetailerOS telecom retail management software India, mobile phone shop billing software, IMEI tracking software, consumer electronics retail software, scheme management software retail, real estate CRM software India, CRM for real estate developers India, visitor management system India, digital visitor management software, inventory management software retailers India, brand scheme tracking software retailers'
+  },
+  '/products/canada-immigration': {
+    title: 'PASSAGE | Immigration Practice Operating System for RCIC Consultancies | Khosha Systems',
+    description: 'PASSAGE — practice-management software for Canadian RCIC-licensed immigration consultancies. Client records, LMIA evidence, billing, and compliance tracking in one file.',
+    keywords: 'immigration practice management software Canada, RCIC practice software, LMIA compliance software, immigration consultant CRM Canada, Job Bank advertising tracker, immigration case management software, RCIC client portal, Canada immigration software'
   },
   '/products/retaileros': {
     title: 'RetailerOS | Telecom & Electronics Retail Management Software India | Khosha Systems',
@@ -264,6 +270,7 @@ const breadcrumbMap = {
   '/': [{ name: 'Home', path: '' }],
   '/products': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }],
   '/products/retaileros': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'RetailerOS', path: '/products/retaileros' }],
+  '/products/canada-immigration': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Canada Immigration', path: '/products/canada-immigration' }],
   '/products/real-desk': [{ name: 'Home', path: '' }, { name: 'Products', path: '/products' }, { name: 'Real Desk', path: '/products/real-desk' }],
   '/services': [{ name: 'Home', path: '' }, { name: 'Services', path: '/services' }],
   '/work': [{ name: 'Home', path: '' }, { name: 'Work', path: '/work' }],

@@ -24,6 +24,7 @@ const RetailerOSAltPage = lazy(() => import('./pages/RetailerOSAltPage').then(m 
 const RetailerOSBentoPage = lazy(() => import('./pages/RetailerOSBentoPage').then(m => ({ default: m.RetailerOSBentoPage })));
 // const RealEstateCRMPage = lazy(() => import('./pages/RealEstateCRMPage').then(m => ({ default: m.RealEstateCRMPage })));
 const RealDeskPage = lazy(() => import('./pages/RealDeskPage').then(m => ({ default: m.RealDeskPage })));
+const CanadaImmigrationPage = lazy(() => import('./pages/CanadaImmigrationPage').then(m => ({ default: m.CanadaImmigrationPage })));
 // const RealDeskJourneyPage = lazy(() => import('./pages/RealDeskJourneyPage').then(m => ({ default: m.RealDeskJourneyPage })));
 // const RealDeskHubPage = lazy(() => import('./pages/RealDeskHubPage').then(m => ({ default: m.RealDeskHubPage })));
 // const VisitorManagementPage = lazy(() => import('./pages/VisitorManagementPage').then(m => ({ default: m.VisitorManagementPage })));
@@ -85,6 +86,7 @@ function AppContent() {
               <Route path="/products/retaileros-3" element={<RetailerOSBentoPage />} />
               {/* <Route path="/products/real-estate-crm" element={<RealEstateCRMPage />} /> */}
               <Route path="/products/real-desk" element={<RealDeskPage />} />
+              <Route path="/products/canada-immigration" element={<CanadaImmigrationPage />} />
               {/* <Route path="/products/real-desk-journey" element={<RealDeskJourneyPage />} /> */}
               {/* <Route path="/products/real-desk-hub" element={<RealDeskHubPage />} /> */}
               {/* <Route path="/products/visitor-management" element={<VisitorManagementPage />} /> */}

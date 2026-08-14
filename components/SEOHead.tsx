@@ -27,6 +27,11 @@ const seoConfig: Record<string, SEOConfig> = {
     description: 'RetailerOS — retail management for mobile & electronics stores. IMEI tracking, scheme management, GST billing. Built by Khosha Systems.',
     keywords: 'RetailerOS, telecom retail management software India, mobile phone shop billing software, IMEI tracking software retailers, consumer electronics retail software, scheme management software retail, telecom distributor software India, mobile retail POS India, electronics store inventory management, brand scheme tracking software, cashback management software retailers, GST-compliant retail billing software, multi-store retail management software, retail SaaS platform India, retaileros.in'
   },
+  '/products/canada-immigration': {
+    title: 'PASSAGE | Immigration Practice Operating System for RCIC Consultancies | Khosha Systems',
+    description: 'PASSAGE — practice-management software for Canadian RCIC-licensed immigration consultancies. Client records, LMIA evidence, billing, and compliance tracking in one file.',
+    keywords: 'immigration practice management software Canada, RCIC practice software, LMIA compliance software, immigration consultant CRM Canada, Job Bank advertising tracker, immigration case management software, RCIC client portal, Canada immigration software'
+  },
   '/services': {
     title: 'Web Development, AI Integration & Digital Transformation Services | Khosha Systems Bangalore',
     description: 'Custom web apps, AI transformation, mobile apps, website design & legacy modernization. Full-stack services from Bangalore, India.',

@@ -8,7 +8,7 @@ const projects = [
   {
     id: 1,
     client: "Leading Real Estate Developer",
-    category: "Real Estate",
+    category: "Real Desk",
     title: "Visitor Management & CRM Platform",
     description: "Built a comprehensive visitor management system and CRM for one of India's leading real estate developers. Digital check-ins, automated broker notifications, lead tracking, and real-time site visit analytics — replacing manual registers with intelligent visitor intelligence.",
     stats: ["85%", "Faster Check-In", "2x", "Lead Conversion"],
@@ -16,7 +16,7 @@ const projects = [
   },
   {
     id: 2,
-    client: "Arrowhead Communications",
+    client: "RetailerOS",
     category: "Telecom",
     title: "Enterprise Operations Dashboard",
     description: "Designed and built a unified operations platform that consolidated legacy telecom systems into one intelligent dashboard. Real-time network monitoring, automated ticket routing, and AI-powered anomaly detection — reducing operational overhead significantly.",
@@ -25,21 +25,21 @@ const projects = [
   },
   {
     id: 3,
-    client: "Unhive Ventures",
-    category: "Technology",
-    title: "AI-Powered Investment Platform",
-    description: "Developed a modern investment analytics platform with AI-driven deal scoring, portfolio management, and automated due diligence workflows. From fund tracking to investor reporting — built for the speed of venture capital.",
-    stats: ["4x", "Faster Analysis", "200%", "Efficiency Gain"],
-    image: "/images/case-unhive.jpg",
+    client: "RetailerOS",
+    category: "Telecom Retail",
+    title: "Automated Billing & WhatsApp Receipts",
+    description: "A single-counter mobile retailer in Lucknow struggled with customers chasing old bills over WhatsApp. RetailerOS now sends an itemized digital receipt the moment payment is made — automatically, every time, with zero manual follow-up.",
+    stats: ["100%", "Receipts Delivered", "9 Mo", "Zero Complaints"],
+    image: "/images/work-billgenration.png",
   },
   {
     id: 4,
-    client: "Phygital Studio",
-    category: "Digital Agency",
-    title: "Full Digital Transformation Suite",
-    description: "End-to-end digital transformation — from brand website and client portal to project management automation and integrated analytics. Built a cohesive digital ecosystem that streamlined operations across creative, sales, and delivery teams.",
-    stats: ["3x", "Team Productivity", "40%", "Faster Delivery"],
-    image: "/images/case-phygital.jpg",
+    client: "PASSAGE",
+    category: "Canada Immigration",
+    title: "Immigration Practice Operating System",
+    description: "Built PASSAGE for Canadian RCIC-licensed immigration consultancies — unifying client records, 11 case-type pipelines, document management, and regulatory compliance tracking into one searchable file, from first enquiry to permanent residence.",
+    stats: ["11", "Case Pipelines", "56-Day", "Job Bank Tracking"],
+    image: "/images/work-immigration.png",
   },
 ];
 
@@ -101,15 +101,19 @@ export const Work: React.FC = () => {
                   transition={{ duration: 0.5 }}
                   className="w-full h-full relative rounded-lg overflow-hidden"
                 >
-                  <picture>
-                    <source srcSet={project.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
-                    <img
-                      src={project.image}
-                      alt={`${project.client} - ${project.title}`}
-                      className="w-full h-full object-cover img-zoom"
-                      loading="lazy"
-                    />
-                  </picture>
+                  {project.image ? (
+                    <picture>
+                      <source srcSet={project.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+                      <img
+                        src={project.image}
+                        alt={`${project.client} - ${project.title}`}
+                        className="w-full h-full object-cover img-zoom"
+                        loading="lazy"
+                      />
+                    </picture>
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-stone-800 to-stone-900 blueprint-grid" />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-stone-900/20 to-transparent" />
                   <div className="absolute bottom-4 left-4 z-10">
                     <div className="text-white/90 text-xs uppercase tracking-widest font-medium">{project.client}</div>
