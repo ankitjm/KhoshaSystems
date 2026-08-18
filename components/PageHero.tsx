@@ -9,29 +9,52 @@ interface PageHeroProps {
   label?: string;
   backgroundImage: string;
   backgroundAlt?: string;
+  /** Optional portrait-cropped variant swapped in below the sm breakpoint, for source photos whose landscape framing crops badly on tall/narrow hero boxes. */
+  mobileBackgroundImage?: string;
   backLink?: { label: string; href: string };
   children?: React.ReactNode;
+  /** 'lg' matches ServicesHero's taller padding, for pages that should read at the same size as /services. Defaults to the standard, more compact size used everywhere else. */
+  size?: 'default' | 'lg';
+  /** 'bronze' matches ServicesHero's golden-brown tint. Defaults to the neutral stone overlay used everywhere else. */
+  overlay?: 'dark' | 'bronze';
 }
 
-export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, label, backgroundImage, backgroundAlt = 'Page section background', backLink, children }) => {
+export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, label, backgroundImage, backgroundAlt = 'Page section background', mobileBackgroundImage, backLink, children, size = 'default', overlay = 'dark' }) => {
+  const paddingClass = size === 'lg'
+    ? 'pt-32 sm:pt-40 pb-20 sm:pb-28'
+    : 'pt-28 sm:pt-32 pb-14 sm:pb-20';
   return (
     <section className="relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        <picture>
-          <source srcSet={backgroundImage.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
-          <img
-            src={backgroundImage}
-            alt={backgroundAlt}
-            className="w-full h-full object-cover"
-            loading="eager"
-          />
-        </picture>
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/80 via-stone-900/75 to-stone-900/90" />
+        {mobileBackgroundImage ? (
+          <picture>
+            <source media="(max-width: 639px)" srcSet={mobileBackgroundImage.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+            <source media="(max-width: 639px)" srcSet={mobileBackgroundImage} />
+            <source srcSet={backgroundImage.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+            <img
+              src={backgroundImage}
+              alt={backgroundAlt}
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+          </picture>
+        ) : (
+          <picture>
+            <source srcSet={backgroundImage.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+            <img
+              src={backgroundImage}
+              alt={backgroundAlt}
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+          </picture>
+        )}
+        <div className={`absolute inset-0 ${overlay === 'bronze' ? 'overlay-bronze' : 'bg-gradient-to-b from-stone-900/80 via-stone-900/75 to-stone-900/90'}`} />
       </div>
       <div className="absolute inset-0 pattern-diagonal z-[1] pointer-events-none" />
 
-      <div className="relative z-10 pt-28 sm:pt-32 pb-14 sm:pb-20 px-5 sm:px-6 md:px-12 lg:px-24">
+      <div className={`relative z-10 ${paddingClass} px-5 sm:px-6 md:px-12 lg:px-24`}>
         <div className="max-w-5xl mx-auto">
           {backLink && (
             <Link to={backLink.href} className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-bronze-400 transition-colors mb-6 sm:mb-8">

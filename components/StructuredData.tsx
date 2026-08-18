@@ -204,6 +204,33 @@ const breadcrumbMap: Record<string, Array<{ name: string; path: string }>> = {
 };
 
 // FAQ data for product pages
+export const productsPageFAQs = [
+  {
+    question: 'What products does Khosha Systems offer?',
+    answer: 'Four production-ready products: RetailerOS (retail management for telecom & electronics stores), Real Desk (a connected sales suite for real estate developers), Passage (case management for Canada immigration consultancies), and custom AI Automation for business workflows. More are in development across logistics, healthcare, and education.',
+  },
+  {
+    question: 'Are these off-the-shelf products or do you customize them for my business?',
+    answer: 'Both. Each product ships as a ready-to-deploy SaaS platform, but we tailor onboarding, integrations, and workflows to how your business actually operates — so you\'re not stuck reshaping your process around generic software.',
+  },
+  {
+    question: 'How do I know which product is right for my business?',
+    answer: 'It depends on your industry and stage. RetailerOS fits telecom/electronics retail, Real Desk fits real estate developers and brokers, Passage fits immigration consultancies, and AI Automation fits any business with repetitive operational workflows. Book a demo and we\'ll point you to the right fit — or tell you if none of them do, and what we\'d build instead.',
+  },
+  {
+    question: 'Can I try a product before committing?',
+    answer: 'Yes. Every product starts with a guided demo on your own data where possible, and RetailerOS offers a 14-day free trial. We\'d rather you see it working on a real workflow than take our word for it.',
+  },
+  {
+    question: 'Do these products integrate with tools we already use?',
+    answer: 'Yes — that\'s a design principle, not an afterthought. RetailerOS integrates with GST/UPI billing and marketplace tools, Real Desk connects to 99acres, MagicBricks, and ad platforms for lead capture, and our AI Automation work is built to sit alongside your existing stack rather than replace it.',
+  },
+  {
+    question: 'What kind of support do we get after go-live?',
+    answer: 'Ongoing support and partnership retainers for optimization, new features, monitoring, and scaling as your business grows — not a one-time handoff. The team that built the product is the team you talk to when something needs to change.',
+  },
+];
+
 export const retailerOSFAQs = [
   {
     question: 'What types of retailers is RetailerOS built for?',
@@ -797,6 +824,10 @@ function getSchemasForPath(pathname: string): object[] {
         priceRange: '$$',
         areaServed: organizationSchema.areaServed,
       });
+      break;
+
+    case '/products':
+      schemas.push(buildFAQSchema(productsPageFAQs));
       break;
 
     case '/products/retaileros':

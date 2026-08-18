@@ -2,6 +2,7 @@ import React from 'react';
 import { ServicesHero } from '../components/ServicesHero';
 import { Services } from '../components/Services';
 import { Phases } from '../components/Phases';
+import { ServicesTestimonials } from '../components/ServicesTestimonials';
 import { ServicesWork } from '../components/ServicesWork';
 import { ServicesPitch } from '../components/ServicesPitch';
 import { FAQSection } from '../components/FAQSection';
@@ -34,6 +35,7 @@ export const ServicesPage: React.FC = () => {
       <Phases />
       <ServicesWork />
       <ServicesPitch />
+      <ServicesTestimonials />
       <FAQSection
         faqs={servicesFAQs}
         title="Before You Reach Out"

@@ -1,82 +1,133 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion, Variants } from 'framer-motion';
 
 const phases = [
   {
-    phase: "Phase I",
+    number: "01",
     title: "Assessment",
-    tagline: "Understanding the landscape",
-    description: "We audit your existing systems, map dependencies, and identify the highest-leverage opportunities for transformation.",
-    highlight: false,
+    description: "We evaluate your current systems, processes, and goals to uncover opportunities and define the right path forward.",
+    image: "/images/services-assessment.jpg",
+    imageAlt: "Magnifying glass icon representing the assessment phase",
   },
   {
-    phase: "Phase II",
+    number: "02",
     title: "Architecture",
-    tagline: "Engineering the foundation",
-    description: "We design the target architecture, build core systems, and begin automating workflows. Measurable results start flowing.",
-    highlight: false,
+    description: "We design scalable, secure, and future-ready architecture tailored to your business needs and technology landscape.",
+    image: "/images/services-architecture.jpg",
+    imageAlt: "Connected system nodes representing the architecture phase",
   },
   {
-    phase: "Phase III",
+    number: "03",
     title: "Scale",
-    tagline: "Designed for growth",
-    description: "The system runs autonomously. You focus on strategy while the architecture adapts and scales with demand.",
-    highlight: true,
+    description: "We implement, optimize, and evolve the system so it scales with your business — driving sustainable growth and impact.",
+    image: "/images/services-scale.jpg",
+    imageAlt: "Ascending growth chart representing the scale phase",
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } }
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
-};
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export const Phases: React.FC = () => {
+  const reduce = useReducedMotion();
+
+  const fadeUp = (delay: number, distance = 12, duration = 0.55): Variants =>
+    reduce
+      ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.25 } } }
+      : {
+          hidden: { opacity: 0, y: distance },
+          visible: { opacity: 1, y: 0, transition: { duration, ease: EASE, delay } },
+        };
+
+  const bgVariants: Variants = reduce
+    ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+    : { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } } };
+
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: reduce ? 0 : 0.1, delayChildren: reduce ? 0 : 0.2 } },
+  };
+
+  const cardVariants: Variants = reduce
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.25 } } }
+    : { hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.48, ease: EASE } } };
+
   return (
     <div className="py-16 sm:py-20 bg-stone-900 relative overflow-hidden">
-      <div className="absolute inset-0 blueprint-grid pointer-events-none" />
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
-         <motion.h2
-           initial={{ opacity: 0, y: 20 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           className="text-center text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-white mb-10 sm:mb-16"
-         >
-           The Evolution Path
-         </motion.h2>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={bgVariants}
+        className="absolute inset-0 pointer-events-none"
+      >
+        <div className="absolute inset-0 blueprint-grid" />
+        <div className="absolute -top-24 -right-16 w-[560px] h-[560px] rounded-full bg-bronze-400/8 blur-[130px]" />
+      </motion.div>
 
-         <motion.div
-           variants={containerVariants}
-           initial="hidden"
-           whileInView="visible"
-           viewport={{ once: true, margin: "-50px" }}
-           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-white/10 border border-white/10 rounded-lg overflow-hidden"
-         >
-            {phases.map((p) => (
-              <motion.div
-                key={p.phase}
-                variants={cardVariants}
-                className={`p-6 sm:p-8 relative ${
-                  p.highlight
-                    ? 'bg-gradient-to-b from-bronze-900/30 to-stone-800'
-                    : 'bg-stone-800'
-                }`}
-              >
-                <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest mb-3 sm:mb-4 flex items-center gap-2 text-bronze-400">
-                  {p.phase}
-                  {p.highlight && <motion.div animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2, repeat: Infinity }} className="w-1.5 h-1.5 bg-bronze-400 rounded-full" />}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-80px' }}
+        className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10"
+      >
+        <motion.span
+          variants={fadeUp(0, 10, 0.5)}
+          className="block text-center text-bronze-400 font-semibold tracking-widest uppercase text-sm mb-3 sm:mb-4"
+        >
+          Our Approach
+        </motion.span>
+        <motion.h2
+          variants={fadeUp(0, 12, 0.55)}
+          className="text-center text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-white mb-4 sm:mb-5"
+        >
+          The Evolution Path
+        </motion.h2>
+        <motion.p
+          variants={fadeUp(0.1, 12, 0.55)}
+          className="text-center text-white/50 text-sm sm:text-base max-w-xl mx-auto mb-10 sm:mb-16"
+        >
+          We partner with you at every stage — assessing, architecting, and scaling solutions that grow with your business.
+        </motion.p>
+
+        <motion.div
+          variants={containerVariants}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-6"
+        >
+          {phases.map((p) => (
+            <motion.div
+              key={p.number}
+              variants={cardVariants}
+              className="group rounded-xl border border-[rgba(180,125,65,0.16)] bg-[rgba(18,17,16,0.78)] overflow-hidden transition duration-300 motion-safe:hover:-translate-y-[2px] hover:border-[rgba(180,125,65,0.32)] motion-reduce:transition-none"
+            >
+              <div className="relative w-full aspect-[4/3] bg-stone-900 overflow-hidden">
+                <picture>
+                  <source srcSet={p.image.replace(/\.jpg$/, '.webp')} type="image/webp" />
+                  <img
+                    src={p.image}
+                    alt={p.imageAlt}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </picture>
+                <div
+                  className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none"
+                  style={{ background: 'radial-gradient(circle at 50% 40%, rgba(180,135,94,0.14), transparent 65%)' }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-stone-800/70" />
+                <div className="absolute top-4 left-5 text-xs font-semibold uppercase tracking-widest">
+                  <span className="text-bronze-400 transition-colors duration-300 group-hover:text-bronze-300">{p.number}</span>
+                  <span className="text-white/40 transition-colors duration-300 group-hover:text-white/55"> / 03</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-serif text-white mb-2">{p.title}</h3>
-                <p className="italic mb-3 sm:mb-4 text-sm text-bronze-300">"{p.tagline}"</p>
+              </div>
+
+              <div className="p-6 sm:p-7 pt-5 sm:pt-6">
+                <h3 className="text-xl sm:text-2xl font-serif text-white mb-2.5">{p.title}</h3>
                 <p className="text-sm leading-relaxed text-white/50">{p.description}</p>
-              </motion.div>
-            ))}
-         </motion.div>
-      </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
