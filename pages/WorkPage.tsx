@@ -1,10 +1,33 @@
 import React from 'react';
 import { Section } from '../components/Section';
 import { Work } from '../components/Work';
+import { WorkTestimonials } from '../components/WorkTestimonials';
 import { Contact } from '../components/Contact';
 import { PageHero } from '../components/PageHero';
+import { FAQSection } from '../components/FAQSection';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+
+const workStats = [
+  { n: '15+', l: 'Years Engineering' },
+  { n: '7', l: 'Industries Served' },
+  { n: '50+', l: 'Projects Delivered' },
+];
+
+const workFAQs = [
+  {
+    question: "How do you measure the results shown here?",
+    answer: "Every stat on this page is client-reported, comparing performance before and after implementation — not a projection or an industry benchmark.",
+  },
+  {
+    question: "Can I talk to a reference client before signing?",
+    answer: "Yes, for engagements at that stage — happy to arrange a call with a past client where they're comfortable doing so.",
+  },
+  {
+    question: "Do you publish a case study for every client?",
+    answer: "No — only for clients who've given us consent to share their name and numbers publicly. Several engagements stay private at the client's request.",
+  },
+];
 
 export const WorkPage: React.FC = () => {
   return (
@@ -12,10 +35,24 @@ export const WorkPage: React.FC = () => {
       <PageHero
         title="Our Work"
         subtitle="Real transformations for real businesses — from established enterprises to early-stage startups."
-        backgroundImage="/images/work-hero.jpg"
+        backgroundImage="/images/work-bg.jpg"
+        size="lg"
       />
 
+      <div className="bg-white py-8 sm:py-10 px-5 sm:px-6 md:px-12 lg:px-24 border-b border-stone-100">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-x-12 gap-y-4">
+          {workStats.map((stat) => (
+            <div key={stat.l} className="text-center">
+              <div className="font-serif font-extrabold text-2xl sm:text-3xl text-stone-900">{stat.n}</div>
+              <div className="text-xs text-stone-500 mt-0.5">{stat.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <Work />
+
+      <WorkTestimonials />
 
       <Section className="bg-white">
         <motion.div
@@ -31,6 +68,13 @@ export const WorkPage: React.FC = () => {
           </Link>
         </motion.div>
       </Section>
+
+      <FAQSection
+        faqs={workFAQs}
+        title="Questions About Our Work"
+        subtitle="What people usually ask after reading these case studies."
+        className="bg-stone-50"
+      />
 
       <Contact />
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section } from './Section';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,8 @@ const projects = [
     description: "Built a comprehensive visitor management system and CRM for one of India's leading real estate developers. Digital check-ins, automated broker notifications, lead tracking, and real-time site visit analytics — replacing manual registers with intelligent visitor intelligence.",
     stats: ["85%", "Faster Check-In", "2x", "Lead Conversion"],
     image: "/images/case-prestige.jpg",
+    productName: "Real Desk",
+    productSlug: "/products/real-desk",
   },
   {
     id: 2,
@@ -22,6 +24,8 @@ const projects = [
     description: "Designed and built a unified operations platform that consolidated legacy telecom systems into one intelligent dashboard. Real-time network monitoring, automated ticket routing, and AI-powered anomaly detection — reducing operational overhead significantly.",
     stats: ["60%", "Cost Reduction", "12", "Systems Unified"],
     image: "/images/case-arrowhead.jpg",
+    productName: "RetailerOS",
+    productSlug: "/products/retaileros",
   },
   {
     id: 3,
@@ -31,6 +35,8 @@ const projects = [
     description: "A single-counter mobile retailer in Lucknow struggled with customers chasing old bills over WhatsApp. RetailerOS now sends an itemized digital receipt the moment payment is made — automatically, every time, with zero manual follow-up.",
     stats: ["100%", "Receipts Delivered", "9 Mo", "Zero Complaints"],
     image: "/images/work-billgenration.png",
+    productName: "RetailerOS",
+    productSlug: "/products/retaileros",
   },
   {
     id: 4,
@@ -40,6 +46,8 @@ const projects = [
     description: "Built PASSAGE for Canadian RCIC-licensed immigration consultancies — unifying client records, 11 case-type pipelines, document management, and regulatory compliance tracking into one searchable file, from first enquiry to permanent residence.",
     stats: ["11", "Case Pipelines", "56-Day", "Job Bank Tracking"],
     image: "/images/work-immigration.png",
+    productName: "PASSAGE",
+    productSlug: "/products/canada-immigration",
   },
 ];
 
@@ -93,8 +101,12 @@ export const Work: React.FC = () => {
             <motion.div
               key={project.id}
               variants={itemVariants}
-              className={`group flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-6 lg:gap-12 items-center border-b border-stone-200 pb-8 sm:pb-12 last:border-0`}
+              className="border-b border-stone-200 pb-8 sm:pb-12 last:border-0"
             >
+              <Link
+                to={project.productSlug}
+                className={`group flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-6 lg:gap-12 items-center`}
+              >
               <div className="w-full lg:w-1/2 relative overflow-hidden rounded-lg h-[220px] sm:h-[280px] lg:h-[360px]">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
@@ -157,7 +169,12 @@ export const Work: React.FC = () => {
                    </div>
                  </div>
                  <p className="text-stone-400 text-[10px] sm:text-[11px] italic">Based on client-reported figures comparing performance before and after implementation.</p>
+                 <div className="flex items-center gap-2 text-sm font-medium text-bronze-600 group-hover:text-bronze-700 transition-colors">
+                   Explore {project.productName}
+                   <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+                 </div>
               </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>

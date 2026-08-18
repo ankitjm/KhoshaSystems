@@ -67,6 +67,7 @@ export const CanadaImmigrationPage: React.FC = () => {
         title={<>From First Enquiry to <span className="bronze-gradient-text">Permanent Residence</span>, in One File.</>}
         subtitle="PASSAGE is the practice operating system for RCIC-licensed immigration consultancies. The client portal, the case work, the LMIA recruitment evidence, the signed retainer, and the invoice all hang off one client record."
         backgroundImage="/images/work-immigration.png"
+        mobileBackgroundImage="/images/work-immigration-mobile.jpg"
       >
         <div className="flex flex-wrap gap-3">
           <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-bronze-600 text-white text-sm font-medium uppercase tracking-wider hover:bg-bronze-500 transition-colors rounded group">

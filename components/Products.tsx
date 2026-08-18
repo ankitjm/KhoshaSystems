@@ -72,7 +72,7 @@ const products = [
     ]
   },
   {
-    name: "Canada Immigration",
+    name: "Passage",
     slug: "/products/canada-immigration",
     tagline: "Case Management for Canada Immigration Consultants",
     description: "A case-management platform built for Canada-focused immigration consultancies and agents. Track applicants, manage documentation, and stay on top of every case stage from one dashboard.",
@@ -183,7 +183,7 @@ export const Products: React.FC = () => {
                 <div className="flex gap-3 mb-4">
                   {product.stats.map((stat, i) => (
                     <div key={i} className="flex-1 min-w-0 text-center">
-                      <div className="text-sm sm:text-base font-bold text-stone-900 leading-tight">{stat.value}</div>
+                      <div className="text-sm sm:text-base font-bold text-bronze-600 leading-tight">{stat.value}</div>
                       <div className="text-[9px] text-stone-400 uppercase tracking-wider leading-tight">{stat.label}</div>
                     </div>
                   ))}

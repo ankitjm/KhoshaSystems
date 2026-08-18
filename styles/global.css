@@ -112,3 +112,92 @@
 .glow-bronze {
   box-shadow: 0 0 0 1px rgba(180, 135, 94, 0.1), 0 4px 24px rgba(180, 135, 94, 0.08);
 }
+
+/* "Two Ways We Work With You" — restrained per-capability icon hover accents.
+   Each ::before/::after uses currentColor so it inherits the bronze/stone badge tint automatically. */
+.svc-icon-badge::after,
+.svc-icon-badge::before {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+.svc-icon-sweep { overflow: hidden; }
+.svc-icon-sweep::after {
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, currentColor 50%, transparent 65%);
+  opacity: 0;
+  transform: translateX(-130%);
+  transition: transform 0.6s ease, opacity 0.4s ease;
+}
+.group:hover .svc-icon-sweep::after {
+  opacity: 0.25;
+  transform: translateX(130%);
+}
+
+.svc-icon-vbar { overflow: hidden; }
+.svc-icon-vbar::after {
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, currentColor, transparent);
+  opacity: 0;
+  transform: scaleY(0);
+  transition: transform 0.45s ease, opacity 0.35s ease;
+}
+.group:hover .svc-icon-vbar::after {
+  opacity: 0.28;
+  transform: scaleY(1);
+}
+
+.svc-icon-ring::before {
+  inset: -3px;
+  border-radius: 9999px;
+  border: 1px solid currentColor;
+  opacity: 0;
+  transform: scale(0.82);
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+.group:hover .svc-icon-ring::before {
+  opacity: 0.35;
+  transform: scale(1);
+}
+
+.svc-icon-pulse::before {
+  inset: -2px;
+  border-radius: 9999px;
+  border: 1px solid currentColor;
+  opacity: 0;
+}
+.group:hover .svc-icon-pulse::before {
+  animation: svc-pulse 0.9s ease-out 1;
+}
+@keyframes svc-pulse {
+  0% { opacity: 0.45; transform: scale(0.85); }
+  100% { opacity: 0; transform: scale(1.35); }
+}
+
+.svc-icon-layers::after {
+  left: 20%;
+  right: 20%;
+  bottom: 22%;
+  height: 2px;
+  background: currentColor;
+  opacity: 0;
+  transform: translateY(4px) scaleX(0.7);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+.group:hover .svc-icon-layers::after {
+  opacity: 0.3;
+  transform: translateY(0) scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-icon-sweep::after,
+  .svc-icon-vbar::after,
+  .svc-icon-ring::before,
+  .svc-icon-layers::after {
+    transition: none;
+  }
+  .group:hover .svc-icon-pulse::before {
+    animation: none;
+  }
+}
