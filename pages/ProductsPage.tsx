@@ -1,5 +1,5 @@
 import React from 'react';
-import { Products } from '../components/Products';
+import { ProductsShowcase } from '../components/ProductsShowcase';
 import { Contact } from '../components/Contact';
 import { PageHero } from '../components/PageHero';
 import { CTAStrip } from '../components/CTAStrip';
@@ -17,7 +17,7 @@ export const ProductsPage: React.FC = () => {
         size="lg"
         overlay="bronze"
       />
-      <Products />
+      <ProductsShowcase />
       <FAQSection
         faqs={productsPageFAQs}
         title="Frequently Asked Questions"
