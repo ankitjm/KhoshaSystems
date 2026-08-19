@@ -22,8 +22,9 @@ interface ProductItem {
   slug: string;
   category: string;
   description: string;
-  /** `scale` lets each product's square crop be tuned independently — some source photos have slack to zoom into (crops out baked-in margins), others are already a tight object-fit:cover fit and would overflow awkwardly if zoomed further. */
-  image: { src: string; alt: string; position?: string; scale?: number };
+  /** `frameBg` fills the letterboxing object-fit:contain leaves around images whose own background isn't white/light
+   * (e.g. a near-black source) — keeps the fit seamless instead of showing a hard white bar against a dark image. */
+  image: { src: string; alt: string; frameBg?: string };
   stats: ProductStat[];
 }
 
@@ -45,7 +46,7 @@ const products: ProductItem[] = [
     slug: "/products/real-desk",
     category: "The Connected Sales Suite",
     description: "A connected sales suite for real estate developers and brokers — landing pages, lead capture, and bookings, all writing to one CRM.",
-    image: { src: "/images/realdesk/realdesk-landingpage.webp", alt: "RealDesk landing page and lead capture on laptop and mobile", position: 'left center', scale: 1 },
+    image: { src: "/images/products-page-real-desk.png", alt: "RealDesk dashboard on laptop with the mobile app and project renders" },
     stats: [
       { value: "09", label: "Connected Products" },
       { value: "05", label: "Lead Capture Points" },
@@ -57,7 +58,7 @@ const products: ProductItem[] = [
     slug: "/services",
     category: "AI That Works While You Don't",
     description: "Custom AI automation for business operations — workflow, support, and document processing, built around the systems you already use.",
-    image: { src: "/images/services-architecture.jpg", alt: "AI automation workflow diagram" },
+    image: { src: "/images/services-architecture.jpg", alt: "AI automation workflow diagram", frameBg: "bg-stone-950" },
     stats: [
       { value: "Custom", label: "Built Around Your Workflow" },
       { value: "24/7", label: "Always-On Automation" },
@@ -69,7 +70,7 @@ const products: ProductItem[] = [
     slug: "/products/canada-immigration",
     category: "Immigration Practice, Simplified.",
     description: "A case-management platform for Canada-focused immigration consultancies — track applicants, manage documents, and keep every case moving from one dashboard.",
-    image: { src: "/images/work-immigration.png", alt: "Passage immigration case management dashboard", position: '80% center' },
+    image: { src: "/images/work-immigration.png", alt: "Passage immigration case management dashboard" },
     stats: [
       { value: "11", label: "Case Pipelines" },
       { value: "56-Day", label: "Job Bank Tracking" },
@@ -156,29 +157,24 @@ const ProductInfo: React.FC<{ product: ProductItem; index: number; className?: s
   </div>
 );
 
-/** `square` renders the compact desktop split composition — a single 1:1 frame where the artwork fills edge-to-edge via object-fit:cover (no inner mat, no distortion). Each product's `image.scale` tunes how much extra zoom (beyond cover's own crop) is applied — some source photos have slack to zoom into and crop out baked-in margins; others (like Real Desk's already-tight landscape source) have none, and forcing a uniform zoom pushed past the laptop's edge. Defaulting to 1.08 preserves that look for the products that need it; each product overrides only if its own source requires a different value. */
-const ProductVisual: React.FC<{ product: ProductItem; square?: boolean }> = ({ product, square }) => {
-  const scale = product.image.scale ?? 1.08;
-  return (
-    <div
-      className={`relative border border-stone-200 bg-white shadow-sm overflow-hidden group flex-shrink-0 ${
-        square ? 'w-[clamp(385px,min(30vw,48vh),425px)] aspect-square rounded-2xl' : 'w-full h-[clamp(200px,30vh,280px)] mb-5 rounded-xl'
-      }`}
-    >
+/** `square` renders the compact desktop split composition — a single 1:1 frame. Artwork uses object-fit:contain so the
+ * whole image is always visible (never cropped), centered, and shrunk only as much as needed to fit the frame. */
+const ProductVisual: React.FC<{ product: ProductItem; square?: boolean }> = ({ product, square }) => (
+  <div
+    className={`relative border border-stone-200 shadow-sm overflow-hidden group flex-shrink-0 ${product.image.frameBg ?? 'bg-white'} ${
+      square ? 'w-[clamp(385px,min(30vw,48vh),425px)] aspect-square rounded-2xl' : 'w-full h-[clamp(200px,30vh,280px)] mb-5 rounded-xl'
+    }`}
+  >
+    <picture>
+      <source srcSet={product.image.src.replace(/\.(png|jpe?g)$/i, '.webp')} type="image/webp" />
       <img
         src={product.image.src}
         alt={product.image.alt}
-        style={{
-          objectPosition: product.image.position || 'center',
-          ...(square ? { '--img-scale': scale, '--img-scale-hover': scale + 0.04 } as React.CSSProperties : {}),
-        }}
-        className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out ${
-          square ? 'scale-[var(--img-scale)] group-hover:scale-[var(--img-scale-hover)]' : 'group-hover:scale-[1.02]'
-        }`}
+        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02]"
       />
-    </div>
-  );
-};
+    </picture>
+  </div>
+);
 
 const ProductPanelContent: React.FC<{ product: ProductItem; index: number; layout?: 'stacked' | 'split' }> = ({ product, index, layout = 'stacked' }) => {
   if (layout === 'split') {

@@ -2,8 +2,8 @@ import React from 'react';
 import { Hero } from '../components/Hero';
 import { Clients } from '../components/Clients';
 import { Philosophy } from '../components/Philosophy';
-import { Services } from '../components/Services';
-import { Products } from '../components/Products';
+import { ServicesShowcase } from '../components/ServicesShowcase';
+import { ProductsShowcase } from '../components/ProductsShowcase';
 import { Testimonials } from '../components/Testimonials';
 import { FAQ } from '../components/FAQ';
 import { Founder } from '../components/Founder';
@@ -16,8 +16,8 @@ export const Home: React.FC = () => {
       <Hero />
       <Clients />
       <Philosophy />
-      <Products />
-      <Services />
+      <ProductsShowcase />
+      <ServicesShowcase />
       <CTAStrip />
       <Testimonials />
       <Founder />
