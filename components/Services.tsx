@@ -170,7 +170,7 @@ export const Services: React.FC = () => {
             opacity: 1,
             scale: 1,
             boxShadow: '0 0 0 1px rgba(180,135,94,0.1), 0 4px 24px rgba(180,135,94,0.08)',
-            transition: { duration: 0.5, ease: EASE, delay },
+            transition: { duration: 0.7, ease: EASE, delay },
           },
         };
 
@@ -191,14 +191,14 @@ export const Services: React.FC = () => {
   // so Framer computes its delay from staggerChildren/delayChildren.
   const cardsContainerVariants = (delay: number): Variants => ({
     hidden: {},
-    visible: { transition: { staggerChildren: reduce ? 0 : 0.08, delayChildren: reduce ? 0 : delay } },
+    visible: { transition: { staggerChildren: reduce ? 0 : 0.15, delayChildren: reduce ? 0 : delay } },
   });
 
   const cardVariants: Variants = reduce
     ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.25 } } }
     : {
         hidden: { opacity: 0, y: 14 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
       };
 
   return (
@@ -207,7 +207,7 @@ export const Services: React.FC = () => {
         className="max-w-6xl mx-auto"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ once: true, margin: '-140px', amount: 0.15 }}
       >
         <div className="mb-12 sm:mb-16">
           <motion.span
@@ -233,7 +233,7 @@ export const Services: React.FC = () => {
         <div className="flex flex-col gap-6 sm:gap-8">
           {groups.map((group, groupIndex) => {
             const accent = accentStyles[group.accent];
-            const rowDelay = groupIndex === 0 ? 0.15 : 0.35;
+            const rowDelay = groupIndex === 0 ? 0.3 : 0.7;
             return (
               <div
                 key={group.label}
@@ -281,11 +281,11 @@ export const Services: React.FC = () => {
 
                 {/* Capability grid — cascades in shortly after the image starts settling, not after it */}
                 <motion.div
-                  variants={cardsContainerVariants(rowDelay + 0.18)}
+                  variants={cardsContainerVariants(rowDelay + 0.4)}
                   className="relative grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-stone-100"
                 >
                   <motion.span
-                    variants={lineVariants(rowDelay + 0.05)}
+                    variants={lineVariants(rowDelay + 0.2)}
                     style={{ transformOrigin: 'left' }}
                     className={`hidden sm:block absolute top-0 left-0 right-0 h-px ${accent.dash}`}
                   />
@@ -326,7 +326,7 @@ export const Services: React.FC = () => {
           })}
         </div>
 
-        <motion.div variants={fadeUp(1.15, 10, 0.4)} className="text-center mt-8 sm:mt-10">
+        <motion.div variants={fadeUp(2.0, 10, 0.4)} className="text-center mt-8 sm:mt-10">
           <Link
             to="/contact"
             className="group inline-flex items-center gap-2 text-stone-500 hover:text-bronze-600 text-sm transition-colors"

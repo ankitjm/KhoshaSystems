@@ -1,6 +1,6 @@
 import React from 'react';
 import { ServicesHero } from '../components/ServicesHero';
-import { Services } from '../components/Services';
+import { ServicesShowcase } from '../components/ServicesShowcase';
 import { Phases } from '../components/Phases';
 import { ServicesTestimonials } from '../components/ServicesTestimonials';
 import { ServicesWork } from '../components/ServicesWork';
@@ -31,7 +31,7 @@ export const ServicesPage: React.FC = () => {
   return (
     <div>
       <ServicesHero />
-      <Services />
+      <ServicesShowcase />
       <Phases />
       <ServicesWork />
       <ServicesPitch />
