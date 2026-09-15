@@ -11,7 +11,7 @@ export const ContactPage: React.FC = () => {
         subtitle="Let's discuss how we can help build your next product or transform your business."
         backgroundImage="/images/contact-hero.jpg"
       />
-      <Contact />
+      <Contact showForm />
       <FAQ />
     </div>
   );

@@ -201,3 +201,27 @@
     animation: none;
   }
 }
+
+.hero-marquee-track {
+  animation: hero-marquee-scroll 36s linear infinite;
+  will-change: transform;
+}
+
+@keyframes hero-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee-track {
+    animation: none;
+    transform: none;
+  }
+  .marquee-dup {
+    display: none;
+  }
+  .hero-marquee-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

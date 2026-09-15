@@ -31,7 +31,7 @@ export const ServicesPage: React.FC = () => {
   return (
     <div>
       <ServicesHero />
-      <ServicesShowcase />
+      <ServicesShowcase mobileReels />
       <Phases />
       <ServicesWork />
       <ServicesPitch />

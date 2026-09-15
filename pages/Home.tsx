@@ -5,7 +5,6 @@ import { Philosophy } from '../components/Philosophy';
 import { ServicesShowcase } from '../components/ServicesShowcase';
 import { ProductsShowcase } from '../components/ProductsShowcase';
 import { Testimonials } from '../components/Testimonials';
-import { FAQ } from '../components/FAQ';
 import { Founder } from '../components/Founder';
 import { Contact } from '../components/Contact';
 import { CTAStrip } from '../components/CTAStrip';
@@ -17,11 +16,10 @@ export const Home: React.FC = () => {
       <Clients />
       <Philosophy />
       <ProductsShowcase />
-      <ServicesShowcase />
+      <ServicesShowcase mobileReels />
       <CTAStrip />
       <Testimonials />
       <Founder />
-      <FAQ />
       <Contact />
     </>
   );

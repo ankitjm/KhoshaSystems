@@ -6,8 +6,7 @@ import { ExitPopup } from './components/ExitPopup';
 import { SEOHead } from './components/SEOHead';
 import { StructuredData } from './components/StructuredData';
 import { CookieConsent } from './components/CookieConsent';
-import { StickyMobileCTA, WhatsAppButton } from './components/StickyMobileCTA';
-import { SocialProof } from './components/SocialProof';
+import { WhatsAppButton } from './components/StickyMobileCTA';
 import { PushPrompt } from './components/PushPrompt';
 import { useVisitorTracking } from './hooks/useVisitorTracking';
 import { useCtaTracking } from './hooks/useCtaTracking';
@@ -50,7 +49,6 @@ const GettingStartedPage = lazy(() => import('./pages/GettingStartedPage').then(
 // const OpenClawInstallationPage = lazy(() => import('./pages/OpenClawInstallationPage').then(m => ({ default: m.OpenClawInstallationPage })));
 const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
-const PreviewDemoPage = lazy(() => import('./pages/PreviewDemoPage').then(m => ({ default: m.PreviewDemoPage })));
 
 function AppContent() {
   // Visitor tracking (runs inside Router for access to useLocation)
@@ -72,7 +70,6 @@ function AppContent() {
         <Navbar />
         <ExitPopup />
         <PushPrompt />
-        <SocialProof />
         <main id="main-content">
           <Suspense fallback={<div className="min-h-screen" />}>
             <Routes>
@@ -111,13 +108,11 @@ function AppContent() {
               <Route path="/help" element={<KnowledgeBasePage />} />
               {/* <Route path="/services/openclaw-installation" element={<OpenClawInstallationPage />} /> */}
               <Route path="/vancouver" element={<VancouverPage />} />
-              <Route path="/preview-demo" element={<PreviewDemoPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </main>
         <WhatsAppButton />
-        <StickyMobileCTA />
         <CookieConsent />
       </div>
     </>

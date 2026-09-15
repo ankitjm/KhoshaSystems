@@ -85,7 +85,6 @@ if (mode === 'panel-icons') {
 }
 
 if (mode === 'mask') {
-  await maskExisting({ inFile: 'philosophy-hub-badge.webp', outName: 'philosophy-hub-badge-v2', radiusPct: 0.22, feather: 1.4 });
-  await maskExisting({ inFile: 'philosophy-icon-unified-data.webp', outName: 'philosophy-icon-unified-data-v2', radiusPct: 0.035, feather: 1.5 });
-  await maskExisting({ inFile: 'philosophy-icon-automation-flows.webp', outName: 'philosophy-icon-automation-flows-v2', radiusPct: 0.035, feather: 1.5 });
+  await extractFlat({ name: 'philosophy-icon-unified-data-v2', left: 760, top: 172, width: 300, height: 118, radiusPct: 0.035, feather: 1.5 });
+  await extractFlat({ name: 'philosophy-icon-automation-flows-v2', left: 1165, top: 156, width: 300, height: 122, radiusPct: 0.035, feather: 1.5 });
 }

@@ -17,7 +17,7 @@ export const Clients: React.FC = () => {
       <img
         src={client.logo}
         alt={client.name}
-        className="max-w-full max-h-full object-contain opacity-40 hover:opacity-70 transition-opacity duration-300 select-none grayscale"
+        className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 select-none"
         draggable={false}
       />
     </div>

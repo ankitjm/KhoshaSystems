@@ -45,7 +45,7 @@ const projects = [
     title: "Immigration Practice Operating System",
     description: "Built PASSAGE for Canadian RCIC-licensed immigration consultancies — unifying client records, 11 case-type pipelines, document management, and regulatory compliance tracking into one searchable file, from first enquiry to permanent residence.",
     stats: ["11", "Case Pipelines", "56-Day", "Job Bank Tracking"],
-    image: "/images/work-immigration.png",
+    image: "/images/product-immigration-page.png",
     productName: "PASSAGE",
     productSlug: "/products/canada-immigration",
   },

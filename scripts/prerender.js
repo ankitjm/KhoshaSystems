@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '..', 'dist');
 const PORT = 4173;
 const BASE_URL = 'https://khoshasystems.com';
-const DEFAULT_OG_IMAGE = `${BASE_URL}/og-icon.png`;
+const DEFAULT_OG_IMAGE = `${BASE_URL}/images/khosha-preview-image.png`;
 
 const ROUTES = [
   '/',
@@ -68,7 +68,9 @@ const seoConfig = {
   '/': {
     title: 'Khosha Systems | Software Development & AI Transformation Company | Bangalore',
     description: 'Khosha Systems builds web apps, SaaS products & AI solutions from Bangalore. RetailerOS, Real Estate CRM, Visitor Management. 15+ years experience.',
-    keywords: 'software development company Bangalore, web application development company Bangalore, SaaS product development company India, AI transformation services Bangalore, custom software development Bangalore, digital transformation company Bangalore, RetailerOS, real estate CRM India, visitor management system India, legacy modernization services India, software company Bengaluru, IT company Kumara Park Bangalore'
+    keywords: 'software development company Bangalore, web application development company Bangalore, SaaS product development company India, AI transformation services Bangalore, custom software development Bangalore, digital transformation company Bangalore, RetailerOS, real estate CRM India, visitor management system India, legacy modernization services India, software company Bengaluru, IT company Kumara Park Bangalore',
+    ogTitle: 'Turning Ideas Into Digital Impact',
+    ogDescription: 'Khosha helps businesses transform ideas into purposeful digital products through strategy, design, and technology.'
   },
   '/products': {
     title: 'SaaS Products | RetailerOS, Real Estate CRM & Visitor Management | Khosha Systems',
@@ -234,34 +236,40 @@ async function prerenderWithPuppeteer() {
   console.log('Pre-rendering with Puppeteer (full HTML)...');
   const server = await startServer();
 
-  const browser = await puppeteer.default.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-  });
+  try {
+    const browser = await puppeteer.default.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+    });
 
-  for (const route of ROUTES) {
-    const page = await browser.newPage();
-    const url = `http://localhost:${PORT}${route}`;
-    console.log(`  Rendering ${route}...`);
+    try {
+      for (const route of ROUTES) {
+        const page = await browser.newPage();
+        const url = `http://localhost:${PORT}${route}`;
+        console.log(`  Rendering ${route}...`);
 
-    await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
-    await page.waitForSelector('#root > *', { timeout: 10000 });
-    await new Promise(r => setTimeout(r, 500));
+        await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
+        await page.waitForSelector('#root > *', { timeout: 10000 });
+        await new Promise(r => setTimeout(r, 500));
 
-    let html = await page.content();
-    html = html.replace('<div id="root">', '<div id="root" data-prerendered="true">');
+        let html = await page.content();
+        html = html.replace('<div id="root">', '<div id="root" data-prerendered="true">');
 
-    const outDir = join(DIST, route === '/' ? '' : route);
-    if (route !== '/') mkdirSync(outDir, { recursive: true });
-    const outFile = route === '/' ? join(DIST, 'index.html') : join(outDir, 'index.html');
-    writeFileSync(outFile, html);
-    console.log(`  ✓ ${outFile}`);
+        const outDir = join(DIST, route === '/' ? '' : route);
+        if (route !== '/') mkdirSync(outDir, { recursive: true });
+        const outFile = route === '/' ? join(DIST, 'index.html') : join(outDir, 'index.html');
+        writeFileSync(outFile, html);
+        console.log(`  ✓ ${outFile}`);
 
-    await page.close();
+        await page.close();
+      }
+    } finally {
+      await browser.close();
+    }
+  } finally {
+    server.close();
   }
 
-  await browser.close();
-  server.close();
   console.log(`\nPre-rendered ${ROUTES.length} routes with Puppeteer.`);
 }
 
@@ -381,6 +389,8 @@ function prerenderMetaOnly() {
     let html = templateHtml;
 
     if (config) {
+      const ogTitle = config.ogTitle || config.title;
+      const ogDescription = config.ogDescription || config.description;
       // Replace title
       html = html.replace(
         /<title>[^<]*<\/title>/,
@@ -399,11 +409,11 @@ function prerenderMetaOnly() {
       // Replace OG tags
       html = html.replace(
         /<meta property="og:title" content="[^"]*" \/>/,
-        `<meta property="og:title" content="${config.title}" />`
+        `<meta property="og:title" content="${ogTitle}" />`
       );
       html = html.replace(
         /<meta property="og:description" content="[^"]*" \/>/,
-        `<meta property="og:description" content="${config.description}" />`
+        `<meta property="og:description" content="${ogDescription}" />`
       );
       html = html.replace(
         /<meta property="og:image" content="[^"]*" \/>/,
@@ -412,11 +422,11 @@ function prerenderMetaOnly() {
       // Replace Twitter tags
       html = html.replace(
         /<meta name="twitter:title" content="[^"]*" \/>/,
-        `<meta name="twitter:title" content="${config.title}" />`
+        `<meta name="twitter:title" content="${ogTitle}" />`
       );
       html = html.replace(
         /<meta name="twitter:description" content="[^"]*" \/>/,
-        `<meta name="twitter:description" content="${config.description}" />`
+        `<meta name="twitter:description" content="${ogDescription}" />`
       );
     }
 
@@ -484,7 +494,9 @@ async function prerender() {
   }
 }
 
-prerender().catch(err => {
-  console.error('Pre-render failed:', err);
-  process.exit(1);
-});
+prerender()
+  .then(() => process.exit(0))
+  .catch(err => {
+    console.error('Pre-render failed:', err);
+    process.exit(1);
+  });

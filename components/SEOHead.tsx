@@ -6,16 +6,20 @@ interface SEOConfig {
   description: string;
   keywords: string;
   ogImage?: string;
+  ogTitle?: string;
+  ogDescription?: string;
 }
 
 const BASE_URL = 'https://khoshasystems.com';
-const DEFAULT_OG_IMAGE = `${BASE_URL}/og-icon.png`;
+const DEFAULT_OG_IMAGE = `${BASE_URL}/images/khosha-preview-image.png`;
 
 const seoConfig: Record<string, SEOConfig> = {
   '/': {
     title: 'Khosha Systems | Software Development & AI Transformation Company | Bangalore',
     description: 'Khosha Systems builds web apps, SaaS products & AI solutions from Bangalore. RetailerOS, Real Estate CRM, Visitor Management. 15+ years experience.',
-    keywords: 'software development company Bangalore, web application development company Bangalore, SaaS product development company India, AI transformation services Bangalore, custom software development Bangalore, digital transformation company Bangalore, RetailerOS, real estate CRM India, visitor management system India, legacy modernization services India, software company Bengaluru, IT company Kumara Park Bangalore'
+    keywords: 'software development company Bangalore, web application development company Bangalore, SaaS product development company India, AI transformation services Bangalore, custom software development Bangalore, digital transformation company Bangalore, RetailerOS, real estate CRM India, visitor management system India, legacy modernization services India, software company Bengaluru, IT company Kumara Park Bangalore',
+    ogTitle: 'Turning Ideas Into Digital Impact',
+    ogDescription: 'Khosha helps businesses transform ideas into purposeful digital products through strategy, design, and technology.'
   },
   '/products': {
     title: 'SaaS Products | RetailerOS, Real Estate CRM & Visitor Management | Khosha Systems',
@@ -177,6 +181,8 @@ export const SEOHead: React.FC = () => {
     if (!config) return;
 
     const ogImage = config.ogImage || DEFAULT_OG_IMAGE;
+    const ogTitle = config.ogTitle || config.title;
+    const ogDescription = config.ogDescription || config.description;
 
     document.title = config.title;
 
@@ -195,12 +201,12 @@ export const SEOHead: React.FC = () => {
 
     updateMeta('description', config.description);
     updateMeta('keywords', config.keywords);
-    updateMeta('og:title', config.title, true);
-    updateMeta('og:description', config.description, true);
+    updateMeta('og:title', ogTitle, true);
+    updateMeta('og:description', ogDescription, true);
     updateMeta('og:url', canonicalUrl, true);
     updateMeta('og:image', ogImage, true);
-    updateMeta('twitter:title', config.title);
-    updateMeta('twitter:description', config.description);
+    updateMeta('twitter:title', ogTitle);
+    updateMeta('twitter:description', ogDescription);
     updateMeta('twitter:image', ogImage);
   }, [location.pathname]);
 

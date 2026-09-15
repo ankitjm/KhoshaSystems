@@ -146,24 +146,6 @@ export const ServicesHero: React.FC = () => {
           >
             Web apps, websites, AI transformation, mobile apps, and full digital services — built for scale and designed for impact.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap gap-8 sm:gap-10 mt-10 sm:mt-14"
-          >
-            {[
-              { n: '15+', l: 'Years Engineering' },
-              { n: '7', l: 'Industries Served' },
-              { n: '3', l: 'Delivery Phases' },
-            ].map((stat) => (
-              <div key={stat.l} className="border-l-2 border-bronze-800 pl-3 sm:pl-4">
-                <div className="font-serif font-extrabold text-xl sm:text-2xl text-white">{stat.n}</div>
-                <div className="text-[11px] sm:text-xs text-white/40 mt-0.5">{stat.l}</div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </div>
     </section>

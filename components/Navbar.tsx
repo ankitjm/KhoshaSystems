@@ -1,7 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Menu, X, ArrowRight, MapPin, Mail, Clock, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
+
+// Fraction of /logo.png's width occupied by the mark (the "K" glyph + dot),
+// measured from the source asset — everything after this is the "khoshà SYSTEMS" wordmark.
+const LOGO_MARK_FRACTION = 0.456;
+const MOBILE_INTRO_STORAGE_KEY = 'khosha-mobile-logo-intro-played';
+
+type MobileIntroStage = 'measuring' | 'reveal' | 'expand' | 'settle' | 'done';
+
+const getInitialIntroStage = (): MobileIntroStage => {
+  if (typeof window === 'undefined') return 'done';
+  try {
+    const isMobileViewport = window.matchMedia('(max-width: 767px)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const alreadyPlayed = sessionStorage.getItem(MOBILE_INTRO_STORAGE_KEY) === '1';
+    if (!isMobileViewport || prefersReducedMotion || alreadyPlayed) return 'done';
+  } catch {
+    return 'done';
+  }
+  return 'measuring';
+};
 
 const navItems = [
   { label: 'Home', href: '/', desc: 'Overview' },
@@ -18,6 +38,14 @@ export const Navbar: React.FC = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const location = useLocation();
 
+  // Mobile-only "logo intro" — mark reveals centered, wordmark unfolds beside it,
+  // then the whole lockup glides into its normal left-aligned navbar slot. Desktop is untouched:
+  // getInitialIntroStage() resolves to 'done' immediately outside mobile widths.
+  const [introStage, setIntroStage] = useState<MobileIntroStage>(getInitialIntroStage);
+  const [introOffsets, setIntroOffsets] = useState({ mark: 0, full: 0 });
+  const introRowRef = useRef<HTMLDivElement>(null);
+  const introLogoRef = useRef<HTMLImageElement>(null);
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -27,6 +55,52 @@ export const Navbar: React.FC = () => {
   useEffect(() => {
     document.body.style.overflow = isMobileOpen ? 'hidden' : 'unset';
   }, [isMobileOpen]);
+
+  // Measure the header's center and the logo's natural (untransformed) position once,
+  // before paint, so the mark/full-logo centering offsets are pixel-accurate at any mobile width.
+  useLayoutEffect(() => {
+    if (introStage !== 'measuring') return;
+    const row = introRowRef.current;
+    const logo = introLogoRef.current;
+    if (!row || !logo) {
+      setIntroStage('done');
+      return;
+    }
+    const rowRect = row.getBoundingClientRect();
+    const logoRect = logo.getBoundingClientRect();
+    const headerCenterX = rowRect.left + rowRect.width / 2;
+    const markCenterX = logoRect.left + (logoRect.width * LOGO_MARK_FRACTION) / 2;
+    const fullCenterX = logoRect.left + logoRect.width / 2;
+    setIntroOffsets({ mark: headerCenterX - markCenterX, full: headerCenterX - fullCenterX });
+    setIntroStage('reveal');
+  }, [introStage]);
+
+  useEffect(() => {
+    if (introStage !== 'reveal') return;
+    const t = setTimeout(() => setIntroStage('expand'), 600);
+    return () => clearTimeout(t);
+  }, [introStage]);
+
+  useEffect(() => {
+    if (introStage !== 'expand') return;
+    const t = setTimeout(() => setIntroStage('settle'), 500);
+    return () => clearTimeout(t);
+  }, [introStage]);
+
+  useEffect(() => {
+    if (introStage !== 'settle') return;
+    const t = setTimeout(() => {
+      setIntroStage('done');
+      try {
+        sessionStorage.setItem(MOBILE_INTRO_STORAGE_KEY, '1');
+      } catch {
+        // sessionStorage unavailable (e.g. private mode) — intro simply won't be remembered
+      }
+    }, 800);
+    return () => clearTimeout(t);
+  }, [introStage]);
+
+  const introSettled = introStage === 'settle' || introStage === 'done';
 
   return (
     <>
@@ -38,8 +112,8 @@ export const Navbar: React.FC = () => {
               <MapPin size={10} className="text-bronze-500" /> Kumara Park, Seshadripuram
             </span>
             <span className="text-stone-700">|</span>
-            <a href="mailto:ankit@khoshasystems.com" className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase hover:text-white transition-colors">
-              <Mail size={10} className="text-bronze-500" /> ankit@khoshasystems.com
+            <a href="mailto:veda@khosha.tech" className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase hover:text-white transition-colors">
+              <Mail size={10} className="text-bronze-500" /> veda@khosha.tech
             </a>
           </div>
           <div className="flex items-center gap-5">
@@ -60,8 +134,8 @@ export const Navbar: React.FC = () => {
           <span className="flex items-center gap-1 text-[9px] tracking-wider uppercase">
             <MapPin size={9} className="text-bronze-500" /> Bangalore, India
           </span>
-          <a href="mailto:ankit@khoshasystems.com" className="flex items-center gap-1 text-[9px] tracking-wider uppercase">
-            <Mail size={9} className="text-bronze-500" /> ankit@khoshasystems.com
+          <a href="mailto:veda@khosha.tech" className="flex items-center gap-1 text-[9px] tracking-wider uppercase">
+            <Mail size={9} className="text-bronze-500" /> veda@khosha.tech
           </a>
         </div>
       </div>
@@ -74,15 +148,51 @@ export const Navbar: React.FC = () => {
             : 'bg-white/80 backdrop-blur-sm py-2 sm:py-2.5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 flex justify-between items-center">
+        <div ref={introRowRef} className="max-w-7xl mx-auto px-5 sm:px-6 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3 group relative z-50" onClick={() => setIsMobileOpen(false)}>
-            <img
-              src="/logo.png"
-              alt="Khosha Systems"
-              width="199"
-              height="75"
-              className="h-9 sm:h-11 md:h-14 w-auto"
-            />
+            <motion.div
+              initial={false}
+              animate={{
+                x:
+                  introStage === 'reveal'
+                    ? introOffsets.mark
+                    : introStage === 'expand'
+                    ? introOffsets.full
+                    : 0,
+              }}
+              transition={{
+                duration: introStage === 'expand' ? 0.5 : introStage === 'settle' ? 0.8 : 0,
+                ease: introStage === 'settle' ? [0.16, 1, 0.3, 1] : 'easeOut',
+              }}
+              style={{ display: 'inline-block' }}
+            >
+              <motion.div
+                initial={false}
+                animate={{
+                  opacity: introStage === 'measuring' ? 0 : 1,
+                  scale: introStage === 'measuring' ? 0.92 : 1,
+                  clipPath:
+                    introStage === 'measuring' || introStage === 'reveal'
+                      ? `inset(0 ${(1 - LOGO_MARK_FRACTION) * 100}% 0 0)`
+                      : 'inset(0 0% 0 0)',
+                }}
+                transition={{
+                  opacity: { duration: 0.6, ease: 'easeOut' },
+                  scale: { duration: 0.6, ease: 'easeOut' },
+                  clipPath: { duration: introStage === 'expand' ? 0.5 : 0, ease: 'easeOut' },
+                }}
+                style={{ display: 'inline-block' }}
+              >
+                <img
+                  ref={introLogoRef}
+                  src="/logo.png"
+                  alt="Khosha Systems"
+                  width="199"
+                  height="75"
+                  className="h-9 sm:h-11 md:h-14 w-auto"
+                />
+              </motion.div>
+            </motion.div>
           </Link>
 
           {/* Desktop Nav */}
@@ -109,13 +219,18 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Toggle */}
-          <button
+          <motion.button
             className="md:hidden relative z-50 p-1.5 rounded-full text-stone-700 hover:bg-stone-100 transition-colors"
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label="Toggle Menu"
+            initial={false}
+            animate={{ opacity: introSettled ? 1 : 0, x: introSettled ? 0 : 12 }}
+            transition={{ duration: 0.45, ease: 'easeOut', delay: introStage === 'settle' ? 0.12 : 0 }}
+            style={{ pointerEvents: introSettled ? 'auto' : 'none' }}
+            tabIndex={introSettled ? 0 : -1}
           >
             {isMobileOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          </motion.button>
         </div>
       </nav>
 
@@ -167,27 +282,6 @@ export const Navbar: React.FC = () => {
               </motion.div>
             </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-              className="mt-auto mb-6 pt-4 border-t border-stone-100 relative z-10">
-              <div className="space-y-2.5">
-                <a href="tel:+918884972272" className="flex items-center gap-2.5 text-stone-400">
-                  <Phone size={13} className="text-bronze-500 shrink-0" />
-                  <span className="text-sm">+91 888 497 2272</span>
-                </a>
-                <a href="mailto:ankit@khoshasystems.com" className="flex items-center gap-2.5 text-stone-400">
-                  <Mail size={13} className="text-bronze-500 shrink-0" />
-                  <span className="text-sm">ankit@khoshasystems.com</span>
-                </a>
-                <a href="https://maps.google.com/?q=SS+Apt+13+4th+Cross+Rd+Kumara+Park+West+Seshadripuram+Bangalore+Karnataka+560020" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2.5 text-stone-400">
-                  <MapPin size={13} className="text-bronze-500 mt-0.5 shrink-0" />
-                  <span className="text-sm">Kumara Park, Seshadripuram, Bangalore</span>
-                </a>
-                <div className="flex items-center gap-2.5 text-stone-400">
-                  <Clock size={13} className="text-bronze-500 shrink-0" />
-                  <span className="text-sm">Mon–Fri 9:00 AM – 6:00 PM IST</span>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

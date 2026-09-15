@@ -41,7 +41,7 @@ const projects = [
     client: "PASSAGE",
     category: "Canada Immigration",
     title: "Immigration Practice Operating System",
-    image: "/images/work-immigration.png",
+    image: "/images/product-immigration-page.png",
     productSlug: "/products/canada-immigration",
     stats: [
       { value: "11", label: "Case Pipelines" },

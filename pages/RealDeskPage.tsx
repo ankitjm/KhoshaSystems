@@ -11,8 +11,7 @@ const products = [
     name: "Project Landing Page",
     tagline: "Capture attention. Spark interest.",
     image: "/images/realdesk/realdesk-landingpage.webp",
-    description: "The most built-out product in the suite: three complete design directions — Astera (warm, architectural), Velora (elevated, photographic), Novelle (cool, systematic) — each with its own capture, targeting, and analytics machinery underneath.",
-    depth: ["3 complete design directions, not a shared template", "25 built-in capabilities across 5 stages: Capture, Target, Optimise, Nurture, Measure"],
+    description: "The most built-out product in the suite: three complete design directions — Astera (warm, architectural), Velora (elevated, photographic), Novelle (cool, systematic) — not a shared template, each with 25 built-in capabilities across five stages: Capture, Target, Optimise, Nurture, Measure.",
     capturePoint: "Web Enquiry",
     feeds: "Feeds the CRM — a web enquiry",
   },
@@ -20,8 +19,7 @@ const products = [
     name: "QR WebForm",
     tagline: "Capture leads instantly.",
     image: "/images/realdesk/realdesk-qr-webform.webp",
-    description: "A real scannable code that lives on four physical surfaces a buyer actually stands in front of — turning a crowded expo floor into a lead capture point with no app and no typing.",
-    depth: ["Lives on 4 surfaces: Expo Pillar, Sales Gallery, Property Expo, Event Registration"],
+    description: "A real scannable code that lives on four physical surfaces a buyer actually stands in front of — Expo Pillar, Sales Gallery, Property Expo, Event Registration — turning a crowded expo floor into a lead capture point with no app and no typing.",
     capturePoint: "QR Scan",
     feeds: "Feeds the CRM — a QR scan",
   },
@@ -30,7 +28,6 @@ const products = [
     tagline: "Welcome and start the journey.",
     image: "/images/realdesk/realdesk-gre-reception.webp",
     description: "The only product that feeds two others at once — a guest-relations executive logs the visit for the CRM, and in the same motion sets up the presentation Sales Studio runs next.",
-    depth: null,
     capturePoint: "Walk-In",
     feeds: "Feeds the CRM and Sales Studio — a walk-in",
   },
@@ -39,7 +36,6 @@ const products = [
     tagline: "Own the pipeline. Never miss out.",
     image: "/images/realdesk/realdesk-crm.webp",
     description: "The hub. Every other product writes here; it writes to none of them — eight incoming lines, zero outgoing.",
-    depth: null,
     capturePoint: null,
     feeds: "The single source of truth for every lead, scan, walk-in, EOI, and referral.",
     isHub: true,
@@ -49,7 +45,6 @@ const products = [
     tagline: "Present inventory visually. Sell smarter. Win more.",
     image: "/images/realdesk/realdesk-sales-studio.webp",
     description: "The only two-hop story in the suite: a visit becomes a presentation, and a presentation becomes a recorded unit shortlist — reaching the CRM by way of GRE Reception.",
-    depth: null,
     capturePoint: null,
     feeds: "Feeds the CRM via GRE Reception — recorded interest",
   },
@@ -58,7 +53,6 @@ const products = [
     tagline: "Launch-day control. Zero chaos.",
     image: "/images/realdesk/realdesk-eoi-engine.webp",
     description: "Built for the one day a project's demand arrives all at once, so an expression-of-interest surge doesn't turn into a spreadsheet crisis.",
-    depth: null,
     capturePoint: "EOI Form",
     feeds: "Feeds the CRM — an EOI form",
   },
@@ -67,7 +61,6 @@ const products = [
     tagline: "Lock the unit. Seal the deal.",
     image: "/images/realdesk/realdesk-booking-enginee.webp",
     description: "The moment a unit is confirmed, the product that presents inventory has to know before it's shown again — so it writes to Sales Studio as well as the CRM.",
-    depth: null,
     capturePoint: null,
     feeds: "Feeds the CRM and Sales Studio — a unit blocked",
   },
@@ -76,7 +69,6 @@ const products = [
     tagline: "Channel visibility. Partner performance.",
     image: "/images/realdesk/realdesk-cp-app.webp",
     description: "Broker-sourced demand lands in the same pipeline as direct demand — not in a spreadsheet beside it. Every referral is visible, every partner's performance measurable.",
-    depth: null,
     capturePoint: "Channel Partner",
     feeds: "Feeds the CRM — a channel-partner referral",
   },
@@ -85,7 +77,6 @@ const products = [
     tagline: "From booking to handover and beyond.",
     image: "/images/realdesk/realdedesk-post-sales.webp",
     description: "The far end of the journey the suite promises — from a booked unit through construction updates to final possession, still writing to the same pipeline it started in.",
-    depth: null,
     capturePoint: null,
     feeds: "Feeds the CRM — possession tracking",
   },
@@ -123,12 +114,9 @@ export const RealDeskPage: React.FC = () => {
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-bronze-600 font-semibold tracking-widest uppercase text-sm block mb-4">The Suite</span>
             <h2 className="text-3xl sm:text-4xl font-serif text-stone-900 mb-4">Nine Products. One Pipeline.</h2>
-            <p className="text-stone-500">
-              <span className="lg:hidden">What each product does, and what it hands off.</span>
-              <span className="hidden lg:inline">Hover any card for what it does, and what it hands off.</span>
-            </p>
+            <p className="text-stone-500">What each product does, and what it hands off.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product, i) => (
               <motion.div
                 key={product.name}
@@ -136,7 +124,7 @@ export const RealDeskPage: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.04 * i }}
-                className={`group rounded-xl overflow-hidden transition-all ${
+                className={`rounded-xl overflow-hidden transition-shadow ${
                   product.isHub
                     ? 'bg-gradient-to-br from-bronze-500 via-bronze-600 to-bronze-800 shadow-lg shadow-bronze-900/20 hover:shadow-xl'
                     : 'bg-white border border-stone-200 hover:border-bronze-300 hover:shadow-md'
@@ -154,7 +142,7 @@ export const RealDeskPage: React.FC = () => {
                   <img src={product.image} alt={`${product.name} — RealDesk`} className="max-h-full max-w-full object-contain" loading="lazy" />
                 </div>
                 <div className="p-5">
-                  <div className="flex items-center gap-2 flex-wrap">
+                  <div className="flex items-center gap-2 flex-wrap min-h-[1.75rem]">
                     <h3 className={`font-serif font-medium text-lg ${product.isHub ? 'text-white' : 'text-stone-900'}`}>{product.name}</h3>
                     {product.isHub && (
                       <span className="inline-flex items-center gap-1 text-[9px] uppercase tracking-widest font-semibold text-white bg-white/15 px-2 py-1 rounded-full">
@@ -162,25 +150,9 @@ export const RealDeskPage: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  <p className={`text-xs uppercase tracking-wider font-medium mt-1 ${product.isHub ? 'text-bronze-100' : 'text-bronze-600'}`}>{product.tagline}</p>
-                </div>
-
-                <div className="grid grid-rows-[1fr] lg:grid-rows-[0fr] lg:group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-in-out">
-                  <div className="overflow-hidden">
-                    <div className={`px-5 pb-5 pt-1 ${product.isHub ? '' : 'border-t border-stone-100'}`}>
-                      <p className={`text-sm leading-relaxed mb-3 ${product.isHub ? 'text-white/85' : 'text-stone-600'}`}>{product.description}</p>
-                      {product.depth && (
-                        <ul className="space-y-1.5 mb-3">
-                          {product.depth.map((d, j) => (
-                            <li key={j} className={`text-xs flex items-start gap-2 ${product.isHub ? 'text-white/70' : 'text-stone-500'}`}>
-                              <span className="text-bronze-400 mt-0.5">—</span> {d}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                      <p className={`text-xs pt-3 border-t ${product.isHub ? 'border-white/20 text-bronze-100' : 'border-stone-200 text-stone-400'}`}>{product.feeds}</p>
-                    </div>
-                  </div>
+                  <p className={`text-xs uppercase tracking-wider font-medium mt-1 line-clamp-1 ${product.isHub ? 'text-bronze-100' : 'text-bronze-600'}`}>{product.tagline}</p>
+                  <p className={`text-sm leading-relaxed mt-3 line-clamp-4 min-h-[5.7rem] ${product.isHub ? 'text-white/85' : 'text-stone-600'}`}>{product.description}</p>
+                  <p className={`text-xs mt-3 pt-3 border-t line-clamp-2 min-h-[2.2rem] ${product.isHub ? 'border-white/20 text-bronze-100' : 'border-stone-200 text-stone-400'}`}>{product.feeds}</p>
                 </div>
               </motion.div>
             ))}
