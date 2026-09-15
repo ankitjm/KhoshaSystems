@@ -88,8 +88,14 @@ export function reelStageHeight(viewportHeight: number, stageTop: number, opts: 
  * while still mostly below the fold read as a second, competing card rather than a depth cue. Once
  * past that fade window it's fully opaque, the dominant element on screen, same as before. The card
  * being scrolled AWAY FROM recedes — it shrinks, drifts up a little, and fades toward near-invisible
- * with enough blur that any residual sliver reads as a soft out-of-focus hint, not legible content. */
-function applyReelCardStyle(el: HTMLDivElement, d: number) {
+ * with enough blur that any residual sliver reads as a soft out-of-focus hint, not legible content.
+ * `isNearest` (whichever card index is closest to the current continuous progress, decided by the
+ * caller) drives interactivity on its own — a tight distance-from-`d` check used to gate clicks here
+ * directly, and across a wide stretch of scroll where the outgoing card had already faded past that
+ * distance but the incoming card hadn't yet reached it, *neither* card was clickable at all, even
+ * though one of them visually read as fully arrived. Exactly one card is ever the nearest, so this
+ * closes that gap without changing how anything looks. */
+function applyReelCardStyle(el: HTMLDivElement, d: number, isNearest: boolean) {
   let translateY: number;
   let scale: number;
   let opacity: number;
@@ -123,7 +129,7 @@ function applyReelCardStyle(el: HTMLDivElement, d: number) {
   el.style.opacity = String(opacity);
   el.style.filter = blur > 0 ? `blur(${blur}px)` : '';
   el.style.boxShadow = shadow > 0.02 ? activeShadow(shadow) : 'none';
-  el.style.pointerEvents = Math.abs(d) < 0.05 ? 'auto' : 'none';
+  el.style.pointerEvents = isNearest ? 'auto' : 'none';
 }
 
 /** Drives a "stacked parallax" reel: pins a scroll track and, on every scroll frame, moves each
@@ -195,10 +201,11 @@ export function useReelStack(
       const total = rect.height - pinnedHeight;
       const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total, 0));
       const progress = total > 0 ? (scrolled / total) * transitions : 0;
+      const nearestIndex = Math.min(Math.max(Math.round(progress), 0), itemCount - 1);
 
       cardRefs.current.forEach((el, i) => {
         if (!el) return;
-        applyReelCardStyle(el, progress - i);
+        applyReelCardStyle(el, progress - i, i === nearestIndex);
       });
 
       return { total, scrolled };
