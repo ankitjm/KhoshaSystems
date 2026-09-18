@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   motion,
   AnimatePresence,
@@ -228,7 +228,12 @@ const ProductInfo: React.FC<{
 const ProductVisual: React.FC<{ product: ProductItem; square?: boolean; heightClassName?: string }> = ({ product, square, heightClassName }) => (
   <div
     className={`relative overflow-hidden group flex-shrink-0 ${
-      square ? 'w-[clamp(320px,min(30vw,46vh),460px)] aspect-square rounded-2xl' : `w-full ${heightClassName ?? 'h-[clamp(200px,30vh,280px)]'} mb-5 rounded-xl`
+      // The bigger size only kicks in once the showcase is wide enough to lay out image+text
+      // side by side (`@[620px]:flex-row`, see the wrapping `@container` below) — that's also
+      // exactly the width where there's room to spare. Below that threshold the layout stacks
+      // image-above-text inside a much shorter, viewport-height-constrained sticky stage, where
+      // this same bigger size previously pushed the CTA row past the bottom of the screen.
+      square ? 'w-[clamp(320px,min(30vw,46vh),460px)] @[620px]:w-[clamp(380px,min(34vw,54vh),560px)] aspect-square rounded-2xl' : `w-full ${heightClassName ?? 'h-[clamp(200px,30vh,280px)]'} mb-5 rounded-xl`
     }`}
   >
     <picture>
@@ -285,7 +290,6 @@ const ProductNav: React.FC<{ activeIndex: number; onSelect: (i: number) => void;
 };
 
 const TOP_GAP = 16;
-const BOTTOM_GAP = 20;
 
 // The image and text transition independently (different durations/eases), rather than as one
 // crossfading block — the image gets a touch more travel/time since it's the visually heavier
@@ -309,9 +313,22 @@ const desktopTextItemVariants: Variants = {
 
 const DesktopShowcase: React.FC<{ onDemoClick: () => void }> = ({ onDemoClick }) => {
   const pinRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const headerHeight = useHeaderHeight();
-  const { scrollYProgress } = useScroll({ target: pinRef, offset: ["start start", "end end"] });
+  const stickyTop = headerHeight + TOP_GAP;
+  // The sticky box is sized to its real content now (no forced min-height), so it's noticeably more
+  // compact than a viewport-filling panel — but the browser only releases `position: sticky` once
+  // the box's bottom edge scrolls up to `stickyTop + contentHeight`, which happens *well* before the
+  // pinned track's own bottom reaches the viewport's bottom edge. Framer's default "end end" progress
+  // treats the latter as v=1, so without this the two fall out of sync: progress keeps reporting <100%
+  // (box stuck at the header) for a stretch of scroll after CSS has already let go. Anchoring the
+  // "end" of the progress range to the actual release point keeps v=1 and the real release the same
+  // scroll position, regardless of how tall the content is.
+  const contentHeight = useMeasuredHeight(stickyRef, 520);
+  const releasePoint = stickyTop + contentHeight;
+  const scrollOffset = useMemo(() => ["start start", `end ${releasePoint}px`] as const, [releasePoint]);
+  const { scrollYProgress } = useScroll({ target: pinRef, offset: scrollOffset });
 
   // Restrained depth cue: the image and text drift a few px in slightly different amounts across the
   // whole pinned range (the nav stays put, the "background" is just the section's flat fill) — a hint
@@ -329,7 +346,7 @@ const DesktopShowcase: React.FC<{ onDemoClick: () => void }> = ({ onDemoClick })
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const elTop = window.scrollY + rect.top;
-    const scrollableRange = el.offsetHeight - window.innerHeight;
+    const scrollableRange = el.offsetHeight - releasePoint;
     if (scrollableRange <= 0) {
       el.scrollIntoView({ behavior: 'smooth' });
       return;
@@ -339,10 +356,11 @@ const DesktopShowcase: React.FC<{ onDemoClick: () => void }> = ({ onDemoClick })
   };
 
   return (
-    <div ref={pinRef} className="hidden lg:block relative" style={{ height: `${products.length * 90}vh` }}>
+    <div ref={pinRef} className="hidden lg:block relative" style={{ height: `${products.length * 55}vh` }}>
       <div
+        ref={stickyRef}
         className="sticky flex items-center justify-center"
-        style={{ top: headerHeight + TOP_GAP, height: `calc(100vh - ${headerHeight + TOP_GAP + BOTTOM_GAP}px)` }}
+        style={{ top: stickyTop }}
       >
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -592,7 +610,7 @@ export const ProductsShowcase: React.FC = () => {
   };
 
   return (
-    <section id="products" className="bg-stone-50 relative py-16 sm:py-20 md:py-24 px-5 sm:px-6 md:px-12 lg:px-24">
+    <section id="products" className="bg-stone-50 relative py-16 sm:py-20 md:py-24 lg:py-16 px-5 sm:px-6 md:px-12 lg:px-24">
       <div className="relative">
         {/* Only this small label stays pinned on mobile — its sticky range spans this whole
             wrapper (label + heading/description + reel track), not just the intro block, so it
@@ -612,7 +630,7 @@ export const ProductsShowcase: React.FC = () => {
           </motion.span>
         </div>
 
-        <div className="max-w-3xl mx-auto text-center mt-4 mb-10 sm:mb-14 lg:mb-20 lg:mt-0">
+        <div className="max-w-3xl mx-auto text-center mt-4 mb-10 sm:mb-14 lg:mb-10 lg:mt-0">
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -652,7 +670,7 @@ export const ProductsShowcase: React.FC = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mt-20 sm:mt-28 max-w-6xl mx-auto text-center p-8 sm:p-12 border border-dashed border-stone-300 rounded-lg bg-white/50"
+        className="mt-20 sm:mt-28 lg:mt-14 max-w-6xl mx-auto text-center p-8 sm:p-12 border border-dashed border-stone-300 rounded-lg bg-white/50"
       >
         <span className="text-[11px] sm:text-xs font-semibold text-bronze-600 uppercase tracking-widest block mb-3">More Products Coming Soon</span>
         <h3 className="text-xl sm:text-2xl font-serif text-stone-900 mb-4">We're Building More.</h3>

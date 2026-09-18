@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   motion,
   AnimatePresence,
@@ -606,16 +606,25 @@ const ServicesNav: React.FC<{ activeIndex: number; onSelect: (i: number) => void
 };
 
 const SERVICES_TOP_GAP = 16;
-const SERVICES_BOTTOM_GAP = 20;
 
 /** Desktop-only (lg+): pins the section and drives an active service through a left progress nav,
  * cross-fading the content panel on scroll — same pinned-scroll pattern as the Products desktop
  * showcase (DesktopShowcase in ProductsShowcase.tsx), reused here so both sections animate alike. */
 const ServicesDesktopShowcase: React.FC = () => {
   const pinRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const headerHeight = useHeaderHeight();
-  const { scrollYProgress } = useScroll({ target: pinRef, offset: ["start start", "end end"] });
+  const stickyTop = headerHeight + SERVICES_TOP_GAP;
+  // Same fix as the Products desktop showcase (see DesktopShowcase in ProductsShowcase.tsx): the
+  // sticky box is sized to its real content (no forced min-height), so `position: sticky` actually
+  // releases once its bottom scrolls up to `stickyTop + contentHeight` — well before the pinned
+  // track's bottom reaches the viewport's bottom edge, which is what Framer's default "end end"
+  // progress treats as v=1. Anchoring "end" to the real release point keeps the two in sync.
+  const contentHeight = useMeasuredHeight(stickyRef, 340);
+  const releasePoint = stickyTop + contentHeight;
+  const scrollOffset = useMemo(() => ["start start", `end ${releasePoint}px`] as const, [releasePoint]);
+  const { scrollYProgress } = useScroll({ target: pinRef, offset: scrollOffset });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     const idx = Math.min(services.length - 1, Math.max(0, Math.floor(v * services.length)));
@@ -627,7 +636,7 @@ const ServicesDesktopShowcase: React.FC = () => {
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const elTop = window.scrollY + rect.top;
-    const scrollableRange = el.offsetHeight - window.innerHeight;
+    const scrollableRange = el.offsetHeight - releasePoint;
     if (scrollableRange <= 0) {
       el.scrollIntoView({ behavior: 'smooth' });
       return;
@@ -637,10 +646,11 @@ const ServicesDesktopShowcase: React.FC = () => {
   };
 
   return (
-    <div ref={pinRef} className="hidden lg:block relative" style={{ height: `${services.length * 90}vh` }}>
+    <div ref={pinRef} className="hidden lg:block relative" style={{ height: `${services.length * 55}vh` }}>
       <div
+        ref={stickyRef}
         className="sticky flex items-center justify-center"
-        style={{ top: headerHeight + SERVICES_TOP_GAP, height: `calc(100vh - ${headerHeight + SERVICES_TOP_GAP + SERVICES_BOTTOM_GAP}px)` }}
+        style={{ top: stickyTop }}
       >
         <div className="w-full">
           <div className="grid grid-cols-[210px_1fr] gap-4 lg:gap-10 items-center">
@@ -849,7 +859,7 @@ export const ServicesShowcase: React.FC<{ mobileReels?: boolean }> = ({ mobileRe
   const labelHeight = useMeasuredHeight(labelRef, 34);
 
   return (
-    <section id="capabilities" className="bg-stone-50 py-14 sm:py-16 md:py-20 px-5 sm:px-6 md:px-12 lg:px-24">
+    <section id="capabilities" className="bg-stone-50 py-14 sm:py-16 md:py-20 lg:pt-14 lg:pb-8 px-5 sm:px-6 md:px-12 lg:px-24">
       <div className="max-w-6xl mx-auto">
         <div className="relative">
           {/* Only this small label stays pinned on mobile — its sticky range spans this whole
@@ -875,7 +885,7 @@ export const ServicesShowcase: React.FC<{ mobileReels?: boolean }> = ({ mobileRe
           </div>
 
           <motion.div
-            className="mb-10 sm:mb-14 mt-3 md:mt-0 text-center"
+            className="mb-10 sm:mb-14 lg:mb-14 mt-3 md:mt-0 text-center"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-140px', amount: 0.15 }}
@@ -886,6 +896,12 @@ export const ServicesShowcase: React.FC<{ mobileReels?: boolean }> = ({ mobileRe
             >
               End-to-End Digital Transformation
             </motion.h2>
+            <motion.p
+              variants={fadeUpVariants(reduce, 12, 0.5)}
+              className="text-stone-500 text-base sm:text-lg max-w-2xl mx-auto mb-6"
+            >
+              Full-stack engineering services built around your existing systems — from new products to legacy modernization, delivered end-to-end.
+            </motion.p>
             <motion.div
               variants={fadeUpVariants(reduce, 10, 0.5)}
               className="w-12 h-0.5 bg-bronze-400 mx-auto"

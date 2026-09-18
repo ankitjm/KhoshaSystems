@@ -112,7 +112,7 @@ export const Navbar: React.FC = () => {
               <MapPin size={10} className="text-bronze-500" /> Kumara Park, Seshadripuram
             </span>
             <span className="text-stone-700">|</span>
-            <a href="mailto:veda@khosha.tech" className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase hover:text-white transition-colors">
+            <a href="mailto:veda@khosha.tech" className="flex items-center gap-1.5 text-[10px] tracking-wider hover:text-white transition-colors">
               <Mail size={10} className="text-bronze-500" /> veda@khosha.tech
             </a>
           </div>
@@ -134,7 +134,7 @@ export const Navbar: React.FC = () => {
           <span className="flex items-center gap-1 text-[9px] tracking-wider uppercase">
             <MapPin size={9} className="text-bronze-500" /> Bangalore, India
           </span>
-          <a href="mailto:veda@khosha.tech" className="flex items-center gap-1 text-[9px] tracking-wider uppercase">
+          <a href="mailto:veda@khosha.tech" className="flex items-center gap-1 text-[9px] tracking-wider">
             <Mail size={9} className="text-bronze-500" /> veda@khosha.tech
           </a>
         </div>
