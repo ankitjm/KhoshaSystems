@@ -17,7 +17,6 @@
     "video:render:social": "node videos/render.mjs --composition SocialClip --skip-postprocess"
   },
   "dependencies": {
-    "@emailjs/browser": "4.3.0",
     "@google/genai": "latest",
     "@remotion/bundler": "^4.0.438",
     "@remotion/cli": "^4.0.438",

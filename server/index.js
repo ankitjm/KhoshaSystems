@@ -1,3 +1,4 @@
+import './load-env.js';
 import express from 'express';
 import cors from 'cors';
 import Database from 'better-sqlite3';
@@ -6,6 +7,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { existsSync } from 'fs';
 import { syncLeadToBrevo, initScheduler } from './brevo.js';
+import { sendContactEmails } from './resend.js';
 import { initEmailMonitor, startEmailMonitor, checkNewEmails, sendDraftReply, getInboxStatus } from './email-monitor.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -99,7 +101,7 @@ app.use((_req, res, next) => {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
     "img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com",
-    "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://region1.google-analytics.com https://generativelanguage.googleapis.com https://api.emailjs.com",
+    "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://region1.google-analytics.com https://generativelanguage.googleapis.com",
     "frame-src https://maps.google.com https://www.google.com",
     "frame-ancestors 'self'",
     "base-uri 'self'",
@@ -236,6 +238,10 @@ app.post('/api/leads', (req, res) => {
     notifyNewLead({ name: safeName, company: safeCompany, goal: safeGoal });
     // Sync lead to Brevo for email nurture sequence (async, non-blocking)
     syncLeadToBrevo({ name: safeName, company: safeCompany, email, goal: safeGoal, source: safeSource });
+    // Contact page: thank-you note to the visitor + notification to the team (async, non-blocking)
+    if (source === 'Contact Page Form') {
+      sendContactEmails({ name: safeName, company: safeCompany, email: safeEmail, goal: safeGoal, message: safeMessage, source: safeSource }, email);
+    }
     res.json({ success: true, id: result.lastInsertRowid });
   } catch (err) {
     console.error('Lead insert error:', err.message);
