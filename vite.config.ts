@@ -53,7 +53,7 @@ export default defineConfig(({ mode }) => {
                 return 'vendor-icons';
               }
               // Only used by lazy-loaded Contact page — loads on demand
-              if (id.includes('@google/genai')) {
+              if (id.includes('@google/genai') || id.includes('@emailjs')) {
                 return 'vendor-lazy';
               }
             }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Section } from './Section';
 import { ArrowRight, Mail, CheckCircle, AlertCircle, Bell, Phone } from 'lucide-react';
 import { saveLead } from '../db/turso';
+import { sendNotificationEmail, sendCustomerConfirmation } from '../utils/email';
 import { registerPushSubscription } from '../utils/pushSubscription';
 import { motion } from 'framer-motion';
 
@@ -53,6 +54,11 @@ export const Contact: React.FC<ContactProps> = ({ showForm = false }) => {
         });
       }
       setStatus('SUCCESS');
+      sendNotificationEmail({
+        to_name: formData.name, to_email: formData.email,
+        from_company: formData.company, goal: formData.goal, message: "New Discovery Call Request",
+      });
+      sendCustomerConfirmation({ name: formData.name, email: formData.email, goal: formData.goal });
       setFormData({ name: '', company: '', email: '', goal: 'Web Application', message: '' });
     } else {
       setStatus('ERROR');

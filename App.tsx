@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
+import { ExitPopup } from './components/ExitPopup';
 import { SEOHead } from './components/SEOHead';
 import { StructuredData } from './components/StructuredData';
 import { CookieConsent } from './components/CookieConsent';
@@ -29,6 +30,7 @@ const CanadaImmigrationPage = lazy(() => import('./pages/CanadaImmigrationPage')
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
 const VancouverPage = lazy(() => import('./pages/VancouverPage').then(m => ({ default: m.VancouverPage })));
+// const ROICalculatorPage = lazy(() => import('./pages/ROICalculatorPage').then(m => ({ default: m.ROICalculatorPage })));
 const RetailerOSvsIQmetrixPage = lazy(() => import('./pages/RetailerOSvsIQmetrixPage').then(m => ({ default: m.RetailerOSvsIQmetrixPage })));
 const CRMvsSellDoPage = lazy(() => import('./pages/CRMvsSellDoPage').then(m => ({ default: m.CRMvsSellDoPage })));
 const VMSvsEnvoyPage = lazy(() => import('./pages/VMSvsEnvoyPage').then(m => ({ default: m.VMSvsEnvoyPage })));
@@ -66,6 +68,7 @@ function AppContent() {
           Skip to main content
         </a>
         <Navbar />
+        <ExitPopup />
         <PushPrompt />
         <main id="main-content">
           <Suspense fallback={<div className="min-h-screen" />}>
@@ -96,6 +99,7 @@ function AppContent() {
               <Route path="/solutions/fashion-retail" element={<FashionRetailPage />} />
               <Route path="/solutions/grocery" element={<GroceryRetailPage />} />
               <Route path="/solutions/electronics" element={<ElectronicsRetailPage />} />
+              {/* <Route path="/tools/roi-calculator" element={<ROICalculatorPage />} /> */}
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/use-cases" element={<UseCasesPage />} />
               <Route path="/features" element={<FeaturesPage />} />

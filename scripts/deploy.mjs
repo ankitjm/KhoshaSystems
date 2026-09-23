@@ -9,9 +9,6 @@ import { Client } from 'ssh2';
 import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
 import { join, relative, posix } from 'path';
 
-// Load local .env (gitignored) so RESEND_API_KEY etc. are available to this script
-if (existsSync(join(import.meta.dirname, '..', '.env'))) process.loadEnvFile(join(import.meta.dirname, '..', '.env'));
-
 const HOST = process.env.DEPLOY_HOST || '147.93.111.188';
 const USERNAME = process.env.DEPLOY_USER || 'root';
 const PASSWORD = process.env.DEPLOY_PASS;
@@ -157,16 +154,6 @@ async function deploy() {
   } else {
     console.log('  monitoring/ directory not found, skipping');
   }
-  // Resend API key for contact form emails — loaded by server/load-env.js
-  if (process.env.RESEND_API_KEY) {
-    await new Promise((resolve, reject) => {
-      sftp.writeFile(`${REMOTE_BASE}/resend.env`, `RESEND_API_KEY=${process.env.RESEND_API_KEY}\n`, { mode: 0o600 }, err => err ? reject(err) : resolve());
-    });
-    console.log('  resend.env uploaded');
-  } else {
-    console.warn('  WARNING: RESEND_API_KEY not set locally — contact form emails will be disabled');
-  }
-
   sftp.end();
 
   // Install deps and restart
@@ -184,7 +171,6 @@ async function deploy() {
     if (process.env.VAPID_PUBLIC_KEY) envVars.VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
     if (process.env.VAPID_PRIVATE_KEY) envVars.VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY;
     if (process.env.ADMIN_API_KEY) envVars.ADMIN_API_KEY = process.env.ADMIN_API_KEY;
-    if (process.env.RESEND_API_KEY) envVars.RESEND_API_KEY = process.env.RESEND_API_KEY;
     const ecosystemConfig = `module.exports = {
   apps: [{
     name: 'khosha-api',
@@ -225,7 +211,7 @@ add_header X-Content-Type-Options "nosniff" always;
 add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()" always;
-add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://region1.google-analytics.com https://generativelanguage.googleapis.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'" always;
+add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://region1.google-analytics.com https://generativelanguage.googleapis.com https://api.emailjs.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'" always;
 `;
   await exec(conn, 'mkdir -p /etc/nginx/snippets');
   await exec(conn, `cat > /etc/nginx/snippets/security-headers.conf << 'EOF'
